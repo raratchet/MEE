@@ -1,0 +1,12 @@
+[submodule "Dependencies/yaml-cpp"]
+	path = Dependencies/yaml-cpp
+	url = https://github.com/raratchet/yaml-cpp
+[submodule "Dependencies/SDL"]
+	path = Dependencies/SDL
+	url = https://github.com/libsdl-org/SDL
+[submodule "Dependencies/GLM"]
+	path = Dependencies/GLM
+	url = https://github.com/g-truc/glm
+[submodule "Dependencies/stbi"]
+	path = Dependencies/stbi
+	url = https://github.com/nothings/stb

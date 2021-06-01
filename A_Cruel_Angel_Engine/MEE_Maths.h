@@ -1,0 +1,70 @@
+#pragma once
+#include <cmath>
+
+namespace MEE
+{
+	struct Vector2
+	{
+
+		float x, y;
+
+		Vector2() : x(0), y(0)
+		{}
+
+		Vector2(float m_x, float m_y) : x(m_x), y(m_y)
+		{}
+
+		Vector2(const Vector2& vec) : x(vec.x), y(vec.y)
+		{}
+
+		Vector2 zero()
+		{
+			static Vector2 zero;
+			return zero;
+		}
+
+		Vector2 operator+(Vector2 v2)
+		{
+			Vector2 temp;
+			temp.x = x + v2.x;
+			temp.y = y + v2.y;
+			return temp;
+		}
+
+		Vector2 operator-(Vector2 v2)
+		{
+			Vector2 temp;
+			temp.x = x - v2.x;
+			temp.y = y - v2.y;
+			return temp;
+		}
+
+		Vector2 unitVector(Vector2 vector)
+		{
+			float size = vectorSize(vector);
+			Vector2 unit = Vector2(vector.x / size, vector.y / size);
+			return unit;
+		}
+
+		float vectorSize(Vector2 vector) {
+			float x = vector.x;
+			float y = vector.y;
+			return (float)sqrt((x * x) + (y * y));
+		}
+
+		float operator*(Vector2 v2)
+		{
+			float temp;
+			temp = x * v2.x + y * v2.y;
+			return temp;
+		}
+
+		Vector2 operator*(float esc) {
+			Vector2 temp;
+			temp.x = (x * esc);
+			temp.y = (y * esc);
+			return temp;
+		}
+	};
+}
+
