@@ -5,7 +5,7 @@
 class TestLevel : public MEE::Scene
 {
 	// Heredado vía AppState
-	virtual void load() override;
-	virtual void unload() override;
+	virtual void Load() override;
+	virtual void Unload() override;
 };
 

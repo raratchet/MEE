@@ -1,18 +1,18 @@
 #include "MEE_GLFWHandler.h"
 
-bool MEE::GLFWHandler::init()
+bool MEE::GLFWHandler::Init()
 {
     return false;
 }
 
-void MEE::GLFWHandler::stop()
+void MEE::GLFWHandler::Stop()
 {
 }
 
-void MEE::GLFWHandler::pollEvents()
+void MEE::GLFWHandler::PollEvents()
 {
 }
 
-void MEE::GLFWHandler::swapBuffer()
+void MEE::GLFWHandler::SwapBuffer()
 {
 }

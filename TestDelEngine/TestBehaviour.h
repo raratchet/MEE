@@ -20,9 +20,9 @@ public:
 
 	virtual void update() override
 	{
-		auto input = MEE_GLOBAL::application->getInputManager().lock();
+		auto input = MEE_GLOBAL::application->GetInputManager().lock();
 
-		object.getTransform().setPosition(input->GetMouse());
+		object.GetTransform().SetPosition(input->GetMouse());
 
 	}
 };

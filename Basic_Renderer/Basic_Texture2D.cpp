@@ -1,7 +1,7 @@
 #include "Basic_Texture2D.h"
 #include "Basic_Renderer.h"
 
-void Basic_Texture2D::load(const std::string& path)
+void Basic_Texture2D::Load(const std::string& path)
 {
 	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 	width = loadedSurface->w;

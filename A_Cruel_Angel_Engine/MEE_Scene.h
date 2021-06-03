@@ -11,16 +11,16 @@ namespace MEE
 	public:
 		Scene();
 		virtual ~Scene();
-		virtual void load() = 0;
-		void update();
-		void draw();
-		virtual void unload() = 0;
-		class GameObject& createGameObject(const std::string& name);
-		class GameObject& createGameObject(const std::string& name, class Sprite& sprite);
-		class WorldObject& createWorldObject(const std::string& name);
-		class Camera& createCamera();
-		class Camera& createCamera(const struct Vector2& pos, int widht, int height);
-		bool isLoaded();
+		virtual void Load() = 0;
+		void Update();
+		void Draw();
+		virtual void Unload() = 0;
+		class GameObject& CreateGameObject(const std::string& name);
+		class GameObject& CreateGameObject(const std::string& name, class Sprite& sprite);
+		class WorldObject& CreateWorldObject(const std::string& name);
+		class Camera& CreateCamera();
+		class Camera& CreateCamera(const struct Vector2& pos, int widht, int height);
+		bool IsLoaded();
 	protected:
 		std::list<std::shared_ptr<class Camera>> sceneCameras;
 		std::list<std::shared_ptr<class Object>> sceneObjects;

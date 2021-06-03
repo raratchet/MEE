@@ -15,12 +15,12 @@ namespace MEE
 
 		std::cout << "[MEE] Loading "<< info.name << " version "<< info.version << std::endl;
 
-		onInit = (onInitType)PLUGIN_LOAD_EXTERN(m_lib, "onInit");
-		onLoad = (onLoadType)PLUGIN_LOAD_EXTERN(m_lib, "onLoad");
-		onShutdown = (onShutdownType)PLUGIN_LOAD_EXTERN(m_lib, "onShutdown");
+		OnInit = (onInitType)PLUGIN_LOAD_EXTERN(m_lib, "OnInit");
+		OnLoad = (onLoadType)PLUGIN_LOAD_EXTERN(m_lib, "OnLoad");
+		OnShutdown = (onShutdownType)PLUGIN_LOAD_EXTERN(m_lib, "OnShutdown");
 		//Revisar si estos existen
-		onUpdate = (onUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "onUpdate");
-		onPostUpdate = (onPostUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "onPostUpdate");
+		OnUpdate = (onUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnUpdate");
+		OnPostUpdate = (onPostUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnPostUpdate");
 	}
 
 

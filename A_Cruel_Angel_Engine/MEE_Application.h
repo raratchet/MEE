@@ -16,18 +16,18 @@ namespace MEE
 	public:
 		Application();
 		~Application() = default;
-		bool init();
-		void load();
-		void stop();
-		void loop();
-		void update();
-		void draw();
-		std::weak_ptr<WindowHandler> getWindow();
-		std::weak_ptr<PluginManager> getPluginManager();
-		std::weak_ptr<ResourceManager> getResourceManager();
+		bool Init();
+		void Load();
+		void Stop();
+		void Loop();
+		void Update();
+		void Draw();
+		std::weak_ptr<WindowHandler> GetWindow();
+		std::weak_ptr<PluginManager> GetPluginManager();
+		std::weak_ptr<ResourceManager> GetResourceManager();
 		//Leer el comentario de abajo
-		std::weak_ptr<SceneManager> getSceneManager();
-		std::weak_ptr<InputManager> getInputManager();
+		std::weak_ptr<SceneManager> GetSceneManager();
+		std::weak_ptr<InputManager> GetInputManager();
 		/*El scene manager debe ser acesible desde el lado del
 		* juego pordria facilitar su acceso creando un clase singleton
 		* que facilite su uso y controle sus llamadas de una mejor forma

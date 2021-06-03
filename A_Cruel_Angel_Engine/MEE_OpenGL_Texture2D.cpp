@@ -3,7 +3,7 @@
 #include <stb_image.h>
 #include <iostream>
 
-void MEE::Default_OpenGL_Texture2D::load(const std::string& path)
+void MEE::Default_OpenGL_Texture2D::Load(const std::string& path)
 {
 	int w, h, channels;
 	stbi_set_flip_vertically_on_load(1);

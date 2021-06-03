@@ -8,7 +8,7 @@ namespace MEE
 	{
 	public:
 		virtual ~Texture() = default;
-		virtual void load(const std::string & path) = 0;
+		virtual void Load(const std::string & path) = 0;
 		virtual int getWidth()const;
 		virtual int getHeight() const;
 
@@ -20,6 +20,6 @@ namespace MEE
 	{
 	public:
 		virtual ~Texture2D() = default;
-		virtual void load(const std::string& path) = 0;
+		virtual void Load(const std::string& path) = 0;
 	};
 }

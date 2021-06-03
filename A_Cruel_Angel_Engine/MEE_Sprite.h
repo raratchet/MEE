@@ -13,8 +13,8 @@ namespace MEE
 		Sprite(std::weak_ptr<Texture2D> image, int x, int y, int w, int h);
 		Sprite(const std::string& resource_name, int x, int y, int w, int h);
 
-		void draw(const Vector2& pos, const Vector2& scale, const float& rot);
-		void draw(class Transform& transform);
+		void Draw(const Vector2& pos, const Vector2& scale, const float& rot);
+		void Draw(class Transform& transform);
 	private:
 		int width, height;
 		Vector2 startCoord;

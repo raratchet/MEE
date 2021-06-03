@@ -8,9 +8,9 @@ namespace MEE
 	class Camera
 	{
 	public:
-		void setPosition(const Vector2& pos);
-		void setActive(bool active);
-		bool getActive();
+		void SetPosition(const Vector2& pos);
+		void SetActive(bool active);
+		bool GetActive();
 		~Camera() { std::cout << "Se destruye camera\n"; }
 	private:
 		Camera();

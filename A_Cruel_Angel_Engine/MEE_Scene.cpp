@@ -8,7 +8,7 @@ namespace MEE
 {
 	Scene::Scene() 
 	{ 
-		createCamera(); 
+		CreateCamera(); 
 	}
 
 	 Scene::~Scene() 
@@ -19,7 +19,7 @@ namespace MEE
 		drawObjects.clear(); 
 	 }
 
-     GameObject& Scene::createGameObject(const std::string& name)
+     GameObject& Scene::CreateGameObject(const std::string& name)
      {
          std::shared_ptr <GameObject> temp(new GameObject(*this, name));
          sceneObjects.push_back(temp);
@@ -27,7 +27,7 @@ namespace MEE
          return *(temp);
      }
 
-     GameObject& Scene::createGameObject(const std::string& name, Sprite& sprite)
+     GameObject& Scene::CreateGameObject(const std::string& name, Sprite& sprite)
      {
          std::shared_ptr <GameObject> temp(new GameObject(*this, name,sprite));
          sceneObjects.push_back(temp);
@@ -35,51 +35,51 @@ namespace MEE
          return *(temp);
      }
 
-     WorldObject& Scene::createWorldObject(const std::string& name)
+     WorldObject& Scene::CreateWorldObject(const std::string& name)
      {
          std::shared_ptr<WorldObject> temp(new WorldObject(*this, name));
          sceneObjects.push_back(temp);
          return *(temp);
      }
 
-     Camera& Scene::createCamera()
+     Camera& Scene::CreateCamera()
      {
          std::shared_ptr<Camera> camera(new Camera());
          sceneCameras.push_back(camera);
          return *(camera);
      }
 
-     Camera& Scene::createCamera(const Vector2& pos, int widht, int height)
+     Camera& Scene::CreateCamera(const Vector2& pos, int widht, int height)
      {
          std::shared_ptr<Camera> camera(new Camera(pos, widht, height));
          sceneCameras.push_back(camera);
          return *(camera);
      }
 
-     bool Scene::isLoaded()
+     bool Scene::IsLoaded()
      {
          return loaded;
      }
 
-     void Scene::update()
+     void Scene::Update()
      {
          for (auto& obj : sceneObjects)
              for (auto& beh : obj->updatables)
-                 beh->update();
+                 beh->Update();
      }
 
-     void Scene::draw()
+     void Scene::Draw()
      {
          for (auto& camera : sceneCameras)
          {
-             if (!camera->getActive())
+             if (!camera->GetActive())
                  continue;
              //REVISA ESTA LINEA
              //Renderer::SetCurrentCamera(camera);
 
              for (auto& drawable : drawObjects)
              {
-                 drawable->draw();
+                 drawable->Draw();
              }
          }
      }

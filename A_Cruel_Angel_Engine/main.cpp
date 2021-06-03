@@ -8,11 +8,11 @@ using MEE::Application;
 int main(int argc, char* args[])
 {
 	application = new Application;
-	if (application->init())
+	if (application->Init())
 	{
-		application->load();
-		application->loop();
+		application->Load();
+		application->Loop();
 	}
-	application->stop();
+	application->Stop();
 	delete application;
 }

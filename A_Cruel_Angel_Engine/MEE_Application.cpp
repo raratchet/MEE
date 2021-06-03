@@ -13,27 +13,27 @@ namespace MEE
 		MEE_GLOBAL::application = this;
 	}
 
-	bool Application::init()
+	bool Application::Init()
 	{
 		bool success = true;
 
 
 		pluginManager = std::make_shared<PluginManager>(PluginManager());
 
-		if (!pluginManager->init())
+		if (!pluginManager->Init())
 		{
 			std::cout<< "Couldn't initialize Plugin Manager";
 			success = false;
 		}
 
-		if (WindowHandler::getHandlerAPI() == WindowHandlerAPI::SDL)
+		if (WindowHandler::GetHandlerAPI() == WindowHandlerAPI::SDL)
 			w_handler = std::make_shared<SDLHandler>(SDLHandler());
-		else if (WindowHandler::getHandlerAPI() == WindowHandlerAPI::GLFW)
+		else if (WindowHandler::GetHandlerAPI() == WindowHandlerAPI::GLFW)
 			w_handler = std::make_shared<GLFWHandler>(GLFWHandler());
 		else
 			w_handler = std::make_shared<SDLHandler>(SDLHandler());
 
-		if (!w_handler->init())
+		if (!w_handler->Init())
 		{
 			std::cout << "Couldn't initialize Window \n";
 			success = false;
@@ -41,7 +41,7 @@ namespace MEE
 
 		resourceManager = std::make_shared<ResourceManager>(ResourceManager());
 
-		if (!resourceManager->init())
+		if (!resourceManager->Init())
 		{
 			std::cout << "An error has ocurr in the Resource Manager \n";
 			success = false;
@@ -53,72 +53,72 @@ namespace MEE
 		return success;
 	}
 
-	void Application::load()
+	void Application::Load()
 	{
-		pluginManager->load();
+		pluginManager->Load();
 	}
 
 
-	void Application::loop()
+	void Application::Loop()
 	{
 		//Temp
-		std::function<void()> quad = pluginManager->getPluginFunction<void>(0, "renderQuad");
+		std::function<void()> quad = pluginManager->GetPluginFunction<void>(0, "renderQuad");
 		//
 		while (!exit)
 		{
 			//w_handler->pollEvents();
-			update();
-			draw();
+			Update();
+			Draw();
 		}
 	}
 
-	void Application::update()
+	void Application::Update()
 	{
-		pluginManager->update();
+		pluginManager->Update();
 		//Do update
-		sceneManager->getCurrentScene()->update();
+		sceneManager->GetCurrentScene()->Update();
 		//
-		pluginManager->postUpdate();
+		pluginManager->PostUpdate();
 	}
 
-	void Application::draw()
+	void Application::Draw()
 	{
-		MEE_renderClear();
+		MEE_RenderClear();
 		//Do draw
-		sceneManager->getCurrentScene()->draw();
+		sceneManager->GetCurrentScene()->Draw();
 		//
-		w_handler->swapBuffer();
+		w_handler->SwapBuffer();
 	}
 
-	std::weak_ptr<WindowHandler> Application::getWindow()
+	std::weak_ptr<WindowHandler> Application::GetWindow()
 	{
 		return w_handler;
 	}
 
-	std::weak_ptr<PluginManager> MEE::Application::getPluginManager()
+	std::weak_ptr<PluginManager> MEE::Application::GetPluginManager()
 	{
 		return pluginManager;
 	}
 
-	std::weak_ptr<ResourceManager> Application::getResourceManager()
+	std::weak_ptr<ResourceManager> Application::GetResourceManager()
 	{
 		return resourceManager;
 	}
 
-	std::weak_ptr<SceneManager> Application::getSceneManager()
+	std::weak_ptr<SceneManager> Application::GetSceneManager()
 	{
 		return sceneManager;
 	}
 
-	std::weak_ptr<InputManager> Application::getInputManager()
+	std::weak_ptr<InputManager> Application::GetInputManager()
 	{
 		return inputManager;
 	}
 
-	void Application::stop()
+	void Application::Stop()
 	{
-		pluginManager->stop();
-		w_handler->stop();
+		pluginManager->Stop();
+		w_handler->Stop();
 	}
 }
 

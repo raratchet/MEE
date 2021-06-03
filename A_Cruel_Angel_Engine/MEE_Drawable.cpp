@@ -2,22 +2,22 @@
 
 namespace MEE
 {
-	void Drawable::draw() 
+	void Drawable::Draw() 
 	{ 
-		if (m_sprite) m_sprite->draw(draw_transform); 
+		if (m_sprite) m_sprite->Draw(draw_transform); 
 	}
 
-	std::weak_ptr<Sprite> Drawable::getSprite()
+	std::weak_ptr<Sprite> Drawable::GetSprite()
 	{ 
 		return m_sprite; 
 	}
 
-	void Drawable::setSprite(std::shared_ptr<Sprite> sprite)
+	void Drawable::SetSprite(std::shared_ptr<Sprite> sprite)
 	{ 
 		m_sprite = sprite; 
 	}
 
-	void Drawable::setSprite(Sprite& sprite)
+	void Drawable::SetSprite(Sprite& sprite)
 	{ 
 		m_sprite = std::make_shared<Sprite>(sprite); 
 	}

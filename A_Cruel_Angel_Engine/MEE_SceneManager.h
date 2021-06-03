@@ -9,9 +9,9 @@ namespace MEE
 	public:
 		SceneManager() = default;
 		~SceneManager();
-		void addScene(Scene* scene);
-		void quitScene();
-		std::shared_ptr<Scene> getCurrentScene();
+		void AddScene(Scene* scene);
+		void QuitScene();
+		std::shared_ptr<Scene> GetCurrentScene();
 	private:
 		std::stack<std::shared_ptr<Scene>> scenes;
 	};

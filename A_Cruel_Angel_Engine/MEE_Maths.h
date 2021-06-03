@@ -17,7 +17,7 @@ namespace MEE
 		Vector2(const Vector2& vec) : x(vec.x), y(vec.y)
 		{}
 
-		Vector2 zero()
+		Vector2 Zero()
 		{
 			static Vector2 zero;
 			return zero;
@@ -39,14 +39,14 @@ namespace MEE
 			return temp;
 		}
 
-		Vector2 unitVector(Vector2 vector)
+		Vector2 GetUnitVector(Vector2 vector)
 		{
-			float size = vectorSize(vector);
+			float size = GetVectorSize(vector);
 			Vector2 unit = Vector2(vector.x / size, vector.y / size);
 			return unit;
 		}
 
-		float vectorSize(Vector2 vector) {
+		float GetVectorSize(Vector2 vector) {
 			float x = vector.x;
 			float y = vector.y;
 			return (float)sqrt((x * x) + (y * y));

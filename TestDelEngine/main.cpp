@@ -8,12 +8,12 @@ using MEE::Application;
 int main(int argc, char* args[])
 {
 	application = new Application;
-	if (application->init())
+	if (application->Init())
 	{
-		application->load();
-		application->getSceneManager().lock()->addScene(new TestLevel);
-		application->loop();
+		application->Load();
+		application->GetSceneManager().lock()->AddScene(new TestLevel);
+		application->Loop();
 	}
-	application->stop();
+	application->Stop();
 	delete application;
 }

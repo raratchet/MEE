@@ -4,48 +4,48 @@
 
 namespace MEE
 {
-	void Transform::setPosition(Vector2 position_vector)
+	void Transform::SetPosition(Vector2 position_vector)
 	{
 		position = position_vector;
 	}
 
-	void Transform::setScale(Vector2 scale_vector)
+	void Transform::SetScale(Vector2 scale_vector)
 	{
 		scale = scale_vector;
 	}
 
-	void Transform::setRotation(float rotation_float)
+	void Transform::SetRotation(float rotation_float)
 	{
 		rot = rotation_float;
 	}
 
-	Vector2& Transform::getPosition()
+	Vector2& Transform::GetPosition()
 	{
 		return position;
 	}
 
-	Vector2& Transform::getScale()
+	Vector2& Transform::GetScale()
 	{
 		return scale;
 	}
 
-	float& Transform::getRotation()
+	float& Transform::GetRotation()
 	{
 		return rot;
 	}
 
-	void Behaviour::start()
+	void Behaviour::Start()
 	{
 
 	}
 
-	void Behaviour::update()
+	void Behaviour::Update()
 	{
 
 	}
 
  
-	void Behaviour::destroy()
+	void Behaviour::Destroy()
 	{
 
 	}

@@ -9,10 +9,10 @@ namespace MEE
 	class Drawable
 	{
 	public:
-		void draw();
-		std::weak_ptr<Sprite> getSprite();
-		void setSprite(std::shared_ptr<Sprite> sprite);
-		void setSprite(Sprite& sprite);
+		void Draw();
+		std::weak_ptr<Sprite> GetSprite();
+		void SetSprite(std::shared_ptr<Sprite> sprite);
+		void SetSprite(Sprite& sprite);
 		virtual ~Drawable() = default;
 	protected:
 		Drawable(Transform& transform) : m_sprite(nullptr), draw_transform(transform) {}

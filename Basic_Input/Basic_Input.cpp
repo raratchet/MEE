@@ -12,7 +12,7 @@ namespace Basic_Input
 		//MEE_bind_mouse_keyUp(pl_id, "");
 		//MEE_bind_mouse_keyIsPressed(pl_id, "");
 		//MEE_bind_mouse_keyPressedThisFrame(pl_id, "");
-		MEE_bind_mouse_position(pl_id, "mousePosition");
+		MEE_bind_mouse_GetPosition(pl_id, "mousePosition");
 	}
 	void onLoad()
 	{

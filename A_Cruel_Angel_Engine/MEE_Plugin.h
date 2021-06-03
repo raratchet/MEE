@@ -58,11 +58,11 @@ namespace MEE
 		Plugin(std::filesystem::path filename, const PluginInformation& info);
 		~Plugin();
 
-		onInitType	     onInit;
-		onLoadType	     onLoad;
-		onShutdownType   onShutdown;
-		onUpdateType     onUpdate;
-		onPostUpdateType onPostUpdate;
+		onInitType	     OnInit;
+		onLoadType	     OnLoad;
+		onShutdownType   OnShutdown;
+		onUpdateType     OnUpdate;
+		onPostUpdateType OnPostUpdate;
 
 	private:
 

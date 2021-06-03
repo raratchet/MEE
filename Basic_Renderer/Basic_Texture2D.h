@@ -7,7 +7,7 @@ class Basic_Texture2D : public MEE::Texture2D
 public:
 	Basic_Texture2D() = default;
 	virtual ~Basic_Texture2D() = default;
-	virtual void load(const std::string & path) override;
+	virtual void Load(const std::string & path) override;
 	SDL_Texture* getTexture();
 private:
 	SDL_Texture* texture;

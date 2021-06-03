@@ -7,10 +7,10 @@ namespace MEE
     class GLFWHandler : public WindowHandler
     {
 	public:
-		virtual bool init() override;
-		virtual void stop() override;
-		virtual void pollEvents() override;
-		virtual void swapBuffer() override;
+		virtual bool Init() override;
+		virtual void Stop() override;
+		virtual void PollEvents() override;
+		virtual void SwapBuffer() override;
     };
 }
 

@@ -19,12 +19,12 @@ namespace MEE
 	{
 	public:
 		Transform(Object& parent);
-		void setPosition(Vector2 position_vector);
-		void setScale(Vector2 scale_vector);
-		void setRotation(float rotation_float);
-		Vector2& getPosition();
-		Vector2& getScale();
-		float& getRotation();
+		void SetPosition(Vector2 position_vector);
+		void SetScale(Vector2 scale_vector);
+		void SetRotation(float rotation_float);
+		Vector2& GetPosition();
+		Vector2& GetScale();
+		float& GetRotation();
 	private:
 		Vector2 position = Vector2();
 		Vector2 scale = Vector2(1, 1);
@@ -35,9 +35,9 @@ namespace MEE
 	{
 	public:
 		Behaviour(Object& parent);
-		virtual void start();
-		virtual void update();
-		virtual void destroy();
+		virtual void Start();
+		virtual void Update();
+		virtual void Destroy();
 		//Object& Object() { return object; }
 
 	};

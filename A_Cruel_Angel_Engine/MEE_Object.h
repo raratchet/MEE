@@ -14,7 +14,7 @@ namespace MEE
 	{
 	public:
 		template<class T = Component>
-		void addComponent()
+		void AddComponent()
 		{
 			std::shared_ptr<T> component(new T(*this));
 			components.push_back(component);
@@ -27,14 +27,14 @@ namespace MEE
 
 		}
 		template<class T = Component>
-		void removeComponent()
+		void RemoveComponent()
 		{
 
 		}
 
 		void operator=(Object& obj) { obj = *this; }
 
-		Transform& getTransform() { return transform; }
+		Transform& GetTransform() { return transform; }
 
 		virtual ~Object() { components.clear(); updatables.clear(); }
 

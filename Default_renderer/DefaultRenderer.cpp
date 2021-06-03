@@ -14,9 +14,9 @@
 void DefaultRenderer::onInit(int pl_id)
 {
 	std::cout << "[DefaultRenderer] Is starting" << std::endl;
-	MEE_setWindowName(std::string("Joaquin"));
-	MEE_bindRenderClear(pl_id, "renderClear");
-	MEE_bindinitGL(pl_id, "initGL");
+	MEE_SetWindowName(std::string("Joaquin"));
+	MEE_bind_RenderClear(pl_id, "renderClear");
+	MEE_bind_InitGL(pl_id, "initGL");
 }
 
 
@@ -71,9 +71,9 @@ void DefaultRenderer::onLoad()
 
 	glGetUniformLocation(shader, "textureSlot");
 
-	texture.load("C:/Users/rarat/Pictures/games.png");
+	texture.Load("C:/Users/rarat/Pictures/games.png");
 	std::cout << texture.getRendererID() << '\n';
-	texture2.load("C:/Users/rarat/Pictures/games.png");
+	texture2.Load("C:/Users/rarat/Pictures/games.png");
 	std::cout << texture2.getRendererID() << '\n';
 }
 

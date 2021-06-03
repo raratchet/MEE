@@ -9,7 +9,7 @@ namespace MEE
 	public:
 		Default_OpenGL_Texture2D() = default;
 		virtual ~Default_OpenGL_Texture2D() = default;
-		virtual void load(const std::string & path) override;
+		virtual void Load(const std::string & path) override;
 		void bind(GLenum slot = GL_TEXTURE0);
 		GLuint getRendererID();
 	private:

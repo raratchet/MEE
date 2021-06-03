@@ -10,21 +10,21 @@ namespace MEE
 		}
 	}
 
-	void SceneManager::addScene(Scene* scene)
+	void SceneManager::AddScene(Scene* scene)
 	{
 		std::shared_ptr<Scene> shared_scene(scene);
 		scenes.push(shared_scene);
 
-		if (!scene->isLoaded())
-			scene->load();
+		if (!scene->IsLoaded())
+			scene->Load();
 	}
 
-	void SceneManager::quitScene()
+	void SceneManager::QuitScene()
 	{
 		scenes.pop();
 	}
 
-	std::shared_ptr<Scene> SceneManager::getCurrentScene()
+	std::shared_ptr<Scene> SceneManager::GetCurrentScene()
 	{
 		return scenes.top();
 	}

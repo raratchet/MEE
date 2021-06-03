@@ -17,17 +17,17 @@ namespace MEE
 		//rect.w = widht, rect.h = height;
 	}
 
-	void Camera::setPosition(const Vector2& pos)
+	void Camera::SetPosition(const Vector2& pos)
 	{
 		//rect.x = pos.x; rect.y = pos.y;
 	}
 
-	void Camera::setActive(bool active)
+	void Camera::SetActive(bool active)
 	{
 		isActive = active;
 	}
 
-	bool Camera::getActive()
+	bool Camera::GetActive()
 	{
 		return isActive;
 	}

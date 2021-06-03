@@ -5,19 +5,19 @@ namespace Basic_Renderer
 {
 	void onInit(int pl_id)
 	{
-		MEE_setRenderAPI(RenderAPI::SDL_Render);
-		MEE_setWindowHandlerAPI(WindowHandlerAPI::SDL);
-		MEE_setWindowName("Basic Renderer");
-		MEE_bindCreateTexture2D(pl_id,"createTexture2D");
-		MEE_bindRenderTexture2D(pl_id, "renderTexture");
+		MEE_SetRenderAPI(RenderAPI::SDL_Render);
+		MEE_SetWindowHandlerAPI(WindowHandlerAPI::SDL);
+		MEE_SetWindowName("Basic Renderer");
+		MEE_bind_CreateTexture2D(pl_id,"createTexture2D");
+		MEE_bind_RenderTexture2D(pl_id, "renderTexture");
 	}
 
 	void onLoad()
 	{
-		engineRenderer = (SDL_Renderer*)MEE_getSDLRenderer();
+		engineRenderer = (SDL_Renderer*)MEE_GetSDLRenderer();
 
 		miTexture = new Basic_Texture2D();
-		miTexture->load("C:/Users/rarat/Pictures/games.png");
+		miTexture->Load("C:/Users/rarat/Pictures/games.png");
 	}
 
 	void onShutdown()
@@ -50,7 +50,7 @@ namespace Basic_Renderer
 	MEE_Texture2D createTexture2D(const std::string path)
 	{
 		Basic_Texture2D* texture = new Basic_Texture2D();
-		texture->load(path);
+		texture->Load(path);
 		return texture;
 	}
 

@@ -7,17 +7,17 @@ namespace MEE
 	class WindowHandler
 	{
 	public:
-		virtual bool init() = 0;
-		virtual void stop() = 0;
-		virtual void pollEvents() = 0;
-		static void setWindowSize(unsigned int w, unsigned int h);
-		static void setWindowPosition(int x, int y);
-		static void setWindowName(const std::string& name);
-		static void setHandlerAPI(const WindowHandlerAPI& api);
-		static void setRenderAPI(const RenderAPI& api);
-		static WindowHandlerAPI getHandlerAPI();
+		virtual bool Init() = 0;
+		virtual void Stop() = 0;
+		virtual void PollEvents() = 0;
+		static void SetWindowSize(unsigned int w, unsigned int h);
+		static void SetWindowPosition(int x, int y);
+		static void SetWindowName(const std::string& name);
+		static void SetHandlerAPI(const WindowHandlerAPI& api);
+		static void SetRenderAPI(const RenderAPI& api);
+		static WindowHandlerAPI GetHandlerAPI();
 		static RenderAPI getRenderAPI();
-		virtual void swapBuffer() = 0;
+		virtual void SwapBuffer() = 0;
 	protected:
 		static unsigned int width, height;
 		static int  pos_x, pos_y ;

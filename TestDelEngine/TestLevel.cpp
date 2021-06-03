@@ -12,15 +12,15 @@ using MEE::Texture2D;
 using MEE::Sprite;
 
 
-void TestLevel::load()
+void TestLevel::Load()
 {
-	auto resourceM = MEE_GLOBAL::application->getResourceManager().lock();
+	auto resourceM = MEE_GLOBAL::application->GetResourceManager().lock();
 	resourceM->loadTexture2D("Regu", "C:/Users/rarat/Pictures/regu.jpg");
 	Sprite testS = Sprite("Regu", 0, 0, 2000, 2000);
-	GameObject& regu = createGameObject("REGU",testS);
-	regu.addComponent<TestBehaviour>();
+	GameObject& regu = CreateGameObject("REGU",testS);
+	regu.AddComponent<TestBehaviour>();
 }
 
-void TestLevel::unload()
+void TestLevel::Unload()
 {
 }

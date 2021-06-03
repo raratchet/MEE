@@ -3,7 +3,7 @@
 
 namespace MEE
 {
-	bool ResourceManager::init()
+	bool ResourceManager::Init()
 	{
 		return true;
 	}
@@ -12,24 +12,24 @@ namespace MEE
 	{
 		if (resources.find(name) == resources.end())
 		{
-			Texture2D* tex2D = (Texture2D*) MEE_createTexture2D(path);
+			Texture2D* tex2D = (Texture2D*) MEE_CreateTexture2D(path);
 			resources.insert(std::make_pair(name, tex2D));
 			return true;
 		}
 		return false;
 	}
 
-	bool ResourceManager::isLoaded(const std::string& name)
+	bool ResourceManager::IsLoaded(const std::string& name)
 	{
 		return false;
 	}
 
-	bool ResourceManager::unload(const std::string& name)
+	bool ResourceManager::Unload(const std::string& name)
 	{
 		return false;
 	}
 
-	void ResourceManager::clear()
+	void ResourceManager::Clear()
 	{
 		resources.clear();
 	}

@@ -5,12 +5,12 @@
 
 namespace MEE
 {
-	bool PluginManager::hasSuffix(const std::wstring& s, const std::wstring& suffix)
+	bool PluginManager::HasSuffix(const std::wstring& s, const std::wstring& suffix)
 	{
 		return s.size() >= suffix.size() && s.compare(s.size() - suffix.size(), suffix.size(), suffix) == 0;
 	}
 
-	Plugin::PluginInformation PluginManager::readInfoFile(const std::wstring& path)
+	Plugin::PluginInformation PluginManager::ReadInfoFile(const std::wstring& path)
 	{
 		std::string name(path.begin(),path.end());
 		YAML::Node info = YAML::LoadFile(name);
@@ -22,28 +22,28 @@ namespace MEE
 		return plInfo;
 	}
 	
-	void PluginManager::loadPlugin(const std::wstring& path, const Plugin::PluginInformation& info)
+	void PluginManager::LoadPlugin(const std::wstring& path, const Plugin::PluginInformation& info)
 	{
 		std::shared_ptr<Plugin> plugin(new Plugin(path,info));
 		
 		m_pluginList.push_back(plugin);
 
-		plugin->onInit(m_pluginList.size() - 1);
+		plugin->OnInit(m_pluginList.size() - 1);
 	}
 
-	bool PluginManager::suffixIs(const std::wstring& fileName, const std::wstring& suffix)
+	bool PluginManager::SuffixIs(const std::wstring& fileName, const std::wstring& suffix)
 	{
 		std::wstring fileSuffix(fileName.end() - suffix.size(), fileName.end());
 
 		return suffix == fileSuffix;
 	}
 
-	bool PluginManager::checkForDependecies(const Plugin::PluginInformation& info)
+	bool PluginManager::CheckForDependecies(const Plugin::PluginInformation& info)
 	{
 		return true;
 	}
 
-	bool PluginManager::init()
+	bool PluginManager::Init()
 	{
 		bool success = true;
 		try
@@ -57,15 +57,15 @@ namespace MEE
 			{
 				std::filesystem::path extPath = extFile.path();
 
-				if (!hasSuffix(extPath.wstring(), PLUGIN_LIBRARY_SUFFIX))
+				if (!HasSuffix(extPath.wstring(), PLUGIN_LIBRARY_SUFFIX))
 				{
 					std::filesystem::directory_iterator pluginDirectory(extPath);
 					for (auto& pluginFile : pluginDirectory)
 					{
 						std::filesystem::path pluginPath = pluginFile.path();
-						if (suffixIs(pluginPath, L"yaml"))
-							plInfo.insert({ extPath,readInfoFile(pluginPath) });
-						if (suffixIs(pluginPath, PLUGIN_LIBRARY_SUFFIX))
+						if (SuffixIs(pluginPath, L"yaml"))
+							plInfo.insert({ extPath,ReadInfoFile(pluginPath) });
+						if (SuffixIs(pluginPath, PLUGIN_LIBRARY_SUFFIX))
 							plugins.insert({ extPath,pluginPath });
 					}
 				}
@@ -74,8 +74,8 @@ namespace MEE
 			for (auto& plugin : plugins)
 			{
 				auto& pluginInfo = plInfo[plugin.first];
-				if (checkForDependecies(pluginInfo))
-					loadPlugin(plugin.second, plInfo[plugin.first]);
+				if (CheckForDependecies(pluginInfo))
+					LoadPlugin(plugin.second, plInfo[plugin.first]);
 				else
 					std::cout << "[MEE] Cannot load " << pluginInfo.name
 					<< " some dependecies are missing" << std::endl;
@@ -90,36 +90,36 @@ namespace MEE
 		return success;
 	}
 
-	void PluginManager::load()
+	void PluginManager::Load()
 	{
 		for (auto plugin : m_pluginList)
 		{
-			plugin->onLoad();
+			plugin->OnLoad();
 		}
 	}
 
-	void PluginManager::update()
+	void PluginManager::Update()
 	{
 		for (auto plugin : m_pluginList)
 		{
-			if(plugin->onUpdate != nullptr)
-				plugin->onUpdate();
+			if(plugin->OnUpdate != nullptr)
+				plugin->OnUpdate();
 		}
 	}
 
-	void PluginManager::postUpdate()
+	void PluginManager::PostUpdate()
 	{
 		for (auto plugin : m_pluginList)
 		{
-			if (plugin->onPostUpdate != nullptr)
-				plugin->onPostUpdate();
+			if (plugin->OnPostUpdate != nullptr)
+				plugin->OnPostUpdate();
 		}
 	}
 
-	void PluginManager::stop()
+	void PluginManager::Stop()
 	{
 		for (auto plugin : m_pluginList) {
-			plugin->onShutdown();
+			plugin->OnShutdown();
 		}
 		m_pluginList.clear();
 	}

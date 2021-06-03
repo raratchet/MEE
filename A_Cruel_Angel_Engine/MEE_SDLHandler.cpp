@@ -9,7 +9,7 @@
 
 namespace MEE
 {
-    bool SDLHandler::init()
+    bool SDLHandler::Init()
     {
         bool success = true;
 
@@ -38,7 +38,7 @@ namespace MEE
                 if (glewInit() != GLEW_OK)
                     success = false;
 
-                MEE_initGL();
+                MEE_InitGL();
             }
             else
             {
@@ -64,14 +64,14 @@ namespace MEE
 
             SDL_SetRenderDrawColor(sdlRenderer, 53, 40, 230, 255);
 
-            if (MEE_renderClear == nullptr)
-                MEE_renderClear = [=]() { this->SDL_Render_RenderClear(); };
+            if (MEE_RenderClear == nullptr)
+                MEE_RenderClear = [=]() { this->SDL_Render_RenderClear(); };
         }
 
         return success;
     }
 
-    void SDLHandler::stop()
+    void SDLHandler::Stop()
     {
         if (WindowHandler::getRenderAPI() == RenderAPI::OpenGL)
         {
@@ -88,7 +88,7 @@ namespace MEE
 
     }
 
-    void SDLHandler::pollEvents()
+    void SDLHandler::PollEvents()
     {
         SDL_Event event;
         while (SDL_PollEvent(&event))
@@ -98,7 +98,7 @@ namespace MEE
     }
 
 
-    void SDLHandler::swapBuffer()
+    void SDLHandler::SwapBuffer()
     {
         if (WindowHandler::getRenderAPI() == RenderAPI::OpenGL)
             SDL_GL_SwapWindow(window);

@@ -12,20 +12,20 @@ namespace MEE
 	{
 	public:
 		virtual ~Resource() = default;
-		virtual void load(const std::string& path) = 0; // ¿Este método debería ser publico?
+		virtual void Load(const std::string& path) = 0; // ¿Este método debería ser publico?
 	};
 
 	class MEE_EXPORT ResourceManager
 	{
 	public:
 		template<class T = Resource>
-		bool load(const std::string& name, const std::string& path);
-		bool isLoaded(const std::string& name);
-		bool unload(const std::string& name);
-		void clear();
-		bool init();
+		bool Load(const std::string& name, const std::string& path);
+		bool IsLoaded(const std::string& name);
+		bool Unload(const std::string& name);
+		void Clear();
+		bool Init();
 		template<class T = Resource>
-		std::weak_ptr<T> get(const std::string& name);
+		std::weak_ptr<T> Get(const std::string& name);
 		//Esto no es final
 		bool loadTexture2D(const std::string& name, const std::string& path);
 	private:
@@ -33,7 +33,7 @@ namespace MEE
 	};
 
 	template<class T>
-	bool ResourceManager::load(const std::string& name, const std::string& path)
+	bool ResourceManager::Load(const std::string& name, const std::string& path)
 	{
 
 		if (resources.find(name) == resources.end())
@@ -46,7 +46,7 @@ namespace MEE
 		return false;
 	}
 	template<class T>
-	std::weak_ptr<T> ResourceManager::get(const std::string& name)
+	std::weak_ptr<T> ResourceManager::Get(const std::string& name)
 	{
 		auto& res = resources.at(name);
 		std::weak_ptr<T> ptr = std::reinterpret_pointer_cast<T>(res);
