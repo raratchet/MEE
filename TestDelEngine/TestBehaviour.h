@@ -9,10 +9,8 @@
 
 class TestBehaviour : public MEE::Behaviour
 {
-public:
-	TestBehaviour(MEE::Object& parent) : MEE::Behaviour(parent) {}
-	~TestBehaviour() { std::cout << "Se borra testbehaviour\n"; }
 
+public:
 	virtual void Start() override
 	{
 
@@ -22,7 +20,12 @@ public:
 	{
 		auto input = MEE_GLOBAL::application->GetInputManager().lock();
 
-		object.GetTransform().SetPosition(input->GetMouse());
+		Obj().GetTransform().SetPosition(input->GetMouse());
+
+	}
+
+	virtual void Destroy() override
+	{
 
 	}
 };

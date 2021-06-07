@@ -16,13 +16,15 @@ namespace MEE
 		template<class T = Component>
 		void AddComponent()
 		{
-			std::shared_ptr<T> component(new T(*this));
+			std::shared_ptr<T> component(new T);
+			auto* asComponent = (Component*) &*component;
+			asComponent->ParentObject(this);
 			components.push_back(component);
-			auto tmp = std::reinterpret_pointer_cast<Behaviour>(component);
-			if (tmp)
+			auto isBehaviour = std::reinterpret_pointer_cast<Behaviour>(component);
+			if (isBehaviour)
 			{
-				updatables.push_back(tmp);
-				tmp->Start();
+				updatables.push_back(isBehaviour);
+				isBehaviour->Start();
 			}
 
 		}
@@ -42,7 +44,7 @@ namespace MEE
 		Object(Scene& master, const std::string& objName) : owner(master), name(objName) {}
 		Scene& owner;
 		std::string name;
-		Transform transform = Transform(*this);
+		Transform transform = Transform(this);
 		std::list<std::shared_ptr<Component>> components;
 		std::list<std::shared_ptr<Behaviour>> updatables;
 		friend class Scene;

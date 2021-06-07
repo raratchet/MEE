@@ -10,15 +10,19 @@ namespace MEE
 	class MEE_EXPORT Component
 	{
 	public:
-		Component(Object& parent);
+		Object& Obj();
 	protected:
-		Object& object;
+		Object* parent;
+		// Must always be called when scene adds a component
+		void ParentObject(Object* object);
+		friend class Object;
 	};
 
 	class MEE_EXPORT Transform : public Component
 	{
 	public:
-		Transform(Object& parent);
+		Transform();
+		Transform(Object* object);
 		void SetPosition(Vector2 position_vector);
 		void SetScale(Vector2 scale_vector);
 		void SetRotation(float rotation_float);
@@ -34,18 +38,15 @@ namespace MEE
 	class MEE_EXPORT Behaviour : public Component
 	{
 	public:
-		Behaviour(Object& parent);
 		virtual void Start();
 		virtual void Update();
 		virtual void Destroy();
-		//Object& Object() { return object; }
 
 	};
 
 	class MEE_EXPORT Animation : public Component
 	{
-	public:
-		Animation(Object& parent);
+
 	};
 
 }

@@ -157,9 +157,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\A_Cruel_Angel_Engine\OpenGL_Texture2D.cpp" />
     <ClCompile Include="DefaultRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\A_Cruel_Angel_Engine\OpenGL_Texture2D.h" />
     <ClInclude Include="DefaultRenderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -4,6 +4,13 @@
 
 namespace MEE
 {
+	Transform::Transform()
+	{
+	}
+	Transform::Transform(Object* object)
+	{
+		ParentObject(object);
+	}
 	void Transform::SetPosition(Vector2 position_vector)
 	{
 		position = position_vector;
@@ -50,15 +57,13 @@ namespace MEE
 
 	}
 
-	Behaviour::Behaviour(Object& parent) : 
-		Component(parent) {}
+	Object& Component::Obj()
+	{
+		return *parent;
+	}
 
-	Component::Component(Object& parent) : 
-		object(parent) {}
-
-	Transform::Transform(Object& parent) : 
-		Component(parent) {}
-
-	Animation::Animation(Object& parent) : 
-		Component(parent) {}
+	void Component::ParentObject(Object* object)
+	{
+		parent = object;
+	}
 }

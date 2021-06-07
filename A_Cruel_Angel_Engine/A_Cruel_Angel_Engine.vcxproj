@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MEE_FileSystem.cpp" />
     <ClCompile Include="MEE_Application.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MEE_Camera.cpp" />
@@ -174,7 +175,6 @@
     <ClCompile Include="MEE_WindowHandler.cpp" />
     <ClCompile Include="MEE_Resoures.cpp" />
     <ClCompile Include="MEE_Texture.cpp" />
-    <ClCompile Include="MEE_OpenGL_Texture2D.cpp" />
     <ClCompile Include="MEE_Scene.cpp" />
     <ClCompile Include="MEE_Sprite.cpp" />
     <ClCompile Include="MEE_SceneManager.cpp" />
@@ -184,6 +184,7 @@
     <ClInclude Include="MEE_Components.h" />
     <ClInclude Include="MEE_Drawable.h" />
     <ClInclude Include="MEE_Exports.h" />
+    <ClInclude Include="MEE_FileSystem.h" />
     <ClInclude Include="MEE_GLFWHandler.h" />
     <ClInclude Include="MEE_Graphics.h" />
     <ClInclude Include="MEE_Application.h" />
@@ -201,7 +202,6 @@
     <ClInclude Include="MEE_WindowHandler.h" />
     <ClInclude Include="MEE_Resources.h" />
     <ClInclude Include="MEE_Texture.h" />
-    <ClInclude Include="MEE_OpenGL_Texture2D.h" />
     <ClInclude Include="MEE_Scene.h" />
     <ClInclude Include="MEE_SceneManager.h" />
   </ItemGroup>
