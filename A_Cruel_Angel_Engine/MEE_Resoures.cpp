@@ -1,5 +1,6 @@
 #include "MEE_Resources.h"
 #include "MEE_Graphics.h"
+#include "MEE_Texture.h"
 
 namespace MEE
 {
@@ -8,7 +9,7 @@ namespace MEE
 		return true;
 	}
 
-	bool ResourceManager::loadTexture2D(const std::string& name, const std::string& path)
+	bool ResourceManager::LoadTexture2D(const std::string& name, const std::string& path)
 	{
 		if (resources.find(name) == resources.end())
 		{

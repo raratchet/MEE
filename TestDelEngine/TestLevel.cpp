@@ -15,7 +15,7 @@ using MEE::Sprite;
 void TestLevel::Load()
 {
 	auto resourceM = MEE_GLOBAL::application->GetResourceManager().lock();
-	resourceM->loadTexture2D("Regu", "C:/Users/rarat/Pictures/regu.jpg");
+	resourceM->LoadTexture2D("Regu", "C:/Users/rarat/Pictures/regu.jpg");
 	Sprite testS = Sprite("Regu", 0, 0, 2000, 2000);
 	GameObject& regu = CreateGameObject("REGU",testS);
 	regu.AddComponent<TestBehaviour>();

@@ -3,7 +3,7 @@
 
 namespace Basic_Input
 {
-	void onInit(int pl_id)
+	void OnInit(int pl_id)
 	{
 		//MEE_bind_keyboard_keyIsPressed(pl_id, "");
 		//MEE_bind_keyboard_keyPressedThisFrame(pl_id, "");
@@ -14,16 +14,16 @@ namespace Basic_Input
 		//MEE_bind_mouse_keyPressedThisFrame(pl_id, "");
 		MEE_bind_mouse_GetPosition(pl_id, "mousePosition");
 	}
-	void onLoad()
+	void OnLoad()
 	{
 
 	}
-	void onShutDown()
+	void OnShutDown()
 	{
 
 	}
 	 
-	void onUpdate()
+	void OnUpdate()
 	{
 		clear();
 		SDL_Event event;

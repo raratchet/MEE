@@ -1,7 +1,6 @@
 #pragma once
 #include <functional>
 #include "MEE_Exports.h"
-#include "MEE_Texture.h"
 
 enum RenderAPI
 {
@@ -40,7 +39,7 @@ inline std::function<void(int r,int g,int b,int a)> MEE_SetRenderColor;
 inline std::function<void()> MEE_InitGL;
 inline std::function<void(float x1, float y1, float x2, float y2)> MEE_RenderLine;
 inline std::function<void(float x, float y)> MEE_RenderPoint;
-inline std::function<void(const MEE::Texture2D&,float x, float y, 
+inline std::function<void(const MEE_Texture2D,float x, float y, 
 	int clipX, int clipY, int clipW, int clipH, float angle )> MEE_RenderTexture2D;
 inline std::function<MEE_Texture2D(const std::string& path)> MEE_CreateTexture2D;
 

@@ -13,12 +13,12 @@ public:
 	TestBehaviour(MEE::Object& parent) : MEE::Behaviour(parent) {}
 	~TestBehaviour() { std::cout << "Se borra testbehaviour\n"; }
 
-	virtual void start() override
+	virtual void Start() override
 	{
 
 	}
 
-	virtual void update() override
+	virtual void Update() override
 	{
 		auto input = MEE_GLOBAL::application->GetInputManager().lock();
 

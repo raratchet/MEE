@@ -25,9 +25,8 @@ namespace MEE
 		void Update();
 		void PostUpdate();
 		void Stop();
-		PluginManager() = default;
+		PluginManager()  = default;
 		~PluginManager() = default;
-
 		template<class Type,class ... Args>
 		std::function<Type(Args...)> GetPluginFunction(int plugin_id, const std::string f_name);
 	};

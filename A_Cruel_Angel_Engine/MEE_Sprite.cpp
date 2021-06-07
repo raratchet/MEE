@@ -12,7 +12,7 @@ namespace MEE
 	Sprite::Sprite(const std::string& resource_name, int x, int y, int w, int h): 
 		width(w), height(h), startCoord(Vector2(x, y))
 	{
-		auto RM =MEE_GLOBAL::application->GetResourceManager().lock();
+		auto RM = MEE_GLOBAL::application->GetResourceManager().lock();
 
 		baseImage = RM->Get<Texture2D>(resource_name); //No me gusta usar el global
 	}
@@ -26,8 +26,10 @@ namespace MEE
 		Vector2& position = transform.GetPosition();
 		float& rot = transform.GetRotation();
 		if (auto image = baseImage.lock())
+		{
+			MEE_Texture2D texture = (MEE_Texture2D)(&*image);
 			MEE_RenderTexture2D(
-				*image,
+				texture,
 				position.x,
 				position.y,
 				startCoord.x,
@@ -35,5 +37,7 @@ namespace MEE
 				width,
 				height,
 				rot);
+		}
+
 	}
 }

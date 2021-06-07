@@ -7,10 +7,10 @@ namespace Basic_Input
 {
 	extern "C"
 	{
-		PLUGIN_EXPORT void onInit(int);
-		PLUGIN_EXPORT void onLoad();
-		PLUGIN_EXPORT void onShutDown();
-		PLUGIN_EXPORT void onUpdate();
+		PLUGIN_EXPORT void OnInit(int);
+		PLUGIN_EXPORT void OnLoad();
+		PLUGIN_EXPORT void OnShutDown();
+		PLUGIN_EXPORT void OnUpdate();
 
 
 		PLUGIN_EXPORT void mousePosition(int*,int*);

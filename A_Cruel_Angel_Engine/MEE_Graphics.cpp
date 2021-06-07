@@ -60,7 +60,7 @@
 		if (pl_manager)
 		{
 			MEE_RenderTexture2D = pl_manager->GetPluginFunction
-				<void,const MEE::Texture2D&, float, float,
+				<void,const MEE_Texture2D, float, float,
 				int,int,int,int,float>(plugin_id, func_name);
 		}
 

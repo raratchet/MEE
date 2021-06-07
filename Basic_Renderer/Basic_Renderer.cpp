@@ -3,7 +3,7 @@
 
 namespace Basic_Renderer
 {
-	void onInit(int pl_id)
+	void OnInit(int pl_id)
 	{
 		MEE_SetRenderAPI(RenderAPI::SDL_Render);
 		MEE_SetWindowHandlerAPI(WindowHandlerAPI::SDL);
@@ -12,7 +12,7 @@ namespace Basic_Renderer
 		MEE_bind_RenderTexture2D(pl_id, "renderTexture");
 	}
 
-	void onLoad()
+	void OnLoad()
 	{
 		engineRenderer = (SDL_Renderer*)MEE_GetSDLRenderer();
 
@@ -20,12 +20,12 @@ namespace Basic_Renderer
 		miTexture->Load("C:/Users/rarat/Pictures/games.png");
 	}
 
-	void onShutdown()
+	void OnShutdown()
 	{
 		
 	}
 
-	void renderTexture(MEE::Texture2D* tex, float x, float y,
+	void renderTexture(MEE_Texture2D tex, float x, float y,
 					   int clipX, int clipY, int clipW,
 					   int clipH, float a)
 	{
@@ -52,13 +52,5 @@ namespace Basic_Renderer
 		Basic_Texture2D* texture = new Basic_Texture2D();
 		texture->Load(path);
 		return texture;
-	}
-
-	void renderQuad()
-	{
-		SDL_SetRenderDrawColor(engineRenderer, 100, 100, 100, 255);
-		SDL_RenderDrawLineF(engineRenderer, 0, 0, 100, 100);
-		renderTexture(miTexture, 10, 10, 0, 0, miTexture->getWidth(), miTexture->getHeight(), 0);
-		SDL_SetRenderDrawColor(engineRenderer, 53, 40, 230, 255);
 	}
 }

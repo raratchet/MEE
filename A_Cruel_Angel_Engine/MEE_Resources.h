@@ -27,7 +27,7 @@ namespace MEE
 		template<class T = Resource>
 		std::weak_ptr<T> Get(const std::string& name);
 		//Esto no es final
-		bool loadTexture2D(const std::string& name, const std::string& path);
+		bool LoadTexture2D(const std::string& name, const std::string& path);
 	private:
 		std::map<std::string, std::shared_ptr<Resource>> resources;
 	};

@@ -22,7 +22,7 @@ namespace MEE
 			if (tmp)
 			{
 				updatables.push_back(tmp);
-				tmp->start();
+				tmp->Start();
 			}
 
 		}
