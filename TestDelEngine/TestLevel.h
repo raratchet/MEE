@@ -1,8 +1,8 @@
 #pragma once
-#include "MEE_Scene.h"
+#include "MEG_Game.h"
 
 
-class TestLevel : public MEE::Scene
+class TestLevel : public Level
 {
 	// Heredado vía AppState
 	virtual void Load() override;

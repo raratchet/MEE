@@ -61,9 +61,6 @@ namespace MEE
 
 	void Application::Loop()
 	{
-		//Temp
-		std::function<void()> quad = pluginManager->GetPluginFunction<void>(0, "renderQuad");
-		//
 		while (!exit)
 		{
 			//w_handler->pollEvents();

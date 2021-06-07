@@ -16,6 +16,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basic_Renderer", "Basic_Ren
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestDelEngine", "TestDelEngine\TestDelEngine.vcxproj", "{E1869337-A83B-4B6E-AEDF-35CA376575F7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D3C36E51-529D-4EF0-99F8-E988F41DD87C} = {D3C36E51-529D-4EF0-99F8-E988F41DD87C}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basic_Input", "Basic_Input\Basic_Input.vcxproj", "{9698F35B-9F12-4D9A-A589-21A4B91F25D9}"
 EndProject
