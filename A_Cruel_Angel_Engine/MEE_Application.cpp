@@ -63,7 +63,6 @@ namespace MEE
 	{
 		while (!exit)
 		{
-			//w_handler->pollEvents();
 			Update();
 			Draw();
 		}
