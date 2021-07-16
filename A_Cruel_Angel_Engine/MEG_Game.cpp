@@ -8,6 +8,11 @@ Game::Game()
 
 }
 
+MEE::Application* Game::GetMainApp()
+{
+	return mainApp;
+}
+
 std::shared_ptr<Game> Game::CreateGame()
 {
 	std::shared_ptr<Game> game(new Game);

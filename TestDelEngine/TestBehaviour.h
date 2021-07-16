@@ -1,11 +1,11 @@
 #pragma once
 #include "MEG_Game.h"
+#include "MEG_Input.h"
 #include <iostream>
 
 
 class TestBehaviour : public Behaviour
 {
-
 public:
 	virtual void Start() override
 	{
@@ -16,7 +16,7 @@ public:
 	{
 		//auto input = MEE_GLOBAL::application->GetInputManager().lock();
 
-		//Obj().GetTransform().SetPosition(input->GetMouse());
+		Obj().GetTransform().SetPosition(Input::Mouse::MousePosition());
 
 	}
 

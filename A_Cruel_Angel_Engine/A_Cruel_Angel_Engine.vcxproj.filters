@@ -84,6 +84,9 @@
     <ClCompile Include="MEG_Game.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="MEG_Input.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MEE_Plugin.h">
@@ -165,6 +168,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="MEG_Aliases.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MEG_Input.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

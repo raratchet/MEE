@@ -179,6 +179,7 @@
     <ClCompile Include="MEE_Sprite.cpp" />
     <ClCompile Include="MEE_SceneManager.cpp" />
     <ClCompile Include="MEG_Game.cpp" />
+    <ClCompile Include="MEG_Input.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MEE_Camera.h" />
@@ -208,6 +209,7 @@
     <ClInclude Include="MEG_Aliases.h" />
     <ClInclude Include="MEG_Exports.h" />
     <ClInclude Include="MEG_Game.h" />
+    <ClInclude Include="MEG_Input.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

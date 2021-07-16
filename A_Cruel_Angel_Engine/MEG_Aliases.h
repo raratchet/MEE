@@ -8,4 +8,5 @@ using Behaviour = MEE::Behaviour;
 using GameObject = MEE::GameObject;
 using WorldObject = MEE::WorldObject;
 using Sprite = MEE::Sprite;
+using Vector2 = MEE::Vector2;
 

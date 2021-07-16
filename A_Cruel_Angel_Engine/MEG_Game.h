@@ -31,9 +31,13 @@ public:
 	//Input and Plugin will be in independent files
 
 private:
-	Game();
 	std::string name;
+	
+	Game();
+	static MEE::Application* GetMainApp();
 	static std::string GetFileSuffix(const std::string& fileName);
+
+	friend class Input;
 };
 
 
