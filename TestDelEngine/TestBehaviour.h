@@ -1,15 +1,11 @@
 #pragma once
-#include "MEE_Components.h"
+#include "MEG_Game.h"
+#include "MEG_Input.h"
 #include <iostream>
 
-//Super Temporal
-#include "MEE_Global.h"
-#include "MEE_Object.h"
 
-
-class TestBehaviour : public MEE::Behaviour
+class TestBehaviour : public Behaviour
 {
-
 public:
 	virtual void Start() override
 	{
@@ -18,14 +14,10 @@ public:
 
 	virtual void Update() override
 	{
-		auto input = MEE_GLOBAL::application->GetInputManager().lock();
+		//auto input = MEE_GLOBAL::application->GetInputManager().lock();
 
-		Obj().GetTransform().SetPosition(input->GetMouse());
-
-	}
-
-	virtual void Destroy() override
-	{
+		Obj().GetTransform().SetPosition(Input::Mouse::MousePosition());
 
 	}
+
 };

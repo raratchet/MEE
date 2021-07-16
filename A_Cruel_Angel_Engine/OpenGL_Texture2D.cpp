@@ -1,9 +1,9 @@
-#include "MEE_OpenGL_Texture2D.h"
+#include "OpenGL_Texture2D.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 #include <iostream>
 
-void MEE::Default_OpenGL_Texture2D::Load(const std::string& path)
+void OpenGL_Texture2D::Load(const std::string& path)
 {
 	int w, h, channels;
 	stbi_set_flip_vertically_on_load(1);
@@ -40,7 +40,7 @@ void MEE::Default_OpenGL_Texture2D::Load(const std::string& path)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, internalFormat, GL_UNSIGNED_BYTE, data);
 	glGenerateMipmap(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -48,13 +48,13 @@ void MEE::Default_OpenGL_Texture2D::Load(const std::string& path)
 }
 
 
-void MEE::Default_OpenGL_Texture2D::bind(GLenum slot)
+void OpenGL_Texture2D::Bind(GLenum slot)
 {
 	glActiveTexture(slot);
 	glBindTexture(GL_TEXTURE_2D, m_RendererID);
 }
 
-GLuint MEE::Default_OpenGL_Texture2D::getRendererID()
+GLuint OpenGL_Texture2D::GetRendererID()
 {
 	return m_RendererID;
 }

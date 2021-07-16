@@ -4,25 +4,22 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include <MEE_Graphics.h>
 
 
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
-
-
-void DefaultRenderer::onInit(int pl_id)
+void DefaultRenderer::OnInit(int pl_id)
 {
-	std::cout << "[DefaultRenderer] Is starting" << std::endl;
-	MEE_SetWindowName(std::string("Joaquin"));
+	MEE_SetRenderAPI(RenderAPI::OpenGL);
+	MEE_SetWindowHandlerAPI(WindowHandlerAPI::SDL);
+	MEE_SetWindowName("OpenGL Renderer");
+	MEE_bind_CreateTexture2D(pl_id, "createTexture2D");
+	MEE_bind_RenderTexture2D(pl_id, "renderTexture");
 	MEE_bind_RenderClear(pl_id, "renderClear");
 	MEE_bind_InitGL(pl_id, "initGL");
 }
 
 
-void DefaultRenderer::onLoad()
+void DefaultRenderer::OnLoad()
 {
-	std::cout << "[DefaultRenderer] onLoad() called!" << std::endl;
 
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
@@ -72,9 +69,9 @@ void DefaultRenderer::onLoad()
 	glGetUniformLocation(shader, "textureSlot");
 
 	texture.Load("C:/Users/rarat/Pictures/games.png");
-	std::cout << texture.getRendererID() << '\n';
+	std::cout << texture.GetRendererID() << '\n';
 	texture2.Load("C:/Users/rarat/Pictures/games.png");
-	std::cout << texture2.getRendererID() << '\n';
+	std::cout << texture2.GetRendererID() << '\n';
 }
 
 void DefaultRenderer::initGL()
@@ -102,7 +99,7 @@ void DefaultRenderer::renderQuad()
 	glClearColor(0.4f, 0.0f, 0.4f, 0.0f);
 
 	glUseProgram(shader);
-	texture.bind(GL_TEXTURE0);
+	texture.Bind(GL_TEXTURE0);
 	//texture2.bind(0);
 	glUniform1i(textureSlot, 0);
 	glEnableVertexAttribArray(0);
@@ -208,7 +205,19 @@ GLuint DefaultRenderer::LoadShaders(const char* vertex_file_path, const char* fr
 }
 
 
-void DefaultRenderer::onShutdown()
+void DefaultRenderer::OnShutdown()
 {
 	std::cout << "[DefaultRenderer] onShutdown() called!" << std::endl;
+}
+
+void DefaultRenderer::renderTexture(MEE_Texture2D tex, float x, float y, int clipX, int clipY, int clipW, int clipH, float a)
+{
+	renderQuad();
+}
+
+MEE_Texture2D DefaultRenderer::createTexture2D(const std::string path)
+{
+	OpenGL_Texture2D* glTex = new OpenGL_Texture2D;
+	glTex->Load(path);
+	return glTex;
 }
