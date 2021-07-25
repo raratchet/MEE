@@ -9,4 +9,6 @@ using GameObject = MEE::GameObject;
 using WorldObject = MEE::WorldObject;
 using Sprite = MEE::Sprite;
 using Vector2 = MEE::Vector2;
+using AssetID = unsigned int;
+using Collider = MEE::Collider;
 

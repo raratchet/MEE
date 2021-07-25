@@ -7,6 +7,8 @@
 
 namespace MEE
 {
+	using ResourceID = unsigned int;
+
 
 	class MEE_EXPORT Resource
 	{
@@ -19,32 +21,32 @@ namespace MEE
 	{
 	public:
 		template<class T = Resource>
-		bool Load(const std::string& name, const std::string& path);
+		ResourceID Load(const std::string& name, const std::string& path);
+		ResourceID LoadTexture2D(const std::string& name, const std::string& path);
 		bool IsLoaded(const std::string& name);
 		bool Unload(const std::string& name);
 		void Clear();
 		bool Init();
 		template<class T = Resource>
 		std::weak_ptr<T> Get(const std::string& name);
-		//Esto no es final
-		bool LoadTexture2D(const std::string& name, const std::string& path);
 	private:
 		std::map<std::string, std::shared_ptr<Resource>> resources;
 	};
 
 	template<class T>
-	bool ResourceManager::Load(const std::string& name, const std::string& path)
+	ResourceID ResourceManager::Load(const std::string& name, const std::string& path)
 	{
 
 		if (resources.find(name) == resources.end())
 		{
 			T* resource = new T;
-			resource->load(path);
+			resource->Load(path);
 			resources.insert(std::make_pair(name, resource));
 			return true;
 		}
 		return false;
 	}
+
 	template<class T>
 	std::weak_ptr<T> ResourceManager::Get(const std::string& name)
 	{

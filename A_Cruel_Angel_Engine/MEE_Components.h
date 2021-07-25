@@ -1,5 +1,6 @@
 #pragma once
 #include "MEE_Maths.h"
+#include <memory>
 #include "MEE_Exports.h"
 
 namespace MEE
@@ -10,11 +11,12 @@ namespace MEE
 	class MEE_EXPORT Component
 	{
 	public:
-		Object& Obj();
+		Object& GetParent();
+		virtual ~Component() {}
 	protected:
 		Object* parent;
 		// Must always be called when scene adds a component
-		void ParentObject(Object* object);
+		void ParentToObject(Object* object);
 		friend class Object;
 	};
 
@@ -22,9 +24,10 @@ namespace MEE
 	{
 	public:
 		Transform();
-		Transform(Object* object);
 		void SetPosition(Vector2 position_vector);
+		void SetPosition(float posX, float posY);
 		void SetScale(Vector2 scale_vector);
+		void SetScale(float x, float y);
 		void SetRotation(float rotation_float);
 		Vector2& GetPosition();
 		Vector2& GetScale();
@@ -44,10 +47,25 @@ namespace MEE
 
 	};
 
+
 	class MEE_EXPORT Animation : public Component
 	{
 
 	};
 
+
+	class MEE_EXPORT Collider : public Component
+	{
+	protected:
+		std::weak_ptr<Transform> transform;
+		void SetTransform(std::shared_ptr<Transform> trans);
+		Vector2 velocity;
+		float friction;
+		float gravityScale;
+		bool isRotConstraint;
+		bool active;
+
+		friend class Object;
+	};
 }
 

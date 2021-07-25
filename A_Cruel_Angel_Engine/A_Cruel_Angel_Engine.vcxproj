@@ -168,6 +168,7 @@
     <ClCompile Include="MEE_Inputs.cpp" />
     <ClCompile Include="MEE_Maths.cpp" />
     <ClCompile Include="MEE_Object.cpp" />
+    <ClCompile Include="MEE_Physics.cpp" />
     <ClCompile Include="MEE_Plugin.cpp" />
     <ClCompile Include="MEE_PluginManager.cpp" />
     <ClCompile Include="MEE_SDLHandler.cpp" />
@@ -187,6 +188,7 @@
     <ClInclude Include="MEE_Drawable.h" />
     <ClInclude Include="MEE_Exports.h" />
     <ClInclude Include="MEE_FileSystem.h" />
+    <ClInclude Include="MEE_Functional.h" />
     <ClInclude Include="MEE_GLFWHandler.h" />
     <ClInclude Include="MEE_Graphics.h" />
     <ClInclude Include="MEE_Application.h" />
@@ -195,6 +197,7 @@
     <ClInclude Include="MEE_Inputs.h" />
     <ClInclude Include="MEE_Maths.h" />
     <ClInclude Include="MEE_Object.h" />
+    <ClInclude Include="MEE_Physics.h" />
     <ClInclude Include="MEE_Plugin.h" />
     <ClInclude Include="MEE_PluginHeader.h" />
     <ClInclude Include="MEE_PluginManager.h" />

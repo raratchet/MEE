@@ -1,31 +1,32 @@
 #include "MEE_SceneManager.h"
-
+#include "MEE_Physics.h"
 namespace MEE
 {
 	SceneManager::~SceneManager()
 	{
 		while (!scenes.empty())
 		{
-			scenes.pop();
+			scenes.pop_front();
 		}
 	}
 
 	void SceneManager::AddScene(Scene* scene)
 	{
 		std::shared_ptr<Scene> shared_scene(scene);
-		scenes.push(shared_scene);
-
+		scenes.push_front({scenes.size(),shared_scene });
+		shared_scene->id = scenes.front().first;
+		MEE_CreatePhysicsWorld(shared_scene->id);
 		if (!scene->IsLoaded())
 			scene->Load();
 	}
 
 	void SceneManager::QuitScene()
 	{
-		scenes.pop();
+		scenes.pop_front();
 	}
 
 	std::shared_ptr<Scene> SceneManager::GetCurrentScene()
 	{
-		return scenes.top();
+		return scenes.front().second;
 	}
 }

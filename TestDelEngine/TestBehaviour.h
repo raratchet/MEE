@@ -16,7 +16,7 @@ public:
 	{
 		//auto input = MEE_GLOBAL::application->GetInputManager().lock();
 
-		Obj().GetTransform().SetPosition(Input::Mouse::MousePosition());
+		GetParent().GetTransform().SetPosition(Input::Mouse::MousePosition());
 
 	}
 

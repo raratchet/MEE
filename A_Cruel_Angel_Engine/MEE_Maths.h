@@ -17,7 +17,7 @@ namespace MEE
 		Vector2(const Vector2& vec) : x(vec.x), y(vec.y)
 		{}
 
-		Vector2 Zero()
+		static Vector2 Zero()
 		{
 			static Vector2 zero;
 			return zero;

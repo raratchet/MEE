@@ -7,18 +7,26 @@ namespace MEE
 	Transform::Transform()
 	{
 	}
-	Transform::Transform(Object* object)
-	{
-		ParentObject(object);
-	}
 	void Transform::SetPosition(Vector2 position_vector)
 	{
 		position = position_vector;
 	}
 
+	void Transform::SetPosition(float posX, float posY)
+	{
+		position.x = posX;
+		position.y = posY;
+	}
+
 	void Transform::SetScale(Vector2 scale_vector)
 	{
 		scale = scale_vector;
+	}
+
+	void Transform::SetScale(float x, float y)
+	{
+		scale.x = x;
+		scale.y = y;
 	}
 
 	void Transform::SetRotation(float rotation_float)
@@ -57,13 +65,17 @@ namespace MEE
 
 	}
 
-	Object& Component::Obj()
+	Object& Component::GetParent()
 	{
 		return *parent;
 	}
 
-	void Component::ParentObject(Object* object)
+	void Component::ParentToObject(Object* object)
 	{
 		parent = object;
+	}
+	void Collider::SetTransform(std::shared_ptr<Transform> trans)
+	{
+		transform = trans;
 	}
 }

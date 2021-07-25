@@ -45,7 +45,7 @@ void Game::RemoveCurrentLevel()
 {
 }
 
-void Game::LoadAsset(std::string name, std::string path)
+AssetID Game::LoadAsset(std::string name, std::string path)
 {
 	//Assetr resourcemanager
 	auto resourceManager = mainApp->GetResourceManager().lock();
@@ -54,9 +54,11 @@ void Game::LoadAsset(std::string name, std::string path)
 
 	if (suffix == "jpg")
 	{
-		resourceManager->LoadTexture2D(name, path);
+		return resourceManager->LoadTexture2D(name, path);
 	}
 	//las demas opciones
+
+	return 0;
 }
 
 bool Game::AssetExists(std::string name)

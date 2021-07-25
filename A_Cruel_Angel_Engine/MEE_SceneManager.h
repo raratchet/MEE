@@ -1,6 +1,6 @@
 #pragma once
 #include "MEE_Scene.h"
-#include <stack>
+#include <list>
 
 namespace MEE
 {
@@ -13,7 +13,7 @@ namespace MEE
 		void QuitScene();
 		std::shared_ptr<Scene> GetCurrentScene();
 	private:
-		std::stack<std::shared_ptr<Scene>> scenes;
+		std::list<std::pair<int, std::shared_ptr<Scene>>> scenes;
 	};
 }
 

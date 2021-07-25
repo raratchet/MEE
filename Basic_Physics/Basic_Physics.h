@@ -1,9 +1,16 @@
 #pragma once
-#include<MEE_PluginHeader.h>
-#include<set>
-
+#include <MEE_PluginHeader.h>
+#include <MEE_Physics.h>
+#include "BoxCollider.h"
+#include <set>
+#include <map>
+#include <box2d/box2d.h>
 namespace Basic_Physics
 {
+
+	std::map<SceneID, b2World*> physicWorlds;
+	std::map<b2World*, std::vector<BoxCollider*>> bodies;
+
 	extern "C"
 	{
 		PLUGIN_EXPORT void OnInit(int);
@@ -11,6 +18,9 @@ namespace Basic_Physics
 		PLUGIN_EXPORT void OnShutDown();
 		PLUGIN_EXPORT void OnUpdate();
 
+		PLUGIN_EXPORT void CreatePhysicsWorld(SceneID);
+		PLUGIN_EXPORT MEE_Collider CreateCollider(SceneID id);
+		PLUGIN_EXPORT void PhysicsStep(SceneID);
 
 	}
 

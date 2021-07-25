@@ -87,6 +87,9 @@
     <ClCompile Include="MEG_Input.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="MEE_Physics.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MEE_Plugin.h">
@@ -171,6 +174,12 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="MEG_Input.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MEE_Physics.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MEE_Functional.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

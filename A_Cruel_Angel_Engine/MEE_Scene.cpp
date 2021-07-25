@@ -2,7 +2,6 @@
 #include "MEE_Object.h"
 #include "MEE_Components.h"
 #include "MEE_Camera.h" 
-#include "MEE_Graphics.h"//?
 
 namespace MEE
 {
@@ -59,6 +58,11 @@ namespace MEE
      bool Scene::IsLoaded()
      {
          return loaded;
+     }
+
+     SceneID Scene::GetID()
+     {
+         return id;
      }
 
      void Scene::Update()
