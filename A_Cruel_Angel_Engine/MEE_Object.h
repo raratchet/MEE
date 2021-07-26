@@ -14,8 +14,11 @@ namespace MEE
 	class MEE_EXPORT Object
 	{
 	public:
+
+		void Internal_AddComponent(Component* component);
+
 		template<class T = Component>
-		inline void AddComponent();
+		void AddComponent();
 
 		template<class T = Component>
 		void RemoveComponent();
@@ -59,34 +62,19 @@ namespace MEE
 	};
 
 
-
 	template<class T>
 	inline void Object::AddComponent()
 	{
-		std::shared_ptr<T> component(new T);
-		auto* asComponent = (Component*)&*component;
-		asComponent->ParentToObject(this);
-		components.push_back(component);
-		auto* asBehaviour = dynamic_cast<Behaviour*>(asComponent);
-		if (asBehaviour)
-		{
-			updatables.push_back(std::reinterpret_pointer_cast<Behaviour>(component));
-			asBehaviour->Start();
-		}
+		auto* component = new T;
+		Internal_AddComponent(component);
 
 	}
 
 	template <>
     inline void Object::AddComponent<Collider>()
 	{
-		auto sceneID = owner.GetID();
-		MEE_CreateCollider(sceneID);
-		MEE_Collider mod_collider = MEE_CreateCollider(sceneID);
-		std::shared_ptr<Collider> collider((Collider*)MEE_CreateCollider(sceneID));
-		collider->SetTransform(std::reinterpret_pointer_cast<Transform>(components[0]));
-		auto* asComponent = (Component*)&*collider;
-		asComponent->ParentToObject(this);
-		components.push_back(collider);
+		auto collider = new Collider;
+		Internal_AddComponent(collider);
 	}
 
 	template<class T>

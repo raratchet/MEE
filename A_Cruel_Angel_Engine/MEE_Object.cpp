@@ -2,7 +2,33 @@
 
 namespace MEE
 {
-	Transform& Object::GetTransform() 
+	void Object::Internal_AddComponent(Component* component)
+	{
+		component->ParentToObject(this);
+
+		Behaviour* asBehaviour = dynamic_cast<Behaviour*>(component);
+		Collider* asCollider = dynamic_cast<Collider*>(component);
+
+		if (asBehaviour)
+		{
+			updatables.push_back(std::shared_ptr<Behaviour>((Behaviour*)component));
+			asBehaviour->Start();
+		}
+		else if (asCollider)
+		{
+			auto sceneID = owner.GetID();
+			Collider* collider = (Collider*) MEE_CreateCollider(sceneID);
+			collider->SetTransform(std::reinterpret_pointer_cast<Transform>(components[0]));
+			auto* asComponent = (Component*)&*collider;
+			asComponent->ParentToObject(this);
+			delete component;
+			component = collider;
+		}
+
+		components.push_back(std::shared_ptr<Component>(component));
+	}
+
+	Transform& Object::GetTransform()
 	{ 
 		auto sharedptr = std::reinterpret_pointer_cast<Transform>(components[0]);
 		Transform& transform = *sharedptr;

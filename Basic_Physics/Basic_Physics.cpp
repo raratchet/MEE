@@ -38,10 +38,20 @@ MEE_Collider Basic_Physics::CreateCollider(SceneID id)
 void Basic_Physics::PhysicsStep(SceneID id)
 {
 	auto world = physicWorlds[id];
-	world->Step(1/60,1,1);
+
+	float timeStep = 1.0f / 60.0f;
+
+	int32 velocityIterations = 6;
+	int32 positionIterations = 2;
+
+	world->Step(timeStep, velocityIterations, positionIterations);
+
 
 	for (auto body : bodies[world])
 	{
+		b2Vec2 position = body->body->GetPosition();
+		float angle = body->body->GetAngle();
 		body->UpdatePosition();
+		printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
 	}
 }

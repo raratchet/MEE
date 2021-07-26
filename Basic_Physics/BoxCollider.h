@@ -11,9 +11,9 @@ namespace Basic_Physics
 	public:
 		BoxCollider(b2World* world);
 		void UpdatePosition();
+		b2Body* body;
 	private:
 		b2BodyDef bodyDef;
-		b2Body* body;
 	};
 }
 
