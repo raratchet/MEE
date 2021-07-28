@@ -38,7 +38,7 @@ WindowHandlerAPI MEE::WindowHandler::GetHandlerAPI()
 	return handlerAPI;
 }
 
-RenderAPI MEE::WindowHandler::getRenderAPI()
+RenderAPI MEE::WindowHandler::GetRenderAPI()
 {
 	return renderAPI;
 }

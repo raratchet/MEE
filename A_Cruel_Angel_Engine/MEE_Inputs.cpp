@@ -1,7 +1,23 @@
 #include "MEE_Inputs.h"
 #include "MEE_Global.h"
+#include "MEE_WindowHandler.h"
 
 
+
+InputHandlerAPI MEE_EXPORT MEE_GetInputHandlerAPI()
+{
+	WindowHandlerAPI window = MEE::WindowHandler::GetHandlerAPI();
+	InputHandlerAPI api;
+	if (window == SDL)
+	{
+		api = InputHandlerAPI::SDL;
+	}
+	else if (window == GLFW)
+	{
+		api = InputHandlerAPI::GLFW;
+	}
+	return api;
+}
 
 void MEE_EXPORT MEE_bind_keyboard_KeyPressedThisFrame(int plugin_id, const std::string& func_name)
 {
@@ -70,6 +86,56 @@ void MEE_EXPORT MEE_bind_mouse_GetPosition(int plugin_id, const std::string& fun
 	if (pl_manager)
 	{
 		MEE_mouse_GetPosition = pl_manager->GetPluginFunction<void,int*,int*>(plugin_id, func_name);
+	}
+}
+
+void MEE_EXPORT MEE_bind_gamepad_KeyPressedThisFrame(int plugin_id, const std::string& func_name)
+{
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+	if (pl_manager)
+	{
+		MEE_gamepad_KeyPressedThisFrame = pl_manager->GetPluginFunction<bool,GamepadID,int>(plugin_id, func_name);
+	}
+}
+
+void MEE_EXPORT MEE_bind_gamepad_KeyIsPressed(int plugin_id, const std::string& func_name)
+{
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+	if (pl_manager)
+	{
+		MEE_gamepad_KeyIsPressed = pl_manager->GetPluginFunction<bool, GamepadID, int>(plugin_id, func_name);
+	}
+}
+
+void MEE_EXPORT MEE_bind_gamepad_KeyUp(int plugin_id, const std::string& func_name)
+{
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+	if (pl_manager)
+	{
+		MEE_gamepad_KeyUp = pl_manager->GetPluginFunction<bool, GamepadID, int>(plugin_id, func_name);
+	}
+}
+
+void MEE_EXPORT MEE_bind_gamepad_GetJoystick(int plugin_id, const std::string& func_name)
+{
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+	if (pl_manager)
+	{
+		MEE_gamepad_GetJoystick = pl_manager->GetPluginFunction<void, GamepadID, int*, int*>(plugin_id, func_name);
+	}
+}
+
+void MEE_EXPORT MEE_bind_gamepad_MakeRumble(int plugin_id, const std::string& func_name)
+{
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+	if (pl_manager)
+	{
+		MEE_gamepad_MakeRumble = pl_manager->GetPluginFunction<void, GamepadID, int>(plugin_id, func_name);
 	}
 }
 

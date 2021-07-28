@@ -16,7 +16,7 @@ namespace MEE
 		static void SetHandlerAPI(const WindowHandlerAPI& api);
 		static void SetRenderAPI(const RenderAPI& api);
 		static WindowHandlerAPI GetHandlerAPI();
-		static RenderAPI getRenderAPI();
+		static RenderAPI GetRenderAPI();
 		virtual void SwapBuffer() = 0;
 	protected:
 		static unsigned int width, height;

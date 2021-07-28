@@ -79,7 +79,7 @@
 	MEE_SDL_Renderer MEE_EXPORT MEE_GetSDLRenderer()
 	{
 		MEE_SDL_Renderer ptr = nullptr;
-		if (MEE::WindowHandler::getRenderAPI() == RenderAPI::SDL_Render)
+		if (MEE::WindowHandler::GetRenderAPI() == RenderAPI::SDL_Render)
 		{
 			auto window = MEE_GLOBAL::application->GetWindow().lock();
 

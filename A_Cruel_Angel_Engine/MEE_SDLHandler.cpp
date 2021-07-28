@@ -13,7 +13,7 @@ namespace MEE
     {
         bool success = true;
 
-        if (WindowHandler::getRenderAPI() == RenderAPI::OpenGL)
+        if (WindowHandler::GetRenderAPI() == RenderAPI::OpenGL)
         {
             if (SDL_Init(SDL_INIT_VIDEO) != -1)
             {
@@ -45,7 +45,7 @@ namespace MEE
                 success = false;
             }
         }
-        else if (WindowHandler::getRenderAPI() == RenderAPI::SDL_Render)
+        else if (WindowHandler::GetRenderAPI() == RenderAPI::SDL_Render)
         {
             SDL_CreateWindowAndRenderer(
                 width, height,
@@ -73,11 +73,11 @@ namespace MEE
 
     void SDLHandler::Stop()
     {
-        if (WindowHandler::getRenderAPI() == RenderAPI::OpenGL)
+        if (WindowHandler::GetRenderAPI() == RenderAPI::OpenGL)
         {
             SDL_GL_DeleteContext(glContext);
         }
-        else if (WindowHandler::getRenderAPI() == RenderAPI::SDL_Render)
+        else if (WindowHandler::GetRenderAPI() == RenderAPI::SDL_Render)
         {
             SDL_FreeSurface(sdlSurface);
             SDL_DestroyRenderer(sdlRenderer);
@@ -100,9 +100,9 @@ namespace MEE
 
     void SDLHandler::SwapBuffer()
     {
-        if (WindowHandler::getRenderAPI() == RenderAPI::OpenGL)
+        if (WindowHandler::GetRenderAPI() == RenderAPI::OpenGL)
             SDL_GL_SwapWindow(window);
-        else if (WindowHandler::getRenderAPI() == RenderAPI::SDL_Render)
+        else if (WindowHandler::GetRenderAPI() == RenderAPI::SDL_Render)
             SDL_RenderPresent(sdlRenderer);
     }
 
