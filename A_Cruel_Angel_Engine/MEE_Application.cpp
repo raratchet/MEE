@@ -2,7 +2,6 @@
 #include "MEE_SDLHandler.h"
 #include "MEE_GLFWHandler.h"
 #include "MEE_Graphics.h"
-#include "MEE_Physics.h"
 
 //TEMP
 #include "MEE_Global.h"
@@ -74,7 +73,6 @@ namespace MEE
 		pluginManager->Update();
 		//Do update
 		auto scene = sceneManager->GetCurrentScene();
-		MEE_PhysicsStep(scene->GetID());
 		scene->Update();
 		//
 		pluginManager->PostUpdate();

@@ -1,5 +1,5 @@
 #include "MEE_Sprite.h"
-
+#include "MEE_Graphics.h"
 
 #include "MEE_Global.h" // No me gusta esto
 

@@ -1,10 +1,11 @@
 #include "MEE_WindowHandler.h"
+#include"MEE_Graphics.h"
 
 unsigned int  MEE::WindowHandler::width = 800, MEE::WindowHandler::height = 600;
 int MEE::WindowHandler::pos_x = 100, MEE::WindowHandler::pos_y = 100;
 std::string MEE::WindowHandler::windowName = "MEE";
-WindowHandlerAPI MEE::WindowHandler::handlerAPI = WindowHandlerAPI::SDL;
-RenderAPI MEE::WindowHandler::renderAPI = RenderAPI::OpenGL;
+WindowHandlerAPI handlerAPI = WindowHandlerAPI::SDL;
+RenderAPI renderAPI = RenderAPI::OpenGL;
 
 void MEE::WindowHandler::SetWindowSize(unsigned int w, unsigned int h)
 {

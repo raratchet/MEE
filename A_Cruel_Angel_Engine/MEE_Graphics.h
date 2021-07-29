@@ -2,7 +2,7 @@
 #include <functional>
 #include "MEE_Exports.h"
 
-enum RenderAPI
+enum class RenderAPI
 {
 	OpenGL,
 	Vulkan,
@@ -10,7 +10,7 @@ enum RenderAPI
 	SDL_Render
 };
 
-enum WindowHandlerAPI
+enum class WindowHandlerAPI
 {
 	SDL,
 	GLFW

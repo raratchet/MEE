@@ -6,7 +6,6 @@
 #include "MEE_Scene.h"
 #include "MEE_Drawable.h"
 #include "MEE_Exports.h"
-#include "MEE_Physics.h"
 
 
 namespace MEE
@@ -15,10 +14,10 @@ namespace MEE
 	{
 	public:
 
-		void Internal_AddComponent(Component* component);
+		Component& Internal_AddComponent(Component* component);
 
 		template<class T = Component>
-		void AddComponent();
+		T& AddComponent();
 
 		template<class T = Component>
 		void RemoveComponent();
@@ -63,18 +62,20 @@ namespace MEE
 
 
 	template<class T>
-	inline void Object::AddComponent()
+	inline T& Object::AddComponent()
 	{
 		auto* component = new T;
-		Internal_AddComponent(component);
+		return (T&) Internal_AddComponent(component);
 
 	}
 
+	class Collider;
+
 	template <>
-    inline void Object::AddComponent<Collider>()
+    inline Collider& Object::AddComponent<Collider>()
 	{
 		auto collider = new Collider;
-		Internal_AddComponent(collider);
+		return (Collider&)Internal_AddComponent(collider);
 	}
 
 	template<class T>

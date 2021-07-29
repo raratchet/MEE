@@ -3,6 +3,7 @@
 #include <memory>
 #include "MEE_Exports.h"
 
+
 namespace MEE
 {
 
@@ -53,9 +54,27 @@ namespace MEE
 
 	};
 
+	enum class ColliderType { Static, Dynamic, Kinematic };
+	enum class ColliderForm { Circle, Box, Polygon };
 
 	class MEE_EXPORT Collider : public Component
 	{
+	public:
+		virtual ~Collider() = default;
+		virtual Vector2 GetVelocity();
+		virtual float GetFriction();
+		virtual float GetGravity();
+		virtual bool GetRotationConstrait();
+		virtual bool GetActive();
+		virtual ColliderType GetType();
+		virtual ColliderForm GetFigure();
+		virtual void SetVelocity(const Vector2&);
+		virtual void SetFriction(float);
+		virtual void SetGravity(float);
+		virtual void SetRotationConstrait(bool);
+		virtual void SetActive(bool);
+		virtual void SetType(ColliderType);
+		virtual void SetFigure(ColliderForm);
 	protected:
 		std::weak_ptr<Transform> transform;
 		void SetTransform(std::shared_ptr<Transform> trans);
@@ -64,8 +83,11 @@ namespace MEE
 		float gravityScale;
 		bool isRotConstraint;
 		bool active;
+	    ColliderType type;
+	    ColliderForm form;
 
 		friend class Object;
+		friend class Scene;
 	};
 }
 

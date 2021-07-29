@@ -2,6 +2,7 @@
 #include "MEE_Object.h"
 #include "MEE_Components.h"
 #include "MEE_Camera.h" 
+#include "MEE_Physics.h"
 
 namespace MEE
 {
@@ -14,7 +15,7 @@ namespace MEE
 	 { 
 		sceneCameras.clear(); 
 		sceneObjects.clear(); 
-		updateComponents.clear(); 
+		sceneColliders.clear(); 
 		drawObjects.clear(); 
 	 }
 
@@ -67,9 +68,32 @@ namespace MEE
 
      void Scene::Update()
      {
+         for (auto& collider : sceneColliders)
+         {
+             auto transform = collider->transform.lock();
+             auto& position = transform->GetPosition();
+             MEE_Collider asMEE_Collider = (MEE_Collider)(collider.get());
+             MEE_SetColliderTransform(asMEE_Collider, position.x, position.y, transform->GetRotation());
+         }
+
+         MEE_PhysicsStep(id);
+
          for (auto& obj : sceneObjects)
              for (auto& beh : obj->updatables)
                  beh->Update();
+
+         for (auto& collider : sceneColliders)
+         {
+             auto transform = collider->transform.lock();
+             Vector2 position;
+             float angle;
+
+             MEE_Collider asMEE_Collider = (MEE_Collider)(collider.get());
+             MEE_GetColliderTransform(asMEE_Collider, &position.x, &position.y,&angle);
+
+             transform->SetPosition(position);
+             transform->SetRotation(angle);
+         }
      }
 
      void Scene::Draw()

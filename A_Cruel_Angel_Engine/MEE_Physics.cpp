@@ -10,13 +10,22 @@ void MEE_bind_CreateCollider(int pl_id, const std::string& func_name)
 		MEE_CreateCollider = pl_manager->GetPluginFunction<MEE_Collider, SceneID>(pl_id, func_name);
 	}
 }
-void MEE_bind_SetColliderPosition(int pl_id, const std::string& func_name)
+void MEE_bind_SetColliderTransform(int pl_id, const std::string& func_name)
 {
 	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
 	if (pl_manager)
 	{
-		MEE_SetColliderPosition = pl_manager->GetPluginFunction<void, MEE_Collider, float, float>(pl_id, func_name);
+		MEE_SetColliderTransform = pl_manager->GetPluginFunction<void, MEE_Collider, float, float,float>(pl_id, func_name);
+	}
+}
+void MEE_bind_GetColliderTransform(int pl_id, const std::string& func_name)
+{
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+	if (pl_manager)
+	{
+		MEE_GetColliderTransform = pl_manager->GetPluginFunction<void, MEE_Collider, float*, float*, float*>(pl_id, func_name);
 	}
 }
 void MEE_bind_PhysicsStep(int pl_id, const std::string& func_name)

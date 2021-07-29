@@ -2,7 +2,7 @@
 #include<functional>
 #include "MEE_Exports.h"
 
-enum InputHandlerAPI
+enum class InputHandlerAPI
 {
 	SDL,
 	GLFW

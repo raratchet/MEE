@@ -5,6 +5,8 @@ void Basic_Physics::OnInit(int pl_id)
 	MEE_bind_CreateCollider(pl_id, "CreateCollider");
 	MEE_bind_PhysicsStep(pl_id, "PhysicsStep");
 	MEE_bind_CreatePhysicsWorld(pl_id, "CreatePhysicsWorld");
+	MEE_bind_SetColliderTransform(pl_id, "UpdateTransform");
+	MEE_bind_GetColliderTransform(pl_id, "ReadTransform");
 }
 
 void Basic_Physics::OnLoad()
@@ -21,8 +23,26 @@ void Basic_Physics::OnUpdate()
 
 void Basic_Physics::CreatePhysicsWorld(SceneID id)
 {
-	static b2Vec2 defaultGravity(0.0f,-10.0f);
+	static b2Vec2 defaultGravity(0.0f,4.0f);
 	physicWorlds[id] = new b2World(defaultGravity);
+}
+
+void Basic_Physics::UpdateTransform(MEE_Collider collider, float x, float y, float a)
+{
+	BoxCollider* bCollider = (BoxCollider*)collider;
+
+	bCollider->body->SetTransform({ x,y }, a);
+}
+
+void Basic_Physics::ReadTransform(MEE_Collider collider, float* x, float* y, float* a)
+{
+	BoxCollider* bCollider = (BoxCollider*)collider;
+
+	auto transform = bCollider->body->GetTransform();
+
+	*x = transform.p.x;
+	*y = transform.p.y;
+	*a = transform.q.c;
 }
 
 MEE_Collider Basic_Physics::CreateCollider(SceneID id)
@@ -46,12 +66,4 @@ void Basic_Physics::PhysicsStep(SceneID id)
 
 	world->Step(timeStep, velocityIterations, positionIterations);
 
-
-	for (auto body : bodies[world])
-	{
-		b2Vec2 position = body->body->GetPosition();
-		float angle = body->body->GetAngle();
-		body->UpdatePosition();
-		printf("%4.2f %4.2f %4.2f\n", position.x, position.y, angle);
-	}
 }

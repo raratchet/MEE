@@ -1,8 +1,9 @@
 #include "MEE_Object.h"
+#include "MEE_Physics.h"
 
 namespace MEE
 {
-	void Object::Internal_AddComponent(Component* component)
+	Component& Object::Internal_AddComponent(Component* component)
 	{
 		component->ParentToObject(this);
 
@@ -23,9 +24,11 @@ namespace MEE
 			asComponent->ParentToObject(this);
 			delete component;
 			component = collider;
+			owner.sceneColliders.push_back(std::shared_ptr<Collider>(collider));
 		}
 
 		components.push_back(std::shared_ptr<Component>(component));
+		return *component;
 	}
 
 	Transform& Object::GetTransform()

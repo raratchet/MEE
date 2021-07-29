@@ -76,12 +76,13 @@ namespace MEE
 	protected:
 		std::list<std::shared_ptr<class Camera>> sceneCameras;
 		std::list<std::shared_ptr<class Object>> sceneObjects;
-		std::list<std::shared_ptr<class Behaviours>> updateComponents;
+		std::list<std::shared_ptr<class Collider>> sceneColliders;
 		std::list<std::shared_ptr<class Drawable>> drawObjects;
 		bool loaded = false;
 		SceneID id;
 
 		friend class SceneManager;
+		friend class Object;
 	};
 }
 

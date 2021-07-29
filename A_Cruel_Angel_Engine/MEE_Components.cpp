@@ -1,5 +1,6 @@
 #include "MEE_Components.h"
 #include "MEE_Object.h"
+#include "MEE_Physics.h"
 
 
 namespace MEE
@@ -77,5 +78,62 @@ namespace MEE
 	void Collider::SetTransform(std::shared_ptr<Transform> trans)
 	{
 		transform = trans;
+	}
+	Vector2 Collider::GetVelocity()
+	{
+		return velocity;
+	}
+	float Collider::GetFriction()
+	{
+		return friction;
+	}
+	float Collider::GetGravity()
+	{
+		return gravityScale;
+	}
+	bool Collider::GetRotationConstrait()
+	{
+		return isRotConstraint;
+	}
+	bool Collider::GetActive()
+	{
+		return active;
+	}
+	ColliderType Collider::GetType()
+	{
+		return type;
+	}
+	ColliderForm Collider::GetFigure()
+	{
+		return form;
+	}
+
+	void Collider::SetVelocity(const Vector2& value)
+	{
+		velocity = value;
+	}
+	void Collider::SetFriction(float value)
+	{
+		friction = value;
+	}
+	void Collider::SetGravity(float value)
+	{
+		gravityScale = value;
+	}
+	void Collider::SetRotationConstrait(bool value)
+	{
+		isRotConstraint = value;
+	}
+	void Collider::SetActive(bool value)
+	{
+		active = value;
+	}
+	void Collider::SetType(ColliderType value)
+	{
+		type = value;
+	}
+	void Collider::SetFigure(ColliderForm value)
+	{
+		form = value;
 	}
 }

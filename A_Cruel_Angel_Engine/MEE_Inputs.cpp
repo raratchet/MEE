@@ -1,18 +1,19 @@
 #include "MEE_Inputs.h"
 #include "MEE_Global.h"
 #include "MEE_WindowHandler.h"
+#include "MEE_Graphics.h"
 
 
 
 InputHandlerAPI MEE_EXPORT MEE_GetInputHandlerAPI()
 {
 	WindowHandlerAPI window = MEE::WindowHandler::GetHandlerAPI();
-	InputHandlerAPI api;
-	if (window == SDL)
+	InputHandlerAPI api = InputHandlerAPI::SDL;
+	if (window == WindowHandlerAPI::SDL)
 	{
 		api = InputHandlerAPI::SDL;
 	}
-	else if (window == GLFW)
+	else if (window == WindowHandlerAPI::GLFW)
 	{
 		api = InputHandlerAPI::GLFW;
 	}

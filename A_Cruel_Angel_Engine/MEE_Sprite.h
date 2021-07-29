@@ -2,7 +2,6 @@
 #include "MEE_Texture.h"
 #include "MEE_Maths.h"
 #include "MEE_Components.h"
-#include "MEE_Graphics.h"
 #include <memory>
 
 namespace MEE

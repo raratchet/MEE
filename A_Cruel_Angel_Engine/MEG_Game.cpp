@@ -56,6 +56,10 @@ AssetID Game::LoadAsset(std::string name, std::string path)
 	{
 		return resourceManager->LoadTexture2D(name, path);
 	}
+	else if (suffix == "png")
+	{
+		return resourceManager->LoadTexture2D(name, path);
+	}
 	//las demas opciones
 
 	return 0;

@@ -1,9 +1,12 @@
 #pragma once
 #include <string>
-#include"MEE_Graphics.h"
+
+enum class WindowHandlerAPI;
+enum class RenderAPI;
 
 namespace MEE
 {
+
 	class WindowHandler
 	{
 	public:
@@ -20,10 +23,8 @@ namespace MEE
 		virtual void SwapBuffer() = 0;
 	protected:
 		static unsigned int width, height;
-		static int  pos_x, pos_y ;
+		static int pos_x, pos_y ;
 		static std::string windowName;
-		static WindowHandlerAPI handlerAPI;
-		static RenderAPI renderAPI;
 	};
 }
 
