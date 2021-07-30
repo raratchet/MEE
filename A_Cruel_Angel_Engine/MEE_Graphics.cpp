@@ -60,10 +60,98 @@
 		if (pl_manager)
 		{
 			MEE_RenderTexture2D = pl_manager->GetPluginFunction
-				<void,const MEE_Texture2D, float, float,
-				int,int,int,int,float>(plugin_id, func_name);
+				<void,const MEE_Texture2D, float, float, float, float, float,
+				int,int,int,int>(plugin_id, func_name);
 		}
 
+	}
+
+	void MEE_EXPORT MEE_bind_SetRenderColor(int plugin_id, const std::string& func_name)
+	{
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+		if (pl_manager)
+		{
+			MEE_SetRenderColor = pl_manager->GetPluginFunction
+				<void,int,int,int,int>(plugin_id, func_name);
+		}
+	}
+
+	void MEE_EXPORT MEE_bind_SetRenderViewport(int plugin_id, const std::string& func_name)
+	{
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+		if (pl_manager)
+		{
+			MEE_SetRenderViewport = pl_manager->GetPluginFunction
+				<void,int,int,int,int>(plugin_id, func_name);
+		}
+	}
+
+	void MEE_EXPORT MEE_bind_RenderLine(int plugin_id, const std::string& func_name)
+	{
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+		if (pl_manager)
+		{
+			MEE_RenderLine = pl_manager->GetPluginFunction
+				<void,int,int,int,int>(plugin_id, func_name);
+		}
+	}
+
+	void MEE_EXPORT MEE_bind_RenderPoint(int plugin_id, const std::string& func_name)
+	{
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+		if (pl_manager)
+		{
+			MEE_RenderPoint = pl_manager->GetPluginFunction
+				<void,int,int>(plugin_id, func_name);
+		}
+	}
+
+	void MEE_EXPORT MEE_bind_RenderPolygon(int plugin_id, const std::string& func_name)
+	{
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+		if (pl_manager)
+		{
+			MEE_RenderPolygon = pl_manager->GetPluginFunction
+				<void,int*,int>(plugin_id, func_name);
+		}
+	}
+
+	void MEE_EXPORT MEE_bind_RenderSolidPolygon(int plugin_id, const std::string& func_name)
+	{
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+		if (pl_manager)
+		{
+			MEE_RenderSolidPolygon = pl_manager->GetPluginFunction
+				<void, int*, int>(plugin_id, func_name);
+		}
+	}
+
+	void MEE_EXPORT MEE_bind_RenderCircle(int plugin_id, const std::string& func_name)
+	{
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+		if (pl_manager)
+		{
+			MEE_RenderCircle = pl_manager->GetPluginFunction
+				<void,int,int,int>(plugin_id, func_name);
+		}
+	}
+
+	void MEE_EXPORT MEE_bind_RenderSolidCircle(int plugin_id, const std::string& func_name)
+	{
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+		if (pl_manager)
+		{
+			MEE_RenderSolidCircle = pl_manager->GetPluginFunction
+				<void,int,int,int>(plugin_id, func_name);
+		}
 	}
 
 	void MEE_bind_InitGL(int plugin_id, const std::string& func_name)

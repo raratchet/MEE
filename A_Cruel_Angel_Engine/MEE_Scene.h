@@ -73,7 +73,9 @@ namespace MEE
 		 * \return This scene id
 		 */
 		SceneID GetID();
-	protected:
+	private:
+		void CreateMainSceneCamera();
+	private:
 		std::list<std::shared_ptr<class Camera>> sceneCameras;
 		std::list<std::shared_ptr<class Object>> sceneObjects;
 		std::list<std::shared_ptr<class Collider>> sceneColliders;

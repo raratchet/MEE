@@ -33,13 +33,18 @@ namespace MEE
 	public:
 		TimeManager();
 		unsigned int GetSecondsSinceApplicationStarted();
-		float GetDeltaTime();
+		double GetDeltaTime();
 		void StartFrame();
 		void EndFrame();
 	private:
-		Timer frameTimer;
 		float lastFrameElapsedTime;
-		std::chrono::time_point<std::chrono::system_clock> initialAppTime;
+		std::chrono::steady_clock::time_point t1,t2,t3;
+		std::chrono::duration<double> initialAppTime;
+		std::chrono::duration<double> timeUsed;
+		std::chrono::duration<double> frameTime;
+		std::chrono::duration<double> sleepTime;
+		std::chrono::duration<double> sleepAdjust;
+		std::chrono::duration<double> target;
 	};
 }
 

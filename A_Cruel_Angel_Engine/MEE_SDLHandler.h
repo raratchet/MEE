@@ -15,12 +15,10 @@ namespace MEE
 		virtual void SwapBuffer() override;
 		void SDL_Render_RenderClear();
 
-		//Pasarlo a private
 		SDL_Window* window;
 		SDL_GLContext glContext;
 		SDL_Renderer* sdlRenderer;
 		SDL_Surface* sdlSurface;
-	private:
 	};
 }
 

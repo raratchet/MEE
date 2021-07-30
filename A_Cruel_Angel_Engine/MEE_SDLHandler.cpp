@@ -65,7 +65,7 @@ namespace MEE
             SDL_SetRenderDrawColor(sdlRenderer, 53, 40, 230, 255);
 
             if (MEE_RenderClear == nullptr)
-                MEE_RenderClear = [=]() { this->SDL_Render_RenderClear(); };
+                MEE_RenderClear = [=]() { this->SDL_Render_RenderClear(); }; //Probablemente esto no es adecuado
         }
 
         return success;

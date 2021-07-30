@@ -65,5 +65,4 @@ void Basic_Physics::PhysicsStep(SceneID id)
 	int32 positionIterations = 2;
 
 	world->Step(timeStep, velocityIterations, positionIterations);
-
 }

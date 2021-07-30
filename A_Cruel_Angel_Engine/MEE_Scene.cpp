@@ -3,12 +3,13 @@
 #include "MEE_Components.h"
 #include "MEE_Camera.h" 
 #include "MEE_Physics.h"
+#include "MEE_WindowHandler.h"
 
 namespace MEE
 {
 	Scene::Scene() 
 	{ 
-		CreateCamera(); 
+        CreateMainSceneCamera();
 	}
 
 	 Scene::~Scene() 
@@ -66,6 +67,14 @@ namespace MEE
          return id;
      }
 
+     void Scene::CreateMainSceneCamera()
+     {
+         int w, h;
+         WindowHandler::GetWindowSize(&w,&h);
+
+         CreateCamera(Vector2(),w,h);
+     }
+
      void Scene::Update()
      {
          for (auto& collider : sceneColliders)
@@ -102,8 +111,8 @@ namespace MEE
          {
              if (!camera->GetActive())
                  continue;
-             //REVISA ESTA LINEA
-             //Renderer::SetCurrentCamera(camera);
+
+             camera->MakeCurrent();
 
              for (auto& drawable : drawObjects)
              {

@@ -4,18 +4,21 @@
 
 namespace MEE
 {
-	//Camara concreta para el renderer de SDL
+	class Scene;
+
 	class Camera
 	{
 	public:
 		void SetPosition(const Vector2& pos);
 		void SetActive(bool active);
 		bool GetActive();
-		~Camera() { std::cout << "Se destruye camera\n"; }
+		void MakeCurrent();
+		~Camera() = default;
 	private:
 		Camera();
-		Camera(const Vector2& pos, const int& widht, const int& height);
-		//SDL_Rect rect; //QUITA ESTO
+		Camera(const Vector2& pos, const int width, const int height);
+		Vector2 position;
+		int c_width, c_heigth;
 		bool isActive = true;
 		friend class Scene;
 	};

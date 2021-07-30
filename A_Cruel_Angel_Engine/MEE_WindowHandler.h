@@ -18,6 +18,7 @@ namespace MEE
 		static void SetWindowName(const std::string& name);
 		static void SetHandlerAPI(const WindowHandlerAPI& api);
 		static void SetRenderAPI(const RenderAPI& api);
+		static void GetWindowSize(int* w, int* h);
 		static WindowHandlerAPI GetHandlerAPI();
 		static RenderAPI GetRenderAPI();
 		virtual void SwapBuffer() = 0;

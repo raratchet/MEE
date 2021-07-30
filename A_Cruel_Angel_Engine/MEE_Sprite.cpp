@@ -24,6 +24,7 @@ namespace MEE
 	void Sprite::Draw(Transform& transform)
 	{
 		Vector2& position = transform.GetPosition();
+		Vector2& scale = transform.GetScale();
 		float& rot = transform.GetRotation();
 		if (auto image = baseImage.lock())
 		{
@@ -32,11 +33,13 @@ namespace MEE
 				texture,
 				position.x,
 				position.y,
+				scale.x,
+				scale.y,
+				rot,
 				startCoord.x,
 				startCoord.y,
 				width,
-				height,
-				rot);
+				height);
 		}
 
 	}

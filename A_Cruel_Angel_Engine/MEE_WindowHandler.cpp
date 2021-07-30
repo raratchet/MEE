@@ -34,6 +34,12 @@ void MEE::WindowHandler::SetRenderAPI(const RenderAPI& api)
 	renderAPI = api;
 }
 
+void MEE::WindowHandler::GetWindowSize(int* w, int* h)
+{
+	*w = width;
+	*h = height;
+}
+
 WindowHandlerAPI MEE::WindowHandler::GetHandlerAPI()
 {
 	return handlerAPI;

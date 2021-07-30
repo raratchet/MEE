@@ -1,25 +1,24 @@
 #include "MEE_Camera.h"
+#include "MEE_Graphics.h"
 
 //#include "Application.h"
 //#include "Window.h"
 
 namespace MEE
 {
-	Camera::Camera()
+	Camera::Camera() : position(Vector2::Zero()), c_width(0), c_heigth(0)
 	{
-		//rect.x = 0; rect.y = 0;
-		//Window::GetWindowRes(&rect.w, &rect.h);
+
 	}
 
-	Camera::Camera(const Vector2& pos, const int& widht, const int& height)
+	Camera::Camera(const Vector2& pos, const int width, const int height) : position(pos), c_width(width), c_heigth(height)
 	{
-		//rect.x = pos.x; rect.y = pos.y;
-		//rect.w = widht, rect.h = height;
+
 	}
 
 	void Camera::SetPosition(const Vector2& pos)
 	{
-		//rect.x = pos.x; rect.y = pos.y;
+		position = pos;
 	}
 
 	void Camera::SetActive(bool active)
@@ -30,5 +29,10 @@ namespace MEE
 	bool Camera::GetActive()
 	{
 		return isActive;
+	}
+
+	void Camera::MakeCurrent()
+	{
+		MEE_SetRenderViewport(position.x,position.y,c_width,c_heigth);
 	}
 }

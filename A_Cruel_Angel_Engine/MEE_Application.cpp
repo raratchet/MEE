@@ -50,6 +50,7 @@ namespace MEE
 		//Sus verificaciones
 		sceneManager = std::make_shared<SceneManager>(SceneManager());
 		inputManager = std::make_shared<InputManager>(InputManager());
+		timeManager = std::make_shared<TimeManager>(TimeManager());
 		return success;
 	}
 
@@ -63,8 +64,10 @@ namespace MEE
 	{
 		while (!exit)
 		{
+			timeManager->StartFrame();
 			Update();
 			Draw();
+			timeManager->EndFrame();
 		}
 	}
 

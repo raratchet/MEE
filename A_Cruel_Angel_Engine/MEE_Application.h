@@ -8,6 +8,7 @@
 #include "MEE_Resources.h"
 #include "MEE_SceneManager.h"
 #include "MEE_InputManager.h"
+#include "MEE_Time.h"
 
 namespace MEE
 {
@@ -25,15 +26,8 @@ namespace MEE
 		std::weak_ptr<WindowHandler> GetWindow();
 		std::weak_ptr<PluginManager> GetPluginManager();
 		std::weak_ptr<ResourceManager> GetResourceManager();
-		//Leer el comentario de abajo
 		std::weak_ptr<SceneManager> GetSceneManager();
 		std::weak_ptr<InputManager> GetInputManager();
-		/*El scene manager debe ser acesible desde el lado del
-		* juego pordria facilitar su acceso creando un clase singleton
-		* que facilite su uso y controle sus llamadas de una mejor forma
-		* 
-		* por ahora esto se queda asi con la finalidad de poder probar
-	    */
 	private:
 		bool exit = false;
 		std::shared_ptr<SceneManager> sceneManager;
@@ -41,6 +35,7 @@ namespace MEE
 		std::shared_ptr<PluginManager>pluginManager;
 		std::shared_ptr<ResourceManager> resourceManager;
 		std::shared_ptr<InputManager> inputManager;
+		std::shared_ptr<TimeManager> timeManager;
 	};
 }
 
