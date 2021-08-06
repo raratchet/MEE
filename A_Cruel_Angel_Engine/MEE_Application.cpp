@@ -86,6 +86,7 @@ namespace MEE
 		MEE_RenderClear();
 		//Do draw
 		sceneManager->GetCurrentScene()->Draw();
+		pluginManager->Draw();
 		//
 		w_handler->SwapBuffer();
 	}

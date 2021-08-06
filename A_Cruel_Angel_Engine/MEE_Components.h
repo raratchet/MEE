@@ -30,9 +30,9 @@ namespace MEE
 		void SetScale(Vector2 scale_vector);
 		void SetScale(float x, float y);
 		void SetRotation(float rotation_float);
-		Vector2& GetPosition();
-		Vector2& GetScale();
-		float& GetRotation();
+		Vector2 GetPosition();
+		Vector2 GetScale();
+		float GetRotation();
 	private:
 		Vector2 position = Vector2();
 		Vector2 scale = Vector2(1, 1);

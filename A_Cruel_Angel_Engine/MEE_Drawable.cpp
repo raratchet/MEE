@@ -4,7 +4,13 @@ namespace MEE
 {
 	void Drawable::Draw() 
 	{ 
-		if (m_sprite) m_sprite->Draw(draw_transform); 
+		if (m_sprite)
+		{
+			auto position = draw_transform.GetPosition() / 2;
+			auto scale = draw_transform.GetScale();
+			auto rot = draw_transform.GetRotation();
+			m_sprite->Draw(position,scale,rot);
+		}
 	}
 
 	std::weak_ptr<Sprite> Drawable::GetSprite()

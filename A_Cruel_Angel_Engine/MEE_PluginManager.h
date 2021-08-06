@@ -23,6 +23,7 @@ namespace MEE
 		bool Init();
 		void Load();
 		void Update();
+		void Draw();
 		void PostUpdate();
 		void Stop();
 		PluginManager()  = default;

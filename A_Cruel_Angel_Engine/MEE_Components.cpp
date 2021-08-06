@@ -35,17 +35,17 @@ namespace MEE
 		rot = rotation_float;
 	}
 
-	Vector2& Transform::GetPosition()
+	Vector2 Transform::GetPosition()
 	{
 		return position;
 	}
 
-	Vector2& Transform::GetScale()
+	Vector2 Transform::GetScale()
 	{
 		return scale;
 	}
 
-	float& Transform::GetRotation()
+	float Transform::GetRotation()
 	{
 		return rot;
 	}

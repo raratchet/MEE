@@ -87,7 +87,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);GLEW_STATIC;GLEW_STATIC;GLEW_STATIC;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);GLEW_STATIC;GLEW_STATIC;GLEW_STATIC;MEE_ENGINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\SDL\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -123,7 +123,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);MEE_ENGINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\SDL\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\yaml-cpp\include;C:\Work\Dev_Libraries\glew-2.1.0\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\GLM\glm;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>

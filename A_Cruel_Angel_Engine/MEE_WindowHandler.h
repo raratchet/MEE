@@ -19,11 +19,15 @@ namespace MEE
 		static void SetHandlerAPI(const WindowHandlerAPI& api);
 		static void SetRenderAPI(const RenderAPI& api);
 		static void GetWindowSize(int* w, int* h);
+		static void SetFullscreenMode(bool mode);
+		static bool GetFullscreenMode();
 		static WindowHandlerAPI GetHandlerAPI();
 		static RenderAPI GetRenderAPI();
 		virtual void SwapBuffer() = 0;
+		virtual void RefreshWindow() = 0;
 	protected:
 		static unsigned int width, height;
+		static bool fullscreened;
 		static int pos_x, pos_y ;
 		static std::string windowName;
 	};

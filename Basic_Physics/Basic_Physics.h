@@ -17,6 +17,7 @@ namespace Basic_Physics
 		PLUGIN_EXPORT void OnLoad();
 		PLUGIN_EXPORT void OnShutDown();
 		PLUGIN_EXPORT void OnUpdate();
+		PLUGIN_EXPORT void OnDraw();
 
 		PLUGIN_EXPORT void CreatePhysicsWorld(SceneID);
 		PLUGIN_EXPORT void UpdateTransform(MEE_Collider,float,float,float);

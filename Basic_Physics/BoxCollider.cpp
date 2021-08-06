@@ -12,7 +12,7 @@ Basic_Physics::BoxCollider::BoxCollider(b2World* world)
 	body = world->CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(10000.0f, 1000.0f);
+	dynamicBox.SetAsBox(20.0f, 20.0f);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;

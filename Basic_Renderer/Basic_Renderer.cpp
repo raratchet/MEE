@@ -87,15 +87,54 @@ namespace Basic_Renderer
 	}
 	void RenderPolygon(int* vertices, int vertexCount)
 	{
-		std::cout << "Unimplemented \n";
+		for (int i = 0; i < vertexCount; i += 2)
+		{
+			if ((i + 2) >= vertexCount)
+			{
+				RenderLine(vertices[i], vertices[i + 1], vertices[0], vertices[1]);
+			}
+			else
+			{
+				RenderLine(vertices[i], vertices[i + 1], vertices[i + 2], vertices[i + 3]);
+			}
+		}
 	}
 	void RenderSolidPolygon(int* vertices, int vertexCount)
 	{
 		std::cout << "Unimplemented \n";
 	}
-	void RenderCircle(int x, int y, int radius)
+	void RenderCircle(int xc, int yc, int radius)
 	{
-		std::cout << "Unimplemented \n";
+		int p, x, y;
+		x = 0;
+		y = radius;
+		p = 1 - radius;
+
+
+		for (int i = 0; x <= y; i++)
+		{
+			RenderPoint(x + xc, y + yc);
+			RenderPoint(-x + xc, y + yc);
+			RenderPoint(x + xc, -y + yc);
+			RenderPoint(-x + xc, -y + yc);
+			RenderPoint(y + xc, x + yc);
+			RenderPoint(-y + xc, x + yc);
+			RenderPoint(y + xc, -x + yc);
+			RenderPoint(-y + xc, -x + yc);
+
+			if (p <= 0)
+			{
+				x++;
+				p = (2 * x) + p + 3;
+			}
+			else
+			{
+				x++;
+				y--;
+				p = (2 * x) - (2 * y) + p + 5;
+			}
+
+		}
 	}
 	void RenderSolidCircle(int x, int y, int radius)
 	{

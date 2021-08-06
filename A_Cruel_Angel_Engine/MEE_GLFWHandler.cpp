@@ -16,3 +16,7 @@ void MEE::GLFWHandler::PollEvents()
 void MEE::GLFWHandler::SwapBuffer()
 {
 }
+
+void MEE::GLFWHandler::RefreshWindow()
+{
+}

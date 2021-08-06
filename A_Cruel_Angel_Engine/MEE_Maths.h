@@ -65,6 +65,13 @@ namespace MEE
 			temp.y = (y * esc);
 			return temp;
 		}
+
+		Vector2 operator/(float esc) {
+			Vector2 temp;
+			temp.x = (x / esc);
+			temp.y = (y / esc);
+			return temp;
+		}
 	};
 }
 

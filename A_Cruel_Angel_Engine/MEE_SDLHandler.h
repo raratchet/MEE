@@ -13,6 +13,7 @@ namespace MEE
 		virtual void Stop() override;
 		virtual void PollEvents() override;
 		virtual void SwapBuffer() override;
+		virtual void RefreshWindow() override;
 		void SDL_Render_RenderClear();
 
 		SDL_Window* window;

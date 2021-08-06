@@ -44,7 +44,7 @@ MEE_SDL_Renderer MEE_EXPORT MEE_GetSDLRenderer();
 /**
  * Calls the render clear function in the render module.
  */
-inline std::function<void()> MEE_RenderClear;
+extern MEE_ENGINE_FUNCTION std::function<void()> MEE_RenderClear;
 
 /**
  * Changes the rendering color in the render module.
@@ -53,18 +53,18 @@ inline std::function<void()> MEE_RenderClear;
  * \param b: BLUE
  * \param a: ALHPA
  */
-inline std::function<void(int r,int g,int b,int a)> MEE_SetRenderColor;
+extern MEE_ENGINE_FUNCTION std::function<void(int r,int g,int b,int a)> MEE_SetRenderColor;
 
 /**
  * .
  */
-inline std::function<void(int x, int y, int w, int h)> MEE_SetRenderViewport;
+extern MEE_ENGINE_FUNCTION std::function<void(int x, int y, int w, int h)> MEE_SetRenderViewport;
 
 /**
  * Calls the InitGL function in the render module.
  * Only called when using the OpenGL render API.
  */
-inline std::function<void()> MEE_InitGL;
+extern MEE_ENGINE_FUNCTION std::function<void()> MEE_InitGL;
 
 /**
  * Renders a line in screen.
@@ -73,34 +73,34 @@ inline std::function<void()> MEE_InitGL;
  * \param x2: Second x position of line
  * \param y2: Second y position of line
  */
-inline std::function<void(float x1, float y1, float x2, float y2)> MEE_RenderLine;
+extern MEE_ENGINE_FUNCTION std::function<void(float x1, float y1, float x2, float y2)> MEE_RenderLine;
 
 /**
  * Renders a point in screen.
  * \param x: X position of point
  * \param y: Y position of point
  */
-inline std::function<void(float x, float y)> MEE_RenderPoint;
+extern MEE_ENGINE_FUNCTION std::function<void(float x, float y)> MEE_RenderPoint;
 
 /**
  * .
  */
-inline std::function<void(int* vectices, int vertexCount)> MEE_RenderPolygon;
+extern MEE_ENGINE_FUNCTION std::function<void(int* vectices, int vertexCount)> MEE_RenderPolygon;
 
 /**
  * .
  */
-inline std::function<void(int* vectices, int vertexCount)> MEE_RenderSolidPolygon;
+extern MEE_ENGINE_FUNCTION std::function<void(int* vectices, int vertexCount)> MEE_RenderSolidPolygon;
 
 /**
  * .
  */
-inline std::function<void(float x, float y, float radius)> MEE_RenderCircle;
+extern MEE_ENGINE_FUNCTION std::function<void(float x, float y, float radius)> MEE_RenderCircle;
 
 /**
  * .
  */
-inline std::function<void(float x, float y, float radius)> MEE_RenderSolidCircle;
+extern MEE_ENGINE_FUNCTION std::function<void(float x, float y, float radius)> MEE_RenderSolidCircle;
 
 /**
  * Renders the Texture2D in screen.
@@ -112,7 +112,7 @@ inline std::function<void(float x, float y, float radius)> MEE_RenderSolidCircle
  * \param clipH: Clip H position for the image.
  * \param angle: The angles to rotate the image.
  */
-inline std::function<void(const MEE_Texture2D,float x, float y, float scale_x, float scale_y, float angle,
+extern MEE_ENGINE_FUNCTION std::function<void(const MEE_Texture2D,float x, float y, float scale_x, float scale_y, float angle,
 	int clipX, int clipY, int clipW, int clipH )> MEE_RenderTexture2D;
 
 /**
@@ -120,7 +120,7 @@ inline std::function<void(const MEE_Texture2D,float x, float y, float scale_x, f
  * \param path: The path where texture is located.
  * \return A MEE_Texture2D pointer for the Texture2D
  */
-inline std::function<MEE_Texture2D(const std::string& path)> MEE_CreateTexture2D;
+extern MEE_ENGINE_FUNCTION std::function<MEE_Texture2D(const std::string& path)> MEE_CreateTexture2D;
 
 
 

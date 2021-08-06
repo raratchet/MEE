@@ -20,6 +20,7 @@ namespace MEE
 		OnShutdown = (onShutdownType)PLUGIN_LOAD_EXTERN(m_lib, "OnShutdown");
 		//Revisar si estos existen
 		OnUpdate = (onUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnUpdate");
+		OnUpdate = (onDrawType)PLUGIN_LOAD_EXTERN(m_lib, "OnDraw");
 		OnPostUpdate = (onPostUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnPostUpdate");
 	}
 

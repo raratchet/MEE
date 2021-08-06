@@ -5,6 +5,20 @@
 #include <memory>
 #include<iostream>
 
+	inline std::function<void()> MEE_RenderClear;
+	inline std::function<void(int r, int g, int b, int a)> MEE_SetRenderColor;
+	inline std::function<void(int x, int y, int w, int h)> MEE_SetRenderViewport;
+	inline std::function<void()> MEE_InitGL;
+	inline std::function<void(float x1, float y1, float x2, float y2)> MEE_RenderLine;
+	inline std::function<void(float x, float y)> MEE_RenderPoint;
+	inline std::function<void(int* vectices, int vertexCount)> MEE_RenderPolygon;
+	inline std::function<void(int* vectices, int vertexCount)> MEE_RenderSolidPolygon;
+	inline std::function<void(float x, float y, float radius)> MEE_RenderCircle;
+	inline std::function<void(float x, float y, float radius)> MEE_RenderSolidCircle;
+	inline std::function<void(const MEE_Texture2D, float x, float y, float scale_x, float scale_y, float angle,
+		int clipX, int clipY, int clipW, int clipH)> MEE_RenderTexture2D;
+	inline std::function<MEE_Texture2D(const std::string& path)> MEE_CreateTexture2D;
+
 	void MEE_SetWindowHandlerAPI(const WindowHandlerAPI& api)
 	{
 		MEE::WindowHandler::SetHandlerAPI(api);

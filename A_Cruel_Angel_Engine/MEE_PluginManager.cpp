@@ -107,6 +107,15 @@ namespace MEE
 		}
 	}
 
+	void PluginManager::Draw()
+	{
+		for (auto plugin : m_pluginList)
+		{
+			if (plugin->OnDraw != nullptr)
+				plugin->OnDraw();
+		}
+	}
+
 	void PluginManager::PostUpdate()
 	{
 		for (auto plugin : m_pluginList)

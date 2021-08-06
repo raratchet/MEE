@@ -17,15 +17,8 @@ namespace MEE
 		baseImage = RM->Get<Texture2D>(resource_name); //No me gusta usar el global
 	}
 
-	void Sprite::Draw(const Vector2& pos, const Vector2& scale, const float& rot)
+	void Sprite::Draw(const Vector2& position, const Vector2& scale, const float& rot)
 	{
-	}
-
-	void Sprite::Draw(Transform& transform)
-	{
-		Vector2& position = transform.GetPosition();
-		Vector2& scale = transform.GetScale();
-		float& rot = transform.GetRotation();
 		if (auto image = baseImage.lock())
 		{
 			MEE_Texture2D texture = (MEE_Texture2D)(&*image);
@@ -41,6 +34,13 @@ namespace MEE
 				width,
 				height);
 		}
-
+	}
+	int Sprite::GetSpriteWidth()
+	{
+		return width;
+	}
+	int Sprite::GetSpriteHeight()
+	{
+		return height;
 	}
 }

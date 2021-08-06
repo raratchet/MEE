@@ -15,13 +15,13 @@ void MEE_EXPORT MEE_bind_CreatePhysicsWorld(int pl_id, const std::string& func_n
 void MEE_EXPORT MEE_SetFixedUpdateSpeed(uint frameSpeed);
 uint MEE_EXPORT MEE_GetFixedUpdateSpeed();
 
-inline std::function<void(SceneID sceneID)> MEE_CreatePhysicsWorld;
-inline std::function<void(SceneID sceneID)> MEE_DestroyPhysicsWorld;
-inline std::function<MEE_Collider(SceneID sceneID)> MEE_CreateCollider;
-inline std::function<void(MEE_Collider collider, float x, float y, float angle)> MEE_SetColliderTransform;
-inline std::function<void(MEE_Collider collider, float* x, float* y, float* angle)> MEE_GetColliderTransform;
-inline std::function<void(SceneID sceneID, MEE_Collider collider)> MEE_DestroyCollider;
-inline std::function<void(SceneID sceneID)> MEE_PhysicsStep;
+extern MEE_ENGINE_FUNCTION std::function<void(SceneID sceneID)> MEE_CreatePhysicsWorld;
+extern MEE_ENGINE_FUNCTION std::function<void(SceneID sceneID)> MEE_DestroyPhysicsWorld;
+extern MEE_ENGINE_FUNCTION std::function<MEE_Collider(SceneID sceneID)> MEE_CreateCollider;
+extern MEE_ENGINE_FUNCTION std::function<void(MEE_Collider collider, float x, float y, float angle)> MEE_SetColliderTransform;
+extern MEE_ENGINE_FUNCTION std::function<void(MEE_Collider collider, float* x, float* y, float* angle)> MEE_GetColliderTransform;
+extern MEE_ENGINE_FUNCTION std::function<void(SceneID sceneID, MEE_Collider collider)> MEE_DestroyCollider;
+extern MEE_ENGINE_FUNCTION std::function<void(SceneID sceneID)> MEE_PhysicsStep;
 
 
 

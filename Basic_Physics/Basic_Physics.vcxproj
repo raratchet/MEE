@@ -147,10 +147,12 @@
   <ItemGroup>
     <ClInclude Include="Basic_Physics.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="DebugDraw.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Basic_Physics.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="DebugDraw.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,6 +13,7 @@ void TestLevel::Load()
 	GameObject& player = CreateGameObject("Player",playerS);
 	Collider fCollider = floor.AddComponent<Collider>();
 	floor.GetTransform().SetPosition(0, 600);
+	player.GetTransform().SetScale(10, 10);
 	Collider& pp = player.AddComponent<Collider>();
 	pp.SetType(ColliderType::Dynamic);
 	player.GetTransform().SetPosition(300, 300);

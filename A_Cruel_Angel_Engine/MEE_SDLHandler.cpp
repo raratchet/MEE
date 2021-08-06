@@ -90,11 +90,7 @@ namespace MEE
 
     void SDLHandler::PollEvents()
     {
-        SDL_Event event;
-        while (SDL_PollEvent(&event))
-        {
 
-        }
     }
 
 
@@ -104,6 +100,11 @@ namespace MEE
             SDL_GL_SwapWindow(window);
         else if (WindowHandler::GetRenderAPI() == RenderAPI::SDL_Render)
             SDL_RenderPresent(sdlRenderer);
+    }
+
+    void SDLHandler::RefreshWindow()
+    {
+
     }
 
     void SDLHandler::SDL_Render_RenderClear()

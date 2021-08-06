@@ -35,7 +35,7 @@ void Game::LoadLevel(Level* level)
 void Game::AddLevel(Level* level)
 {
 	auto scenes = mainApp->GetSceneManager().lock();
-	if (scenes)
+	if (scenes) //Should be assert
 	{
 		scenes->AddScene(level);
 	}
@@ -43,6 +43,12 @@ void Game::AddLevel(Level* level)
 
 void Game::RemoveCurrentLevel()
 {
+	auto scenes = mainApp->GetSceneManager().lock();
+
+	if (scenes)
+	{
+		scenes->QuitScene();
+	}
 }
 
 AssetID Game::LoadAsset(std::string name, std::string path)
@@ -72,22 +78,37 @@ bool Game::AssetExists(std::string name)
 
 void Game::UnloadAsset(std::string name)
 {
+	auto resourceManager = mainApp->GetResourceManager().lock();
+
+	resourceManager->Unload(name);
 }
 
 void Game::UnloadAllAssets()
 {
+	auto resourceManager = mainApp->GetResourceManager().lock();
+
+	resourceManager->Clear();
 }
 
 void Game::RenameWindow(std::string name)
 {
+	auto window = mainApp->GetWindow().lock();
+
+	window->SetWindowName(name);
 }
 
 void Game::ResizeWindow(int width, int height)
 {
+	auto window = mainApp->GetWindow().lock();
+
+	window->SetWindowSize(width, height);
 }
 
 void Game::SetWindowFullscren(bool status)
 {
+	auto window = mainApp->GetWindow().lock();
+
+	window->SetFullscreenMode(status);
 }
 
 
@@ -112,10 +133,12 @@ void Game::Start()
 
 void Game::Stop()
 {
+	mainApp->Stop();
 }
 
 void Game::StopGame()
 {
+	mainApp->Stop();
 }
 
 std::string Game::GetFileSuffix(const std::string& fileName)

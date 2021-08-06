@@ -80,7 +80,7 @@ namespace MEE
          for (auto& collider : sceneColliders)
          {
              auto transform = collider->transform.lock();
-             auto& position = transform->GetPosition();
+             auto position = transform->GetPosition();
              MEE_Collider asMEE_Collider = (MEE_Collider)(collider.get());
              MEE_SetColliderTransform(asMEE_Collider, position.x, position.y, transform->GetRotation());
          }

@@ -6,6 +6,7 @@
 
 namespace MEE
 {
+
 	class MEE_EXPORT Sprite
 	{
 	public:
@@ -32,7 +33,9 @@ namespace MEE
 		Sprite(const std::string& resource_name, int x, int y, int w, int h);
 
 		void Draw(const Vector2& pos, const Vector2& scale, const float& rot);
-		void Draw(class Transform& transform);
+
+		int GetSpriteWidth();
+		int GetSpriteHeight();
 	private:
 		int width, height;
 		Vector2 startCoord;

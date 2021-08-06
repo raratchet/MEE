@@ -41,6 +41,7 @@ namespace MEE
 		typedef void	(*onLoadType)();
 		typedef void	(*onShutdownType)();
 		typedef void	(*onUpdateType)();
+		typedef void	(*onDrawType)();
 		typedef void	(*onPostUpdateType)();
 
 		PLUGIN_HANDLE_TYPE m_lib;
@@ -62,6 +63,7 @@ namespace MEE
 		onLoadType	     OnLoad;
 		onShutdownType   OnShutdown;
 		onUpdateType     OnUpdate;
+		onDrawType       OnDraw;
 		onPostUpdateType OnPostUpdate;
 
 	private:

@@ -26,17 +26,17 @@ void MEE_EXPORT MEE_bind_gamepad_GetJoystick(int plugin_id, const std::string& f
 void MEE_EXPORT MEE_bind_gamepad_MakeRumble(int plugin_id, const std::string& func_name);
 
 //Keyboard
-inline std::function<bool(int key)> MEE_keyboard_KeyPressedThisFrame;
-inline std::function<bool(int key)> MEE_keyboard_KeyIsPressed;
-inline std::function<bool(int key)> MEE_keyboard_KeyUp;
+extern MEE_ENGINE_FUNCTION std::function<bool(int key)> MEE_keyboard_KeyPressedThisFrame;
+extern MEE_ENGINE_FUNCTION std::function<bool(int key)> MEE_keyboard_KeyIsPressed;
+extern MEE_ENGINE_FUNCTION std::function<bool(int key)> MEE_keyboard_KeyUp;
 //Mouse
-inline std::function<bool(int key)> MEE_mouse_KeyIsPressed;
-inline std::function<bool(int key)> MEE_mouse_KeyUp;
-inline std::function<bool(int key)> MEE_mouse_KeyPressedThisFrame;
-inline std::function<void(int* x_val,int* y_val)> MEE_mouse_GetPosition;
+extern MEE_ENGINE_FUNCTION std::function<bool(int key)> MEE_mouse_KeyIsPressed;
+extern MEE_ENGINE_FUNCTION std::function<bool(int key)> MEE_mouse_KeyUp;
+extern MEE_ENGINE_FUNCTION std::function<bool(int key)> MEE_mouse_KeyPressedThisFrame;
+extern MEE_ENGINE_FUNCTION std::function<void(int* x_val,int* y_val)> MEE_mouse_GetPosition;
 //Gamepads
-inline std::function<bool(GamepadID,int key)> MEE_gamepad_KeyPressedThisFrame;
-inline std::function<bool(GamepadID,int key)> MEE_gamepad_KeyIsPressed;
-inline std::function<bool(GamepadID,int key)> MEE_gamepad_KeyUp;
-inline std::function<void(GamepadID,int* x_val,int* y_val)> MEE_gamepad_GetJoystick;
-inline std::function<void(GamepadID,int duration)> MEE_gamepad_MakeRumble;
+extern MEE_ENGINE_FUNCTION std::function<bool(GamepadID,int key)> MEE_gamepad_KeyPressedThisFrame;
+extern MEE_ENGINE_FUNCTION std::function<bool(GamepadID,int key)> MEE_gamepad_KeyIsPressed;
+extern MEE_ENGINE_FUNCTION std::function<bool(GamepadID,int key)> MEE_gamepad_KeyUp;
+extern MEE_ENGINE_FUNCTION std::function<void(GamepadID,int* x_val,int* y_val)> MEE_gamepad_GetJoystick;
+extern MEE_ENGINE_FUNCTION std::function<void(GamepadID,int duration)> MEE_gamepad_MakeRumble;
