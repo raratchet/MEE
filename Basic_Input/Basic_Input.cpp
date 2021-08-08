@@ -1,5 +1,6 @@
 #include "Basic_Input.h"
 #include <MEE_Inputs.h>
+#include <iostream>
 
 namespace Basic_Input
 {
@@ -13,6 +14,10 @@ namespace Basic_Input
 		//MEE_bind_mouse_keyIsPressed(pl_id, "");
 		//MEE_bind_mouse_keyPressedThisFrame(pl_id, "");
 		MEE_bind_mouse_GetPosition(pl_id, "mousePosition");
+
+		MEE_keyboard_KeyIsPressed = (bool(*)(int))GetKeyPressed;
+		MEE_keyboard_KeyPressedThisFrame = (bool(*)(int))GetKeyDown;
+		MEE_keyboard_KeyUp = (bool(*)(int))GetKeyUp;
 	}
 	void OnLoad()
 	{
@@ -25,7 +30,6 @@ namespace Basic_Input
 	 
 	void OnUpdate()
 	{
-		clear();
 		SDL_Event event;
 		while (SDL_PollEvent(&event))
 		{
@@ -48,6 +52,11 @@ namespace Basic_Input
 		}
 	}
 
+	void OnPostUpdate()
+	{
+		clear();
+	}
+
 	void mousePosition(int* x, int* y)
 	{
 		*x = mouse_PosX;
@@ -56,7 +65,9 @@ namespace Basic_Input
 
 	void clear()
 	{
+		auto b = OldKeyDown.size();
 		OldKeyDown.clear();
+		auto a = KeyDown.size();
 		OldKeyDown = KeyDown;
 		KeyDown.clear();
 		KeyPressed.clear();
@@ -80,10 +91,32 @@ namespace Basic_Input
 		setMouse(x, y);
 	}
 
+	bool GetKeyDown(int key)
+	{
+		auto k = KeyDown.find(key);
+		return k != KeyDown.end()
+			? true : false;
+	}
+
+	bool GetKeyPressed(int key)
+	{
+		auto k = KeyPressed.find(key);
+		return k != KeyPressed.end()
+			? true : false;
+	}
+
+	bool GetKeyUp(int key)
+	{
+		auto k = KeyUp.find(key);
+		return k != KeyUp.end()
+			? true : false;
+	}
+
 	void addKeyDown(int key)
 	{
-		if (OldKeyDown.find(key) != OldKeyDown.end())
-			KeyPressed.insert(key);
+		auto k = OldKeyDown.find(key);
+		if (k != OldKeyDown.end())
+		KeyPressed.insert(key);
 		else
 			KeyDown.insert(key);
 	}

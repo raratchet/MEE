@@ -77,6 +77,7 @@ namespace MEE
 
      void Scene::Update()
      {
+         //Update transforms in module
          for (auto& collider : sceneColliders)
          {
              auto transform = collider->transform.lock();
@@ -85,12 +86,10 @@ namespace MEE
              MEE_SetColliderTransform(asMEE_Collider, position.x, position.y, transform->GetRotation());
          }
 
+         //Run physics
          MEE_PhysicsStep(id);
 
-         for (auto& obj : sceneObjects)
-             for (auto& beh : obj->updatables)
-                 beh->Update();
-
+         //Update transforms in engine
          for (auto& collider : sceneColliders)
          {
              auto transform = collider->transform.lock();
@@ -102,7 +101,13 @@ namespace MEE
 
              transform->SetPosition(position);
              transform->SetRotation(angle);
+             transform->modified = false;
          }
+
+         //Update scene objects
+         for (auto& obj : sceneObjects)
+             for (auto& beh : obj->updatables)
+                 beh->Update();
      }
 
      void Scene::Draw()

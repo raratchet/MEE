@@ -23,7 +23,7 @@ namespace Basic_Physics
 		PLUGIN_EXPORT void UpdateTransform(MEE_Collider,float,float,float);
 		PLUGIN_EXPORT void ReadTransform(MEE_Collider, float*, float*, float*);
 		PLUGIN_EXPORT void CreatePhysicsWorld(SceneID);
-		PLUGIN_EXPORT MEE_Collider CreateCollider(SceneID);
+		PLUGIN_EXPORT MEE_Collider CreateCollider(SceneID, FunctionParameters& params);
 		PLUGIN_EXPORT void PhysicsStep(SceneID);
 
 	}

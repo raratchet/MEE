@@ -7,10 +7,10 @@ namespace MEE
 {
 
 	Sprite::Sprite(std::weak_ptr<Texture2D> image, int x, int y, int w, int h) :
-		baseImage(image), width(w), height(h), startCoord(Vector2(x, y)) {}
+		baseImage(image), width(w), height(h), baseImage_startCoord(Vector2(x, y)) {}
 
 	Sprite::Sprite(const std::string& resource_name, int x, int y, int w, int h): 
-		width(w), height(h), startCoord(Vector2(x, y))
+		width(w), height(h), baseImage_startCoord(Vector2(x, y))
 	{
 		auto RM = MEE_GLOBAL::application->GetResourceManager().lock();
 
@@ -21,18 +21,23 @@ namespace MEE
 	{
 		if (auto image = baseImage.lock())
 		{
+
 			MEE_Texture2D texture = (MEE_Texture2D)(&*image);
-			MEE_RenderTexture2D(
-				texture,
-				position.x,
-				position.y,
-				scale.x,
-				scale.y,
-				rot,
-				startCoord.x,
-				startCoord.y,
-				width,
-				height);
+			float ppu = MEE_GetPixelsPerUnit();
+
+			float positionX_inPixels = (position.x * ppu) - (width / 2);
+			float positionY_inPixels = (position.y * ppu) - (height / 2);
+
+			MEE_RenderTexture2D(texture,positionX_inPixels,positionY_inPixels, 
+								scale.x,scale.y,rot,
+								baseImage_startCoord.x,baseImage_startCoord.y,width,height);
+#ifdef _DEBUG
+			MEE_SetRenderColor(0, 255, 0, 255);
+			const float radius = 1.0F;
+			MEE_RenderCircle((position.x * ppu), (position.y * ppu), radius);	
+			MEE_SetRenderColor(53, 40, 230, 255);
+#endif // _DEBUG
+
 		}
 	}
 	int Sprite::GetSpriteWidth()

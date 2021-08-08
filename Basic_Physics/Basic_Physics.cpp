@@ -1,9 +1,10 @@
 #include "Basic_Physics.h"
 #include "DebugDraw.h"
+#include <iostream>
 
-//J#define DRAW	
+#define DRAW	
 
-#if _DEBUG && DRAW
+#ifdef _DEBUG && DRAW
 #define DEBUG_DRAW DebugDraw* draw = new DebugDraw();\
 				   physicWorlds[id]->SetDebugDraw(draw);
 
@@ -14,6 +15,7 @@
 #endif // DEBUG
 
 
+const float PI = 3.14f;
 
 void Basic_Physics::OnInit(int pl_id)
 {
@@ -43,7 +45,7 @@ void Basic_Physics::OnDraw()
 
 void Basic_Physics::CreatePhysicsWorld(SceneID id)
 {
-	static b2Vec2 defaultGravity(0.0f,4.0f);
+	static b2Vec2 defaultGravity(0.0f,2.0f);
 	physicWorlds[id] = new b2World(defaultGravity);
 	DEBUG_DRAW
 }
@@ -52,7 +54,11 @@ void Basic_Physics::UpdateTransform(MEE_Collider collider, float x, float y, flo
 {
 	BoxCollider* bCollider = (BoxCollider*)collider;
 
-	bCollider->body->SetTransform({ x,y }, a);
+	if (bCollider->Transform_WasModified())
+	{
+		bCollider->body->SetTransform({ x, y }, a);
+		bCollider->body->SetAwake(true);
+	}
 }
 
 void Basic_Physics::ReadTransform(MEE_Collider collider, float* x, float* y, float* a)
@@ -63,10 +69,11 @@ void Basic_Physics::ReadTransform(MEE_Collider collider, float* x, float* y, flo
 
 	*x = transform.p.x;
 	*y = transform.p.y;
-	*a = transform.q.c;
+	//*a = (transform.q.c != 0) ? (transform.q.c * 180) / PI : 0.0F ;
+	*a = 0;
 }
 
-MEE_Collider Basic_Physics::CreateCollider(SceneID id)
+MEE_Collider Basic_Physics::CreateCollider(SceneID id,FunctionParameters& params)
 {
 	auto world = physicWorlds[id];
 	BoxCollider* newCollider = new BoxCollider(world);

@@ -19,6 +19,7 @@ namespace Basic_Renderer
 		MEE_bind_SetRenderColor(pl_id, "SetRenderColor");
 		MEE_bind_SetRenderViewport(pl_id, "SetRenderViewport");
 		MEE_bind_RenderLine(pl_id, "RenderLine");
+		MEE_bind_RenderDebugGrid(pl_id, "RenderDebugGrid");
 	}
 
 	void OnLoad()
@@ -68,6 +69,28 @@ namespace Basic_Renderer
 	{
 		SDL_SetRenderDrawColor(engineRenderer, r, g, b, a);
 	}
+
+	void RenderDebugGrid()
+	{
+		float ppu = MEE_GetPixelsPerUnit();
+		unsigned int w, h;
+		MEE_GetWindowSize(&w, &h);
+
+		SetRenderColor(200, 200, 0, 255);
+
+		for (int i = 0; i * ppu < h; i++)
+		{
+			RenderLine(0, ppu * i, w, ppu * i);
+		}
+
+		for (int i = 0; i * ppu < w; i++)
+		{
+			RenderLine(ppu * i, 0, ppu * i, h);
+		}
+
+		MEE_SetRenderColor(53, 40, 230, 255);
+	}
+
 	void SetRenderViewport(int x, int y, int w, int h)
 	{
 		SDL_Rect topRightViewport;
@@ -77,35 +100,37 @@ namespace Basic_Renderer
 		topRightViewport.h = h;
 		SDL_RenderSetViewport(engineRenderer, &topRightViewport);
 	}
-	void RenderLine(int x1, int y1, int x2, int y2)
+	void RenderLine(float x1, float y1, float x2, float y2)
 	{
-		SDL_RenderDrawLine(engineRenderer, x1, y1, x2, y2);
+		SDL_RenderDrawLineF(engineRenderer, x1, y1, x2, y2);
 	}
-	void RenderPoint(int x, int y)
+	void RenderPoint(float x, float y)
 	{
-		SDL_RenderDrawPoint(engineRenderer, x, y);
+		SDL_RenderDrawPointF(engineRenderer, x, y);
 	}
-	void RenderPolygon(int* vertices, int vertexCount)
+	void RenderPolygon(float* vertices, int vertexCount)
 	{
-		for (int i = 0; i < vertexCount; i += 2)
+		for (int i = 0; i < vertexCount * 2; i += 2)
 		{
-			if ((i + 2) >= vertexCount)
+			if ((i + 4) > (vertexCount * 2))
 			{
+				//std::cout << "Linea de: " << " x1: " << vertices[i]<< " y1: " << vertices[i + 1] <<" x2: " << vertices[0]<< " y2: " << vertices[1] << "\n";
 				RenderLine(vertices[i], vertices[i + 1], vertices[0], vertices[1]);
 			}
 			else
 			{
+				//std::cout << "Linea de: " << " x1: " << vertices[i] << " y1: " << vertices[i + 1] << " x2: " << vertices[i + 2] << " y2: " << vertices[i + 3] << "\n";
 				RenderLine(vertices[i], vertices[i + 1], vertices[i + 2], vertices[i + 3]);
 			}
 		}
 	}
-	void RenderSolidPolygon(int* vertices, int vertexCount)
+	void RenderSolidPolygon(float* vertices, int vertexCount)
 	{
 		std::cout << "Unimplemented \n";
 	}
-	void RenderCircle(int xc, int yc, int radius)
+	void RenderCircle(float xc, float yc, float radius)
 	{
-		int p, x, y;
+		float p, x, y;
 		x = 0;
 		y = radius;
 		p = 1 - radius;
@@ -136,7 +161,7 @@ namespace Basic_Renderer
 
 		}
 	}
-	void RenderSolidCircle(int x, int y, int radius)
+	void RenderSolidCircle(float x, float y, float radius)
 	{
 		std::cout << "Unimplemented \n";
 	}

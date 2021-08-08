@@ -11,13 +11,17 @@
 	inline std::function<void()> MEE_InitGL;
 	inline std::function<void(float x1, float y1, float x2, float y2)> MEE_RenderLine;
 	inline std::function<void(float x, float y)> MEE_RenderPoint;
-	inline std::function<void(int* vectices, int vertexCount)> MEE_RenderPolygon;
-	inline std::function<void(int* vectices, int vertexCount)> MEE_RenderSolidPolygon;
+	inline std::function<void(float* vectices, int vertexCount)> MEE_RenderPolygon;
+	inline std::function<void(float* vectices, int vertexCount)> MEE_RenderSolidPolygon;
 	inline std::function<void(float x, float y, float radius)> MEE_RenderCircle;
 	inline std::function<void(float x, float y, float radius)> MEE_RenderSolidCircle;
 	inline std::function<void(const MEE_Texture2D, float x, float y, float scale_x, float scale_y, float angle,
 		int clipX, int clipY, int clipW, int clipH)> MEE_RenderTexture2D;
 	inline std::function<MEE_Texture2D(const std::string& path)> MEE_CreateTexture2D;
+	inline std::function<void()> MEE_RenderDebugGrid;
+
+	inline float PIXELS_PER_UNIT = 20;
+	inline float UNITS_PER_PIXEL = 1 / PIXELS_PER_UNIT;
 
 	void MEE_SetWindowHandlerAPI(const WindowHandlerAPI& api)
 	{
@@ -34,6 +38,11 @@
 		MEE::WindowHandler::SetWindowSize(w, h);
 	}
 
+	void MEE_EXPORT MEE_GetWindowSize(unsigned int* w, unsigned int* h)
+	{
+		MEE::WindowHandler::GetWindowSize((int*)w,(int*) h); //Corrige esto
+	}
+
 	void MEE_SetWindowPosition(int x, int y)
 	{
 		MEE::WindowHandler::SetWindowPosition(x,y);
@@ -42,6 +51,22 @@
 	void MEE_SetWindowName(const std::string& name)
 	{
 		MEE::WindowHandler::SetWindowName(name);
+	}
+
+	void MEE_SetPixelsPerUnit(float ppu)
+	{
+		PIXELS_PER_UNIT = ppu;
+		UNITS_PER_PIXEL = 1.0F / ppu;
+	}
+
+	float MEE_GetPixelsPerUnit()
+	{
+		return PIXELS_PER_UNIT;
+	}
+
+	float MEE_GetUnitsPerPixel()
+	{
+		return UNITS_PER_PIXEL;
 	}
 
 	void MEE_bind_RenderClear(int plugin_id, const std::string& func_name)
@@ -109,7 +134,7 @@
 		if (pl_manager)
 		{
 			MEE_RenderLine = pl_manager->GetPluginFunction
-				<void,int,int,int,int>(plugin_id, func_name);
+				<void, float, float, float, float>(plugin_id, func_name);
 		}
 	}
 
@@ -120,7 +145,7 @@
 		if (pl_manager)
 		{
 			MEE_RenderPoint = pl_manager->GetPluginFunction
-				<void,int,int>(plugin_id, func_name);
+				<void, float, float>(plugin_id, func_name);
 		}
 	}
 
@@ -131,7 +156,7 @@
 		if (pl_manager)
 		{
 			MEE_RenderPolygon = pl_manager->GetPluginFunction
-				<void,int*,int>(plugin_id, func_name);
+				<void,float*,int>(plugin_id, func_name);
 		}
 	}
 
@@ -142,7 +167,7 @@
 		if (pl_manager)
 		{
 			MEE_RenderSolidPolygon = pl_manager->GetPluginFunction
-				<void, int*, int>(plugin_id, func_name);
+				<void, float*, int>(plugin_id, func_name);
 		}
 	}
 
@@ -153,7 +178,7 @@
 		if (pl_manager)
 		{
 			MEE_RenderCircle = pl_manager->GetPluginFunction
-				<void,int,int,int>(plugin_id, func_name);
+				<void,float, float, float>(plugin_id, func_name);
 		}
 	}
 
@@ -164,7 +189,7 @@
 		if (pl_manager)
 		{
 			MEE_RenderSolidCircle = pl_manager->GetPluginFunction
-				<void,int,int,int>(plugin_id, func_name);
+				<void, float, float, float>(plugin_id, func_name);
 		}
 	}
 
@@ -175,6 +200,16 @@
 		if (pl_manager)
 		{
 			MEE_InitGL = pl_manager->GetPluginFunction<void>(plugin_id, func_name);
+		}
+	}
+
+	void MEE_bind_RenderDebugGrid(int plugin_id, const std::string& func_name)
+	{
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+
+		if (pl_manager)
+		{
+			MEE_RenderDebugGrid = pl_manager->GetPluginFunction<void>(plugin_id, func_name);
 		}
 	}
 

@@ -14,7 +14,7 @@ namespace MEE
 	public:
 		Object& GetParent();
 		virtual ~Component() {}
-	protected:
+	private:
 		Object* parent;
 		// Must always be called when scene adds a component
 		void ParentToObject(Object* object);
@@ -30,13 +30,17 @@ namespace MEE
 		void SetScale(Vector2 scale_vector);
 		void SetScale(float x, float y);
 		void SetRotation(float rotation_float);
+		void Translate(Vector2 vec);
 		Vector2 GetPosition();
 		Vector2 GetScale();
 		float GetRotation();
+		bool WasModified();
 	private:
 		Vector2 position = Vector2();
 		Vector2 scale = Vector2(1, 1);
 		float rot = 0;
+		bool modified = false;
+		friend class Scene;
 	};
 
 	class MEE_EXPORT Behaviour : public Component
@@ -75,6 +79,7 @@ namespace MEE
 		virtual void SetActive(bool);
 		virtual void SetType(ColliderType);
 		virtual void SetFigure(ColliderForm);
+		bool Transform_WasModified();
 	protected:
 		std::weak_ptr<Transform> transform;
 		void SetTransform(std::shared_ptr<Transform> trans);

@@ -18,7 +18,9 @@ namespace MEE
 		else if (asCollider)
 		{
 			auto sceneID = owner.GetID();
-			Collider* collider = (Collider*) MEE_CreateCollider(sceneID);
+			FunctionParameter size = { "Size", 1.0F };
+			FunctionParameters params =  FunctionParameters(size);
+			Collider* collider = (Collider*)MEE_CreateCollider(sceneID, params);
 			collider->SetTransform(std::reinterpret_pointer_cast<Transform>(components[0]));
 			auto* asComponent = (Component*)&*collider;
 			asComponent->ParentToObject(this);

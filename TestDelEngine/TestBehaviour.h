@@ -14,10 +14,12 @@ public:
 
 	virtual void Update() override
 	{
-		//auto input = MEE_GLOBAL::application->GetInputManager().lock();
-
-		//GetParent().GetTransform().SetPosition(Input::Mouse::MousePosition());
-
+		if (Input::Keyboard::KeyWasPressedThisFrame('a'))
+			GetParent().GetTransform().Translate({ -7/60.0F,0 });
+		if (Input::Keyboard::KeyWasPressedThisFrame('d'))
+			GetParent().GetTransform().Translate({ 7 / 60.0F,0 });
+		if (Input::Keyboard::KeyWasPressedThisFrame('w'))
+			GetParent().GetTransform().Translate({ 0,-3 });
 	}
 
 };

@@ -6,13 +6,16 @@
 
 Basic_Physics::BoxCollider::BoxCollider(b2World* world)
 {
+	float upp = MEE_GetUnitsPerPixel();
 	bodyDef.type = b2_staticBody;
-	bodyDef.position.Set(0, 0);
+	bodyDef.position.Set(-1000, -1000);
+	bodyDef.linearDamping = 0.1f;
+	bodyDef.angularDamping = 0.1f;
 
 	body = world->CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(20.0f, 20.0f);
+	dynamicBox.SetAsBox(10.0f, 1.0f);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
@@ -21,6 +24,7 @@ Basic_Physics::BoxCollider::BoxCollider(b2World* world)
 	fixtureDef.friction = friction;
 
 	body->CreateFixture(&fixtureDef);
+	body->SetFixedRotation(true);
 }
 
 void Basic_Physics::BoxCollider::UpdatePosition()
@@ -121,7 +125,7 @@ void Basic_Physics::BoxCollider::SetType(ColliderType val)
 	body = world->CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(1.0f, 1.0f);
+	dynamicBox.SetAsBox(0.5f, 0.5f);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;

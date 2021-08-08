@@ -11,28 +11,39 @@ namespace MEE
 	void Transform::SetPosition(Vector2 position_vector)
 	{
 		position = position_vector;
+		modified = true;
 	}
 
 	void Transform::SetPosition(float posX, float posY)
 	{
 		position.x = posX;
 		position.y = posY;
+		modified = true;
 	}
 
 	void Transform::SetScale(Vector2 scale_vector)
 	{
 		scale = scale_vector;
+		modified = true;
 	}
 
 	void Transform::SetScale(float x, float y)
 	{
 		scale.x = x;
 		scale.y = y;
+		modified = true;
 	}
 
 	void Transform::SetRotation(float rotation_float)
 	{
 		rot = rotation_float;
+		modified = true;
+	}
+
+	void Transform::Translate(Vector2 vec)
+	{
+		position = position + vec;
+		modified = true;
 	}
 
 	Vector2 Transform::GetPosition()
@@ -48,6 +59,11 @@ namespace MEE
 	float Transform::GetRotation()
 	{
 		return rot;
+	}
+
+	bool Transform::WasModified()
+	{
+		return modified;
 	}
 
 	void Behaviour::Start()
@@ -135,5 +151,12 @@ namespace MEE
 	void Collider::SetFigure(ColliderForm value)
 	{
 		form = value;
+	}
+
+	bool Collider::Transform_WasModified()
+	{
+		auto trans = transform.lock();
+
+		return trans->WasModified();
 	}
 }

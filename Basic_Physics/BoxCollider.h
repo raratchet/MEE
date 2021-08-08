@@ -11,7 +11,7 @@ namespace Basic_Physics
 	using MEE::ColliderType;
 	using MEE::ColliderForm;
 
-	class BoxCollider : MEE::Collider
+	class BoxCollider : public MEE::Collider
 	{
 	public:
 		BoxCollider(b2World* world);

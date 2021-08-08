@@ -21,12 +21,13 @@ namespace Basic_Renderer
 		PLUGIN_EXPORT void SetRenderColor(int,int,int,int);
 		PLUGIN_EXPORT void RenderClear();
 		PLUGIN_EXPORT void SetRenderViewport(int,int,int,int);
-		PLUGIN_EXPORT void RenderLine(int,int,int,int);
-		PLUGIN_EXPORT void RenderPoint(int,int);
-		PLUGIN_EXPORT void RenderPolygon(int*,int);
-		PLUGIN_EXPORT void RenderSolidPolygon(int*,int);
-		PLUGIN_EXPORT void RenderCircle(int,int,int);
-		PLUGIN_EXPORT void RenderSolidCircle(int,int,int);
+		PLUGIN_EXPORT void RenderLine(float,float,float,float);
+		PLUGIN_EXPORT void RenderPoint(float,float);
+		PLUGIN_EXPORT void RenderPolygon(float*,int);
+		PLUGIN_EXPORT void RenderSolidPolygon(float*,int);
+		PLUGIN_EXPORT void RenderCircle(float,float,float);
+		PLUGIN_EXPORT void RenderSolidCircle(float, float, float);
+		PLUGIN_EXPORT void RenderDebugGrid();
 	}
 
 	inline SDL_Renderer* engineRenderer;

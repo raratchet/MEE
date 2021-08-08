@@ -38,7 +38,7 @@ namespace MEE
 		int GetSpriteHeight();
 	private:
 		int width, height;
-		Vector2 startCoord;
+		Vector2 baseImage_startCoord;
 		std::weak_ptr<Texture2D> baseImage;
 	};
 }

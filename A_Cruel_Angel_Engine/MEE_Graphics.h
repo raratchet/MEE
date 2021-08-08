@@ -22,23 +22,28 @@ typedef void* MEE_Texture2D;
 //Estas funciones envuelen a las que existen en engine
 //Son las funciones disponibles para los modulos y addons
 
-void MEE_EXPORT MEE_SetWindowHandlerAPI(const WindowHandlerAPI& api);
-void MEE_EXPORT MEE_SetRenderAPI(const RenderAPI& api);
-void MEE_EXPORT MEE_SetWindowSize(unsigned int w, unsigned int h);
-void MEE_EXPORT MEE_SetWindowPosition(int x, int y);
-void MEE_EXPORT MEE_SetWindowName(const std::string& name);
-void MEE_EXPORT MEE_bind_RenderClear(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_RenderTexture2D(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_SetRenderColor(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_SetRenderViewport(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_RenderLine(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_RenderPoint(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_RenderPolygon(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_RenderSolidPolygon(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_RenderCircle(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_RenderSolidCircle(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_CreateTexture2D(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_InitGL(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_SetWindowHandlerAPI(const WindowHandlerAPI& api);
+void  MEE_EXPORT MEE_SetRenderAPI(const RenderAPI& api);
+void  MEE_EXPORT MEE_SetWindowSize(unsigned int w, unsigned int h);
+void  MEE_EXPORT MEE_GetWindowSize(unsigned int* w, unsigned int* h);
+void  MEE_EXPORT MEE_SetWindowPosition(int x, int y);
+void  MEE_EXPORT MEE_SetWindowName(const std::string& name);
+void  MEE_EXPORT MEE_SetPixelsPerUnit(float ppu);
+float MEE_EXPORT MEE_GetPixelsPerUnit();
+float MEE_EXPORT MEE_GetUnitsPerPixel();
+void  MEE_EXPORT MEE_bind_RenderClear(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderTexture2D(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_SetRenderColor(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_SetRenderViewport(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderLine(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderPoint(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderPolygon(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderSolidPolygon(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderCircle(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderSolidCircle(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_CreateTexture2D(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_InitGL(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderDebugGrid(int plugin_id, const std::string& func_name);
 MEE_SDL_Renderer MEE_EXPORT MEE_GetSDLRenderer();
 
 /**
@@ -85,12 +90,12 @@ extern MEE_ENGINE_FUNCTION std::function<void(float x, float y)> MEE_RenderPoint
 /**
  * .
  */
-extern MEE_ENGINE_FUNCTION std::function<void(int* vectices, int vertexCount)> MEE_RenderPolygon;
+extern MEE_ENGINE_FUNCTION std::function<void(float* vectices, int vertexCount)> MEE_RenderPolygon;
 
 /**
  * .
  */
-extern MEE_ENGINE_FUNCTION std::function<void(int* vectices, int vertexCount)> MEE_RenderSolidPolygon;
+extern MEE_ENGINE_FUNCTION std::function<void(float* vectices, int vertexCount)> MEE_RenderSolidPolygon;
 
 /**
  * .
@@ -101,6 +106,11 @@ extern MEE_ENGINE_FUNCTION std::function<void(float x, float y, float radius)> M
  * .
  */
 extern MEE_ENGINE_FUNCTION std::function<void(float x, float y, float radius)> MEE_RenderSolidCircle;
+
+/**
+ * .
+ */
+extern MEE_ENGINE_FUNCTION std::function<void()> MEE_RenderDebugGrid;
 
 /**
  * Renders the Texture2D in screen.

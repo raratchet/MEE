@@ -11,6 +11,7 @@ namespace Basic_Input
 		PLUGIN_EXPORT void OnLoad();
 		PLUGIN_EXPORT void OnShutDown();
 		PLUGIN_EXPORT void OnUpdate();
+		PLUGIN_EXPORT void OnPostUpdate();
 
 
 		PLUGIN_EXPORT void mousePosition(int*,int*);
@@ -25,10 +26,17 @@ namespace Basic_Input
 	void addKeyUp(int key);
 	void setMouse(int x,int y);
 
-	std::set<int> KeyDown;
-	std::set<int> KeyPressed;
-	std::set<int> KeyUp;
-	std::set<int> OldKeyDown;
-	int mouse_PosX, mouse_PosY;
+	bool GetKeyDown(int key);
+
+	bool GetKeyPressed(int key);
+
+	bool GetKeyUp(int key);
+
+
+	inline std::set<int> KeyDown;
+	inline std::set<int> KeyPressed;
+	inline std::set<int> KeyUp;
+	inline std::set<int> OldKeyDown;
+	inline int mouse_PosX, mouse_PosY;
 
 }

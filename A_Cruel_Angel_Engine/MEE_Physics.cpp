@@ -3,7 +3,7 @@
 
 inline std::function<void(SceneID sceneID)> MEE_CreatePhysicsWorld;
 inline std::function<void(SceneID sceneID)> MEE_DestroyPhysicsWorld;
-inline std::function<MEE_Collider(SceneID sceneID)> MEE_CreateCollider;
+inline std::function<MEE_Collider(SceneID sceneID,FunctionParameters& params)> MEE_CreateCollider;
 inline std::function<void(MEE_Collider collider, float x, float y, float angle)> MEE_SetColliderTransform;
 inline std::function<void(MEE_Collider collider, float* x, float* y, float* angle)> MEE_GetColliderTransform;
 inline std::function<void(SceneID sceneID, MEE_Collider collider)> MEE_DestroyCollider;
@@ -15,7 +15,7 @@ void MEE_bind_CreateCollider(int pl_id, const std::string& func_name)
 
 	if (pl_manager)
 	{
-		MEE_CreateCollider = pl_manager->GetPluginFunction<MEE_Collider, SceneID>(pl_id, func_name);
+		MEE_CreateCollider = pl_manager->GetPluginFunction<MEE_Collider, SceneID, FunctionParameters&>(pl_id, func_name);
 	}
 }
 void MEE_bind_SetColliderTransform(int pl_id, const std::string& func_name)

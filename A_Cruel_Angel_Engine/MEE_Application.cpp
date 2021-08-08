@@ -85,6 +85,7 @@ namespace MEE
 	{
 		MEE_RenderClear();
 		//Do draw
+		MEE_RenderDebugGrid(); //temp
 		sceneManager->GetCurrentScene()->Draw();
 		pluginManager->Draw();
 		//

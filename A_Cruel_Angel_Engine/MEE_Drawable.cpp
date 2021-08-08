@@ -6,7 +6,7 @@ namespace MEE
 	{ 
 		if (m_sprite)
 		{
-			auto position = draw_transform.GetPosition() / 2;
+			auto position = draw_transform.GetPosition(); //QUE PUTAS HACES? NO SE DIVIDE ENTRE DOS LA POSICION SI NO SE RESTA LA MITAD DEL WIDTH
 			auto scale = draw_transform.GetScale();
 			auto rot = draw_transform.GetRotation();
 			m_sprite->Draw(position,scale,rot);
