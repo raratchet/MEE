@@ -15,14 +15,14 @@ namespace Basic_Physics
 	{
 		PLUGIN_EXPORT void OnInit(int);
 		PLUGIN_EXPORT void OnLoad();
-		PLUGIN_EXPORT void OnShutDown();
+		PLUGIN_EXPORT void OnShutdown();
 		PLUGIN_EXPORT void OnUpdate();
 		PLUGIN_EXPORT void OnDraw();
 
-		PLUGIN_EXPORT void CreatePhysicsWorld(SceneID);
+		PLUGIN_EXPORT void CreatePhysicsWorld(SceneID, FunctionParameters& params);
 		PLUGIN_EXPORT void UpdateTransform(MEE_Collider,float,float,float);
+		PLUGIN_EXPORT MEE_Collider CastCollider(MEE_Collider);
 		PLUGIN_EXPORT void ReadTransform(MEE_Collider, float*, float*, float*);
-		PLUGIN_EXPORT void CreatePhysicsWorld(SceneID);
 		PLUGIN_EXPORT MEE_Collider CreateCollider(SceneID, FunctionParameters& params);
 		PLUGIN_EXPORT void PhysicsStep(SceneID);
 

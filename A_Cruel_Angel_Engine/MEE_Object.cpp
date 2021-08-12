@@ -3,7 +3,7 @@
 
 namespace MEE
 {
-	Component& Object::Internal_AddComponent(Component* component)
+	Component& Object::Internal_AddComponent(Component* component, FunctionParameters& params)
 	{
 		component->ParentToObject(this);
 
@@ -18,10 +18,41 @@ namespace MEE
 		else if (asCollider)
 		{
 			auto sceneID = owner.GetID();
-			FunctionParameter size = { "Size", 1.0F };
-			FunctionParameters params =  FunctionParameters(size);
+			auto transform = std::reinterpret_pointer_cast<Transform>(components[0]);
+
+			if (!params.Has("Position"))
+			{
+				FunctionParameter position = { "Position", transform->GetPosition() };
+				params.Add(position);
+			}
+
+			if (!params.Has("Size"))
+			{
+				Drawable* isDrawable = dynamic_cast<Drawable*>(this);
+				FunctionParameter size;
+				if (isDrawable)
+				{
+					auto sprite = isDrawable->GetSprite().lock();
+					auto scale = transform->GetScale();
+					auto bsize = Vector2(sprite->GetSpriteWidth(), sprite->GetSpriteHeight());
+					bsize = bsize / MEE_GetPixelsPerUnit();
+					size = { "Size", bsize / 2 };
+				}
+				else
+				{
+					size = { "Size", transform->GetScale() / 2 };
+				}
+				params.Add(size);
+			}
+
+			if (!params.Has("Type"))
+			{
+				FunctionParameter type = { "Type", ColliderType::Static };
+				params.Add(type);
+			}
+
 			Collider* collider = (Collider*)MEE_CreateCollider(sceneID, params);
-			collider->SetTransform(std::reinterpret_pointer_cast<Transform>(components[0]));
+			collider->SetTransform(transform);
 			auto* asComponent = (Component*)&*collider;
 			asComponent->ParentToObject(this);
 			delete component;

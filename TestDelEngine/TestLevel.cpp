@@ -13,7 +13,11 @@ void TestLevel::Load()
 	GameObject& player = CreateGameObject("Player",playerS);
 	Collider fCollider = floor.AddComponent<Collider>();
 	floor.GetTransform().SetPosition(20, 20);
-	Collider& pp = player.AddComponent<Collider>();
+
+	FunctionParameters plC_Params = FunctionParameters();
+	plC_Params.Add("Type", ColliderType::Dynamic);
+
+	Collider& pp = player.AddComponent<Collider>(plC_Params);
 	pp.SetType(ColliderType::Dynamic);
 	player.GetTransform().SetPosition(20, 10);
 	player.AddComponent<TestBehaviour>();

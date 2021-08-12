@@ -34,6 +34,11 @@ InputHandlerAPI MEE_EXPORT MEE_GetInputHandlerAPI()
 	return api;
 }
 
+void MEE_EXPORT MEE_CloseApplicationSignal()
+{
+	MEE_GLOBAL::application->CloseApplicationSignal();
+}
+
 void MEE_EXPORT MEE_bind_keyboard_KeyPressedThisFrame(int plugin_id, const std::string& func_name)
 {
 	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();

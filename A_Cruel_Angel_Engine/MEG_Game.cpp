@@ -17,9 +17,7 @@ std::shared_ptr<Game> Game::CreateGame()
 {
 	std::shared_ptr<Game> game(new Game);
 
-	//DO POINTER THINGY
 	mainApp = new MEE::Application;
-	MEE_GLOBAL::application = mainApp; //THIS CAN BE FIXED
 	  
 	bool gameInit = game->Init();
 	//Assert gameInit

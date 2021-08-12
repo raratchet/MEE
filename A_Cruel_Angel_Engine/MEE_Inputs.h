@@ -12,6 +12,7 @@ using GamepadID = unsigned int;
 
 //Binding Functions
 InputHandlerAPI MEE_EXPORT MEE_GetInputHandlerAPI();
+void MEE_EXPORT MEE_CloseApplicationSignal();
 void MEE_EXPORT MEE_bind_keyboard_KeyPressedThisFrame(int plugin_id, const std::string& func_name);
 void MEE_EXPORT MEE_bind_keyboard_KeyIsPressed(int plugin_id, const std::string& func_name);
 void MEE_EXPORT MEE_bind_keyboard_KeyUp(int plugin_id, const std::string& func_name);

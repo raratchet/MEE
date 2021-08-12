@@ -79,6 +79,8 @@ namespace MEE
 		virtual void SetActive(bool);
 		virtual void SetType(ColliderType);
 		virtual void SetFigure(ColliderForm);
+		virtual void ApplyForce(const Vector2& force, const Vector2& point);
+		virtual void ApplyLinearImpulse(const Vector2& impulse, const Vector2& point);
 		bool Transform_WasModified();
 	protected:
 		std::weak_ptr<Transform> transform;

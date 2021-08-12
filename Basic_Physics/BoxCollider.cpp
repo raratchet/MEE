@@ -4,18 +4,31 @@
 #include <box2d/b2_fixture.h>
 #include <MEE_Physics.h>
 
-Basic_Physics::BoxCollider::BoxCollider(b2World* world)
+Basic_Physics::BoxCollider::BoxCollider(b2World* world, MEE::Vector2 position , MEE::Vector2 size, ColliderType c_type)
 {
-	float upp = MEE_GetUnitsPerPixel();
-	bodyDef.type = b2_staticBody;
-	bodyDef.position.Set(-1000, -1000);
+
+	type = c_type;
+	if (c_type == ColliderType::Static)
+	{
+		bodyDef.type = b2_staticBody;
+	}
+	else if (c_type == ColliderType::Dynamic)
+	{
+		bodyDef.type = b2_dynamicBody;
+	}
+	else if (c_type == ColliderType::Kinematic)
+	{
+		bodyDef.type = b2_kinematicBody;
+	}
+
+	bodyDef.position.Set(position.x, position.y);
 	bodyDef.linearDamping = 0.1f;
 	bodyDef.angularDamping = 0.1f;
 
 	body = world->CreateBody(&bodyDef);
 
 	b2PolygonShape dynamicBox;
-	dynamicBox.SetAsBox(10.0f, 1.0f);
+	dynamicBox.SetAsBox(size.x,size.y);
 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
@@ -139,5 +152,21 @@ void Basic_Physics::BoxCollider::SetFigure(ColliderForm val)
 {
 	//Guardar y reconstruir
 	form = val;
+}
+
+void Basic_Physics::BoxCollider::ApplyForce(const MEE::Vector2& ff, const MEE::Vector2& pp)
+{
+	b2Vec2 force = { ff.x,ff.y };
+	b2Vec2 point = { pp.x,pp.y };
+
+	body->ApplyForceToCenter(force, true);
+}
+
+void Basic_Physics::BoxCollider::ApplyLinearImpulse(const MEE::Vector2& imp, const MEE::Vector2& pp)
+{
+	b2Vec2 force = { imp.x,imp.y };
+	b2Vec2 point = { pp.x,pp.y };
+
+	body->ApplyLinearImpulseToCenter(force, true);
 }
 

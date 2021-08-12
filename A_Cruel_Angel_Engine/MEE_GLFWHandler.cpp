@@ -9,10 +9,6 @@ void MEE::GLFWHandler::Stop()
 {
 }
 
-void MEE::GLFWHandler::PollEvents()
-{
-}
-
 void MEE::GLFWHandler::SwapBuffer()
 {
 }

@@ -9,7 +9,7 @@ namespace Basic_Input
 	{
 		PLUGIN_EXPORT void OnInit(int);
 		PLUGIN_EXPORT void OnLoad();
-		PLUGIN_EXPORT void OnShutDown();
+		PLUGIN_EXPORT void OnShutdown();
 		PLUGIN_EXPORT void OnUpdate();
 		PLUGIN_EXPORT void OnPostUpdate();
 

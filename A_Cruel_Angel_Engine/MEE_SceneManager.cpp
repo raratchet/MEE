@@ -15,7 +15,8 @@ namespace MEE
 		std::shared_ptr<Scene> shared_scene(scene);
 		scenes.push_front({scenes.size(),shared_scene });
 		shared_scene->id = scenes.front().first;
-		MEE_CreatePhysicsWorld(shared_scene->id);
+		FunctionParameters params = FunctionParameters::NoParameters();
+		MEE_CreatePhysicsWorld(shared_scene->id, params);
 		if (!scene->IsLoaded())
 			scene->Load();
 	}

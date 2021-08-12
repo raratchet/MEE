@@ -23,6 +23,7 @@ namespace MEE
 		void Loop();
 		void Update();
 		void Draw();
+		void CloseApplicationSignal();
 		std::weak_ptr<WindowHandler> GetWindow();
 		std::weak_ptr<PluginManager> GetPluginManager();
 		std::weak_ptr<ResourceManager> GetResourceManager();

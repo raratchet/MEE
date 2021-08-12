@@ -93,6 +93,9 @@
     <ClCompile Include="MEE_Time.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="MEE_Functional.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MEE_Plugin.h">

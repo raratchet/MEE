@@ -23,7 +23,7 @@ namespace Basic_Input
 	{
 
 	}
-	void OnShutDown()
+	void OnShutdown()
 	{
 
 	}
@@ -48,6 +48,10 @@ namespace Basic_Input
 			}
 			else if (event.type == SDL_MOUSEBUTTONUP) {
 				mouseInput(event.motion.x, event.motion.y, event.button.button, 2);
+			}
+			else if (event.type == SDL_QUIT)
+			{
+				MEE_CloseApplicationSignal();
 			}
 		}
 	}
@@ -116,7 +120,7 @@ namespace Basic_Input
 	{
 		auto k = OldKeyDown.find(key);
 		if (k != OldKeyDown.end())
-		KeyPressed.insert(key);
+			KeyPressed.insert(key);
 		else
 			KeyDown.insert(key);
 	}

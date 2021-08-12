@@ -6,6 +6,7 @@
 #include "MEE_Scene.h"
 #include "MEE_Drawable.h"
 #include "MEE_Exports.h"
+#include "MEE_Functional.h"
 
 
 namespace MEE
@@ -14,16 +15,14 @@ namespace MEE
 	{
 	public:
 
-		Component& Internal_AddComponent(Component* component);
-
 		template<class T = Component>
-		T& AddComponent();
+		T& AddComponent(FunctionParameters params = FunctionParameters::NoParameters());
 
 		template<class T = Component>
 		void RemoveComponent();
 
 		template<class T = Component>
-		Component& GetComponent();
+		T& GetComponent();
 
 		void operator=(Object& obj) { obj = *this; }
 
@@ -37,7 +36,10 @@ namespace MEE
 		std::string name;
 		std::vector<std::shared_ptr<Component>> components;
 		std::vector<std::shared_ptr<Behaviour>> updatables;
+
+		Component& Internal_AddComponent(Component* component, FunctionParameters& params);
 		friend class Scene;
+		
 	};
 
 
@@ -62,20 +64,20 @@ namespace MEE
 
 
 	template<class T>
-	inline T& Object::AddComponent()
+	inline T& Object::AddComponent(FunctionParameters params)
 	{
 		auto* component = new T;
-		return (T&) Internal_AddComponent(component);
+		return (T&) Internal_AddComponent(component,params);
 
 	}
 
 	class Collider;
 
 	template <>
-    inline Collider& Object::AddComponent<Collider>()
+    inline Collider& Object::AddComponent<Collider>(FunctionParameters params)
 	{
 		auto collider = new Collider;
-		return (Collider&)Internal_AddComponent(collider);
+		return (Collider&)Internal_AddComponent(collider,params);
 	}
 
 	template<class T>
@@ -84,7 +86,7 @@ namespace MEE
 		for (auto it = components.begin(); it != components.end(); it++)
 		{
 			auto component = *it;
-			auto componentAsType = std::reinterpret_pointer_cast<T>(component);
+			auto componentAsType = dynamic_cast<T>(component);
 			if (componentAsType)
 			{
 				auto isBehaviour = std::reinterpret_pointer_cast<Behaviour>(component);
@@ -104,17 +106,31 @@ namespace MEE
 	//}
 
 	template<class T>
-	Component& Object::GetComponent()
+	inline T& Object::GetComponent()
 	{
 		for (auto component : components)
 		{
-			auto componentAsType = std::reinterpret_pointer_cast<T>(component);
+			auto componentAsType = dynamic_cast<T*>(component.get());
 			if (componentAsType)
 			{
 				return *componentAsType;
 			}
 		}
 	}
+
+	//template<>
+	//inline Collider& Object::GetComponent<Collider>()
+	//{
+	//	for (auto component : components)
+	//	{
+	//		Collider* componentAsType = dynamic_cast<Collider*>(component.get());
+	//		if (componentAsType)
+	//		{
+	//			Collider* collider = CastCollider(componentAsType);
+	//			return *collider;
+	//		}
+	//	}
+	//}
 }
 
 

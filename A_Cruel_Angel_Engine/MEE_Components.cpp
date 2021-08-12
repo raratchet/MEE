@@ -153,6 +153,16 @@ namespace MEE
 		form = value;
 	}
 
+	void Collider::ApplyForce(const Vector2&, const Vector2&)
+	{
+
+	}
+
+	void Collider::ApplyLinearImpulse(const Vector2&, const Vector2&)
+	{
+
+	}
+
 	bool Collider::Transform_WasModified()
 	{
 		auto trans = transform.lock();

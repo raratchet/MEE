@@ -6,6 +6,7 @@
 
 class TestBehaviour : public Behaviour
 {
+
 public:
 	virtual void Start() override
 	{
@@ -14,12 +15,14 @@ public:
 
 	virtual void Update() override
 	{
+		Collider& col = GetParent().GetComponent<Collider>();
+
 		if (Input::Keyboard::KeyWasPressedThisFrame('a'))
-			GetParent().GetTransform().Translate({ -7/60.0F,0 });
+			col.ApplyLinearImpulse({ -1,0 }, Vector2::Zero());
 		if (Input::Keyboard::KeyWasPressedThisFrame('d'))
-			GetParent().GetTransform().Translate({ 7 / 60.0F,0 });
+			col.ApplyLinearImpulse({ 1,0 }, Vector2::Zero());
 		if (Input::Keyboard::KeyWasPressedThisFrame('w'))
-			GetParent().GetTransform().Translate({ 0,-3 });
+			col.ApplyLinearImpulse({ 0,-3 }, Vector2::Zero());
 	}
 
 };

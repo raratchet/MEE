@@ -19,7 +19,7 @@ extern void  MEE_EXPORT MEE_SetPixelsPerUnit(float ppu);
 extern float MEE_EXPORT MEE_GetPixelsPerUnit();
 extern float MEE_EXPORT MEE_GetUnitsPerPixel();
 
-extern MEE_ENGINE_FUNCTION std::function<void(SceneID sceneID)> MEE_CreatePhysicsWorld;
+extern MEE_ENGINE_FUNCTION std::function<void(SceneID sceneID, FunctionParameters& params)> MEE_CreatePhysicsWorld;
 extern MEE_ENGINE_FUNCTION std::function<void(SceneID sceneID)> MEE_DestroyPhysicsWorld;
 extern MEE_ENGINE_FUNCTION std::function<MEE_Collider(SceneID sceneID,FunctionParameters& params)> MEE_CreateCollider;
 extern MEE_ENGINE_FUNCTION std::function<void(MEE_Collider collider, float x, float y, float angle)> MEE_SetColliderTransform;

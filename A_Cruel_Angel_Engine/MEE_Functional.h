@@ -1,10 +1,11 @@
 #pragma once
+#include "MEE_Exports.h"
 #include <functional>
 #include <string>
 #include <map>
-#include <any>
 #include <iostream>
-#include "MEE_Exports.h"
+#include <any>
+#include <list> //Deberian de estar en el pch
 
 
 //Mover funciones al ccp y esconder los includes
@@ -14,10 +15,7 @@ struct MEE_EXPORT FunctionParameter
 
 	FunctionParameter() = default;
 
-	FunctionParameter(std::string name, std::any param) : parameter(param), param_name(name)
-	{
-
-	}
+	FunctionParameter(std::string name, std::any param);
 
 	std::string param_name;
 	std::any parameter;
@@ -25,10 +23,7 @@ struct MEE_EXPORT FunctionParameter
 	template<class T>
 	T As();
 
-	void operator=(std::any param)
-	{
-		parameter = param;
-	}
+	void operator=(std::any param);
 };
 
 template<class T>
@@ -51,48 +46,32 @@ T FunctionParameter::As()
 struct MEE_EXPORT FunctionParameters
 {
 
-	FunctionParameters()
-	{
+	FunctionParameters() = default;
 
+	FunctionParameters(std::list<std::pair<std::string, std::any>> params);
+
+	FunctionParameters(std::list<FunctionParameter> params);
+
+	~FunctionParameters();
+
+	bool Has(const std::string& param_name)
+	{
+		auto exist = parameters.find(param_name);
+		return (exist != parameters.end()) ? true : false;
 	}
 
-	FunctionParameters(std::pair<std::string, std::any> params ...)
+	void Add(FunctionParameter parameter);
+
+	void Add(const std::string& param_name, std::any param);
+
+	static FunctionParameters NoParameters()
 	{
-		for (int i = 0; i < (sizeof(params) / sizeof(std::pair<std::string, std::any>)); i++)
-		{
-			auto param = &params + i;
-			std::string name = param->first;
-			std::any* any = &param->second;
-			FunctionParameter* fparam = new FunctionParameter(name, *any);
-			parameters.insert({ name,fparam });
-		}
+		static FunctionParameters NoParams;
+		return NoParams;
 	}
 
-	FunctionParameters(FunctionParameter params ...)
-	{
-		for (int i = 0; i < (sizeof(params) / sizeof(FunctionParameter)); i++)
-		{
-			auto param = &params + i;
-			FunctionParameter* fparam = new FunctionParameter(param->param_name, param->parameter);
-			parameters.insert({ param->param_name,fparam });
-		}
-	}
+	std::map<std::string, std::shared_ptr<FunctionParameter>> parameters;
 
-	~FunctionParameters()
-	{
-		for (auto& param : parameters)
-		{
-			param.second->parameter.reset();
-			delete param.second;
-		}
-
-		parameters.clear();
-	}
-
-	std::map<std::string, FunctionParameter*> parameters;
-
-	FunctionParameter& operator[](const std::string& name)
-	{
-		return *parameters[name];
-	}
+	FunctionParameter& operator[](const std::string& name);
 };
+

@@ -92,6 +92,11 @@ namespace MEE
 		w_handler->SwapBuffer();
 	}
 
+	void Application::CloseApplicationSignal()
+	{
+		exit = true;
+	}
+
 	std::weak_ptr<WindowHandler> Application::GetWindow()
 	{
 		return w_handler;

@@ -1,7 +1,7 @@
 #include "MEE_Physics.h"
 #include "MEE_Global.h"
 
-inline std::function<void(SceneID sceneID)> MEE_CreatePhysicsWorld;
+inline std::function<void(SceneID sceneID, FunctionParameters& params)> MEE_CreatePhysicsWorld;
 inline std::function<void(SceneID sceneID)> MEE_DestroyPhysicsWorld;
 inline std::function<MEE_Collider(SceneID sceneID,FunctionParameters& params)> MEE_CreateCollider;
 inline std::function<void(MEE_Collider collider, float x, float y, float angle)> MEE_SetColliderTransform;
@@ -51,7 +51,7 @@ void MEE_bind_CreatePhysicsWorld(int pl_id, const std::string& func_name)
 
 	if (pl_manager)
 	{
-		MEE_CreatePhysicsWorld = pl_manager->GetPluginFunction<void, SceneID>(pl_id, func_name);
+		MEE_CreatePhysicsWorld = pl_manager->GetPluginFunction<void, SceneID, FunctionParameters&>(pl_id, func_name);
 	}
 }
 void MEE_SetFixedUpdateSpeed(uint frameSpeed)

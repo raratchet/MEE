@@ -12,7 +12,6 @@ namespace MEE
 	public:
 		virtual bool Init() = 0;
 		virtual void Stop() = 0;
-		virtual void PollEvents() = 0;
 		static void SetWindowSize(unsigned int w, unsigned int h);
 		static void SetWindowPosition(int x, int y);
 		static void SetWindowName(const std::string& name);

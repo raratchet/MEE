@@ -88,11 +88,6 @@ namespace MEE
 
     }
 
-    void SDLHandler::PollEvents()
-    {
-
-    }
-
 
     void SDLHandler::SwapBuffer()
     {

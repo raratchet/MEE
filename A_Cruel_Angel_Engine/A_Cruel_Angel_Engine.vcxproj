@@ -162,6 +162,7 @@
     <ClCompile Include="MEE_Camera.cpp" />
     <ClCompile Include="MEE_Components.cpp" />
     <ClCompile Include="MEE_Drawable.cpp" />
+    <ClCompile Include="MEE_Functional.cpp" />
     <ClCompile Include="MEE_GLFWHandler.cpp" />
     <ClCompile Include="MEE_Graphics.cpp" />
     <ClCompile Include="MEE_InputManager.cpp" />
