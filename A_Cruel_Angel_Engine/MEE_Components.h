@@ -9,6 +9,13 @@ namespace MEE
 
 	class Object;
 
+	class MEE_EXPORT Updatable
+	{
+	public:
+		virtual void Update() = 0;
+		virtual ~Updatable() = default;
+	};
+
 	class MEE_EXPORT Component
 	{
 	public:
@@ -43,19 +50,12 @@ namespace MEE
 		friend class Scene;
 	};
 
-	class MEE_EXPORT Behaviour : public Component
+	class MEE_EXPORT Behaviour : public Component , public Updatable
 	{
 	public:
 		virtual void Start();
-		virtual void Update();
+		virtual void Update() override;
 		virtual void Destroy();
-
-	};
-
-
-	class MEE_EXPORT Animation : public Component
-	{
-
 	};
 
 	enum class ColliderType { Static, Dynamic, Kinematic };

@@ -120,9 +120,20 @@ namespace Basic_Input
 	{
 		auto k = OldKeyDown.find(key);
 		if (k != OldKeyDown.end())
+		{
 			KeyPressed.insert(key);
+		}
 		else
-			KeyDown.insert(key);
+		{
+			auto isPressed = KeyDown.find(key);
+			if (isPressed == KeyDown.end())
+				KeyDown.insert(key);
+			else
+			{
+				KeyPressed.insert(key);
+				KeyDown.erase(key);
+			}
+		}
 	}
 
 	void addKeyUp(int key)

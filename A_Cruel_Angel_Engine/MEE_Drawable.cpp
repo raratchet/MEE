@@ -4,12 +4,12 @@ namespace MEE
 {
 	void Drawable::Draw() 
 	{ 
-		if (m_sprite)
+		if (auto sprite = GetSprite().lock())
 		{
-			auto position = draw_transform.GetPosition(); //QUE PUTAS HACES? NO SE DIVIDE ENTRE DOS LA POSICION SI NO SE RESTA LA MITAD DEL WIDTH
+			auto position = draw_transform.GetPosition();
 			auto scale = draw_transform.GetScale();
 			auto rot = draw_transform.GetRotation();
-			m_sprite->Draw(position,scale,rot);
+			sprite->Draw(position,scale,rot);
 		}
 	}
 
@@ -18,9 +18,9 @@ namespace MEE
 		return m_sprite; 
 	}
 
-	void Drawable::SetSprite(std::shared_ptr<Sprite> sprite)
+	void Drawable::SetSprite(std::weak_ptr<Sprite> sprite)
 	{ 
-		m_sprite = sprite; 
+		m_sprite = sprite.lock(); 
 	}
 
 	void Drawable::SetSprite(Sprite& sprite)

@@ -1,7 +1,7 @@
 #pragma once
 #include "MEE_Sprite.h"
 #include "MEE_Maths.h"
-#include "MEE_Components.h"
+#include "MEE_Animation.h"
 #include <memory>
 
 namespace MEE
@@ -11,7 +11,7 @@ namespace MEE
 	public:
 		void Draw();
 		std::weak_ptr<Sprite> GetSprite();
-		void SetSprite(std::shared_ptr<Sprite> sprite);
+		void SetSprite(std::weak_ptr<Sprite> sprite);
 		void SetSprite(Sprite& sprite);
 		virtual ~Drawable() = default;
 	protected:

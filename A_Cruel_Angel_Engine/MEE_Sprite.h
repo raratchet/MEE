@@ -3,6 +3,8 @@
 #include "MEE_Maths.h"
 #include "MEE_Components.h"
 #include <memory>
+#include <vector>
+#include <list> // Necesito el PCH
 
 namespace MEE
 {
@@ -40,6 +42,18 @@ namespace MEE
 		int width, height;
 		Vector2 baseImage_startCoord;
 		std::weak_ptr<Texture2D> baseImage;
+	};
+
+	class MEE_EXPORT SpriteSheet
+	{
+	public:
+		SpriteSheet(const std::string& resource_name, int width, int height);
+		SpriteSheet(std::list<Sprite> sprites_list);
+		std::weak_ptr<Sprite> operator[](int index);
+		std::weak_ptr<Sprite> Get(int index);
+		int GetNumberOfFrames();
+	private:
+		std::vector<std::shared_ptr<Sprite>> sprites;
 	};
 }
 

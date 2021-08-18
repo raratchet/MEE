@@ -48,4 +48,38 @@ namespace MEE
 	{
 		return height;
 	}
+
+	SpriteSheet::SpriteSheet(const std::string& resource_name, int width, int height)
+	{
+		auto RM = MEE_GLOBAL::application->GetResourceManager().lock();
+
+		auto baseImage = RM->Get<Texture2D>(resource_name); //No me gusta usar el global
+
+		auto w = baseImage.lock()->getWidth();
+		auto h = baseImage.lock()->getHeight();
+
+		for (int i = 0; i < w; i += width)
+			for (int j = 0; j < w; j += height)
+				sprites.push_back(std::shared_ptr<Sprite>(new Sprite(baseImage, i, j, width, height)));
+	}
+
+	SpriteSheet::SpriteSheet(std::list<Sprite> sprites_list)
+	{
+		for (auto sprite : sprites_list)
+		{
+			sprites.push_back(std::make_shared<Sprite>(sprite));
+		}
+	}
+	std::weak_ptr<Sprite> SpriteSheet::operator[](int index)
+	{
+		return sprites[index];
+	}
+	std::weak_ptr<Sprite> SpriteSheet::Get(int index)
+	{
+		return sprites[index];
+	}
+	int SpriteSheet::GetNumberOfFrames()
+	{
+		return sprites.size();
+	}
 }

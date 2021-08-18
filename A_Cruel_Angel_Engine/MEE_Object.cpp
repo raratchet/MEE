@@ -1,21 +1,20 @@
 #include "MEE_Object.h"
 #include "MEE_Physics.h"
+#include "MEE_Animation.h"
 
 namespace MEE
 {
-	Component& Object::Internal_AddComponent(Component* component, FunctionParameters& params)
+	Component& Object::Internal_AddComponent(Component* component, FunctionParameters& params, const std::string& type )
 	{
-		component->ParentToObject(this);
 
-		Behaviour* asBehaviour = dynamic_cast<Behaviour*>(component);
-		Collider* asCollider = dynamic_cast<Collider*>(component);
-
-		if (asBehaviour)
+		if (type == "Default")
 		{
-			updatables.push_back(std::shared_ptr<Behaviour>((Behaviour*)component));
-			asBehaviour->Start();
+			if (Behaviour* asBehaviour = dynamic_cast<Behaviour*>(component))
+			{
+				asBehaviour->Start();
+			}
 		}
-		else if (asCollider)
+		else if (type == "Collider")
 		{
 			auto sceneID = owner.GetID();
 			auto transform = std::reinterpret_pointer_cast<Transform>(components[0]);
@@ -53,22 +52,36 @@ namespace MEE
 
 			Collider* collider = (Collider*)MEE_CreateCollider(sceneID, params);
 			collider->SetTransform(transform);
-			auto* asComponent = (Component*)&*collider;
-			asComponent->ParentToObject(this);
-			delete component;
 			component = collider;
 			owner.sceneColliders.push_back(std::shared_ptr<Collider>(collider));
 		}
+		else if (type == "AnimationPlayer")
+		{
+			if (Drawable* isDrawable = dynamic_cast<Drawable*>(this))
+			{
+				AnimationPlayer* animPlayer = new AnimationPlayer(*isDrawable);
+				component = animPlayer;
+			}
+		}
 
-		components.push_back(std::shared_ptr<Component>(component));
+		if (component)
+		{
+			component->ParentToObject(this);
+			components.push_back(std::shared_ptr<Component>(component));
+		}
+
+		if (Updatable* asUpdatable = dynamic_cast<Updatable*>(component))
+		{
+			updatables.push_back(std::shared_ptr<Updatable>(asUpdatable));
+		}
+
 		return *component;
 	}
 
 	Transform& Object::GetTransform()
 	{ 
-		auto sharedptr = std::reinterpret_pointer_cast<Transform>(components[0]);
-		Transform& transform = *sharedptr;
-		return transform; 
+		Transform* pointer = dynamic_cast<Transform*>(components[0].get());
+		return *pointer; 
 	}
 
 	Object::~Object()

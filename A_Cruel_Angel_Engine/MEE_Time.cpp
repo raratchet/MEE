@@ -9,7 +9,7 @@ MEE::TimeManager::TimeManager()
 	frameTime = std::chrono::duration<double>(0);
 	sleepTime = std::chrono::duration<double>(0);
 	sleepAdjust = std::chrono::duration<double>(0);
-	target = std::chrono::duration<double>(1 / 60);
+	target = std::chrono::duration<double>(1/60);
 }
 
 unsigned int MEE::TimeManager::GetSecondsSinceApplicationStarted()

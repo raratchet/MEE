@@ -35,9 +35,9 @@ namespace MEE
 		Scene& owner; 
 		std::string name;
 		std::vector<std::shared_ptr<Component>> components;
-		std::vector<std::shared_ptr<Behaviour>> updatables;
+		std::vector<std::shared_ptr<Updatable>> updatables;
 
-		Component& Internal_AddComponent(Component* component, FunctionParameters& params);
+		Component& Internal_AddComponent(Component* component, FunctionParameters& params, const std::string& type = "Default");
 		friend class Scene;
 		
 	};
@@ -71,13 +71,21 @@ namespace MEE
 
 	}
 
+	class AnimationPlayer;
+
+	template<>
+	inline AnimationPlayer& Object::AddComponent<AnimationPlayer>(FunctionParameters params)
+	{
+		return (AnimationPlayer&)Internal_AddComponent(nullptr, params, "AnimationPlayer");
+
+	}
+
 	class Collider;
 
 	template <>
     inline Collider& Object::AddComponent<Collider>(FunctionParameters params)
 	{
-		auto collider = new Collider;
-		return (Collider&)Internal_AddComponent(collider,params);
+		return (Collider&)Internal_AddComponent(nullptr,params,"Collider");
 	}
 
 	template<class T>
