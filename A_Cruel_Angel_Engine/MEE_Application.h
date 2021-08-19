@@ -29,6 +29,7 @@ namespace MEE
 		std::weak_ptr<ResourceManager> GetResourceManager();
 		std::weak_ptr<SceneManager> GetSceneManager();
 		std::weak_ptr<InputManager> GetInputManager();
+		std::weak_ptr<TimeManager> GetTimeManager();
 	private:
 		bool exit = false;
 		std::shared_ptr<SceneManager> sceneManager;

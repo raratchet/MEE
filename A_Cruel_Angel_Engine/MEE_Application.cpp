@@ -122,6 +122,11 @@ namespace MEE
 		return inputManager;
 	}
 
+	std::weak_ptr<TimeManager> Application::GetTimeManager()
+	{
+		return timeManager;
+	}
+
 	void Application::Stop()
 	{
 		pluginManager->Stop();

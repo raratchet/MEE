@@ -37,6 +37,7 @@ namespace MEE
 		void Pause();
 		void Resume();
 		void SetAnimationFrameDuaration(int);
+		void SetFramesPerSecond(int frames);
 		virtual void Update() override;
 		void UpdateAnimation(AnimationDirection direction = AnimationDirection::Forward);
 		void AddAnimation(const std::string&, Animation);
@@ -47,6 +48,7 @@ namespace MEE
 		std::string defaultAnimation;
 		bool isPaused = false;
 		int frameDuration = 1;
+		int framesPerSecond = 2;
 		int elapsedFrames = -1;
 
 		friend class Object;

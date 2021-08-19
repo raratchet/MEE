@@ -36,6 +36,7 @@ namespace MEE
 		double GetDeltaTime();
 		void StartFrame();
 		void EndFrame();
+		void SetTargetFrameRate(int framerate);
 	private:
 		float lastFrameElapsedTime;
 		std::chrono::steady_clock::time_point t1,t2,t3;

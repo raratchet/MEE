@@ -28,6 +28,8 @@ public:
 	static void ResizeWindow(int width,int height);
 	static void SetWindowFullscren(bool status);
 
+	static double GetDeltaTime();
+
 	//Input and Plugin will be in independent files
 
 private:

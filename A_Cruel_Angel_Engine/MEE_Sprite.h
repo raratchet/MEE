@@ -33,6 +33,12 @@ namespace MEE
 		 * \param h : H clip position in the image.
 		 */
 		Sprite(const std::string& resource_name, int x, int y, int w, int h);
+		/**
+		 * .
+		 * 
+		 * \param resource_name
+		 */
+		Sprite(const std::string& resource_name);
 
 		void Draw(const Vector2& pos, const Vector2& scale, const float& rot);
 

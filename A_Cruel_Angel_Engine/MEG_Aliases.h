@@ -6,6 +6,7 @@
 
 using Level = MEE::Scene;
 using Behaviour = MEE::Behaviour;
+using Object = MEE::Object;
 using GameObject = MEE::GameObject;
 using WorldObject = MEE::WorldObject;
 using Sprite = MEE::Sprite;

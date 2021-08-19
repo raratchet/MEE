@@ -45,7 +45,7 @@ void Basic_Physics::OnDraw()
 
 void Basic_Physics::CreatePhysicsWorld(SceneID id, FunctionParameters& params)
 {
-	static b2Vec2 defaultGravity(0.0f,2.0f);
+	static b2Vec2 defaultGravity(0.0f,6.0f);
 	physicWorlds[id] = new b2World(defaultGravity);
 	DEBUG_DRAW
 }

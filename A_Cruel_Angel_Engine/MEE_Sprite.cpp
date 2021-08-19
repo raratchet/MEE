@@ -6,6 +6,8 @@
 namespace MEE
 {
 
+
+
 	Sprite::Sprite(std::weak_ptr<Texture2D> image, int x, int y, int w, int h) :
 		baseImage(image), width(w), height(h), baseImage_startCoord(Vector2(x, y)) {}
 
@@ -17,6 +19,19 @@ namespace MEE
 		baseImage = RM->Get<Texture2D>(resource_name); //No me gusta usar el global
 	}
 
+	Sprite::Sprite(const std::string& resource_name)
+	{
+		auto RM = MEE_GLOBAL::application->GetResourceManager().lock();
+
+		baseImage = RM->Get<Texture2D>(resource_name);
+
+		baseImage_startCoord = Vector2();
+
+		auto bImage = baseImage.lock();
+		width = bImage->getWidth();
+		height = bImage->getHeight();
+	}
+
 	void Sprite::Draw(const Vector2& position, const Vector2& scale, const float& rot)
 	{
 		if (auto image = baseImage.lock())
@@ -25,8 +40,8 @@ namespace MEE
 			MEE_Texture2D texture = (MEE_Texture2D)(&*image);
 			float ppu = MEE_GetPixelsPerUnit();
 
-			float positionX_inPixels = (position.x * ppu) - (width / 2);
-			float positionY_inPixels = (position.y * ppu) - (height / 2);
+			float positionX_inPixels = (position.x * ppu) - ((width * scale.x) / 2);
+			float positionY_inPixels = (position.y * ppu) - ((height * scale.y) / 2);
 
 			MEE_RenderTexture2D(texture,positionX_inPixels,positionY_inPixels, 
 								scale.x,scale.y,rot,

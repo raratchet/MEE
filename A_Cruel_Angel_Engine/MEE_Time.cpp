@@ -9,7 +9,7 @@ MEE::TimeManager::TimeManager()
 	frameTime = std::chrono::duration<double>(0);
 	sleepTime = std::chrono::duration<double>(0);
 	sleepAdjust = std::chrono::duration<double>(0);
-	target = std::chrono::duration<double>(1/60);
+	SetTargetFrameRate(60);
 }
 
 unsigned int MEE::TimeManager::GetSecondsSinceApplicationStarted()
@@ -46,6 +46,12 @@ void MEE::TimeManager::EndFrame()
 
 	sleepAdjust = 0.9 * sleepAdjust + 0.1 * (target - frameTime);
 	initialAppTime = initialAppTime + frameTime;
+}
+
+void MEE::TimeManager::SetTargetFrameRate(int framerate)
+{
+	double value = (1.0f / framerate );
+	target = std::chrono::duration<double>(value);
 }
 
 MEE::Timer::Timer()

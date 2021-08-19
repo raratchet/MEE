@@ -77,6 +77,11 @@ namespace MEE
 		frameDuration = val;
 	}
 
+	void AnimationPlayer::SetFramesPerSecond(int frames)
+	{
+		framesPerSecond = frames;
+	}
+
 	void AnimationPlayer::UpdateAnimation(AnimationDirection direction)
 	{
 		if (!animations.empty())

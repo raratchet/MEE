@@ -54,6 +54,8 @@ namespace Basic_Input
 				MEE_CloseApplicationSignal();
 			}
 		}
+
+
 	}
 
 	void OnPostUpdate()
@@ -69,13 +71,7 @@ namespace Basic_Input
 
 	void clear()
 	{
-		auto b = OldKeyDown.size();
-		OldKeyDown.clear();
-		auto a = KeyDown.size();
-		OldKeyDown = KeyDown;
 		KeyDown.clear();
-		KeyPressed.clear();
-		KeyUp.clear();
 	}
 
 	void keyboardInput(int key, int state)
@@ -118,27 +114,25 @@ namespace Basic_Input
 
 	void addKeyDown(int key)
 	{
-		auto k = OldKeyDown.find(key);
-		if (k != OldKeyDown.end())
+
+		auto exists = KeyDown.find(key);
+
+		if (exists == KeyDown.end())
 		{
-			KeyPressed.insert(key);
+			KeyDown.insert(key);
 		}
 		else
 		{
-			auto isPressed = KeyDown.find(key);
-			if (isPressed == KeyDown.end())
-				KeyDown.insert(key);
-			else
-			{
-				KeyPressed.insert(key);
-				KeyDown.erase(key);
-			}
+			KeyPressed.insert(key);
+			KeyDown.erase(key);
 		}
 	}
 
 	void addKeyUp(int key)
 	{
 		KeyUp.insert(key);
+		KeyDown.erase(key);
+		KeyPressed.erase(key);
 	}
 
 	void setMouse(int x, int y)

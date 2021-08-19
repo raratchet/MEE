@@ -109,6 +109,12 @@ void Game::SetWindowFullscren(bool status)
 	window->SetFullscreenMode(status);
 }
 
+double Game::GetDeltaTime()
+{
+	auto tm = mainApp->GetTimeManager().lock();
+	return tm->GetDeltaTime();
+}
+
 
 bool Game::Init()
 {

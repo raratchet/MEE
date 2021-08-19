@@ -33,7 +33,8 @@ namespace MEE
 				{
 					auto sprite = isDrawable->GetSprite().lock();
 					auto scale = transform->GetScale();
-					auto bsize = Vector2(sprite->GetSpriteWidth(), sprite->GetSpriteHeight());
+					auto bsize = Vector2(sprite->GetSpriteWidth() * scale.x, 
+										sprite->GetSpriteHeight() * scale.y);
 					bsize = bsize / MEE_GetPixelsPerUnit();
 					size = { "Size", bsize / 2 };
 				}
