@@ -6,7 +6,7 @@ namespace MEE
 	Animation::Animation(const SpriteSheet& ss) 
 	{
 		sprites = std::make_shared<SpriteSheet>(ss);
-		currentFrame = -1;
+		currentFrame = 0;
 	}
 
 	std::weak_ptr<Sprite> Animation::GetFrame()
@@ -42,7 +42,12 @@ namespace MEE
 
 	void AnimationPlayer::PlayAnimation(const std::string& anim)
 	{
-		currentAnimation = anim;
+		if (currentAnimation != anim)
+		{
+			currentAnimation = anim;
+			ResetCurrentAnim();
+			drawObject.SetSprite(animations[currentAnimation]->GetFrame());
+		}
 	}
 
 	void AnimationPlayer::SetDefaultAnimation(const std::string& anim)
@@ -93,6 +98,7 @@ namespace MEE
 					elapsedFrames = 0;
 					animations[currentAnimation]->NextFrame(); //Check direction and check if the frame should move
 					drawObject.SetSprite(animations[currentAnimation]->GetFrame());
+
 				}
 			}
 				elapsedFrames++;
@@ -108,13 +114,19 @@ namespace MEE
 
 	void AnimationPlayer::AddAnimation(const std::string& name, Animation anim)
 	{
+		bool firstAnimation = false;
+
 		if (animations.empty())
 		{
 			currentAnimation = name;
 			defaultAnimation = name;
+			firstAnimation = true;
 		}
 
-		animations.insert({ name,std::make_shared<Animation>(anim) });
+		animations.insert({ name,std::make_shared<Animation>(anim)});
+
+		if(firstAnimation)
+			drawObject.SetSprite(animations[currentAnimation]->GetFrame());
 	}
 
 }

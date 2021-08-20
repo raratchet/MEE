@@ -16,7 +16,8 @@ namespace Basic_Renderer
 		PLUGIN_EXPORT void OnShutdown();
 		PLUGIN_EXPORT void RenderTexture(MEE_Texture2D tex, float x, float y, 
 										float scale_x, float scale_y, float a,
-										int clipX, int clipY, int clipW, int clipH);
+										int clipX, int clipY, int clipW, int clipH,
+										bool h_flip, bool v_flip);
 		PLUGIN_EXPORT MEE_Texture2D CreateTexture2D(const std::string path);
 		PLUGIN_EXPORT void SetRenderColor(int,int,int,int);
 		PLUGIN_EXPORT void RenderClear();

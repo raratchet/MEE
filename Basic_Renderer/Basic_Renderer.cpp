@@ -38,7 +38,7 @@ namespace Basic_Renderer
 	}
 
 	void RenderTexture(MEE_Texture2D tex, float x, float y, float scale_x, float scale_y, float a,
-		int clipX, int clipY, int clipW, int clipH)
+		int clipX, int clipY, int clipW, int clipH, bool h_flip, bool v_flip)
 	{
 		SDL_Rect drawRect;
 		drawRect.x = clipX;
@@ -50,13 +50,19 @@ namespace Basic_Renderer
 		srcrect.y = y;
 		srcrect.w = clipW*scale_x;
 		srcrect.h = clipH*scale_y;
-		
 
+		SDL_RendererFlip flip = SDL_FLIP_NONE;
+
+		if (h_flip)
+			flip = (SDL_RendererFlip)(flip | SDL_FLIP_HORIZONTAL);
+
+		if (v_flip)
+			flip = (SDL_RendererFlip)(flip | SDL_FLIP_VERTICAL);
 
 		Basic_Texture2D* texture = (Basic_Texture2D*)tex;
 
 		SDL_RenderCopyEx(engineRenderer, texture->getTexture()
-			,&drawRect, &srcrect, a, NULL, SDL_FLIP_NONE);
+			,&drawRect, &srcrect, a, NULL, flip);
 	}
 
 	MEE_Texture2D CreateTexture2D(const std::string path)

@@ -45,7 +45,7 @@ namespace MEE
 
 			MEE_RenderTexture2D(texture,positionX_inPixels,positionY_inPixels, 
 								scale.x,scale.y,rot,
-								baseImage_startCoord.x,baseImage_startCoord.y,width,height);
+								baseImage_startCoord.x,baseImage_startCoord.y,width,height,false,false);
 #ifdef _DEBUG
 			MEE_SetRenderColor(0, 255, 0, 255);
 			const float radius = 1.0F;
@@ -55,6 +55,31 @@ namespace MEE
 
 		}
 	}
+
+	void Sprite::Draw(const Vector2& position, const Vector2& scale, const float& rot, bool h_flip, bool v_flip)
+	{
+		if (auto image = baseImage.lock())
+		{
+
+			MEE_Texture2D texture = (MEE_Texture2D)(&*image);
+			float ppu = MEE_GetPixelsPerUnit();
+
+			float positionX_inPixels = (position.x * ppu) - ((width * scale.x) / 2);
+			float positionY_inPixels = (position.y * ppu) - ((height * scale.y) / 2);
+
+			MEE_RenderTexture2D(texture, positionX_inPixels, positionY_inPixels,
+				scale.x, scale.y, rot,
+				baseImage_startCoord.x, baseImage_startCoord.y, width, height,h_flip, v_flip);
+#ifdef _DEBUG
+			MEE_SetRenderColor(0, 255, 0, 255);
+			const float radius = 1.0F;
+			MEE_RenderCircle((position.x * ppu), (position.y * ppu), radius);
+			MEE_SetRenderColor(53, 40, 230, 255);
+#endif // _DEBUG
+
+		}
+	}
+
 	int Sprite::GetSpriteWidth()
 	{
 		return width;

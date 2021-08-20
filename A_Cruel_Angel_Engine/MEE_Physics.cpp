@@ -58,7 +58,9 @@ void MEE_SetFixedUpdateSpeed(uint frameSpeed)
 {
 
 }
-uint MEE_GetFixedUpdateSpeed()
+double MEE_GetDeltaTime()
 {
-	return 0;
+	auto timeManager = MEE_GLOBAL::application->GetTimeManager().lock();
+
+	return timeManager->GetDeltaTime();
 }

@@ -2,6 +2,7 @@
 #include "MEE_Maths.h"
 #include <memory>
 #include "MEE_Exports.h"
+#include <functional>
 
 
 namespace MEE
@@ -81,6 +82,10 @@ namespace MEE
 		virtual void SetFigure(ColliderForm);
 		virtual void ApplyForce(const Vector2& force, const Vector2& point);
 		virtual void ApplyLinearImpulse(const Vector2& impulse, const Vector2& point);
+		void SetTriggerStartCallBack(std::function<void(Collider& other)> callback); //Puedo solicitar un Behaviour o incluso un scene que tengan una funcion virtual TriggerEnter y envolverla en un lamba para solo pedir una instancia en vez de una funcion completa
+		void SetTriggerEndCallBack(std::function<void(Collider& other)> callback);
+		void SetCollisionStartCallBack(std::function<void(Collider& other)> callback);
+		void SetCollisionResolveCallBack(std::function<void(Collider& other)> callback);
 		bool Transform_WasModified();
 	protected:
 		std::weak_ptr<Transform> transform;
@@ -92,7 +97,10 @@ namespace MEE
 		bool active;
 	    ColliderType type;
 	    ColliderForm form;
-
+		std::function<void(Collider& other)> TriggerStart_CallBack; //No me gusta tener que usar de esta manera functions
+		std::function<void(Collider& other)> TriggerEnd_CallBack;
+		std::function<void(Collider& other)> CollisionStart_CallBack;
+		std::function<void(Collider& other)> CollisionResolve_CallBack;
 		friend class Object;
 		friend class Scene;
 	};

@@ -13,7 +13,7 @@ void  MEE_EXPORT MEE_bind_GetColliderTransform(int pl_id, const std::string& fun
 void  MEE_EXPORT MEE_bind_PhysicsStep(int pl_id, const std::string& func_name);
 void  MEE_EXPORT MEE_bind_CreatePhysicsWorld(int pl_id, const std::string& func_name);
 void  MEE_EXPORT MEE_SetFixedUpdateSpeed(uint frameSpeed);
-uint  MEE_EXPORT MEE_GetFixedUpdateSpeed();
+double  MEE_EXPORT MEE_GetDeltaTime();
 
 extern void  MEE_EXPORT MEE_SetPixelsPerUnit(float ppu);
 extern float MEE_EXPORT MEE_GetPixelsPerUnit();

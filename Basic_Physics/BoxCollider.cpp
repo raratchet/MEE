@@ -22,8 +22,9 @@ Basic_Physics::BoxCollider::BoxCollider(b2World* world, MEE::Vector2 position , 
 	}
 
 	bodyDef.position.Set(position.x, position.y);
-	bodyDef.linearDamping = 0.1f;
-	bodyDef.angularDamping = 0.1f;
+	bodyDef.linearDamping = 0.5f;
+	bodyDef.angularDamping = 0.5f;
+	bodyDef.userData.pointer = (uintptr_t)this;
 
 	body = world->CreateBody(&bodyDef);
 
@@ -33,11 +34,12 @@ Basic_Physics::BoxCollider::BoxCollider(b2World* world, MEE::Vector2 position , 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
 	fixtureDef.density = 1.0f;
-	friction = 0.3f;
+	friction = 1.0f;
 	fixtureDef.friction = friction;
 
 	body->CreateFixture(&fixtureDef);
 	body->SetFixedRotation(true);
+	body->SetSleepingAllowed(false);
 }
 
 void Basic_Physics::BoxCollider::UpdatePosition()
@@ -94,6 +96,7 @@ void Basic_Physics::BoxCollider::SetVelocity(const MEE::Vector2& vel)
 void Basic_Physics::BoxCollider::SetFriction(float val)
 {
 	friction = val;
+	body->GetFixtureList()[0].SetFriction(friction);
 }
 
 void Basic_Physics::BoxCollider::SetGravity(float val)
@@ -109,6 +112,7 @@ void Basic_Physics::BoxCollider::SetRotationConstrait(bool val)
 void Basic_Physics::BoxCollider::SetActive(bool val)
 {
 	active = val;
+	body->SetAwake(val);
 }
 
 void Basic_Physics::BoxCollider::SetType(ColliderType val)

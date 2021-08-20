@@ -123,7 +123,7 @@ extern MEE_ENGINE_FUNCTION std::function<void()> MEE_RenderDebugGrid;
  * \param angle: The angles to rotate the image.
  */
 extern MEE_ENGINE_FUNCTION std::function<void(const MEE_Texture2D,float x, float y, float scale_x, float scale_y, float angle,
-	int clipX, int clipY, int clipW, int clipH )> MEE_RenderTexture2D;
+	int clipX, int clipY, int clipW, int clipH , bool h_flip,bool v_flip)> MEE_RenderTexture2D;
 
 /**
  * Creates and loads a Texture2d.

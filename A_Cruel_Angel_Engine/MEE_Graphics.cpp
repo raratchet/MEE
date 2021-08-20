@@ -16,7 +16,7 @@
 	inline std::function<void(float x, float y, float radius)> MEE_RenderCircle;
 	inline std::function<void(float x, float y, float radius)> MEE_RenderSolidCircle;
 	inline std::function<void(const MEE_Texture2D, float x, float y, float scale_x, float scale_y, float angle,
-		int clipX, int clipY, int clipW, int clipH)> MEE_RenderTexture2D;
+		int clipX, int clipY, int clipW, int clipH, bool h_flip, bool v_flip)> MEE_RenderTexture2D;
 	inline std::function<MEE_Texture2D(const std::string& path)> MEE_CreateTexture2D;
 	inline std::function<void()> MEE_RenderDebugGrid;
 
@@ -100,7 +100,7 @@
 		{
 			MEE_RenderTexture2D = pl_manager->GetPluginFunction
 				<void,const MEE_Texture2D, float, float, float, float, float,
-				int,int,int,int>(plugin_id, func_name);
+				int,int,int,int,bool,bool>(plugin_id, func_name);
 		}
 
 	}

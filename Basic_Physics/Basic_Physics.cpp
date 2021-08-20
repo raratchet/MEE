@@ -45,8 +45,9 @@ void Basic_Physics::OnDraw()
 
 void Basic_Physics::CreatePhysicsWorld(SceneID id, FunctionParameters& params)
 {
-	static b2Vec2 defaultGravity(0.0f,6.0f);
+	static b2Vec2 defaultGravity(0.0f,9.8f);
 	physicWorlds[id] = new b2World(defaultGravity);
+	physicWorlds[id]->SetContactListener(new BoxContactListener);
 	DEBUG_DRAW
 }
 
@@ -98,10 +99,10 @@ void Basic_Physics::PhysicsStep(SceneID id)
 {
 	auto world = physicWorlds[id];
 
-	float timeStep = 1.0f / 60.0f;
+	double timeStep = MEE_GetDeltaTime();
 
-	int32 velocityIterations = 3;
-	int32 positionIterations = 1;
+	int32 velocityIterations = 5;
+	int32 positionIterations = 2;
 
 	world->Step(timeStep, velocityIterations, positionIterations);
 }

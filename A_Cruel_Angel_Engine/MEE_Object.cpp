@@ -7,14 +7,7 @@ namespace MEE
 	Component& Object::Internal_AddComponent(Component* component, FunctionParameters& params, const std::string& type )
 	{
 
-		if (type == "Default")
-		{
-			if (Behaviour* asBehaviour = dynamic_cast<Behaviour*>(component))
-			{
-				asBehaviour->Start();
-			}
-		}
-		else if (type == "Collider")
+		if (type == "Collider")
 		{
 			auto sceneID = owner.GetID();
 			auto transform = std::reinterpret_pointer_cast<Transform>(components[0]);
@@ -29,7 +22,7 @@ namespace MEE
 			{
 				Drawable* isDrawable = dynamic_cast<Drawable*>(this);
 				FunctionParameter size;
-				if (isDrawable)
+				if (isDrawable && isDrawable->GetSprite().lock())
 				{
 					auto sprite = isDrawable->GetSprite().lock();
 					auto scale = transform->GetScale();
@@ -74,6 +67,10 @@ namespace MEE
 		if (Updatable* asUpdatable = dynamic_cast<Updatable*>(component))
 		{
 			updatables.push_back(std::shared_ptr<Updatable>(asUpdatable));
+			if (Behaviour* asBehaviour = dynamic_cast<Behaviour*>(component))
+			{
+				asBehaviour->Start();
+			}
 		}
 
 		return *component;

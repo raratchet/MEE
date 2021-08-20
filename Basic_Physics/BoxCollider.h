@@ -4,6 +4,7 @@
 #include <box2d/b2_body.h>
 #include <box2d/b2_math.h>
 #include <MEE_PluginHeader.h>
+#include "BoxContactListener.h"
 
 
 namespace Basic_Physics
@@ -35,6 +36,7 @@ namespace Basic_Physics
 		virtual void ApplyLinearImpulse(const MEE::Vector2& impulse, const MEE::Vector2& point);
 	private:
 		b2BodyDef bodyDef;
+		friend class BoxContactListener;
 	};
 }
 

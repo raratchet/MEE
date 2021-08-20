@@ -115,23 +115,20 @@ namespace Basic_Input
 	void addKeyDown(int key)
 	{
 
-		auto exists = KeyDown.find(key);
+		auto alreadyDown = KeyDown.find(key);
+		auto alreadyPressed = KeyPressed.find(key);
 
-		if (exists == KeyDown.end())
+		if (alreadyDown == KeyDown.end()
+			&& alreadyPressed == KeyPressed.end())
 		{
 			KeyDown.insert(key);
-		}
-		else
-		{
 			KeyPressed.insert(key);
-			KeyDown.erase(key);
 		}
 	}
 
 	void addKeyUp(int key)
 	{
 		KeyUp.insert(key);
-		KeyDown.erase(key);
 		KeyPressed.erase(key);
 	}
 

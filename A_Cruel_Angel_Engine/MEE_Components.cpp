@@ -170,4 +170,24 @@ namespace MEE
 		return trans->WasModified();
 	}
 
+	void Collider::SetTriggerStartCallBack(std::function<void(Collider& other)> callback)
+	{
+		TriggerStart_CallBack = callback;
+	}
+
+	void Collider::SetTriggerEndCallBack(std::function<void(Collider& other)> callback)
+	{
+		TriggerEnd_CallBack = callback;
+	}
+
+	void Collider::SetCollisionStartCallBack(std::function<void(Collider& other)> callback)
+	{
+		CollisionStart_CallBack = callback;
+	}
+
+	void Collider::SetCollisionResolveCallBack(std::function<void(Collider& other)> callback)
+	{
+		CollisionResolve_CallBack = callback;
+	}
+
 }
