@@ -152,10 +152,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Characters.cpp" />
+    <ClCompile Include="Test.cpp" />
     <ClCompile Include="TestLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestBehaviour.h" />
+    <ClInclude Include="Characters.h" />
+    <ClInclude Include="Test.h" />
     <ClInclude Include="TestLevel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,5 +1,6 @@
 #pragma once
 #include <functional>
+#include <vector>
 #include "MEE_Exports.h"
 
 enum class RenderAPI
@@ -90,12 +91,12 @@ extern MEE_ENGINE_FUNCTION std::function<void(float x, float y)> MEE_RenderPoint
 /**
  * .
  */
-extern MEE_ENGINE_FUNCTION std::function<void(float* vectices, int vertexCount)> MEE_RenderPolygon;
+extern MEE_ENGINE_FUNCTION std::function<void(std::vector<float> vertices)> MEE_RenderPolygon;
 
 /**
  * .
  */
-extern MEE_ENGINE_FUNCTION std::function<void(float* vectices, int vertexCount)> MEE_RenderSolidPolygon;
+extern MEE_ENGINE_FUNCTION std::function<void(std::vector<float> vertices)> MEE_RenderSolidPolygon;
 
 /**
  * .

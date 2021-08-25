@@ -51,6 +51,7 @@ namespace MEE
 		sceneManager = std::make_shared<SceneManager>(SceneManager());
 		inputManager = std::make_shared<InputManager>(InputManager());
 		timeManager = std::make_shared<TimeManager>(TimeManager());
+		renderManager = std::make_shared<RenderingManager>(RenderingManager());
 		return success;
 	}
 
@@ -85,7 +86,6 @@ namespace MEE
 	{
 		MEE_RenderClear();
 		//Do draw
-		MEE_RenderDebugGrid(); //temp
 		sceneManager->GetCurrentScene()->Draw();
 		pluginManager->Draw();
 		//
@@ -125,6 +125,11 @@ namespace MEE
 	std::weak_ptr<TimeManager> Application::GetTimeManager()
 	{
 		return timeManager;
+	}
+
+	std::weak_ptr<RenderingManager> Application::GetRenderManager()
+	{
+		return renderManager;
 	}
 
 	void Application::Stop()

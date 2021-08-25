@@ -10,7 +10,7 @@ namespace MEE
 	class MEE_EXPORT Drawable
 	{
 	public:
-		void Draw();
+		void Draw(std::shared_ptr<class Camera> renderingCamera);
 		std::weak_ptr<Sprite> GetSprite();
 		void SetSprite(std::weak_ptr<Sprite> sprite);
 		void SetSprite(Sprite& sprite);

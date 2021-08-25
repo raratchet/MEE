@@ -73,8 +73,16 @@ namespace MEE
 		 * \return This scene id
 		 */
 		SceneID GetID();
+		/**
+		 * .
+		 * 
+		 * \return 
+		 */
+		Camera& GetMainCamera();
+		
 	private:
 		void CreateMainSceneCamera();
+		void SetCurrenCamera(std::weak_ptr<class Camera> camera);
 	private:
 		std::list<std::shared_ptr<class Camera>> sceneCameras;
 		std::list<std::shared_ptr<class Object>> sceneObjects;

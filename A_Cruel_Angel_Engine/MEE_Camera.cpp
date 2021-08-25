@@ -1,6 +1,6 @@
 #include "MEE_Camera.h"
 #include "MEE_Graphics.h"
-
+#include "MEE_Global.h"
 //#include "Application.h"
 //#include "Window.h"
 
@@ -33,6 +33,11 @@ namespace MEE
 
 	void Camera::MakeCurrent()
 	{
-		MEE_SetRenderViewport(position.x,position.y,c_width,c_heigth);
+		//Necesit una clase viewport
+		//MEE_SetRenderViewport(position.x, position.y, c_width + position.x, c_heigth + position.y);
+	}
+	Vector2 Camera::GetPosition()
+	{
+		return position;
 	}
 }

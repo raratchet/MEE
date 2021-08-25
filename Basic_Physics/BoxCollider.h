@@ -34,6 +34,8 @@ namespace Basic_Physics
 		virtual void SetFigure(ColliderForm) override;
 		virtual void ApplyForce(const MEE::Vector2&, const MEE::Vector2&) override;
 		virtual void ApplyLinearImpulse(const MEE::Vector2& impulse, const MEE::Vector2& point);
+		virtual void Raycast(const MEE::Vector2& point1, const MEE::Vector2& point2, FunctionParameters parameters);
+		virtual bool PointOverlap(const MEE::Vector2& point1, FunctionParameters parameters);
 	private:
 		b2BodyDef bodyDef;
 		friend class BoxContactListener;

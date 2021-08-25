@@ -174,3 +174,22 @@ void Basic_Physics::BoxCollider::ApplyLinearImpulse(const MEE::Vector2& imp, con
 	body->ApplyLinearImpulseToCenter(force, true);
 }
 
+void Basic_Physics::BoxCollider::Raycast(const MEE::Vector2& point1, const MEE::Vector2& point2, FunctionParameters parameters)
+{
+	b2RayCastInput input;
+	input.p1.Set(0.0f, 0.0f);
+	input.p2.Set(1.0f, 0.0f);
+	input.maxFraction = 1.0f;
+	int32 childIndex = 0;
+
+
+}
+
+bool Basic_Physics::BoxCollider::PointOverlap(const MEE::Vector2& point1, FunctionParameters parameters)
+{
+	b2Vec2 point(point1.x, point1.y);
+	b2Transform transform;
+	transform.SetIdentity();
+	return body->GetFixtureList()[0].GetShape()->TestPoint(transform, point);
+}
+

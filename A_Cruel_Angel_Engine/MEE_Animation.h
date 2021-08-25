@@ -16,9 +16,18 @@ namespace MEE
 		void NextFrame();
 		void PrevFrame();
 		void ResetAnim();
+		bool GetShouldLoop();
+		void SetFrameDuration(int frame, int duration);
+		void SetShouldLoop(bool loop);
+		bool HasEnded();
 	private:
 		std::shared_ptr<SpriteSheet> sprites;
+		std::vector<int> frameDuration;
+		bool shouldLoop = true;
+		bool animationEnded = false;
 		int currentFrame;
+		int currentFrameRepetition;
+		friend class AnimationPlayer;
 	};
 
 	enum class MEE_EXPORT AnimationDirection
@@ -30,13 +39,15 @@ namespace MEE
 	{
 	public:
 		AnimationPlayer(Drawable& drawable);
+		Animation& GetCurrentAnimation();
+		Animation& GetAnimation(const std::string& anim);
 		void PlayAnimation(const std::string&);
 		void SetDefaultAnimation(const std::string&);
 		void ResetCurrentAnim();
 		void ResetPlayer();
 		void Pause();
 		void Resume();
-		void SetAnimationFrameDuaration(int);
+		void SetAnimationFrameDuration(int duration);
 		void SetFramesPerSecond(int frames);
 		virtual void Update() override;
 		void UpdateAnimation(AnimationDirection direction = AnimationDirection::Forward);

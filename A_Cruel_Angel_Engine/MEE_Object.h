@@ -28,6 +28,8 @@ namespace MEE
 
 		Transform& GetTransform();
 
+		Scene& GetScene();
+
 		virtual ~Object();
 
 	protected:

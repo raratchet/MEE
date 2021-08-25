@@ -11,8 +11,8 @@
 	inline std::function<void()> MEE_InitGL;
 	inline std::function<void(float x1, float y1, float x2, float y2)> MEE_RenderLine;
 	inline std::function<void(float x, float y)> MEE_RenderPoint;
-	inline std::function<void(float* vectices, int vertexCount)> MEE_RenderPolygon;
-	inline std::function<void(float* vectices, int vertexCount)> MEE_RenderSolidPolygon;
+	inline std::function<void(std::vector<float> vertices)> MEE_RenderPolygon;
+	inline std::function<void(std::vector<float> vertices)> MEE_RenderSolidPolygon;
 	inline std::function<void(float x, float y, float radius)> MEE_RenderCircle;
 	inline std::function<void(float x, float y, float radius)> MEE_RenderSolidCircle;
 	inline std::function<void(const MEE_Texture2D, float x, float y, float scale_x, float scale_y, float angle,
@@ -156,7 +156,7 @@
 		if (pl_manager)
 		{
 			MEE_RenderPolygon = pl_manager->GetPluginFunction
-				<void,float*,int>(plugin_id, func_name);
+				<void, std::vector<float>>(plugin_id, func_name);
 		}
 	}
 
@@ -167,7 +167,7 @@
 		if (pl_manager)
 		{
 			MEE_RenderSolidPolygon = pl_manager->GetPluginFunction
-				<void, float*, int>(plugin_id, func_name);
+				<void, std::vector<float>>(plugin_id, func_name);
 		}
 	}
 

@@ -8,6 +8,7 @@
 
 namespace MEE
 {
+	class Camera;
 
 	class MEE_EXPORT Sprite
 	{
@@ -40,8 +41,8 @@ namespace MEE
 		 */
 		Sprite(const std::string& resource_name);
 
-		void Draw(const Vector2& pos, const Vector2& scale, const float& rot);
-		void Draw(const Vector2& pos, const Vector2& scale, const float& rot, bool h_flip, bool v_flip);
+		void Draw(std::shared_ptr<Camera> renderingCamera, const Vector2& pos, const Vector2& scale, const float& rot);
+		void Draw(std::shared_ptr<Camera> renderingCamera, const Vector2& pos, const Vector2& scale, const float& rot, bool h_flip, bool v_flip);
 
 		int GetSpriteWidth();
 		int GetSpriteHeight();

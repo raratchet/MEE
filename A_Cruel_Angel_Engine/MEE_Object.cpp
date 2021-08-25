@@ -44,7 +44,7 @@ namespace MEE
 				params.Add(type);
 			}
 
-			Collider* collider = (Collider*)MEE_CreateCollider(sceneID, params);
+			Collider* collider = static_cast<Collider*>(MEE_CreateCollider(sceneID, params));
 			collider->SetTransform(transform);
 			component = collider;
 			owner.sceneColliders.push_back(std::shared_ptr<Collider>(collider));
@@ -91,6 +91,11 @@ namespace MEE
 	Object::Object(Scene& master, const std::string& objName) : owner(master), name(objName)
 	{
 		AddComponent<Transform>();
+	}
+
+	Scene& Object::GetScene()
+	{
+		return owner;
 	}
 
 	GameObject::GameObject(Scene& master, const std::string& objName)

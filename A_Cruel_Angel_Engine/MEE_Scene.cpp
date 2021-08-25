@@ -4,6 +4,8 @@
 #include "MEE_Camera.h" 
 #include "MEE_Physics.h"
 #include "MEE_WindowHandler.h"
+#include "MEE_Graphics.h"
+#include "MEE_Global.h"
 
 namespace MEE
 {
@@ -67,12 +69,22 @@ namespace MEE
          return id;
      }
 
+     Camera& Scene::GetMainCamera()
+     {
+         return *sceneCameras.front().get();
+     }
+
      void Scene::CreateMainSceneCamera()
      {
          int w, h;
          WindowHandler::GetWindowSize(&w,&h);
 
          CreateCamera(Vector2(),w,h);
+     }
+
+     void Scene::SetCurrenCamera(std::weak_ptr<Camera> camera)
+     {
+         MEE_GLOBAL::application->GetRenderManager().lock()->SetCurrentCamera(camera);
      }
 
      void Scene::Update()
@@ -114,14 +126,16 @@ namespace MEE
      {
          for (auto& camera : sceneCameras)
          {
+
              if (!camera->GetActive())
                  continue;
 
-             camera->MakeCurrent();
+             SetCurrenCamera(camera);
+             MEE_RenderDebugGrid(); //temp
 
              for (auto& drawable : drawObjects)
              {
-                 drawable->Draw();
+                 drawable->Draw(camera);
              }
          }
      }

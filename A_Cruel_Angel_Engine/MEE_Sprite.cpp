@@ -1,6 +1,6 @@
 #include "MEE_Sprite.h"
 #include "MEE_Graphics.h"
-
+#include "MEE_Camera.h"
 #include "MEE_Global.h" // No me gusta esto
 
 namespace MEE
@@ -12,7 +12,7 @@ namespace MEE
 		baseImage(image), width(w), height(h), baseImage_startCoord(Vector2(x, y)) {}
 
 	Sprite::Sprite(const std::string& resource_name, int x, int y, int w, int h): 
-		width(w), height(h), baseImage_startCoord(Vector2(x, y))
+		width(w - x), height(h - y), baseImage_startCoord(Vector2(x, y))
 	{
 		auto RM = MEE_GLOBAL::application->GetResourceManager().lock();
 
@@ -32,40 +32,22 @@ namespace MEE
 		height = bImage->getHeight();
 	}
 
-	void Sprite::Draw(const Vector2& position, const Vector2& scale, const float& rot)
+	void Sprite::Draw(std::shared_ptr<Camera> renderingCamera, const Vector2& position, const Vector2& scale, const float& rot)
 	{
-		if (auto image = baseImage.lock())
-		{
-
-			MEE_Texture2D texture = (MEE_Texture2D)(&*image);
-			float ppu = MEE_GetPixelsPerUnit();
-
-			float positionX_inPixels = (position.x * ppu) - ((width * scale.x) / 2);
-			float positionY_inPixels = (position.y * ppu) - ((height * scale.y) / 2);
-
-			MEE_RenderTexture2D(texture,positionX_inPixels,positionY_inPixels, 
-								scale.x,scale.y,rot,
-								baseImage_startCoord.x,baseImage_startCoord.y,width,height,false,false);
-#ifdef _DEBUG
-			MEE_SetRenderColor(0, 255, 0, 255);
-			const float radius = 1.0F;
-			MEE_RenderCircle((position.x * ppu), (position.y * ppu), radius);	
-			MEE_SetRenderColor(53, 40, 230, 255);
-#endif // _DEBUG
-
-		}
+		Draw(renderingCamera, position, scale, rot, false, false);
 	}
 
-	void Sprite::Draw(const Vector2& position, const Vector2& scale, const float& rot, bool h_flip, bool v_flip)
+	void Sprite::Draw(std::shared_ptr<Camera> renderingCamera, const Vector2& position, const Vector2& scale, const float& rot, bool h_flip, bool v_flip)
 	{
 		if (auto image = baseImage.lock())
 		{
 
 			MEE_Texture2D texture = (MEE_Texture2D)(&*image);
+			Vector2 cameraPos = renderingCamera->GetPosition();
 			float ppu = MEE_GetPixelsPerUnit();
 
-			float positionX_inPixels = (position.x * ppu) - ((width * scale.x) / 2);
-			float positionY_inPixels = (position.y * ppu) - ((height * scale.y) / 2);
+			float positionX_inPixels = ((position.x - cameraPos.x) * ppu) - ((width * scale.x) / 2);
+			float positionY_inPixels = ((position.y - cameraPos.y) * ppu) - ((height * scale.y) / 2);
 
 			MEE_RenderTexture2D(texture, positionX_inPixels, positionY_inPixels,
 				scale.x, scale.y, rot,
@@ -73,7 +55,7 @@ namespace MEE
 #ifdef _DEBUG
 			MEE_SetRenderColor(0, 255, 0, 255);
 			const float radius = 1.0F;
-			MEE_RenderCircle((position.x * ppu), (position.y * ppu), radius);
+			MEE_RenderCircle((position.x - cameraPos.x) * ppu, (position.y - cameraPos.y)* ppu, radius);
 			MEE_SetRenderColor(53, 40, 230, 255);
 #endif // _DEBUG
 

@@ -1,7 +1,7 @@
 #include "MEE_Components.h"
 #include "MEE_Object.h"
 #include "MEE_Physics.h"
-
+#include "MEE_Functional.h"
 
 namespace MEE
 {
@@ -170,24 +170,33 @@ namespace MEE
 		return trans->WasModified();
 	}
 
-	void Collider::SetTriggerStartCallBack(std::function<void(Collider& other)> callback)
+	void Collider::SetTriggerStartCallBack(std::function<void(Collider& other, FunctionParameters params)> callback)
 	{
 		TriggerStart_CallBack = callback;
 	}
 
-	void Collider::SetTriggerEndCallBack(std::function<void(Collider& other)> callback)
+	void Collider::SetTriggerEndCallBack(std::function<void(Collider& other, FunctionParameters params)> callback)
 	{
 		TriggerEnd_CallBack = callback;
 	}
 
-	void Collider::SetCollisionStartCallBack(std::function<void(Collider& other)> callback)
+	void Collider::SetCollisionStartCallBack(std::function<void(Collider& other, FunctionParameters params)> callback)
 	{
 		CollisionStart_CallBack = callback;
 	}
 
-	void Collider::SetCollisionResolveCallBack(std::function<void(Collider& other)> callback)
+	void Collider::SetCollisionResolveCallBack(std::function<void(Collider& other, FunctionParameters params)> callback)
 	{
 		CollisionResolve_CallBack = callback;
+	}
+
+	void Collider::Raycast(const Vector2& point1, const Vector2& point2, FunctionParameters parameters)
+	{
+	}
+
+	bool Collider::PointOverlap(const Vector2& point1, FunctionParameters parameters)
+	{
+		return false;
 	}
 
 }

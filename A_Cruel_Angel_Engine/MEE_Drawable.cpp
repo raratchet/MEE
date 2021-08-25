@@ -1,15 +1,16 @@
 #include "MEE_Drawable.h"
+#include "MEE_Camera.h"
 
 namespace MEE
 {
-	void Drawable::Draw() 
+	void Drawable::Draw(std::shared_ptr<Camera> renderingCamera)
 	{ 
 		if (auto sprite = GetSprite().lock())
 		{
 			auto position = draw_transform.GetPosition();
 			auto scale = draw_transform.GetScale();
 			auto rot = draw_transform.GetRotation();
-			sprite->Draw(position,scale,rot,is_horizontal_flipped,is_vertical_flipped);
+			sprite->Draw(renderingCamera,position,scale,rot,is_horizontal_flipped,is_vertical_flipped);
 		}
 	}
 

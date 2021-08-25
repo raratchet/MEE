@@ -1,5 +1,5 @@
 #include "Basic_Renderer.h"
-
+#include <experimental/coroutine>
 
 namespace Basic_Renderer
 {
@@ -79,19 +79,26 @@ namespace Basic_Renderer
 	void RenderDebugGrid()
 	{
 		float ppu = MEE_GetPixelsPerUnit();
-		unsigned int w, h;
-		MEE_GetWindowSize(&w, &h);
+		SDL_Rect viewport;
+		SDL_RenderGetViewport(engineRenderer, &viewport);
+
+		int x,y,w,h;
+
+		x = viewport.x;
+		y = viewport.y;
+		w = viewport.w;
+		h = viewport.h;
 
 		SetRenderColor(200, 200, 0, 255);
 
-		for (int i = 0; i * ppu < h; i++)
+		for (int i = 0; i * ppu < h + y; i++)
 		{
-			RenderLine(0, ppu * i, w, ppu * i);
+			RenderLine(x, ppu * i + y, w + x, ppu * i + y);
 		}
 
-		for (int i = 0; i * ppu < w; i++)
+		for (int i = 0; i * ppu < w + x; i++)
 		{
-			RenderLine(ppu * i, 0, ppu * i, h);
+			RenderLine(ppu * i + x, y, ppu * i + x, h + y);
 		}
 
 		MEE_SetRenderColor(53, 40, 230, 255);
@@ -114,11 +121,11 @@ namespace Basic_Renderer
 	{
 		SDL_RenderDrawPointF(engineRenderer, x, y);
 	}
-	void RenderPolygon(float* vertices, int vertexCount)
+	void RenderPolygon(std::vector<float> vertices)
 	{
-		for (int i = 0; i < vertexCount * 2; i += 2)
+		for (int i = 0; i < vertices.size(); i += 2)
 		{
-			if ((i + 4) > (vertexCount * 2))
+			if ((i + 4) > (vertices.size()))
 			{
 				//std::cout << "Linea de: " << " x1: " << vertices[i]<< " y1: " << vertices[i + 1] <<" x2: " << vertices[0]<< " y2: " << vertices[1] << "\n";
 				RenderLine(vertices[i], vertices[i + 1], vertices[0], vertices[1]);

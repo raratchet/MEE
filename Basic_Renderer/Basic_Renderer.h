@@ -24,8 +24,8 @@ namespace Basic_Renderer
 		PLUGIN_EXPORT void SetRenderViewport(int,int,int,int);
 		PLUGIN_EXPORT void RenderLine(float,float,float,float);
 		PLUGIN_EXPORT void RenderPoint(float,float);
-		PLUGIN_EXPORT void RenderPolygon(float*,int);
-		PLUGIN_EXPORT void RenderSolidPolygon(float*,int);
+		PLUGIN_EXPORT void RenderPolygon(std::vector<float> vertices);
+		PLUGIN_EXPORT void RenderSolidPolygon(std::vector<float> vertices);
 		PLUGIN_EXPORT void RenderCircle(float,float,float);
 		PLUGIN_EXPORT void RenderSolidCircle(float, float, float);
 		PLUGIN_EXPORT void RenderDebugGrid();

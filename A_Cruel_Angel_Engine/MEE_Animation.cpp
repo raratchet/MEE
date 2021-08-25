@@ -6,7 +6,14 @@ namespace MEE
 	Animation::Animation(const SpriteSheet& ss) 
 	{
 		sprites = std::make_shared<SpriteSheet>(ss);
+
+		for (int i = 0; i < sprites->GetNumberOfFrames(); i++)
+		{
+			frameDuration.push_back(1);
+		}
+
 		currentFrame = 0;
+		currentFrameRepetition = 0;
 	}
 
 	std::weak_ptr<Sprite> Animation::GetFrame()
@@ -17,9 +24,24 @@ namespace MEE
 	void Animation::NextFrame()
 	{
 		if (currentFrame < sprites->GetNumberOfFrames() - 1)
-			currentFrame++;
+		{
+			currentFrameRepetition++;
+			if(currentFrameRepetition >= frameDuration[currentFrame])
+				currentFrame++;
+		}
 		else
-			currentFrame = 0;
+		{
+			if (shouldLoop)
+			{
+				currentFrame = 0;
+				currentFrameRepetition = 0;
+				animationEnded = false;
+			}
+			else
+			{
+				animationEnded = true;
+			}
+		}
 	}
 
 	void Animation::PrevFrame()
@@ -27,12 +49,37 @@ namespace MEE
 		if (currentFrame > 0)
 			currentFrame --;
 		else
+		{
 			currentFrame = sprites->GetNumberOfFrames();
+			currentFrameRepetition = 0;
+		}
 	}
 
 	void Animation::ResetAnim()
 	{
 		currentFrame = 0;
+		currentFrameRepetition = 0;
+		animationEnded = false;
+	}
+
+	bool Animation::GetShouldLoop()
+	{
+		return shouldLoop;
+	}
+
+	void Animation::SetFrameDuration(int frame, int duration)
+	{
+		frameDuration[frame] = duration;
+	}
+
+	void Animation::SetShouldLoop(bool loop)
+	{
+		shouldLoop = loop;
+	}
+
+	bool Animation::HasEnded()
+	{
+		return animationEnded;
 	}
 
 
@@ -40,10 +87,21 @@ namespace MEE
 	{
 	}
 
+	Animation& AnimationPlayer::GetCurrentAnimation()
+	{
+		return *animations[currentAnimation].get();
+	}
+
+	Animation& AnimationPlayer::GetAnimation(const std::string& anim)
+	{
+		return *animations[anim].get();
+	}
+
 	void AnimationPlayer::PlayAnimation(const std::string& anim)
 	{
 		if (currentAnimation != anim)
 		{
+			animations[currentAnimation]->animationEnded = true;
 			currentAnimation = anim;
 			ResetCurrentAnim();
 			drawObject.SetSprite(animations[currentAnimation]->GetFrame());
@@ -77,7 +135,7 @@ namespace MEE
 		isPaused = false;
 	}
 
-	void AnimationPlayer::SetAnimationFrameDuaration(int val)
+	void AnimationPlayer::SetAnimationFrameDuration(int val)
 	{
 		frameDuration = val;
 	}

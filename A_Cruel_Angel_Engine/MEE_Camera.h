@@ -6,13 +6,14 @@ namespace MEE
 {
 	class Scene;
 
-	class Camera
+	class MEE_EXPORT Camera
 	{
 	public:
 		void SetPosition(const Vector2& pos);
 		void SetActive(bool active);
 		bool GetActive();
 		void MakeCurrent();
+		Vector2 GetPosition();
 		~Camera() = default;
 	private:
 		Camera();

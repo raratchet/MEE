@@ -47,9 +47,9 @@ namespace MEE
 		}
 
 		float GetVectorSize(Vector2 vector) {
-			float x = vector.x;
-			float y = vector.y;
-			return (float)sqrt((x * x) + (y * y));
+			float nx = vector.x;
+			float ny = vector.y;
+			return (float)sqrt((nx * nx) + (ny * ny));
 		}
 
 		float operator*(Vector2 v2)

@@ -178,6 +178,7 @@
     <ClCompile Include="MEE_Drawable.cpp" />
     <ClCompile Include="MEE_Functional.cpp" />
     <ClCompile Include="MEE_GLFWHandler.cpp" />
+    <ClCompile Include="MEE_Global.cpp" />
     <ClCompile Include="MEE_Graphics.cpp" />
     <ClCompile Include="MEE_InputManager.cpp" />
     <ClCompile Include="MEE_Inputs.cpp" />
@@ -201,6 +202,7 @@
     <ClCompile Include="MEE_Scene.cpp" />
     <ClCompile Include="MEE_Sprite.cpp" />
     <ClCompile Include="MEE_SceneManager.cpp" />
+    <ClCompile Include="MEE_Rendering.cpp" />
     <ClCompile Include="MEG_Game.cpp" />
     <ClCompile Include="MEG_Input.cpp" />
   </ItemGroup>
@@ -234,6 +236,7 @@
     <ClInclude Include="MEE_Texture.h" />
     <ClInclude Include="MEE_Scene.h" />
     <ClInclude Include="MEE_SceneManager.h" />
+    <ClInclude Include="MEE_Rendering.h" />
     <ClInclude Include="MEG_Aliases.h" />
     <ClInclude Include="MEG_Exports.h" />
     <ClInclude Include="MEG_Game.h" />
