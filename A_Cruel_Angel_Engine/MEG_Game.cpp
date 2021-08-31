@@ -115,6 +115,13 @@ double Game::GetDeltaTime()
 	return tm->GetDeltaTime();
 }
 
+void Game::InitResumableFunction(MEE::ResumableFunction* function)
+{
+	auto coManager = mainApp->GetCoroutines().lock();
+
+	coManager->CallResumableFunction(function);
+}
+
 
 bool Game::Init()
 {
@@ -152,3 +159,5 @@ std::string Game::GetFileSuffix(const std::string& fileName)
 
 	return fileSuffix;
 }
+
+

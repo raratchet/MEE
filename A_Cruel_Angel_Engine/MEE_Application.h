@@ -10,6 +10,7 @@
 #include "MEE_InputManager.h"
 #include "MEE_Time.h"
 #include "MEE_Rendering.h"
+#include "MEE_CoroutineManager.h"
 
 namespace MEE
 {
@@ -32,6 +33,7 @@ namespace MEE
 		std::weak_ptr<InputManager> GetInputManager();
 		std::weak_ptr<TimeManager> GetTimeManager();
 		std::weak_ptr<RenderingManager> GetRenderManager();
+		std::weak_ptr<CoroutineManager> GetCoroutines();
 	private:
 		bool exit = false;
 		std::shared_ptr<SceneManager> sceneManager;
@@ -41,6 +43,7 @@ namespace MEE
 		std::shared_ptr<InputManager> inputManager;
 		std::shared_ptr<TimeManager> timeManager;
 		std::shared_ptr<RenderingManager> renderManager;
+		std::shared_ptr<CoroutineManager> coroutinesManager;
 	};
 }
 

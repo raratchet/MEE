@@ -4,6 +4,8 @@
 #include "MEG_Exports.h"
 #include "MEG_Aliases.h"
 
+#include "MEE_Couroutine.h" //Move to other place
+
 class MEG_EXPORT Game
 {
 public:
@@ -30,8 +32,21 @@ public:
 
 	static double GetDeltaTime();
 
-	//Input and Plugin will be in independent files
 
+#define WaitForSeconds(x) MEE::WaitForSeconds* wait = new MEE::WaitForSeconds(x);\
+						  Game::SetCurrentResumableFunctionCondition(wait);\
+						  co_await std::experimental::suspend_always();
+
+#define WaitForFrames(x) MEE::WaitForFrames* wait = new MEE::WaitForFrames(x);\
+						  Game::SetCurrentResumableFunctionCondition(wait);\
+						  co_await std::experimental::suspend_always();
+
+
+	static void InitResumableFunction(MEE::ResumableFunction* function);
+
+	//Input and Plugin will be in independent files
+	template <class T = MEE::WaitCondition>
+	static void SetCurrentResumableFunctionCondition(T* waitCondition);
 private:
 	std::string name;
 	
@@ -39,7 +54,17 @@ private:
 	static MEE::Application* GetMainApp();
 	static std::string GetFileSuffix(const std::string& fileName);
 
+
+
 	friend class Input;
 };
+
+template<class T>
+void Game::SetCurrentResumableFunctionCondition(T* waitCondition)
+{
+	auto coManager = GetMainApp()->GetCoroutines().lock();
+
+	coManager->SetCurrentResumableWaitCondition(waitCondition); // Check if this is a memory leak
+}
 
 

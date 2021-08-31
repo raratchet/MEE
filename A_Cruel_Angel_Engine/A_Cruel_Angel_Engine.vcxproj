@@ -133,6 +133,7 @@
       <AdditionalIncludeDirectories>C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\SDL\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\yaml-cpp\include;C:\Work\Dev_Libraries\glew-2.1.0\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\GLM\glm;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>MEE_PCH.H</PrecompiledHeaderFile>
+      <AdditionalOptions>/await %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,6 +166,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="MEE_Animation.cpp" />
+    <ClCompile Include="MEE_CoroutineManager.cpp" />
+    <ClCompile Include="MEE_Couroutine.cpp" />
     <ClCompile Include="MEE_FileSystem.cpp" />
     <ClCompile Include="MEE_Application.cpp" />
     <ClCompile Include="main.cpp">
@@ -210,6 +213,8 @@
     <ClInclude Include="MEE_Animation.h" />
     <ClInclude Include="MEE_Camera.h" />
     <ClInclude Include="MEE_Components.h" />
+    <ClInclude Include="MEE_CoroutineManager.h" />
+    <ClInclude Include="MEE_Couroutine.h" />
     <ClInclude Include="MEE_Drawable.h" />
     <ClInclude Include="MEE_Exports.h" />
     <ClInclude Include="MEE_FileSystem.h" />

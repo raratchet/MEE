@@ -52,6 +52,7 @@ namespace MEE
 		inputManager = std::make_shared<InputManager>(InputManager());
 		timeManager = std::make_shared<TimeManager>(TimeManager());
 		renderManager = std::make_shared<RenderingManager>(RenderingManager());
+		coroutinesManager = std::make_shared<CoroutineManager>(CoroutineManager());
 		return success;
 	}
 
@@ -78,6 +79,7 @@ namespace MEE
 		//Do update
 		auto scene = sceneManager->GetCurrentScene();
 		scene->Update();
+		coroutinesManager->Update();
 		//
 		pluginManager->PostUpdate();
 	}
@@ -130,6 +132,11 @@ namespace MEE
 	std::weak_ptr<RenderingManager> Application::GetRenderManager()
 	{
 		return renderManager;
+	}
+
+	std::weak_ptr<CoroutineManager> Application::GetCoroutines()
+	{
+		return coroutinesManager;
 	}
 
 	void Application::Stop()
