@@ -4,7 +4,7 @@
 
 namespace MEE
 {
-	Component& Object::Internal_AddComponent(Component* component, FunctionParameters& params, const std::string& type )
+	Component& Object::Internal_AddComponent(Component* component, FunctionParameters& params, const std::string& type ) //Debo dividir esta funcion
 	{
 
 		if (type == "Collider")
@@ -98,11 +98,27 @@ namespace MEE
 		return owner;
 	}
 
+	void Object::SetEnabled(bool value)
+	{
+		enabled = value;
+	}
+
+	bool Object::GetEnabled()
+	{
+		return enabled;
+	}
+
 	GameObject::GameObject(Scene& master, const std::string& objName)
 		: Object(master, objName), Drawable(GetTransform()) {}
 
 	GameObject::GameObject(Scene& master, const std::string& objName, Sprite& sprite)
 		: Object(master, objName), Drawable(sprite, GetTransform()) {}
+
+	void GameObject::SetEnabled(bool value)
+	{
+		enabled = value;
+		Drawable::SetVisible(value);
+	}
 
 	WorldObject::WorldObject(Scene& master, const std::string& objName) : Object(master, objName) {}
 }

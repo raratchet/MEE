@@ -30,6 +30,10 @@ namespace MEE
 
 		Scene& GetScene();
 
+		virtual void SetEnabled(bool value);
+
+		bool GetEnabled();
+
 		virtual ~Object();
 
 	protected:
@@ -38,6 +42,8 @@ namespace MEE
 		std::string name;
 		std::vector<std::shared_ptr<Component>> components;
 		std::vector<std::shared_ptr<Updatable>> updatables;
+
+		bool enabled = true;
 
 		Component& Internal_AddComponent(Component* component, FunctionParameters& params, const std::string& type = "Default");
 		friend class Scene;
@@ -52,6 +58,7 @@ namespace MEE
 	protected:
 		GameObject(Scene& master, const std::string& objName);
 		GameObject(Scene& master, const std::string& objName, Sprite& sprite);
+		virtual void SetEnabled(bool value) override;
 		friend class Scene;
 	};
 

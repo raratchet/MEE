@@ -92,10 +92,13 @@ namespace MEE
          //Update transforms in module
          for (auto& collider : sceneColliders)
          {
-             auto transform = collider->transform.lock();
-             auto position = transform->GetPosition();
-             MEE_Collider asMEE_Collider = (MEE_Collider)(collider.get());
-             MEE_SetColliderTransform(asMEE_Collider, position.x, position.y, transform->GetRotation());
+             if (collider->GetParent().GetEnabled())
+             {
+                 auto transform = collider->transform.lock();
+                 auto position = transform->GetPosition();
+                 MEE_Collider asMEE_Collider = (MEE_Collider)(collider.get());
+                 MEE_SetColliderTransform(asMEE_Collider, position.x, position.y, transform->GetRotation());
+             }
          }
 
          //Run physics
@@ -104,22 +107,26 @@ namespace MEE
          //Update transforms in engine
          for (auto& collider : sceneColliders)
          {
-             auto transform = collider->transform.lock();
-             Vector2 position;
-             float angle;
+             if (collider->GetParent().GetEnabled())
+             {
+                 auto transform = collider->transform.lock();
+                 Vector2 position;
+                 float angle;
 
-             MEE_Collider asMEE_Collider = (MEE_Collider)(collider.get());
-             MEE_GetColliderTransform(asMEE_Collider, &position.x, &position.y,&angle);
+                 MEE_Collider asMEE_Collider = (MEE_Collider)(collider.get());
+                 MEE_GetColliderTransform(asMEE_Collider, &position.x, &position.y, &angle);
 
-             transform->SetPosition(position);
-             transform->SetRotation(angle);
-             transform->modified = false;
+                 transform->SetPosition(position);
+                 transform->SetRotation(angle);
+                 transform->modified = false;
+             }
          }
 
          //Update scene objects
          for (auto& obj : sceneObjects)
              for (auto& beh : obj->updatables)
-                 beh->Update();
+                 if(obj->GetEnabled())
+                    beh->Update();
      }
 
      void Scene::Draw()
@@ -135,7 +142,8 @@ namespace MEE
 
              for (auto& drawable : drawObjects)
              {
-                 drawable->Draw(camera);
+                 if(drawable->GetVisible())
+                    drawable->Draw(camera);
              }
          }
      }

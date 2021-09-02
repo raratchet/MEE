@@ -17,23 +17,7 @@ public:
 
 	virtual void LoadAnimations() = 0;
 
-	virtual void Start() override
-	{
-		Object& player = GetParent();
-
-
-		FunctionParameters plC_Params = FunctionParameters();
-		plC_Params.Add("Type", ColliderType::Dynamic);
-		plC_Params.Add("Size", Vector2(0.8f, 1.3f));
-
-		player.GetTransform().SetScale(3, 3);
-		Collider& col = player.AddComponent<Collider>(plC_Params);
-
-		col.SetFriction(5.0f);
-		col.SetTriggerStartCallBack([&](Collider& other, FunctionParameters params) {
-			this->TriggerEnter(other);
-			});
-	}
+	virtual void Start() override;
 
 	void TriggerEnter(Collider& collider)
 	{

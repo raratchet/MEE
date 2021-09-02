@@ -122,6 +122,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Work\A_Cruel_Angel_Engine\MEE\A_Cruel_Angel_Engine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/await %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -151,6 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DummyCharacter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Characters.cpp" />
     <ClCompile Include="Test.cpp" />
@@ -158,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Characters.h" />
+    <ClInclude Include="DummyCharacter.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TestLevel.h" />
   </ItemGroup>

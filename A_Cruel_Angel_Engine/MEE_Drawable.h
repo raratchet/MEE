@@ -14,6 +14,8 @@ namespace MEE
 		std::weak_ptr<Sprite> GetSprite();
 		void SetSprite(std::weak_ptr<Sprite> sprite);
 		void SetSprite(Sprite& sprite);
+		void SetVisible(bool value);
+		bool GetVisible();
 		virtual ~Drawable() = default;
 		void FlipHorizontally();
 		void FlipVertical();
@@ -27,6 +29,7 @@ namespace MEE
 		Transform& draw_transform;
 		bool is_vertical_flipped = false;
 		bool is_horizontal_flipped = false;
+		bool visible = true;
 	};
 }
 

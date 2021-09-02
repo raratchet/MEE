@@ -2,6 +2,26 @@
 #include <iostream>
 #include <cmath>
 
+void BaseCharacter::Start()
+{
+	{
+		Object& player = GetParent();
+
+
+		FunctionParameters plC_Params = FunctionParameters();
+		plC_Params.Add("Type", ColliderType::Dynamic);
+		plC_Params.Add("Size", Vector2(0.8f, 1.3f));
+
+		player.GetTransform().SetScale(3, 3);
+		Collider& col = player.AddComponent<Collider>(plC_Params);
+
+		col.SetFriction(5.0f);
+		col.SetTriggerStartCallBack([&](Collider& other, FunctionParameters params) {
+			this->TriggerEnter(other);
+			});
+	}
+}
+
 void BaseCharacter::Update()
 {
 	Collider& col = GetParent().GetComponent<Collider>();

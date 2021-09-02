@@ -10,7 +10,7 @@ namespace MEE
 			auto position = draw_transform.GetPosition();
 			auto scale = draw_transform.GetScale();
 			auto rot = draw_transform.GetRotation();
-			sprite->Draw(renderingCamera,position,scale,rot,is_horizontal_flipped,is_vertical_flipped);
+			sprite->Draw(renderingCamera, position, scale, rot, is_horizontal_flipped, is_vertical_flipped);
 		}
 	}
 
@@ -27,6 +27,14 @@ namespace MEE
 	void Drawable::SetSprite(Sprite& sprite)
 	{ 
 		m_sprite = std::make_shared<Sprite>(sprite); 
+	}
+	void Drawable::SetVisible(bool value)
+	{
+		visible = value;
+	}
+	bool Drawable::GetVisible()
+	{
+		return visible;
 	}
 	void Drawable::FlipHorizontally()
 	{
