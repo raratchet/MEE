@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{d3c36e51-529d-4ef0-99f8-e988f41dd87c}</ProjectGuid>
+    <RootNamespace>ACruelAngelEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Mod_Ed_Engine</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);GLEW_STATIC;GLEW_STATIC;GLEW_STATIC;MEE_ENGINE</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\SDL\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>MEE_PCH.H</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Work\Dev_Libraries\yaml-cpp\build;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>yaml-cppd.lib;glew32.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions);GLEW_STATIC;GLEW_STATIC;GLEW_STATIC;</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\SDL\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>MEE_PCH.H</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Work\Dev_Libraries\yaml-cpp\build;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>yaml-cppd.lib;glew32.lib;glew32s.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);MEE_ENGINE</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\SDL\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\yaml-cpp\include;C:\Work\Dev_Libraries\glew-2.1.0\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\GLM\glm;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>MEE_PCH.H</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Work\Dev_Libraries\yaml-cpp\build;C:\Work\Dev_Libraries\SDL2-2.0.14\lib\x64;C:\Work\Dev_Libraries\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>yaml-cppd.lib;glew32s.lib;glew32.lib;glu32.lib;opengl32.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions);</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\SDL\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\yaml-cpp\include;C:\Work\Dev_Libraries\glew-2.1.0\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\GLM\glm;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>MEE_PCH.H</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Work\Dev_Libraries\yaml-cpp\build;C:\Work\Dev_Libraries\SDL2-2.0.14\lib\x64;C:\Work\Dev_Libraries\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>yaml-cppd.lib;glew32s.lib;glew32.lib;opengl32.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="MEE_Animation.cpp" />
+    <ClCompile Include="MEE_FileSystem.cpp" />
+    <ClCompile Include="MEE_Application.cpp" />
+    <ClCompile Include="main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MEE_Camera.cpp" />
+    <ClCompile Include="MEE_Components.cpp" />
+    <ClCompile Include="MEE_Drawable.cpp" />
+    <ClCompile Include="MEE_Functional.cpp" />
+    <ClCompile Include="MEE_GLFWHandler.cpp" />
+    <ClCompile Include="MEE_Global.cpp" />
+    <ClCompile Include="MEE_Graphics.cpp" />
+    <ClCompile Include="MEE_InputManager.cpp" />
+    <ClCompile Include="MEE_Inputs.cpp" />
+    <ClCompile Include="MEE_Maths.cpp" />
+    <ClCompile Include="MEE_Object.cpp" />
+    <ClCompile Include="MEE_PCH.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MEE_Physics.cpp" />
+    <ClCompile Include="MEE_Plugin.cpp" />
+    <ClCompile Include="MEE_PluginManager.cpp" />
+    <ClCompile Include="MEE_SDLHandler.cpp" />
+    <ClCompile Include="MEE_Sound.cpp" />
+    <ClCompile Include="MEE_Time.cpp" />
+    <ClCompile Include="MEE_WindowHandler.cpp" />
+    <ClCompile Include="MEE_Resoures.cpp" />
+    <ClCompile Include="MEE_Texture.cpp" />
+    <ClCompile Include="MEE_Scene.cpp" />
+    <ClCompile Include="MEE_Sprite.cpp" />
+    <ClCompile Include="MEE_SceneManager.cpp" />
+    <ClCompile Include="MEE_Rendering.cpp" />
+    <ClCompile Include="MEG_Game.cpp" />
+    <ClCompile Include="MEG_Input.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MEE_Animation.h" />
+    <ClInclude Include="MEE_Camera.h" />
+    <ClInclude Include="MEE_Components.h" />
+    <ClInclude Include="MEE_Drawable.h" />
+    <ClInclude Include="MEE_Exports.h" />
+    <ClInclude Include="MEE_FileSystem.h" />
+    <ClInclude Include="MEE_Functional.h" />
+    <ClInclude Include="MEE_GLFWHandler.h" />
+    <ClInclude Include="MEE_Graphics.h" />
+    <ClInclude Include="MEE_Application.h" />
+    <ClInclude Include="MEE_Global.h" />
+    <ClInclude Include="MEE_InputManager.h" />
+    <ClInclude Include="MEE_Inputs.h" />
+    <ClInclude Include="MEE_Maths.h" />
+    <ClInclude Include="MEE_Object.h" />
+    <ClInclude Include="MEE_PCH.h" />
+    <ClInclude Include="MEE_Physics.h" />
+    <ClInclude Include="MEE_Plugin.h" />
+    <ClInclude Include="MEE_PluginHeader.h" />
+    <ClInclude Include="MEE_PluginManager.h" />
+    <ClInclude Include="MEE_SDLHandler.h" />
+    <ClInclude Include="MEE_Sound.h" />
+    <ClInclude Include="MEE_Sprite.h" />
+    <ClInclude Include="MEE_Time.h" />
+    <ClInclude Include="MEE_WindowHandler.h" />
+    <ClInclude Include="MEE_Resources.h" />
+    <ClInclude Include="MEE_Texture.h" />
+    <ClInclude Include="MEE_Scene.h" />
+    <ClInclude Include="MEE_SceneManager.h" />
+    <ClInclude Include="MEE_Rendering.h" />
+    <ClInclude Include="MEG_Aliases.h" />
+    <ClInclude Include="MEG_Exports.h" />
+    <ClInclude Include="MEG_Game.h" />
+    <ClInclude Include="MEG_Input.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
