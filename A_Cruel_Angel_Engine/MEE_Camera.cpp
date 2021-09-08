@@ -1,8 +1,6 @@
 #include "MEE_Camera.h"
-#include "MEE_Graphics.h"
 #include "MEE_Global.h"
-//#include "Application.h"
-//#include "Window.h"
+#include "MEE_UI.h"
 
 namespace MEE
 {
@@ -14,6 +12,15 @@ namespace MEE
 	Camera::Camera(const Vector2& pos, const int width, const int height) : position(pos), c_width(width), c_heigth(height)
 	{
 
+	}
+
+	void Camera::DrawUIElements()
+	{
+		for (auto ui_ele : uiElements)
+		{
+			auto drawable = ui_ele.second;
+			drawable->Draw();
+		}
 	}
 
 	void Camera::SetPosition(const Vector2& pos)
@@ -35,6 +42,10 @@ namespace MEE
 	{
 		//Necesit una clase viewport
 		//MEE_SetRenderViewport(position.x, position.y, c_width + position.x, c_heigth + position.y);
+	}
+	void Camera::RemoveUIElement(const std::string& name)
+	{
+		uiElements.erase(name);
 	}
 	Vector2 Camera::GetPosition()
 	{

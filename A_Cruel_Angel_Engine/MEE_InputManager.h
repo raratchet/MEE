@@ -12,6 +12,11 @@ namespace MEE
 		bool GetKeyDown(int);
 		bool GetKeyPressed(int);
 		bool GetKeyUp(int);
+
+		bool GetControllerKeyDown(int,int);
+		bool GetControllerKeyPressed(int,int);
+		bool GetControllerKeyUp(int,int);
+
 		Vector2 GetMouse();
 	};
 }

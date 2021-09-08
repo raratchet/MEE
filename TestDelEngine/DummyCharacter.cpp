@@ -4,6 +4,9 @@ void DummyCharacter::Start()
 {
 	LoadAnimations();
 	BaseCharacter::Start();
+	myCollider->SetTriggerStartCallBack([&](Collider& other, FunctionParameters params) {
+		this->DanioRecibido(other);
+		});
 }
 
 void DummyCharacter::Update()
@@ -18,6 +21,6 @@ void DummyCharacter::LoadAnimations()
 	Sprite sprite = Sprite("Dummy");
 	obj.SetSprite(sprite);
 
-	obj.GetTransform().SetPosition(Vector2(18,4));
+	obj.GetTransformComponent().SetPosition(Vector2(25,0));
 
 }

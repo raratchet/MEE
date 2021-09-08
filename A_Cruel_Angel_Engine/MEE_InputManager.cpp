@@ -15,6 +15,18 @@ namespace MEE
 	{
 		return MEE_keyboard_KeyUp(key);
 	}
+	bool InputManager::GetControllerKeyDown(int id, int key)
+	{
+		return MEE_gamepad_KeyPressedThisFrame(id,key);
+	}
+	bool InputManager::GetControllerKeyPressed(int id, int key)
+	{
+		return MEE_gamepad_KeyIsPressed(id,key);
+	}
+	bool InputManager::GetControllerKeyUp(int id, int key)
+	{
+		return MEE_gamepad_KeyUp(id,key);
+	}
 	Vector2 InputManager::GetMouse()
 	{
 		static Vector2 mouse;

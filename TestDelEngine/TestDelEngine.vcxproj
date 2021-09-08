@@ -24,6 +24,7 @@
     <ProjectGuid>{e1869337-a83b-4b6e-aedf-35ca376575f7}</ProjectGuid>
     <RootNamespace>TestDelEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>PixelFights</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

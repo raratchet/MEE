@@ -10,7 +10,7 @@ namespace MEE
 		if (type == "Collider")
 		{
 			auto sceneID = owner.GetID();
-			auto transform = std::reinterpret_pointer_cast<Transform>(components[0]);
+			auto transform = std::reinterpret_pointer_cast<TransformComponent>(components[0]);
 
 			if (!params.Has("Position"))
 			{
@@ -76,9 +76,9 @@ namespace MEE
 		return *component;
 	}
 
-	Transform& Object::GetTransform()
+	TransformComponent& Object::GetTransformComponent()
 	{ 
-		Transform* pointer = dynamic_cast<Transform*>(components[0].get());
+		TransformComponent* pointer = dynamic_cast<TransformComponent*>(components[0].get());
 		return *pointer; 
 	}
 
@@ -90,7 +90,7 @@ namespace MEE
 
 	Object::Object(Scene& master, const std::string& objName) : owner(master), name(objName)
 	{
-		AddComponent<Transform>();
+		AddComponent<TransformComponent>();
 	}
 
 	Scene& Object::GetScene()
@@ -103,16 +103,36 @@ namespace MEE
 		enabled = value;
 	}
 
+	std::string Object::GetName()
+	{
+		return name;
+	}
+
+	std::string Object::GetTag()
+	{
+		return tag;
+	}
+
+	void Object::SetName(const std::string& value)
+	{
+		name = value;
+	}
+
+	void Object::SetTag(const std::string& value)
+	{
+		tag = value;
+	}
+
 	bool Object::GetEnabled()
 	{
 		return enabled;
 	}
 
 	GameObject::GameObject(Scene& master, const std::string& objName)
-		: Object(master, objName), Drawable(GetTransform()) {}
+		: Object(master, objName), Drawable(GetTransformComponent()) {}
 
 	GameObject::GameObject(Scene& master, const std::string& objName, Sprite& sprite)
-		: Object(master, objName), Drawable(sprite, GetTransform()) {}
+		: Object(master, objName), Drawable(sprite, GetTransformComponent()) {}
 
 	void GameObject::SetEnabled(bool value)
 	{

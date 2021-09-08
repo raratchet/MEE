@@ -26,16 +26,16 @@ namespace MEE
 		Object& GetParent();
 		virtual ~Component() {}
 	private:
-		Object* parent;
+		Object* parent = nullptr;
 		// Must always be called when scene adds a component
 		void ParentToObject(Object* object);
 		friend class Object;
 	};
 
-	class MEE_EXPORT Transform : public Component
+	class MEE_EXPORT TransformComponent : public Component
 	{
 	public:
-		Transform();
+		TransformComponent();
 		void SetPosition(Vector2 position_vector);
 		void SetPosition(float posX, float posY);
 		void SetScale(Vector2 scale_vector);
@@ -44,12 +44,11 @@ namespace MEE
 		void Translate(Vector2 vec);
 		Vector2 GetPosition();
 		Vector2 GetScale();
+		Transform& GetTransform();
 		float GetRotation();
 		bool WasModified();
 	private:
-		Vector2 position = Vector2();
-		Vector2 scale = Vector2(1, 1);
-		float rot = 0;
+		Transform transform;
 		bool modified = false;
 		friend class Scene;
 	};
@@ -81,6 +80,8 @@ namespace MEE
 		virtual void SetGravity(float);
 		virtual void SetRotationConstrait(bool);
 		virtual void SetActive(bool);
+		virtual void SetIsTrigger(bool);
+		virtual bool GetIsTrigger();
 		virtual void SetType(ColliderType);
 		virtual void SetFigure(ColliderForm);
 		virtual void ApplyForce(const Vector2& force, const Vector2& point);
@@ -93,13 +94,14 @@ namespace MEE
 		void SetCollisionResolveCallBack(std::function<void(Collider& other, FunctionParameters params)> callback);
 		bool Transform_WasModified();
 	protected:
-		std::weak_ptr<Transform> transform;
-		void SetTransform(std::shared_ptr<Transform> trans);
+		std::weak_ptr<TransformComponent> transform;
+		void SetTransform(std::shared_ptr<TransformComponent> trans);
 		Vector2 velocity;
 		float friction;
 		float gravityScale;
 		bool isRotConstraint;
-		bool active;
+		bool active = true;
+		bool isTrigger = false;
 	    ColliderType type;
 	    ColliderForm form;
 		std::function<void(Collider& other, FunctionParameters params)> TriggerStart_CallBack; //No me gusta tener que usar de esta manera functions

@@ -18,4 +18,5 @@ using AssetID = unsigned int;
 using Collider = MEE::Collider;
 using ColliderType = MEE::ColliderType;
 using ColliderForm = MEE::ColliderForm;
+using GamepadID = unsigned int;
 

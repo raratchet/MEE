@@ -39,3 +39,21 @@ bool Input::Mouse::KeyUp(int key)
 {
 	return false;
 }
+
+bool Input::Controller::KeyWasPressedThisFrame(GamepadID id, int key)
+{
+	auto input = Game::GetMainApp()->GetInputManager().lock();
+	return input->GetControllerKeyDown(id,key);
+}
+
+bool Input::Controller::KeyIsPressed(GamepadID id, int key)
+{
+	auto input = Game::GetMainApp()->GetInputManager().lock();
+	return input->GetControllerKeyPressed(id,key);
+}
+
+bool Input::Controller::KeyUp(GamepadID id, int key)
+{
+	auto input = Game::GetMainApp()->GetInputManager().lock();
+	return input->GetControllerKeyUp(id,key);
+}

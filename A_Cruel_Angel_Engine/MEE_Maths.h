@@ -1,9 +1,10 @@
 #pragma once
 #include <cmath>
+#include "MEE_Exports.h"
 
 namespace MEE
 {
-	struct Vector2
+	struct MEE_EXPORT Vector2
 	{
 
 		float x, y;
@@ -73,5 +74,22 @@ namespace MEE
 			return temp;
 		}
 	};
+
+
+	struct MEE_EXPORT Transform
+	{
+		Transform(): position(Vector2::Zero()), scale(Vector2(1,1)),
+					  rotation(0){};
+
+		Transform(const Vector2& m_pos, const Vector2& m_scale, float m_rot) 
+			: position(m_pos),
+			  scale(m_scale),
+			  rotation(m_rot) {};
+
+		Vector2 position;
+		Vector2 scale;
+		float rotation;
+	};
+
 }
 

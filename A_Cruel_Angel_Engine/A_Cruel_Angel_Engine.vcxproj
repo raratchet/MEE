@@ -196,6 +196,7 @@
     <ClCompile Include="MEE_SDLHandler.cpp" />
     <ClCompile Include="MEE_Sound.cpp" />
     <ClCompile Include="MEE_Time.cpp" />
+    <ClCompile Include="MEE_UI.cpp" />
     <ClCompile Include="MEE_WindowHandler.cpp" />
     <ClCompile Include="MEE_Resoures.cpp" />
     <ClCompile Include="MEE_Texture.cpp" />
@@ -231,6 +232,7 @@
     <ClInclude Include="MEE_Sound.h" />
     <ClInclude Include="MEE_Sprite.h" />
     <ClInclude Include="MEE_Time.h" />
+    <ClInclude Include="MEE_UI.h" />
     <ClInclude Include="MEE_WindowHandler.h" />
     <ClInclude Include="MEE_Resources.h" />
     <ClInclude Include="MEE_Texture.h" />
