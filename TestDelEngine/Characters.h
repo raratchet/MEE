@@ -20,7 +20,9 @@ protected:
 	bool dashing = false;
 	bool dead = false;
 	int controllerID = 0;
-
+	int hp = 3;
+	int deadCounter = 0;
+	int deadCounterCond = 180;
 	FacingDirection f_direction = FacingDirection::Right;
 	Collider* myCollider;
 	WorldObject* weaponHitBox;
@@ -33,6 +35,8 @@ public:
 	void TriggerEnter(Collider& collider);
 
 	void CollisionEnter(Collider& collider);
+
+	void TakeDamge();
 
 	virtual void Update() override;
 

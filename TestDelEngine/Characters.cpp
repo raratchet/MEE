@@ -36,6 +36,8 @@ void BaseCharacter::TriggerEnter(Collider& collider)
 {
 	if (collider.GetParent().GetName() == "Floor")
 		grounded = true;
+	if (collider.GetParent().GetName() == "weaponHitBox")
+		TakeDamge();
 }
 
 void BaseCharacter::CollisionEnter(Collider& collider)
@@ -65,6 +67,15 @@ void BaseCharacter::CollisionEnter(Collider& collider)
 	}
 }
 
+void BaseCharacter::TakeDamge()
+{
+	hp--;
+	if (hp <= 0)
+	{
+		dead = true;
+	}
+}
+
 void BaseCharacter::Update()
 {
 	GameObject& gObj = (GameObject&)GetParent();
@@ -90,8 +101,14 @@ void BaseCharacter::Update()
 	}
 	else
 	{
-		gObj.GetTransformComponent().SetPosition(777, 777);
+		if (deadCounter > deadCounterCond)
+		{
+			gObj.GetTransformComponent().SetPosition(777, 777);
+			return;
+		}
+		deadCounter++;
 		col.SetActive(false);
+		player.PlayAnimation("Die");
 	}
 
 }
@@ -212,8 +229,11 @@ Lancer::Lancer()
 	controllerID = 0;
 }
 
+#include <filesystem>
+
 void Lancer::LoadAnimations()
 {
+
 
 	Object& player = GetParent();
 
@@ -221,7 +241,7 @@ void Lancer::LoadAnimations()
 
 	for (int i = 1; i <= 14; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Lancer-Hero/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
+		std::string path = "./Lancer-Hero/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
 		Game::LoadAsset("Lancer" + std::to_string(i), path);
 		Sprite sprite = Sprite("Lancer" + std::to_string(i));
 		idle.push_back(sprite);
@@ -231,7 +251,7 @@ void Lancer::LoadAnimations()
 
 	for (int i = 1; i <= 8; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Lancer-Hero/Original/Hero/run/run0" + std::to_string(i) + ".png";
+		std::string path = "./Lancer-Hero/Original/Hero/run/run0" + std::to_string(i) + ".png";
 		Game::LoadAsset("LancerRun" + std::to_string(i), path);
 		Sprite sprite = Sprite("LancerRun" + std::to_string(i));
 		run.push_back(sprite);
@@ -241,7 +261,7 @@ void Lancer::LoadAnimations()
 
 	for (int i = 1; i <= 6; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Lancer-Hero/Original/Hero/attack/attack0" + std::to_string(i) + ".png";
+		std::string path = "./Lancer-Hero/Original/Hero/attack/attack0" + std::to_string(i) + ".png";
 		Game::LoadAsset("LancerAttack" + std::to_string(i), path);
 		Sprite sprite = Sprite("LancerAttack" + std::to_string(i));
 		attack.push_back(sprite);
@@ -251,7 +271,7 @@ void Lancer::LoadAnimations()
 
 	for (int i = 1; i <= 4; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Lancer-Hero/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
+		std::string path = "./Lancer-Hero/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
 		Game::LoadAsset("LancerJump" + std::to_string(i), path);
 		Sprite sprite = Sprite("LancerJump" + std::to_string(i));
 		jump.push_back(sprite);
@@ -261,10 +281,20 @@ void Lancer::LoadAnimations()
 
 	for (int i = 1; i <= 3; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Lancer-Hero/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
+		std::string path = "./Lancer-Hero/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
 		Game::LoadAsset("LancerDash" + std::to_string(i), path);
 		Sprite sprite = Sprite("LancerDash" + std::to_string(i));
 		dash.push_back(sprite);
+	}
+
+	std::list<Sprite> die;
+
+	for (int i = 1; i <= 9; i++)
+	{
+		std::string path = "./Lancer-Hero/Original/Hero/die/die0" + std::to_string(i) + ".png";
+		Game::LoadAsset("LancerDie" + std::to_string(i), path);
+		Sprite sprite = Sprite("LancerDie" + std::to_string(i));
+		die.push_back(sprite);
 	}
 
 
@@ -273,6 +303,7 @@ void Lancer::LoadAnimations()
 	SpriteSheet attackSS = SpriteSheet(attack);
 	SpriteSheet jumpSS = SpriteSheet(jump);
 	SpriteSheet dashSS = SpriteSheet(dash);
+	SpriteSheet dieSS = SpriteSheet(die);
 
 
 	AnimationPlayer& animp = player.AddComponent<AnimationPlayer>();
@@ -285,6 +316,8 @@ void Lancer::LoadAnimations()
 	jumpAnim.SetShouldLoop(false);
 	Animation dashAnim = Animation(dashSS);
 	dashAnim.SetShouldLoop(false);
+	Animation dieAnim = Animation(dieSS);
+	dieAnim.SetShouldLoop(false);
 
 	animp.SetAnimationFrameDuration(10);
 	animp.AddAnimation("Idle", idleAnim);
@@ -292,6 +325,7 @@ void Lancer::LoadAnimations()
 	animp.AddAnimation("Attack", attackAnim);
 	animp.AddAnimation("Jump", jumpAnim);
 	animp.AddAnimation("Dash", dashAnim);
+	animp.AddAnimation("Die", dieAnim);
 }
 
 void Lancer::Start()
@@ -315,7 +349,7 @@ void Toxic::LoadAnimations()
 
 	for (int i = 1; i <= 4; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/ToxicSword/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
+		std::string path = "./ToxicSword/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
 		Game::LoadAsset("ToxicSword" + std::to_string(i), path);
 		Sprite sprite = Sprite("ToxicSword" + std::to_string(i));
 		idle.push_back(sprite);
@@ -325,7 +359,7 @@ void Toxic::LoadAnimations()
 
 	for (int i = 1; i <= 8; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/ToxicSword/Original/Hero/run/run0" + std::to_string(i) + ".png";
+		std::string path = "./ToxicSword/Original/Hero/run/run0" + std::to_string(i) + ".png";
 		Game::LoadAsset("ToxicSwordRun" + std::to_string(i), path);
 		Sprite sprite = Sprite("ToxicSwordRun" + std::to_string(i));
 		run.push_back(sprite);
@@ -335,7 +369,7 @@ void Toxic::LoadAnimations()
 
 	for (int i = 1; i <= 7; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/ToxicSword/Original/Hero/attack/attack0" + std::to_string(i) + ".png";
+		std::string path = "./ToxicSword/Original/Hero/attack/attack0" + std::to_string(i) + ".png";
 		Game::LoadAsset("ToxicSwordAttack" + std::to_string(i), path);
 		Sprite sprite = Sprite("ToxicSwordAttack" + std::to_string(i));
 		attack.push_back(sprite);
@@ -345,7 +379,7 @@ void Toxic::LoadAnimations()
 
 	for (int i = 1; i <= 4; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/ToxicSword/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
+		std::string path = "./ToxicSword/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
 		Game::LoadAsset("ToxicSwordJump" + std::to_string(i), path);
 		Sprite sprite = Sprite("ToxicSwordJump" + std::to_string(i));
 		jump.push_back(sprite);
@@ -355,10 +389,20 @@ void Toxic::LoadAnimations()
 
 	for (int i = 1; i <= 3; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/ToxicSword/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
+		std::string path = "./ToxicSword/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
 		Game::LoadAsset("ToxicSwordDash" + std::to_string(i), path);
 		Sprite sprite = Sprite("ToxicSwordDash" + std::to_string(i));
 		dash.push_back(sprite);
+	}
+
+	std::list<Sprite> die;
+
+	for (int i = 1; i <= 9; i++)
+	{
+		std::string path = "./ToxicSword/Original/Hero/die/die0" + std::to_string(i) + ".png";
+		Game::LoadAsset("ToxicDie" + std::to_string(i), path);
+		Sprite sprite = Sprite("ToxicDie" + std::to_string(i));
+		die.push_back(sprite);
 	}
 
 
@@ -367,6 +411,7 @@ void Toxic::LoadAnimations()
 	SpriteSheet attackSS = SpriteSheet(attack);
 	SpriteSheet jumpSS = SpriteSheet(jump);
 	SpriteSheet dashSS = SpriteSheet(dash);
+	SpriteSheet dieSS = SpriteSheet(die);
 
 
 	AnimationPlayer& animp = player.AddComponent<AnimationPlayer>();
@@ -378,6 +423,8 @@ void Toxic::LoadAnimations()
 	jumpAnim.SetShouldLoop(false);
 	Animation dashAnim = Animation(dashSS);
 	dashAnim.SetShouldLoop(false);
+	Animation dieAnim = Animation(dieSS);
+	dieAnim.SetShouldLoop(false);
 
 	animp.SetAnimationFrameDuration(10);
 	animp.AddAnimation("Idle", idleAnim);
@@ -385,6 +432,7 @@ void Toxic::LoadAnimations()
 	animp.AddAnimation("Attack", attackAnim);
 	animp.AddAnimation("Jump", jumpAnim);
 	animp.AddAnimation("Dash", dashAnim);
+	animp.AddAnimation("Die", dieAnim);
 }
 
 void Toxic::Start()
@@ -407,7 +455,7 @@ void Samurai::LoadAnimations()
 
 	for (int i = 0; i < 4; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Samurai-Hero/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
+		std::string path = "./Samurai-Hero/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
 		Game::LoadAsset("Samurai" + std::to_string(i), path);
 		Sprite sprite = Sprite("Samurai" + std::to_string(i));
 		idle.push_back(sprite);
@@ -417,7 +465,7 @@ void Samurai::LoadAnimations()
 
 	for (int i = 0; i < 8; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Samurai-Hero/Original/Hero/run/run0" + std::to_string(i) + ".png";
+		std::string path = "./Samurai-Hero/Original/Hero/run/run0" + std::to_string(i) + ".png";
 		Game::LoadAsset("SamuraiRun" + std::to_string(i), path);
 		Sprite sprite = Sprite("SamuraiRun" + std::to_string(i));
 		run.push_back(sprite);
@@ -427,7 +475,7 @@ void Samurai::LoadAnimations()
 
 	for (int i = 0; i < 8; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Samurai-Hero/Original/Hero/attack/attack0" + std::to_string(i) + ".png";
+		std::string path = "./Samurai-Hero/Original/Hero/attack/attack0" + std::to_string(i) + ".png";
 		Game::LoadAsset("SamuraiAttack" + std::to_string(i), path);
 		Sprite sprite = Sprite("SamuraiAttack" + std::to_string(i));
 		attack.push_back(sprite);
@@ -437,7 +485,7 @@ void Samurai::LoadAnimations()
 
 	for (int i = 0; i < 4; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Samurai-Hero/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
+		std::string path = "./Samurai-Hero/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
 		Game::LoadAsset("SamuraiJump" + std::to_string(i), path);
 		Sprite sprite = Sprite("SamuraiJump" + std::to_string(i));
 		jump.push_back(sprite);
@@ -447,10 +495,20 @@ void Samurai::LoadAnimations()
 
 	for (int i = 0; i <= 3; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Samurai-Hero/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
+		std::string path = "./Samurai-Hero/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
 		Game::LoadAsset("SamuraiDash" + std::to_string(i), path);
 		Sprite sprite = Sprite("SamuraiDash" + std::to_string(i));
 		dash.push_back(sprite);
+	}
+
+	std::list<Sprite> die;
+
+	for (int i = 1; i <= 9; i++)
+	{
+		std::string path = "./Samurai-Hero/Original/Hero/die/die0" + std::to_string(i) + ".png";
+		Game::LoadAsset("SamuraiDie" + std::to_string(i), path);
+		Sprite sprite = Sprite("SamuraiDie" + std::to_string(i));
+		die.push_back(sprite);
 	}
 
 
@@ -459,6 +517,7 @@ void Samurai::LoadAnimations()
 	SpriteSheet attackSS = SpriteSheet(attack);
 	SpriteSheet jumpSS = SpriteSheet(jump);
 	SpriteSheet dashSS = SpriteSheet(dash);
+	SpriteSheet dieSS = SpriteSheet(die);
 
 
 	AnimationPlayer& animp = player.AddComponent<AnimationPlayer>();
@@ -470,6 +529,8 @@ void Samurai::LoadAnimations()
 	jumpAnim.SetShouldLoop(false);
 	Animation dashAnim = Animation(dashSS);
 	dashAnim.SetShouldLoop(false);
+	Animation dieAnim = Animation(dieSS);
+	dieAnim.SetShouldLoop(false);
 
 	animp.SetAnimationFrameDuration(10);
 	animp.AddAnimation("Idle", idleAnim);
@@ -477,6 +538,7 @@ void Samurai::LoadAnimations()
 	animp.AddAnimation("Attack", attackAnim);
 	animp.AddAnimation("Jump", jumpAnim);
 	animp.AddAnimation("Dash", dashAnim);
+	animp.AddAnimation("Die", dieAnim);
 }
 
 void Samurai::Start()
@@ -499,7 +561,7 @@ void Cowboy::LoadAnimations()
 
 	for (int i = 1; i <= 4; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Cowboy/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
+		std::string path = "./Cowboy/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
 		Game::LoadAsset("Cowboy" + std::to_string(i), path);
 		Sprite sprite = Sprite("Cowboy" + std::to_string(i));
 		idle.push_back(sprite);
@@ -509,7 +571,7 @@ void Cowboy::LoadAnimations()
 
 	for (int i = 1; i <= 8; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Cowboy/Original/Hero/run/run0" + std::to_string(i) + ".png";
+		std::string path = "./Cowboy/Original/Hero/run/run0" + std::to_string(i) + ".png";
 		Game::LoadAsset("CowboyRun" + std::to_string(i), path);
 		Sprite sprite = Sprite("CowboyRun" + std::to_string(i));
 		run.push_back(sprite);
@@ -519,7 +581,7 @@ void Cowboy::LoadAnimations()
 
 	for (int i = 1; i <= 6; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Cowboy/Original/Hero/skill2/skill20" + std::to_string(i) + ".png";
+		std::string path = "./Cowboy/Original/Hero/skill2/skill20" + std::to_string(i) + ".png";
 		Game::LoadAsset("CowboyAttack" + std::to_string(i), path);
 		Sprite sprite = Sprite("CowboyAttack" + std::to_string(i));
 		attack.push_back(sprite);
@@ -529,7 +591,7 @@ void Cowboy::LoadAnimations()
 
 	for (int i = 1; i <= 4; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Cowboy/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
+		std::string path = "./Cowboy/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
 		Game::LoadAsset("CowboyJump" + std::to_string(i), path);
 		Sprite sprite = Sprite("CowboyJump" + std::to_string(i));
 		jump.push_back(sprite);
@@ -539,18 +601,28 @@ void Cowboy::LoadAnimations()
 
 	for (int i = 1; i <= 1; i++)
 	{
-		std::string path = "C:/Users/rarat/Pictures/Cowboy/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
+		std::string path = "./Cowboy/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
 		Game::LoadAsset("CowboyDash" + std::to_string(i), path);
 		Sprite sprite = Sprite("CowboyDash" + std::to_string(i));
 		dash.push_back(sprite);
 	}
 
+	std::list<Sprite> die;
+
+	for (int i = 1; i <= 9; i++)
+	{
+		std::string path = "./Cowboy/Original/Hero/die/die0" + std::to_string(i) + ".png";
+		Game::LoadAsset("CowboyDie" + std::to_string(i), path);
+		Sprite sprite = Sprite("CowboyDie" + std::to_string(i));
+		die.push_back(sprite);
+	}
 
 	SpriteSheet idleSS = SpriteSheet(idle);
 	SpriteSheet runSS = SpriteSheet(run);
 	SpriteSheet attackSS = SpriteSheet(attack);
 	SpriteSheet jumpSS = SpriteSheet(jump);
 	SpriteSheet dashSS = SpriteSheet(dash);
+	SpriteSheet dieSS = SpriteSheet(die);
 
 
 	AnimationPlayer& animp = player.AddComponent<AnimationPlayer>();
@@ -563,6 +635,8 @@ void Cowboy::LoadAnimations()
 	Animation dashAnim = Animation(dashSS);
 	dashAnim.SetShouldLoop(false);
 	dashAnim.SetFrameDuration(0, 4);
+	Animation dieAnim = Animation(dieSS);
+	dieAnim.SetShouldLoop(false);
 
 	animp.SetAnimationFrameDuration(10);
 	animp.AddAnimation("Idle", idleAnim);
@@ -570,6 +644,7 @@ void Cowboy::LoadAnimations()
 	animp.AddAnimation("Attack", attackAnim);
 	animp.AddAnimation("Jump", jumpAnim);
 	animp.AddAnimation("Dash", dashAnim);
+	animp.AddAnimation("Die", dieAnim);
 }
 
 void Cowboy::Start()

@@ -13,6 +13,10 @@ namespace MEE
 		bool GetKeyPressed(int);
 		bool GetKeyUp(int);
 
+		bool GetMouseKeyDown(int);
+		bool GetMouseKeyPressed(int);
+		bool GetMouseKeyUp(int);
+
 		bool GetControllerKeyDown(int,int);
 		bool GetControllerKeyPressed(int,int);
 		bool GetControllerKeyUp(int,int);

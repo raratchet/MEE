@@ -15,6 +15,20 @@ namespace MEE
 	{
 		return MEE_keyboard_KeyUp(key);
 	}
+
+	bool InputManager::GetMouseKeyDown(int key)
+	{
+		return MEE_mouse_KeyPressedThisFrame(key);
+	}
+	bool InputManager::GetMouseKeyPressed(int key)
+	{
+		return MEE_mouse_KeyIsPressed(key);
+	}
+	bool InputManager::GetMouseKeyUp(int key)
+	{
+		return MEE_mouse_KeyUp(key);
+	}
+
 	bool InputManager::GetControllerKeyDown(int id, int key)
 	{
 		return MEE_gamepad_KeyPressedThisFrame(id,key);

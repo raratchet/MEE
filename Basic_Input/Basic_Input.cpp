@@ -19,6 +19,10 @@ namespace Basic_Input
 		MEE_keyboard_KeyPressedThisFrame = (bool(*)(int))GetKeyDown;
 		MEE_keyboard_KeyUp = (bool(*)(int))GetKeyUp;
 
+		MEE_mouse_KeyIsPressed = (bool(*)(int))GetMouseKeyPressed;
+		MEE_mouse_KeyPressedThisFrame = (bool(*)(int))GetMouseKeyDown;
+		MEE_mouse_KeyUp = (bool(*)(int))GetMouseKeyUp;
+
 		MEE_bind_gamepad_KeyIsPressed(pl_id, "GetControllerKeyPressed");
 		MEE_bind_gamepad_KeyPressedThisFrame(pl_id, "GetControllerKeyDown");
 		MEE_bind_gamepad_KeyUp(pl_id, "GetControllerKeyUp");
@@ -98,6 +102,7 @@ namespace Basic_Input
 	void clear()
 	{
 		KeyDown.clear();
+		MouseKeyDown.clear();
 
 		for (auto& C_KeyDown : ControllerKeyDown)
 		{
@@ -124,6 +129,11 @@ namespace Basic_Input
 	void mouseInput(int x, int y, int button, int state)
 	{
 		setMouse(x, y);
+
+		if (state == 0)
+			addMouseKeyDown(button);
+		else
+			addMouseKeyUp(button);
 	}
 
 	bool GetKeyDown(int key)
@@ -144,6 +154,27 @@ namespace Basic_Input
 	{
 		auto k = KeyUp.find(key);
 		return k != KeyUp.end()
+			? true : false;
+	}
+
+	bool GetMouseKeyDown(int key)
+	{
+		auto k = MouseKeyDown.find(key);
+		return k != MouseKeyDown.end()
+			? true : false;
+	}
+
+	bool GetMouseKeyPressed(int key)
+	{
+		auto k = MouseKeyPressed.find(key);
+		return k != MouseKeyPressed.end()
+			? true : false;
+	}
+
+	bool GetMouseKeyUp(int key)
+	{
+		auto k = MouseKeyUp.find(key);
+		return k != MouseKeyUp.end()
 			? true : false;
 	}
 
@@ -188,6 +219,26 @@ namespace Basic_Input
 		{
 			KeyDown.insert(key);
 			KeyPressed.insert(key);
+		}
+	}
+
+	void addMouseKeyUp(int key)
+	{
+		MouseKeyUp.insert(key);
+		MouseKeyPressed.erase(key);
+	}
+
+	void addMouseKeyDown(int key)
+	{
+
+		auto alreadyDown = MouseKeyDown.find(key);
+		auto alreadyPressed = MouseKeyPressed.find(key);
+
+		if (alreadyDown == MouseKeyDown.end()
+			&& alreadyPressed == MouseKeyPressed.end())
+		{
+			MouseKeyDown.insert(key);
+			MouseKeyPressed.insert(key);
 		}
 	}
 

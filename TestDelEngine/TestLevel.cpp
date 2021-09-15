@@ -7,12 +7,9 @@
 
 void TestLevel::Load()
 {
-	//Game::LoadAsset("Regu", "C:/Users/rarat/Pictures/regu.jpg");
-	Game::LoadAsset("Floor", "C:/Users/rarat/Pictures/floor.png");
-	Game::LoadAsset("POOO", "C:/Users/rarat/Pictures/player.png");
+	Game::LoadAsset("Floor", "./floor.png");
 
 	Sprite floorS = Sprite("Floor");
-	Sprite pooo = Sprite("POOO");
 	GameObject& floor = CreateGameObject("Floor",floorS);
 	GameObject& lancer = CreateGameObject("Lancer");
 	GameObject& toxic = CreateGameObject("Toxic");
@@ -23,13 +20,13 @@ void TestLevel::Load()
 	floor.GetTransformComponent().SetPosition(20, 20);
 
 	MEE::Camera& cam = this->GetMainCamera();
-	MEE::UI_Image& ui = cam.AttachUIElement<MEE::UI_Image, MEE::Sprite&>("ui",pooo);
-	ui.SetPosition(10, 10);
+	//MEE::UI_Image& ui = cam.AttachUIElement<MEE::UI_Image, MEE::Sprite&>("ui",pooo);
+	//ui.SetPosition(10, 10);
 
 	dummy.AddComponent<DummyCharacter>();
 	floor.AddComponent<Test>();
-	lancer.AddComponent<Lancer>().debugController = true;
-	toxic.AddComponent<Toxic>().debugController = true;
+	lancer.AddComponent<Lancer>().debugController = false;
+	toxic.AddComponent<Toxic>().debugController = false;
 	samurai.AddComponent<Samurai>().debugController = true;
 	cowboy.AddComponent<Cowboy>().debugController = true;
 

@@ -153,15 +153,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="DummyCharacter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Characters.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="Test.cpp" />
     <ClCompile Include="TestLevel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Characters.h" />
     <ClInclude Include="DummyCharacter.h" />
+    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="Test.h" />
     <ClInclude Include="TestLevel.h" />
   </ItemGroup>

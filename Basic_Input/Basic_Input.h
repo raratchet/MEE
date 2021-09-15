@@ -22,6 +22,10 @@ namespace Basic_Input
 		PLUGIN_EXPORT bool GetKeyPressed(int key);
 		PLUGIN_EXPORT bool GetKeyUp(int key);
 
+		PLUGIN_EXPORT bool GetMouseKeyDown(int key);
+		PLUGIN_EXPORT bool GetMouseKeyPressed(int key);
+		PLUGIN_EXPORT bool GetMouseKeyUp(int key);
+
 		PLUGIN_EXPORT bool GetControllerKeyDown(int controller, int key);
 		PLUGIN_EXPORT bool GetControllerKeyPressed(int controller, int key);
 		PLUGIN_EXPORT bool GetControllerKeyUp(int controller, int key);
@@ -34,6 +38,8 @@ namespace Basic_Input
 	void mouseInput(int x, int y, int button, int state);
 	void addKeyDown(int key);
 	void addKeyUp(int key);
+	void addMouseKeyDown(int key);
+	void addMouseKeyUp(int key);
 	void addControllerKeyDown(int cotroller,int key);
 	void addControllerKeyUp(int controller, int key);
 	void setMouse(int x,int y);
@@ -44,6 +50,10 @@ namespace Basic_Input
 	inline std::set<int> KeyDown;
 	inline std::set<int> KeyPressed;
 	inline std::set<int> KeyUp;
+
+	inline std::set<int> MouseKeyDown;
+	inline std::set<int> MouseKeyPressed;
+	inline std::set<int> MouseKeyUp;
 
 	inline std::map<int, std::set<int>>ControllerKeyDown;
 	inline std::map<int, std::set<int>>ControllerKeyPressed;
