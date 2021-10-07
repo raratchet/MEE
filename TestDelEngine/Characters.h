@@ -1,6 +1,7 @@
 #pragma once
 #include "MEG_Game.h"
 #include "MEG_Input.h"
+#include "WinScreen.h"
 
 enum class FacingDirection
 {
@@ -26,7 +27,9 @@ protected:
 	FacingDirection f_direction = FacingDirection::Right;
 	Collider* myCollider;
 	WorldObject* weaponHitBox;
+	WinScreen* winScreen;
 public:
+	static std::list<BaseCharacter*> alive;
 	bool debugController = false;
 	virtual void LoadAnimations() = 0;
 

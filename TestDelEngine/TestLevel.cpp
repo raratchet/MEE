@@ -15,7 +15,7 @@ void TestLevel::Load()
 	GameObject& toxic = CreateGameObject("Toxic");
 	GameObject& samurai = CreateGameObject("Samurai");
 	GameObject& cowboy = CreateGameObject("Cowboy");
-	GameObject& dummy = CreateGameObject("Dummy");
+	//GameObject& dummy = CreateGameObject("Dummy");
 	Collider fCollider = floor.AddComponent<Collider>();
 	floor.GetTransformComponent().SetPosition(20, 20);
 
@@ -23,7 +23,7 @@ void TestLevel::Load()
 	//MEE::UI_Image& ui = cam.AttachUIElement<MEE::UI_Image, MEE::Sprite&>("ui",pooo);
 	//ui.SetPosition(10, 10);
 
-	dummy.AddComponent<DummyCharacter>();
+	//dummy.AddComponent<DummyCharacter>();
 	floor.AddComponent<Test>();
 	lancer.AddComponent<Lancer>().debugController = false;
 	toxic.AddComponent<Toxic>().debugController = false;

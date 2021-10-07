@@ -2,10 +2,14 @@
 #include <iostream>
 #include <cmath>
 
+std::list<BaseCharacter*> BaseCharacter::alive;
+
 void BaseCharacter::Start()
 {
 
 	Object& player = GetParent();
+
+	alive.push_back(this);
 
 	FunctionParameters plC_Params;
 	plC_Params.Add("Type", ColliderType::Dynamic);
@@ -73,14 +77,22 @@ void BaseCharacter::TakeDamge()
 	if (hp <= 0)
 	{
 		dead = true;
+		alive.remove(this);
 	}
 }
 
 void BaseCharacter::Update()
 {
+	if (alive.size() <= 1)
+	{
+		//Gameover;
+		Game::AddLevel(alive.front()->winScreen);
+	}
+
 	GameObject& gObj = (GameObject&)GetParent();
 	Collider& col = GetParent().GetComponent<Collider>();
 	AnimationPlayer& player = GetParent().GetComponent<AnimationPlayer>();
+
 
 	if (!dead)
 	{
@@ -89,6 +101,7 @@ void BaseCharacter::Update()
 		if (pos.y > 45)
 		{
 			dead = true;
+			alive.remove(this);
 			std::cout << "Dead\n";
 		}
 
@@ -227,6 +240,7 @@ void BaseCharacter::Animations(GameObject& gObj, AnimationPlayer& player)
 Lancer::Lancer()
 {
 	controllerID = 0;
+	winScreen = new Lancer_WinScreen;
 }
 
 #include <filesystem>
@@ -339,6 +353,7 @@ void Lancer::Start()
 Toxic::Toxic()
 {
 	controllerID = 1;
+	winScreen = new Toxic_WinScreen;
 }
 
 void Toxic::LoadAnimations()
@@ -439,12 +454,13 @@ void Toxic::Start()
 {
 	LoadAnimations();
 	BaseCharacter::Start();
-	GetParent().GetTransformComponent().SetPosition(10, 0);
+	GetParent().GetTransformComponent().SetPosition(14, 0);
 }
 
 Samurai::Samurai()
 {
 	controllerID = 2;
+	winScreen = new Samurai_WinScreen;
 }
 
 void Samurai::LoadAnimations()
@@ -545,12 +561,13 @@ void Samurai::Start()
 {
 	LoadAnimations();
 	BaseCharacter::Start();
-	GetParent().GetTransformComponent().SetPosition(15, 0);
+	GetParent().GetTransformComponent().SetPosition(23, 0);
 }
 
 Cowboy::Cowboy()
 {
 	controllerID = 3;
+	winScreen = new Cowboy_WinScreen;
 }
 
 void Cowboy::LoadAnimations()
@@ -651,5 +668,5 @@ void Cowboy::Start()
 {
 	LoadAnimations();
 	BaseCharacter::Start();
-	GetParent().GetTransformComponent().SetPosition(20, 0);
+	GetParent().GetTransformComponent().SetPosition(31, 0);
 }
