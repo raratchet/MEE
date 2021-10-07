@@ -193,6 +193,7 @@
     <ClCompile Include="MEE_Physics.cpp" />
     <ClCompile Include="MEE_Plugin.cpp" />
     <ClCompile Include="MEE_PluginManager.cpp" />
+    <ClCompile Include="MEE_ResourceManager.cpp" />
     <ClCompile Include="MEE_SDLHandler.cpp" />
     <ClCompile Include="MEE_Sound.cpp" />
     <ClCompile Include="MEE_Time.cpp" />
@@ -208,6 +209,7 @@
     <ClCompile Include="MEG_Input.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MEE_ResourceManager.h" />
     <ClInclude Include="MEE_Animation.h" />
     <ClInclude Include="MEE_Camera.h" />
     <ClInclude Include="MEE_Components.h" />

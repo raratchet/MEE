@@ -6,8 +6,6 @@
 namespace MEE
 {
 
-
-
 	Sprite::Sprite(std::weak_ptr<Texture2D> image, int x, int y, int w, int h) :
 		baseImage(image), width(w), height(h), baseImage_startCoord(Vector2(x, y)) {}
 

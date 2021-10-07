@@ -10,6 +10,7 @@
 #include "MEE_InputManager.h"
 #include "MEE_Time.h"
 #include "MEE_Rendering.h"
+#include "MEE_ResourceManager.h"
 
 namespace MEE
 {

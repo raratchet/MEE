@@ -126,17 +126,15 @@ namespace Basic_Renderer
 		{
 			if ((i + 4) > (vertices.size()))
 			{
-				//std::cout << "Linea de: " << " x1: " << vertices[i]<< " y1: " << vertices[i + 1] <<" x2: " << vertices[0]<< " y2: " << vertices[1] << "\n";
 				RenderLine(vertices[i], vertices[i + 1], vertices[0], vertices[1]);
 			}
 			else
 			{
-				//std::cout << "Linea de: " << " x1: " << vertices[i] << " y1: " << vertices[i + 1] << " x2: " << vertices[i + 2] << " y2: " << vertices[i + 3] << "\n";
 				RenderLine(vertices[i], vertices[i + 1], vertices[i + 2], vertices[i + 3]);
 			}
 		}
 	}
-	void RenderSolidPolygon(float* vertices, int vertexCount)
+	void RenderSolidPolygon(std::vector<float> vertices)
 	{
 		std::cout << "Unimplemented \n";
 	}
