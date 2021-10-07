@@ -95,6 +95,15 @@ void MEE::RenderingManager::RenderTexture2D(std::weak_ptr<Texture2D> texture, fl
 
     Texture2D* tex = texture.lock().get();
     MEE_Texture2D moduleTexture = static_cast<MEE_Texture2D>(tex);
+
+    Vector2 cameraPos = currentCamera.lock()->GetPosition();
+
+    if (type == RenderingType::Physical)
+    {
+        x = x - (cameraPos.x * PIXELS_PER_UNIT);
+        y = y - (cameraPos.y * PIXELS_PER_UNIT);
+    }
+
     MEE_RenderTexture2D(moduleTexture, x, y, scale_x, scale_y, angle, clipX, clipY, clipW, clipH, h_flip, v_flip);
 }
 
@@ -122,6 +131,16 @@ float MEE::RenderingManager::GetPixelsPerUnit()
 float MEE::RenderingManager::GetUnitsPerPixel()
 {
     return UNITS_PER_PIXEL;
+}
+
+void MEE::RenderingManager::RenderTransform(const Vector2& position)
+{
+    Vector2 cameraPos = currentCamera.lock()->GetPosition();
+
+    MEE_SetRenderColor(0, 255, 0, 255);
+    const float radius = 1.0F;
+    MEE_RenderCircle((position.x - cameraPos.x) * PIXELS_PER_UNIT, (position.y - cameraPos.y) * PIXELS_PER_UNIT, radius);
+    MEE_SetRenderColor(53, 40, 230, 255);
 }
 
 void MEE::RenderingManager::SetCurrentCamera(std::weak_ptr<Camera> camera)

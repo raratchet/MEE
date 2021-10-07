@@ -78,7 +78,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>C:\Work\T_Plugins\x64\Basic_renderer</OutDir>
+    <OutDir>C:\Work\A_Cruel_Angel_Engine\MEE\x64\Debug\Plugins\Basic_Renderer</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

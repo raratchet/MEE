@@ -41,6 +41,12 @@ void Basic_Physics::BoxContactListener::PreSolve(b2Contact* contact, const b2Man
 	BoxCollider* collider_1 = (BoxCollider*)first->GetUserData().pointer;
 	BoxCollider* collider_2 = (BoxCollider*)second->GetUserData().pointer;
 
+	bool enabled = true;
+	if (collider_1->GetIsTrigger() || collider_2->GetIsTrigger())
+		enabled = false;
+
+	contact->SetEnabled(enabled);
+
 	if (collider_1->CollisionStart_CallBack)
 		collider_1->CollisionStart_CallBack(*collider_2, FunctionParameters::NoParameters());
 

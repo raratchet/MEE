@@ -3,14 +3,14 @@
 
 namespace MEE
 {
-	void Drawable::Draw(std::shared_ptr<Camera> renderingCamera)
+	void Drawable::Draw()
 	{ 
 		if (auto sprite = GetSprite().lock())
 		{
-			auto position = draw_transform.GetPosition();
-			auto scale = draw_transform.GetScale();
-			auto rot = draw_transform.GetRotation();
-			sprite->Draw(renderingCamera, position, scale, rot, is_horizontal_flipped, is_vertical_flipped);
+			auto position = draw_transform.position;
+			auto scale = draw_transform.scale;
+			auto rot = draw_transform.rotation;
+			sprite->Draw(position, scale, rot, is_horizontal_flipped, is_vertical_flipped, isPhysical);
 		}
 	}
 

@@ -48,7 +48,7 @@ namespace MEE
 		bool success = true;
 		try
 		{
-			std::filesystem::directory_iterator pluginMainDirectory("C://Work/T_Plugins/x64");
+			std::filesystem::directory_iterator pluginMainDirectory("./Plugins/");
 
 			std::map<std::wstring, Plugin::PluginInformation> plInfo;
 			std::map<std::wstring, std::wstring> plugins;

@@ -26,11 +26,17 @@ namespace MEE
 
 		void operator=(Object& obj) { obj = *this; }
 
-		Transform& GetTransform();
+		TransformComponent& GetTransformComponent();
 
 		Scene& GetScene();
 
 		virtual void SetEnabled(bool value);
+
+		std::string GetName();
+		std::string GetTag();
+
+		void SetName(const std::string& value);
+		void SetTag(const std::string& value);
 
 		bool GetEnabled();
 
@@ -42,6 +48,7 @@ namespace MEE
 		std::string name;
 		std::vector<std::shared_ptr<Component>> components;
 		std::vector<std::shared_ptr<Updatable>> updatables;
+		std::string tag;
 
 		bool enabled = true;
 

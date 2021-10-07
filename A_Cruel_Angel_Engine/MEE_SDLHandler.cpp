@@ -15,7 +15,7 @@ namespace MEE
 
         if (WindowHandler::GetRenderAPI() == RenderAPI::OpenGL)
         {
-            if (SDL_Init(SDL_INIT_VIDEO) != -1)
+            if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != -1)
             {
 
                 window = SDL_CreateWindow
@@ -47,6 +47,8 @@ namespace MEE
         }
         else if (WindowHandler::GetRenderAPI() == RenderAPI::SDL_Render)
         {
+            auto controller = SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
+
             SDL_CreateWindowAndRenderer(
                 width, height,
                 SDL_WINDOW_RESIZABLE,

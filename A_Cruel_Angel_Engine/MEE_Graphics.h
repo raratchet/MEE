@@ -17,7 +17,7 @@ enum class WindowHandlerAPI
 	GLFW
 };
 
-typedef void* MEE_SDL_Renderer;
+typedef void* MEE_Renderer;
 typedef void* MEE_Texture2D;
 
 //Estas funciones envuelen a las que existen en engine
@@ -45,7 +45,7 @@ void  MEE_EXPORT MEE_bind_RenderSolidCircle(int plugin_id, const std::string& fu
 void  MEE_EXPORT MEE_bind_CreateTexture2D(int plugin_id, const std::string& func_name);
 void  MEE_EXPORT MEE_bind_InitGL(int plugin_id, const std::string& func_name);
 void  MEE_EXPORT MEE_bind_RenderDebugGrid(int plugin_id, const std::string& func_name);
-MEE_SDL_Renderer MEE_EXPORT MEE_GetSDLRenderer();
+MEE_Renderer MEE_EXPORT MEE_GetSDLRenderer();
 
 /**
  * Calls the render clear function in the render module.

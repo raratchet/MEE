@@ -39,6 +39,7 @@ namespace MEE
 		void  SetPixelsPerUnit(float ppu);
 		float GetPixelsPerUnit();
 		float GetUnitsPerPixel();
+		void RenderTransform(const Vector2& position);
 		void SetCurrentCamera(std::weak_ptr<Camera> camera);
 	private:
 		std::weak_ptr<Camera> currentCamera;

@@ -14,6 +14,13 @@ public:
 		static bool KeyUp(int key);
 	};
 
+	static struct MEG_IMPORT Controller
+	{
+		static bool KeyWasPressedThisFrame(GamepadID id, int key);
+		static bool KeyIsPressed(GamepadID id, int key);
+		static bool KeyUp(GamepadID id, int key);
+	};
+
 	static struct MEG_IMPORT Mouse
 	{
 		static Vector2 MousePosition();

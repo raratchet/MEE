@@ -82,7 +82,7 @@ namespace MEE
 		
 	private:
 		void CreateMainSceneCamera();
-		void SetCurrenCamera(std::weak_ptr<class Camera> camera);
+		void SetCurrentCamera(std::weak_ptr<class Camera> camera);
 	private:
 		std::list<std::shared_ptr<class Camera>> sceneCameras;
 		std::list<std::shared_ptr<class Object>> sceneObjects;

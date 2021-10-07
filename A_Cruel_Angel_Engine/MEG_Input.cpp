@@ -22,20 +22,41 @@ bool Input::Keyboard::KeyUp(int key)
 Vector2 Input::Mouse::MousePosition()
 {
 	auto input = Game::GetMainApp()->GetInputManager().lock();
-	return input->GetMouse();
+	return input->GetMouse() / Game::GetMainApp()->GetRenderManager().lock()->GetPixelsPerUnit();
 }
 
 bool Input::Mouse::KeyWasPressedThisFrame(int key)
 {
-	return false;
+	auto input = Game::GetMainApp()->GetInputManager().lock();
+	return input->GetMouseKeyDown(key);
 }
 
 bool Input::Mouse::KeyIsPressed(int key)
 {
-	return false;
+	auto input = Game::GetMainApp()->GetInputManager().lock();
+	return input->GetMouseKeyPressed(key);
 }
 
 bool Input::Mouse::KeyUp(int key)
 {
-	return false;
+	auto input = Game::GetMainApp()->GetInputManager().lock();
+	return input->GetMouseKeyUp(key);
+}
+
+bool Input::Controller::KeyWasPressedThisFrame(GamepadID id, int key)
+{
+	auto input = Game::GetMainApp()->GetInputManager().lock();
+	return input->GetControllerKeyDown(id,key);
+}
+
+bool Input::Controller::KeyIsPressed(GamepadID id, int key)
+{
+	auto input = Game::GetMainApp()->GetInputManager().lock();
+	return input->GetControllerKeyPressed(id,key);
+}
+
+bool Input::Controller::KeyUp(GamepadID id, int key)
+{
+	auto input = Game::GetMainApp()->GetInputManager().lock();
+	return input->GetControllerKeyUp(id,key);
 }

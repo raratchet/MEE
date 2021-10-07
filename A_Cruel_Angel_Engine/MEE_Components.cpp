@@ -5,63 +5,68 @@
 
 namespace MEE
 {
-	Transform::Transform()
+	TransformComponent::TransformComponent()
 	{
 	}
-	void Transform::SetPosition(Vector2 position_vector)
+	void TransformComponent::SetPosition(Vector2 position_vector)
 	{
-		position = position_vector;
+		transform.position = position_vector;
 		modified = true;
 	}
 
-	void Transform::SetPosition(float posX, float posY)
+	void TransformComponent::SetPosition(float posX, float posY)
 	{
-		position.x = posX;
-		position.y = posY;
+		transform.position.x = posX;
+		transform.position.y = posY;
 		modified = true;
 	}
 
-	void Transform::SetScale(Vector2 scale_vector)
+	void TransformComponent::SetScale(Vector2 scale_vector)
 	{
-		scale = scale_vector;
+		transform.scale = scale_vector;
 		modified = true;
 	}
 
-	void Transform::SetScale(float x, float y)
+	void TransformComponent::SetScale(float x, float y)
 	{
-		scale.x = x;
-		scale.y = y;
+		transform.scale.x = x;
+		transform.scale.y = y;
 		modified = true;
 	}
 
-	void Transform::SetRotation(float rotation_float)
+	void TransformComponent::SetRotation(float rotation_float)
 	{
-		rot = rotation_float;
+		transform.rotation = rotation_float;
 		modified = true;
 	}
 
-	void Transform::Translate(Vector2 vec)
+	void TransformComponent::Translate(Vector2 vec)
 	{
-		position = position + vec;
+		transform.position = transform.position + vec;
 		modified = true;
 	}
 
-	Vector2 Transform::GetPosition()
+	Vector2 TransformComponent::GetPosition()
 	{
-		return position;
+		return transform.position;
 	}
 
-	Vector2 Transform::GetScale()
+	Vector2 TransformComponent::GetScale()
 	{
-		return scale;
+		return transform.scale;
 	}
 
-	float Transform::GetRotation()
+	Transform& TransformComponent::GetTransform()
 	{
-		return rot;
+		return transform;
 	}
 
-	bool Transform::WasModified()
+	float TransformComponent::GetRotation()
+	{
+		return transform.rotation;
+	}
+
+	bool TransformComponent::WasModified()
 	{
 		return modified;
 	}
@@ -91,7 +96,7 @@ namespace MEE
 	{
 		parent = object;
 	}
-	void Collider::SetTransform(std::shared_ptr<Transform> trans)
+	void Collider::SetTransform(std::shared_ptr<TransformComponent> trans)
 	{
 		transform = trans;
 	}
@@ -143,6 +148,14 @@ namespace MEE
 	void Collider::SetActive(bool value)
 	{
 		active = value;
+	}
+	void Collider::SetIsTrigger(bool value)
+	{
+		isTrigger = value;
+	}
+	bool Collider::GetIsTrigger()
+	{
+		return isTrigger;
 	}
 	void Collider::SetType(ColliderType value)
 	{
