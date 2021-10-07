@@ -1,5 +1,5 @@
 #pragma once
-#include "MEE_Components.h"
+
 #include "MEE_PCH.h"
 #include "MEE_Sprite.h"
 #include "MEE_Drawable.h"

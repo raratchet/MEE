@@ -1,8 +1,9 @@
 #pragma once
 #include <string>
 #include <memory>
-#include "MEE_Exports.h"
 #include <vector>
+
+#include "MEE_Exports.h"
 
 namespace MEE
 {

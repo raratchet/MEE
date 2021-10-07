@@ -3,7 +3,6 @@
 #include <vector>
 #include <string>
 #include "MEE_Components.h"
-#include "MEE_Scene.h"
 #include "MEE_Drawable.h"
 #include "MEE_Exports.h"
 #include "MEE_Functional.h"
@@ -11,6 +10,9 @@
 
 namespace MEE
 {
+	//Pre declarations
+	class Scene;
+
 	class MEE_EXPORT Object
 	{
 	public:

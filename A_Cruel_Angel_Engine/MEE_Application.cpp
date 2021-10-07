@@ -2,8 +2,6 @@
 #include "MEE_SDLHandler.h"
 #include "MEE_GLFWHandler.h"
 #include "MEE_Graphics.h"
-
-//TEMP
 #include "MEE_Global.h"
 
 namespace MEE

@@ -1,10 +1,10 @@
 #pragma once
+#include <memory>
+#include <vector>
+#include <list>
 #include "MEE_Texture.h"
 #include "MEE_Maths.h"
 #include "MEE_Components.h"
-#include <memory>
-#include <vector>
-#include <list> // Necesito el PCH
 
 namespace MEE
 {

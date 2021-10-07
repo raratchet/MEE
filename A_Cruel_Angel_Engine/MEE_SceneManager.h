@@ -1,6 +1,6 @@
 #pragma once
-#include "MEE_Scene.h"
 #include <list>
+#include "MEE_Scene.h"
 
 namespace MEE
 {

@@ -5,7 +5,6 @@
 
 #include "MEE_WindowHandler.h"
 #include "MEE_PluginManager.h"
-#include "MEE_Resources.h"
 #include "MEE_SceneManager.h"
 #include "MEE_InputManager.h"
 #include "MEE_Time.h"

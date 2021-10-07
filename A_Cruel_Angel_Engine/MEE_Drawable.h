@@ -1,8 +1,8 @@
 #pragma once
+#include <memory>
 #include "MEE_Sprite.h"
 #include "MEE_Maths.h"
 #include "MEE_Animation.h"
-#include <memory>
 #include "MEE_Exports.h"
 
 namespace MEE

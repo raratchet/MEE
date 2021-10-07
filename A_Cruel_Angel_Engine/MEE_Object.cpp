@@ -1,4 +1,5 @@
 #include "MEE_Object.h"
+#include "MEE_Scene.h"
 #include "MEE_Physics.h"
 #include "MEE_Animation.h"
 
