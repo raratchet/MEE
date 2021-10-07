@@ -23,6 +23,7 @@ namespace MEE
 	class MEE_EXPORT RenderingManager
 	{
 	public:
+		bool Init();
 		void RenderClear();
 		void SetRenderColor(int r, int g, int b, int a);
 		void SetRenderViewport(int x, int y, int w, int h);

@@ -10,14 +10,14 @@ namespace MEE
 		return s.size() >= suffix.size() && s.compare(s.size() - suffix.size(), suffix.size(), suffix) == 0;
 	}
 
-	Plugin::PluginInformation PluginManager::ReadInfoFile(const std::wstring& path)
+	Plugin::PluginInformation* PluginManager::ReadInfoFile(const std::wstring& path)
 	{
 		std::string name(path.begin(),path.end());
 		YAML::Node info = YAML::LoadFile(name);
-		Plugin::PluginInformation plInfo;
+		Plugin::PluginInformation* plInfo = new Plugin::PluginInformation();
 
-		plInfo.name = info["Name"].as<std::string>();
-		plInfo.version = info["Version"].as<std::string>();
+		plInfo->name = info["Name"].as<std::string>();
+		plInfo->version = info["Version"].as<std::string>();
 
 		return plInfo;
 	}
@@ -38,7 +38,7 @@ namespace MEE
 		return suffix == fileSuffix;
 	}
 
-	bool PluginManager::CheckForDependecies(const Plugin::PluginInformation& info)
+	bool PluginManager::CheckForDependecies(Plugin::PluginInformation& info)
 	{
 		return true;
 	}
@@ -50,7 +50,7 @@ namespace MEE
 		{
 			std::filesystem::directory_iterator pluginMainDirectory("./Plugins/");
 
-			std::map<std::wstring, Plugin::PluginInformation> plInfo;
+			std::map<std::wstring, Plugin::PluginInformation*> plInfo;
 			std::map<std::wstring, std::wstring> plugins;
 
 			for (auto& extFile : pluginMainDirectory)
@@ -74,11 +74,14 @@ namespace MEE
 			for (auto& plugin : plugins)
 			{
 				auto& pluginInfo = plInfo[plugin.first];
-				if (CheckForDependecies(pluginInfo))
-					LoadPlugin(plugin.second, plInfo[plugin.first]);
+				if(pluginInfo != nullptr)
+					if (CheckForDependecies(*pluginInfo))
+						LoadPlugin(plugin.second, *pluginInfo);
+					else
+						std::cout << "[MEE] Cannot load " << pluginInfo->name
+						<< " some dependecies are missing" << std::endl;
 				else
-					std::cout << "[MEE] Cannot load " << pluginInfo.name
-					<< " some dependecies are missing" << std::endl;
+					std::cout << "[MEE] Some plugins may have not been loaded." << std::endl;
 			}
 		}
 		catch (std::filesystem::filesystem_error e)

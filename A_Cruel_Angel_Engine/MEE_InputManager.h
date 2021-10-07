@@ -7,6 +7,9 @@ namespace MEE
 	class MEE_EXPORT InputManager
 	{
 	public:
+
+		bool Init();
+
 		//TENGO QUE PONER GUAPO EL NOMBRE DE LAS FUNCIONES E INCLUIR
 		// LOS DISTINTOS DISPOSITIVOS OSEA ESTO ES TEMPORAL
 		bool GetKeyDown(int);
@@ -22,6 +25,10 @@ namespace MEE
 		bool GetControllerKeyUp(int,int);
 
 		Vector2 GetMouse();
+
+	private:
+		bool gamepad_supported = false;
+		bool gamepad_rumble_supported = false;
 	};
 }
 

@@ -1,5 +1,5 @@
 #include "MEE_ResourceManager.h"
-#include "MEE_Graphics.h"
+#include "MEE_Global.h"
 #include "MEE_Texture.h"
 
 namespace MEE
@@ -13,7 +13,8 @@ namespace MEE
 	{
 		if (resources.find(name) == resources.end())
 		{
-			Texture2D* tex2D = (Texture2D*)MEE_CreateTexture2D(path);
+			auto rendering = MEE_GLOBAL::application->GetRenderManager().lock();
+			Texture2D* tex2D = rendering->CreateTexture2D(path);
 			resources.insert(std::make_pair(name, tex2D));
 			return true;
 		}

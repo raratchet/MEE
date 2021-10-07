@@ -20,7 +20,7 @@ namespace MEE
 
 		if (!pluginManager->Init())
 		{
-			std::cout<< "Couldn't initialize Plugin Manager";
+			std::cout<< "[MEE] Couldn't initialize Plugin Manager \n";
 			success = false;
 		}
 
@@ -33,23 +33,34 @@ namespace MEE
 
 		if (!w_handler->Init())
 		{
-			std::cout << "Couldn't initialize Window \n";
+			std::cout << "[MEE] Couldn't initialize Window \n";
 			success = false;
 		}
 
 		resourceManager = std::make_shared<ResourceManager>(ResourceManager());
-
-		if (!resourceManager->Init())
-		{
-			std::cout << "An error has ocurr in the Resource Manager \n";
-			success = false;
-		}
-
-		//Sus verificaciones
 		sceneManager = std::make_shared<SceneManager>(SceneManager());
 		inputManager = std::make_shared<InputManager>(InputManager());
 		timeManager = std::make_shared<TimeManager>(TimeManager());
 		renderManager = std::make_shared<RenderingManager>(RenderingManager());
+
+		if (!resourceManager->Init())
+		{
+			std::cout << "[MEE] An error has ocurr in the Resource Manager \n";
+			success = false;
+		}
+
+		if (!inputManager->Init())
+		{
+			std::cout << "[MEE] Couldn't initialize Input Manager \n";
+			success = false;
+		}
+
+		if (!renderManager->Init())
+		{
+			std::cout << "[MEE] Couldn't initialize Rendering Manager \n";
+			success = false;
+		}
+
 		return success;
 	}
 

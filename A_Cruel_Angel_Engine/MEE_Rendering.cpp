@@ -6,6 +6,21 @@
 
 //TODO HACER VERIFICAIONES EN TODAS LAS LLAMADAS PARA VER QUE SEAN VÁLIDAS
 
+bool MEE::RenderingManager::Init()
+{
+     //This function checks if all essential input bindings are correctrly set
+    // Essential are keyboard and mouse
+    bool success = true;
+
+    bool essentials_set =
+        MEE_SetRenderColor && MEE_RenderTexture2D && MEE_CreateTexture2D &&
+        MEE_RenderClear; // Add more to essentials
+
+    success = essentials_set;
+
+    return success;
+}
+
 void MEE::RenderingManager::RenderClear()
 {
     MEE_RenderClear();
@@ -109,7 +124,7 @@ void MEE::RenderingManager::RenderTexture2D(std::weak_ptr<Texture2D> texture, fl
 
 MEE::Texture2D* MEE::RenderingManager::CreateTexture2D(const std::string& path)
 {
-    return nullptr;
+    return (Texture2D*)MEE_CreateTexture2D(path);
 }
 
 void MEE::RenderingManager::RenderDebugGrid(RenderingType type)

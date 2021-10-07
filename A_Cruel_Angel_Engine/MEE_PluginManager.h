@@ -14,10 +14,10 @@ namespace MEE
 	{
 	private:
 		bool HasSuffix(const std::wstring& s, const std::wstring& suffix);
-		Plugin::PluginInformation ReadInfoFile(const std::wstring& path);
+		Plugin::PluginInformation* ReadInfoFile(const std::wstring& path);
 		void LoadPlugin(const std::wstring& path, const Plugin::PluginInformation& info);
 		bool SuffixIs(const std::wstring& fileName, const std::wstring& suffix);
-		bool CheckForDependecies(const Plugin::PluginInformation& info);
+		bool CheckForDependecies(Plugin::PluginInformation& info);
 		std::vector<std::shared_ptr<Plugin>> m_pluginList;
 	public:
 		bool Init();
