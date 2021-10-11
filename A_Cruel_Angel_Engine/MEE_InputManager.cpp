@@ -7,6 +7,17 @@ namespace MEE
 #define GAMEPAD_SUPPORTED if(!InputManager::gamepad_supported){\
 						  std::cout << "[MEE] Gamepad not supported \n"; return false; }
 
+#define MEE_CHECK_FUNCTION(FUNCTION)\
+try\
+{\
+    FUNCTION\
+}\
+catch(...)\
+{\
+    std::cout << "[MEE] An error ocurred while calling a function in MEE_INPUT" << std::endl;\
+}
+
+
 	bool InputManager::Init()
 	{
 		//This function checks if all essential input bindings are correctrly set
@@ -19,7 +30,7 @@ namespace MEE
 			MEE_keyboard_KeyUp;
 
 		gamepad_supported =
-			MEE_gamepad_GetJoystick && MEE_gamepad_KeyIsPressed && MEE_gamepad_KeyPressedThisFrame &&
+			MEE_gamepad_KeyIsPressed && MEE_gamepad_KeyPressedThisFrame &&
 			MEE_gamepad_KeyUp;
 
 		gamepad_rumble_supported = MEE_gamepad_MakeRumble && true;
@@ -30,50 +41,68 @@ namespace MEE
 	}
 	bool InputManager::GetKeyDown(int key)
 	{
-		return MEE_keyboard_KeyPressedThisFrame(key);
+		bool value = false;
+		MEE_CHECK_FUNCTION(value = MEE_keyboard_KeyPressedThisFrame(key);)
+		return value;
 	}
 	bool InputManager::GetKeyPressed(int key)
 	{
-		return MEE_keyboard_KeyIsPressed(key);
+		bool value = false;
+		MEE_CHECK_FUNCTION(value = MEE_keyboard_KeyIsPressed(key);)
+		return value;
 	}
 	bool InputManager::GetKeyUp(int key)
 	{
-		return MEE_keyboard_KeyUp(key);
+		bool value = false;
+		MEE_CHECK_FUNCTION(value = MEE_keyboard_KeyUp(key);)
+		return value;
 	}
 
 	bool InputManager::GetMouseKeyDown(int key)
 	{
-		return MEE_mouse_KeyPressedThisFrame(key);
+		bool value = false;
+		MEE_CHECK_FUNCTION(value = MEE_mouse_KeyPressedThisFrame(key);)
+			return value;
 	}
 	bool InputManager::GetMouseKeyPressed(int key)
 	{
-		return MEE_mouse_KeyIsPressed(key);
+		bool value = false;
+		MEE_CHECK_FUNCTION(value = MEE_mouse_KeyIsPressed(key);)
+			return value;
 	}
 	bool InputManager::GetMouseKeyUp(int key)
 	{
-		return MEE_mouse_KeyUp(key);
+		bool value = false;
+		MEE_CHECK_FUNCTION(value = MEE_mouse_KeyUp(key);)
+			return value;
 	}
 
 	bool InputManager::GetControllerKeyDown(int id, int key)
 	{
 		GAMEPAD_SUPPORTED
-		return MEE_gamepad_KeyPressedThisFrame(id,key);
+			bool value = false;
+		MEE_CHECK_FUNCTION(value = MEE_gamepad_KeyPressedThisFrame(id,key);)
+			return value;
 	}
 	bool InputManager::GetControllerKeyPressed(int id, int key)
 	{
 		GAMEPAD_SUPPORTED
-		return MEE_gamepad_KeyIsPressed(id,key);
+			bool value = false;
+		MEE_CHECK_FUNCTION(value = MEE_gamepad_KeyIsPressed(id, key);)
+			return value;
 	}
 	bool InputManager::GetControllerKeyUp(int id, int key)
 	{
 		GAMEPAD_SUPPORTED
-		return MEE_gamepad_KeyUp(id,key);
+			bool value = false;
+		MEE_CHECK_FUNCTION(value = MEE_gamepad_KeyUp(id, key);)
+			return value;
 	}
 	Vector2 InputManager::GetMouse()
 	{
 		static Vector2 mouse;
 		int x, y;
-		MEE_mouse_GetPosition(&x,&y);
+		MEE_CHECK_FUNCTION(MEE_mouse_GetPosition(&x,&y);)
 		mouse.x = x;
 		mouse.y = y;
 		return mouse;

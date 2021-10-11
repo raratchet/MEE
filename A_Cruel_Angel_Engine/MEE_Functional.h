@@ -7,9 +7,6 @@
 #include <any>
 #include <list> //Deberian de estar en el pch
 
-
-//Mover funciones al ccp y esconder los includes
-
 struct MEE_EXPORT FunctionParameter
 {
 
@@ -31,7 +28,6 @@ T FunctionParameter::As()
 {
 	try
 	{
-		//std::cout << parameter.type().name() << std::endl;
 		T t = std::any_cast<T>(parameter);
 		return t;
 	}

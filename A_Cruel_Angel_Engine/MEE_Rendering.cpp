@@ -6,10 +6,19 @@
 
 //TODO HACER VERIFICAIONES EN TODAS LAS LLAMADAS PARA VER QUE SEAN VÁLIDAS
 
+#define MEE_CHECK_FUNCTION(FUNCTION)\
+try\
+{\
+    FUNCTION\
+}\
+catch(...)\
+{\
+    std::cout << "[MEE] An error ocurred while calling a function in MEE_RENDERING" << std::endl;\
+}
+
 bool MEE::RenderingManager::Init()
 {
      //This function checks if all essential input bindings are correctrly set
-    // Essential are keyboard and mouse
     bool success = true;
 
     bool essentials_set =
@@ -23,32 +32,32 @@ bool MEE::RenderingManager::Init()
 
 void MEE::RenderingManager::RenderClear()
 {
-    MEE_RenderClear();
+    MEE_CHECK_FUNCTION(MEE_RenderClear();)
 }
 
 void MEE::RenderingManager::SetRenderColor(int r, int g, int b, int a)
 {
-    MEE_SetRenderColor(r, g, b, a);
+    MEE_CHECK_FUNCTION(MEE_SetRenderColor(r, g, b, a);)
 }
 
 void MEE::RenderingManager::SetRenderViewport(int x, int y, int w, int h)
 {
-    MEE_SetRenderViewport(x, y, w, h);
+    MEE_CHECK_FUNCTION(MEE_SetRenderViewport(x, y, w, h);)
 }
 
 void MEE::RenderingManager::InitGL()
 {
-    MEE_InitGL();
+    MEE_CHECK_FUNCTION(MEE_InitGL();)
 }
 
 void MEE::RenderingManager::RenderLine(float x1, float y1, float x2, float y2, RenderingType type)
 {
-    MEE_RenderLine(x1, y1, x2, y2);
+    MEE_CHECK_FUNCTION(MEE_RenderLine(x1, y1, x2, y2);)
 }
 
 void MEE::RenderingManager::RenderPoint(float x, float y, RenderingType type)
 {
-    MEE_RenderPoint(x, y);
+    MEE_CHECK_FUNCTION(MEE_RenderPoint(x, y);)
 }
 
 void MEE::RenderingManager::RenderPolygon(const std::vector<Vector2>& vertices, RenderingType type)
@@ -69,7 +78,7 @@ void MEE::RenderingManager::RenderPolygon(const std::vector<Vector2>& vertices, 
         points.push_back((vertices[v].y - cameraPos.y) * ppu);
         v++;
     }
-    MEE_RenderPolygon(points);
+    MEE_CHECK_FUNCTION(MEE_RenderPolygon(points);)
 
 }
 
@@ -91,17 +100,17 @@ void MEE::RenderingManager::RenderSolidPolygon(const std::vector<Vector2>& verti
         points.push_back((vertices[v].y - cameraPos.y) * ppu);
         v++;
     }
-    MEE_RenderPolygon(points);
+    MEE_CHECK_FUNCTION(MEE_RenderPolygon(points);)
 }
 
 void MEE::RenderingManager::RenderCircle(float x, float y, float radius, RenderingType type)
 {
-    MEE_RenderCircle(x, y, radius);
+    MEE_CHECK_FUNCTION(MEE_RenderCircle(x, y, radius);)
 }
 
 void MEE::RenderingManager::RenderSolidCircle(float x, float y, float radius, RenderingType type)
 {
-    MEE_RenderSolidCircle(x, y, radius);
+    MEE_CHECK_FUNCTION(MEE_RenderSolidCircle(x, y, radius);)
 }
 
 void MEE::RenderingManager::RenderTexture2D(std::weak_ptr<Texture2D> texture, float x, float y, float scale_x, float scale_y, float angle, int clipX, int clipY, int clipW, 
@@ -119,17 +128,21 @@ void MEE::RenderingManager::RenderTexture2D(std::weak_ptr<Texture2D> texture, fl
         y = y - (cameraPos.y * PIXELS_PER_UNIT);
     }
 
-    MEE_RenderTexture2D(moduleTexture, x, y, scale_x, scale_y, angle, clipX, clipY, clipW, clipH, h_flip, v_flip);
+    MEE_CHECK_FUNCTION(
+        MEE_RenderTexture2D
+        (moduleTexture, x, y, scale_x, scale_y, angle, clipX, clipY, clipW, clipH, h_flip, v_flip);)
 }
 
 MEE::Texture2D* MEE::RenderingManager::CreateTexture2D(const std::string& path)
 {
-    return (Texture2D*)MEE_CreateTexture2D(path);
+    MEE_Texture2D pointer = nullptr;
+    MEE_CHECK_FUNCTION(pointer = MEE_CreateTexture2D(path);)
+    return (Texture2D*) pointer;
 }
 
 void MEE::RenderingManager::RenderDebugGrid(RenderingType type)
 {
-    MEE_RenderDebugGrid();
+    MEE_CHECK_FUNCTION(MEE_RenderDebugGrid();)
 }
 
 void MEE::RenderingManager::SetPixelsPerUnit(float ppu)
@@ -152,10 +165,10 @@ void MEE::RenderingManager::RenderTransform(const Vector2& position)
 {
     Vector2 cameraPos = currentCamera.lock()->GetPosition();
 
-    MEE_SetRenderColor(0, 255, 0, 255);
+    MEE_CHECK_FUNCTION(MEE_SetRenderColor(0, 255, 0, 255);)
     const float radius = 1.0F;
-    MEE_RenderCircle((position.x - cameraPos.x) * PIXELS_PER_UNIT, (position.y - cameraPos.y) * PIXELS_PER_UNIT, radius);
-    MEE_SetRenderColor(53, 40, 230, 255);
+    MEE_CHECK_FUNCTION(MEE_RenderCircle((position.x - cameraPos.x) * PIXELS_PER_UNIT, (position.y - cameraPos.y) * PIXELS_PER_UNIT, radius);)
+    MEE_CHECK_FUNCTION(MEE_SetRenderColor(53, 40, 230, 255);)
 }
 
 void MEE::RenderingManager::SetCurrentCamera(std::weak_ptr<Camera> camera)
