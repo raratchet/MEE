@@ -7,6 +7,7 @@ namespace MEE
 	class MEE_EXPORT InputManager
 	{
 	public:
+		~InputManager();
 
 		bool Init();
 

@@ -29,7 +29,7 @@ namespace MEE
 
 	Plugin::~Plugin()
 	{
-		std::cout << "[MEE] Shutting down Plugin" << std::endl;
+		std::cout << "[MEE] Shutting down " << pluginInformation.name << std::endl;
 
 		PLUGIN_CLOSE_EXTERN(m_lib);
 	}

@@ -281,7 +281,7 @@ extern MEE_ENGINE_FUNCTION std::function<void(const MEE_Texture2D texture,float 
 	int clipX, int clipY, int clipW, int clipH , bool h_flip,bool v_flip)> MEE_RenderTexture2D;
 /**
  * Should create and load a Texture2D as a pointer and return it in the generic form MEE_Texture2D.
- * \param path: The path where texture is located given by the loading entitie.
+ * \param path: The path where texture is located given by the loading entity.
  * \return A MEE_Texture2D pointer for the Texture2D
  */
 extern MEE_ENGINE_FUNCTION std::function<MEE_Texture2D(const std::string& path)> MEE_CreateTexture2D;

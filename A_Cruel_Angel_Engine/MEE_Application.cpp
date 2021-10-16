@@ -21,45 +21,48 @@ namespace MEE
 		if (!pluginManager->Init())
 		{
 			std::cout<< "[MEE] Couldn't initialize Plugin Manager \n";
-			success = false;
+			return false;
 		}
 
 		if (WindowHandler::GetHandlerAPI() == WindowHandlerAPI::SDL)
-			w_handler = std::make_shared<SDLHandler>(SDLHandler());
+			w_handler = std::shared_ptr<SDLHandler>(new SDLHandler());
 		else if (WindowHandler::GetHandlerAPI() == WindowHandlerAPI::GLFW)
-			w_handler = std::make_shared<GLFWHandler>(GLFWHandler());
+			w_handler = std::shared_ptr<GLFWHandler>(new GLFWHandler());
 		else
-			w_handler = std::make_shared<SDLHandler>(SDLHandler());
+			w_handler = std::shared_ptr<SDLHandler>(new SDLHandler());
 
-		if (!w_handler->Init())
-		{
-			std::cout << "[MEE] Couldn't initialize Window \n";
-			success = false;
-		}
 
-		resourceManager = std::make_shared<ResourceManager>(ResourceManager());
-		sceneManager = std::make_shared<SceneManager>(SceneManager());
-		inputManager = std::make_shared<InputManager>(InputManager());
-		timeManager = std::make_shared<TimeManager>(TimeManager());
-		renderManager = std::make_shared<RenderingManager>(RenderingManager());
+		resourceManager = std::shared_ptr<ResourceManager>(new ResourceManager());
+		sceneManager = std::shared_ptr<SceneManager>(new SceneManager());
+		inputManager = std::shared_ptr<InputManager>(new InputManager());
+		timeManager = std::shared_ptr<TimeManager>(new TimeManager());
+		renderManager = std::shared_ptr<RenderingManager>(new RenderingManager());
 
+		//El orden del init importa mucho
 		if (!resourceManager->Init())
 		{
 			std::cout << "[MEE] An error has ocurr in the Resource Manager \n";
-			success = false;
-		}
-
-		if (!inputManager->Init())
-		{
-			std::cout << "[MEE] Couldn't initialize Input Manager \n";
-			success = false;
+			return false;
 		}
 
 		if (!renderManager->Init())
 		{
 			std::cout << "[MEE] Couldn't initialize Rendering Manager \n";
-			success = false;
+			return false;
 		}
+
+		if (!w_handler->Init())
+		{
+			std::cout << "[MEE] Couldn't initialize Window \n";
+			return false;
+		}
+
+		if (!inputManager->Init())
+		{
+			std::cout << "[MEE] Couldn't initialize Input Manager \n";
+			return false;
+		}
+
 
 		return success;
 	}
@@ -145,6 +148,16 @@ namespace MEE
 	{
 		pluginManager->Stop();
 		w_handler->Stop();
+
+		w_handler.reset();
+		renderManager.reset();
+		inputManager.reset();
+		sceneManager.reset();
+		timeManager.reset();
+		resourceManager.reset();
+		pluginManager.reset();
+
+		MEE_GLOBAL::application = nullptr;
 	}
 }
 

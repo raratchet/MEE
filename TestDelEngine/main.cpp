@@ -5,7 +5,9 @@
 
 int main(int argc, char* args[])
 {
-	auto game = Game::CreateGame();
-	game->AddLevel(new MainMenu);
-	game->Start();
+	if (auto game = Game::CreateGame())
+	{
+		game->AddLevel(new MainMenu);
+		game->Start();
+	}
 }
