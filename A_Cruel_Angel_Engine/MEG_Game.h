@@ -4,6 +4,9 @@
 #include "MEG_Exports.h"
 #include "MEG_Aliases.h"
 
+/**
+ * Game.
+ */
 class MEG_EXPORT Game
 {
 public:

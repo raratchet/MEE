@@ -7,6 +7,9 @@
 #include <any>
 #include <list> //Deberian de estar en el pch
 
+/**
+ * FunctionParameter is an object that hold any type with a given name.
+ */
 struct MEE_EXPORT FunctionParameter
 {
 
@@ -39,6 +42,9 @@ T FunctionParameter::As()
 	return type;
 }
 
+/**
+ * FunctionParameters holds any number, of any type of arguments for a function.
+ */
 struct MEE_EXPORT FunctionParameters
 {
 

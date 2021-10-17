@@ -3,6 +3,9 @@
 #include "MEE_GLFWHandler.h"
 #include "MEE_Graphics.h"
 #include "MEE_Global.h"
+#include <easylogging++.h>
+
+INITIALIZE_EASYLOGGINGPP
 
 namespace MEE
 {

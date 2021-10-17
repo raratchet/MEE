@@ -4,22 +4,15 @@
 
 namespace MEE
 {
-	class MEE_EXPORT Texture : public Resource 
-	{
-	public:
-		virtual ~Texture() = default;
-		virtual void Load(const std::string & path) = 0;
-		virtual int getWidth()const;
-		virtual int getHeight() const;
-
-	protected:
-		int width, height;
-	};
-
-	class MEE_EXPORT Texture2D : public Texture
+	class MEE_EXPORT Texture2D : public Resource
 	{
 	public:
 		virtual ~Texture2D() = default;
 		virtual void Load(const std::string& path) = 0;
+		virtual int GetWidth()const;
+		virtual int GetHeight() const;
+
+	protected:
+		int width, height;
 	};
 }

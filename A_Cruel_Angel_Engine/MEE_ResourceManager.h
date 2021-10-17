@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_ResourceManager.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
 #include <map>
 #include <memory>

@@ -4,6 +4,9 @@
 #include "MEG_Exports.h"
 #include "MEG_Aliases.h"
 
+/**
+ * MEG Input Simplifies the access to InputManager funtions via a singletons.
+ */
 class MEG_IMPORT Input
 {
 public:

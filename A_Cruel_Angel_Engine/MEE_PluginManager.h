@@ -1,7 +1,12 @@
+/*****************************************************************//**
+ * \file   MEE_PluginManager.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
-
 #include "MEE_Plugin.h"
-
 #include <filesystem>
 #include <vector>
 #include <memory>
@@ -10,6 +15,9 @@
 
 namespace MEE
 {
+	/**
+	 * PluginManager loads, holds, and controlls all plugins in the engine.
+	 */
 	class PluginManager
 	{
 	private:

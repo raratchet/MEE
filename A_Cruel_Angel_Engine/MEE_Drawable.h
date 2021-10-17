@@ -7,6 +7,9 @@
 
 namespace MEE
 {
+	/**
+	 * Drawable describes an object that holds a Sprite and can be drawn by the renderer.
+	 */
 	class MEE_EXPORT Drawable
 	{
 	public:

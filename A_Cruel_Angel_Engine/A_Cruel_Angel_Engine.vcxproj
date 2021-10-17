@@ -130,7 +130,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);MEE_ENGINE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\SDL\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\yaml-cpp\include;C:\Work\Dev_Libraries\glew-2.1.0\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\GLM\glm;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\stb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\SDL\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\yaml-cpp\include;C:\Work\Dev_Libraries\glew-2.1.0\include;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\GLM\glm;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\stb;C:\Work\A_Cruel_Angel_Engine\MEE\Dependencies\easyloggingpp\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>MEE_PCH.H</PrecompiledHeaderFile>
     </ClCompile>

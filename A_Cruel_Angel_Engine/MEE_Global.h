@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Global.h
+ * \brief  Defines the global space for MEE
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Application.h"
 #include "MEE_Exports.h"

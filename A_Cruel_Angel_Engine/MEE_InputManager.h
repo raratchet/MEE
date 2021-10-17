@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_InputManager.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Maths.h"
 #include "MEE_Exports.h"

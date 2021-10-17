@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_GLFWHandler.h
+ * \brief  Currently GLFW is not supported. Please don't use it.
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_WindowHandler.h"
 

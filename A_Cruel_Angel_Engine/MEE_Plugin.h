@@ -1,6 +1,11 @@
+/*****************************************************************//**
+ * \file   MEE_Plugin.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
-
-
 #include <filesystem>
 #include <iostream>
 
@@ -33,6 +38,9 @@
 
 namespace MEE
 {
+	/**
+	 * Plugin is a class that loads and holds a dynamic library as part of the engine.
+	 */
 	class Plugin
 	{
 	private:

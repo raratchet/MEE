@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Physics.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Functional.h"	
 #include "MEE_Exports.h"

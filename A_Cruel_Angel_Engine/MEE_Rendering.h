@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Rendering.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
 #include <string>
 #include <memory>
@@ -12,7 +19,7 @@ namespace MEE
 	struct Vector2;
 
 	/**
-	 * Tells if the rendering should be done relative physical postion of the camera relative to the world
+	 * RenderingType tells if the rendering should be done relative physical postion of the camera relative to the world
 	 * or should be done over the camera.
 	 */
 	enum class MEE_EXPORT RenderingType

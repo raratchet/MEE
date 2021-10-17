@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Components.h
+ * \brief  Contains several definitions for components.
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Maths.h"
 #include <memory>
@@ -12,6 +19,9 @@ namespace MEE
 
 	class Object;
 
+	/**
+	 * Updatable.
+	 */
 	class MEE_EXPORT Updatable
 	{
 	public:
@@ -19,6 +29,9 @@ namespace MEE
 		virtual ~Updatable() = default;
 	};
 
+	/**
+	 * Component.
+	 */
 	class MEE_EXPORT Component
 	{
 	public:
@@ -32,6 +45,9 @@ namespace MEE
 		friend class Object;
 	};
 
+	/**
+	 * TransformComponent.
+	 */
 	class MEE_EXPORT TransformComponent : public Component
 	{
 	public:
@@ -53,6 +69,9 @@ namespace MEE
 		friend class Scene;
 	};
 
+	/**
+	 * Behaviour.
+	 */
 	class MEE_EXPORT Behaviour : public Component , public Updatable
 	{
 	public:
@@ -64,6 +83,9 @@ namespace MEE
 	enum class ColliderType { Static, Dynamic, Kinematic };
 	enum class ColliderForm { Circle, Box, Polygon };
 
+	/**
+	 * Collider.
+	 */
 	class MEE_EXPORT Collider : public Component
 	{
 	public:

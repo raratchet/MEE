@@ -1,3 +1,11 @@
+/*****************************************************************//**
+ * \file   MEE_Object.h
+ * \brief  Defines Object, GameObject and WorldObject
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
+
 #pragma once
 #include <memory>
 #include <vector>

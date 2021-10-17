@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Camera.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
 #include<iostream>
 #include "MEE_Components.h"
