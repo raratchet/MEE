@@ -7,30 +7,26 @@
 
 namespace Basic_Input
 {
-	extern "C"
-	{
-		PLUGIN_EXPORT void OnInit(int);
-		PLUGIN_EXPORT void OnLoad();
-		PLUGIN_EXPORT void OnShutdown();
-		PLUGIN_EXPORT void OnUpdate();
-		PLUGIN_EXPORT void OnPostUpdate();
+	PLUGIN_FUNCTION void OnInit(int);
+	PLUGIN_FUNCTION void OnLoad();
+	PLUGIN_FUNCTION void OnShutdown();
+	PLUGIN_FUNCTION void OnUpdate();
+	PLUGIN_FUNCTION void OnPostUpdate();
 
 
-		PLUGIN_EXPORT void mousePosition(int*,int*);
+	PLUGIN_FUNCTION void mousePosition(int*, int*);
 
-		PLUGIN_EXPORT bool GetKeyDown(int key);
-		PLUGIN_EXPORT bool GetKeyPressed(int key);
-		PLUGIN_EXPORT bool GetKeyUp(int key);
+	PLUGIN_FUNCTION bool GetKeyDown(int key);
+	PLUGIN_FUNCTION bool GetKeyPressed(int key);
+	PLUGIN_FUNCTION bool GetKeyUp(int key);
 
-		PLUGIN_EXPORT bool GetMouseKeyDown(int key);
-		PLUGIN_EXPORT bool GetMouseKeyPressed(int key);
-		PLUGIN_EXPORT bool GetMouseKeyUp(int key);
+	PLUGIN_FUNCTION bool GetMouseKeyDown(int key);
+	PLUGIN_FUNCTION bool GetMouseKeyPressed(int key);
+	PLUGIN_FUNCTION bool GetMouseKeyUp(int key);
 
-		PLUGIN_EXPORT bool GetControllerKeyDown(int controller, int key);
-		PLUGIN_EXPORT bool GetControllerKeyPressed(int controller, int key);
-		PLUGIN_EXPORT bool GetControllerKeyUp(int controller, int key);
-
-	}
+	PLUGIN_FUNCTION bool GetControllerKeyDown(int controller, int key);
+	PLUGIN_FUNCTION bool GetControllerKeyPressed(int controller, int key);
+	PLUGIN_FUNCTION bool GetControllerKeyUp(int controller, int key);
 
 	void clear();
 	void keyboardInput(int key, int state);

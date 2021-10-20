@@ -1,4 +1,5 @@
 #include "Basic_Renderer.h"
+#include <MEE_Logging.h>
 
 namespace Basic_Renderer
 {
@@ -19,6 +20,8 @@ namespace Basic_Renderer
 		MEE_bind_SetRenderViewport(pl_id, "SetRenderViewport");
 		MEE_bind_RenderLine(pl_id, "RenderLine");
 		MEE_bind_RenderDebugGrid(pl_id, "RenderDebugGrid");
+
+		MEE_LOGGER::Log("Initilize Basic Renderer");
 	}
 
 	void OnLoad()

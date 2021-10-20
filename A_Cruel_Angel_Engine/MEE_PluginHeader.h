@@ -5,7 +5,8 @@
 // WINDOWS
 #include <windows.h>
 
-#define PLUGIN_EXPORT __declspec(dllexport)
+#define PLUGIN_FUNCTION extern "C" __declspec(dllexport)
+#define PLUGIN_CLASS __declspec(dllexport)
 #define PLUGIN_HANDLE_TYPE HMODULE
 #define PLUGIN_PROGRAM_HANDLE GetModuleHandleW(nullptr) // esto no lo deberia permitir
 #define PLUGIN_LOAD_EXTERN GetProcAddress

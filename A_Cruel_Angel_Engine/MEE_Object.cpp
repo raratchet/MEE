@@ -86,6 +86,8 @@ namespace MEE
 	Object::~Object()
 	{
 		components.clear(); 
+		//Si un componente es updatable y se borra durante 
+		// el clear de components crea una excepcion en updatables.
 		updatables.clear();
 	}
 

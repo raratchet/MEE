@@ -114,6 +114,9 @@
     <ClCompile Include="MEE_ResourceManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="MEE_Logging.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MEE_Plugin.h">
@@ -222,6 +225,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="MEE_ResourceManager.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="MEE_Logging.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

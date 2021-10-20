@@ -26,8 +26,8 @@ namespace MEE
 		baseImage_startCoord = Vector2();
 
 		auto bImage = baseImage.lock();
-		width = bImage->getWidth();
-		height = bImage->getHeight();
+		width = bImage->GetWidth();
+		height = bImage->GetHeight();
 	}
 
 	void Sprite::Draw(const Vector2& position, const Vector2& scale, const float& rot, bool drawInPhysicalSpace)
@@ -74,8 +74,8 @@ namespace MEE
 
 		auto baseImage = RM->Get<Texture2D>(resource_name); //No me gusta usar el global
 
-		auto w = baseImage.lock()->getWidth();
-		auto h = baseImage.lock()->getHeight();
+		auto w = baseImage.lock()->GetWidth();
+		auto h = baseImage.lock()->GetHeight();
 
 		for (int i = 0; i < w; i += width)
 			for (int j = 0; j < w; j += height)

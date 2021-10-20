@@ -3,15 +3,15 @@
 #include "MEE_GLFWHandler.h"
 #include "MEE_Graphics.h"
 #include "MEE_Global.h"
-#include <easylogging++.h>
+#include "MEE_Logging.h"
 
-INITIALIZE_EASYLOGGINGPP
 
 namespace MEE
 {
 	Application::Application()
 	{
 		MEE_GLOBAL::application = this;
+		MEE_LOGGER::InitLogging();
 	}
 
 	bool Application::Init()
@@ -23,7 +23,7 @@ namespace MEE
 
 		if (!pluginManager->Init())
 		{
-			std::cout<< "[MEE] Couldn't initialize Plugin Manager \n";
+			MEE_LOGGER::Fatal("Couldn't initialize Plugin Manager");
 			return false;
 		}
 
@@ -44,25 +44,25 @@ namespace MEE
 		//El orden del init importa mucho
 		if (!resourceManager->Init())
 		{
-			std::cout << "[MEE] An error has ocurr in the Resource Manager \n";
+			MEE_LOGGER::Fatal("An error has ocurred in the Resource Manager");
 			return false;
 		}
 
 		if (!renderManager->Init())
 		{
-			std::cout << "[MEE] Couldn't initialize Rendering Manager \n";
+			MEE_LOGGER::Fatal("Couldn't initialize Rendering Manager");
 			return false;
 		}
 
 		if (!w_handler->Init())
 		{
-			std::cout << "[MEE] Couldn't initialize Window \n";
+			MEE_LOGGER::Fatal("Couldn't initialize Window");
 			return false;
 		}
 
 		if (!inputManager->Init())
 		{
-			std::cout << "[MEE] Couldn't initialize Input Manager \n";
+			MEE_LOGGER::Fatal("Couldn't initialize Input Manager");
 			return false;
 		}
 
@@ -152,10 +152,12 @@ namespace MEE
 		pluginManager->Stop();
 		w_handler->Stop();
 
+		MEE_LOGGER::FlushLog();
+
 		w_handler.reset();
+		sceneManager.reset();
 		renderManager.reset();
 		inputManager.reset();
-		sceneManager.reset();
 		timeManager.reset();
 		resourceManager.reset();
 		pluginManager.reset();

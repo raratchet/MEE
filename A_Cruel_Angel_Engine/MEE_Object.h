@@ -71,7 +71,7 @@ namespace MEE
 	class MEE_EXPORT GameObject : public Object, public Drawable // El demonio mismo
 	{
 	public:
-		virtual ~GameObject() {}
+		virtual ~GameObject() = default;
 	protected:
 		GameObject(Scene& master, const std::string& objName);
 		GameObject(Scene& master, const std::string& objName, Sprite& sprite);
@@ -82,7 +82,7 @@ namespace MEE
 	class MEE_EXPORT WorldObject : public Object
 	{
 	public:
-		virtual ~WorldObject() {}
+		virtual ~WorldObject() = default;
 	protected:
 		WorldObject(Scene& master, const std::string& objName);
 		friend class Scene;

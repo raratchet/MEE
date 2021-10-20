@@ -14,19 +14,19 @@ namespace DefaultRenderer {
 
 	extern "C" 
 	{
-		PLUGIN_EXPORT void OnInit(int);
-		PLUGIN_EXPORT void OnLoad();
-		PLUGIN_EXPORT void OnShutdown();
+		PLUGIN_FUNCTION void OnInit(int);
+		PLUGIN_FUNCTION void OnLoad();
+		PLUGIN_FUNCTION void OnShutdown();
 
 
-		PLUGIN_EXPORT void renderTexture(MEE_Texture2D tex, float x, float y,
+		PLUGIN_FUNCTION void renderTexture(MEE_Texture2D tex, float x, float y,
 			int clipX, int clipY, int clipW,
 			int clipH, float a);
-		PLUGIN_EXPORT MEE_Texture2D createTexture2D(const std::string path);
+		PLUGIN_FUNCTION MEE_Texture2D createTexture2D(const std::string path);
 
-		PLUGIN_EXPORT void renderClear();
-		PLUGIN_EXPORT void renderQuad();
-		PLUGIN_EXPORT void initGL();
+		PLUGIN_FUNCTION void renderClear();
+		PLUGIN_FUNCTION void renderQuad();
+		PLUGIN_FUNCTION void initGL();
 	}
 
 	//static const GLfloat base_quad_buffer_data[] = {

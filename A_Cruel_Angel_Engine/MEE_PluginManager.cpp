@@ -2,7 +2,6 @@
 #include <iostream>
 #include <yaml-cpp/yaml.h>
 
-
 namespace MEE
 {
 	bool PluginManager::HasSuffix(const std::wstring& s, const std::wstring& suffix)
@@ -27,6 +26,10 @@ namespace MEE
 		std::shared_ptr<Plugin> plugin(new Plugin(path,info));
 		
 		m_pluginList.push_back(plugin);
+
+		MEE_LOGGER::CreateLogger(info.name);
+
+		MEE_LOGGER::ScopedLogging log(info.name);
 
 		plugin->OnInit(m_pluginList.size() - 1);
 	}
@@ -74,14 +77,14 @@ namespace MEE
 			for (auto& plugin : plugins)
 			{
 				auto& pluginInfo = plInfo[plugin.first];
-				if(pluginInfo != nullptr)
+				if (pluginInfo != nullptr)
 					if (CheckForDependecies(*pluginInfo))
 						LoadPlugin(plugin.second, *pluginInfo);
 					else
-						std::cout << "[MEE] Cannot load " << pluginInfo->name
-						<< " some dependecies are missing" << std::endl;
+						MEE_LOGGER::Error("Cannot load " + pluginInfo->name
+							+ " some dependecies are missing");
 				else
-					std::cout << "[MEE] Some plugins may have not been loaded." << std::endl;
+					MEE_LOGGER::Warn("Some plugins may have not been loaded.");
 			}
 		}
 		catch (std::filesystem::filesystem_error e)
@@ -97,6 +100,7 @@ namespace MEE
 	{
 		for (auto plugin : m_pluginList)
 		{
+			MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
 			plugin->OnLoad();
 		}
 	}
@@ -105,8 +109,11 @@ namespace MEE
 	{
 		for (auto plugin : m_pluginList)
 		{
-			if(plugin->OnUpdate != nullptr)
+			if (plugin->OnUpdate != nullptr)
+			{
+				MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
 				plugin->OnUpdate();
+			}
 		}
 	}
 
@@ -115,7 +122,10 @@ namespace MEE
 		for (auto plugin : m_pluginList)
 		{
 			if (plugin->OnDraw != nullptr)
+			{
+				MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
 				plugin->OnDraw();
+			}
 		}
 	}
 
@@ -124,15 +134,23 @@ namespace MEE
 		for (auto plugin : m_pluginList)
 		{
 			if (plugin->OnPostUpdate != nullptr)
+			{
+				MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
 				plugin->OnPostUpdate();
+			}
 		}
 	}
 
 	void PluginManager::Stop()
 	{
 		for (auto plugin : m_pluginList) {
+			MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
 			plugin->OnShutdown();
 		}
+	}
+
+	PluginManager::~PluginManager()
+	{
 		m_pluginList.clear();
 	}
 }

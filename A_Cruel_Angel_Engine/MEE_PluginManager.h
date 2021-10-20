@@ -10,15 +10,17 @@
 #include <filesystem>
 #include <vector>
 #include <memory>
+#include <string>
 #include <functional>
-
+#include "MEE_Logging.h"
+#include "MEE_Exports.h"
 
 namespace MEE
 {
 	/**
 	 * PluginManager loads, holds, and controlls all plugins in the engine.
 	 */
-	class PluginManager
+	class MEE_EXPORT PluginManager
 	{
 	private:
 		bool HasSuffix(const std::wstring& s, const std::wstring& suffix);
@@ -35,7 +37,7 @@ namespace MEE
 		void PostUpdate();
 		void Stop();
 		PluginManager()  = default;
-		~PluginManager() = default;
+		~PluginManager();
 		template<class Type,class ... Args>
 		std::function<Type(Args...)> GetPluginFunction(int plugin_id, const std::string f_name);
 	};
@@ -44,8 +46,14 @@ namespace MEE
 	inline std::function<Type(Args...)> PluginManager::GetPluginFunction(int plugin_id, const std::string f_name)
 	{
 		auto lib = m_pluginList[plugin_id]->m_lib;
+		std::string pl_name = m_pluginList[plugin_id]->pluginInformation.name;
 		std::function<Type(Args...)> func = (Type(*)(Args...))(PLUGIN_LOAD_EXTERN(lib, f_name.c_str()));
-		return func;
+		std::function<Type(Args...)> setUpLogger = [=](Args...args)
+		{
+			MEE_LOGGER::ScopedLogging log(pl_name);
+			return func(args...);
+		};
+		return setUpLogger;
 	}
 
 }

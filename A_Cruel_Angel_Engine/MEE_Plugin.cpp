@@ -1,4 +1,5 @@
 #include "MEE_Plugin.h"
+#include "MEE_Logging.h"
 
 namespace MEE
 {
@@ -10,16 +11,16 @@ namespace MEE
 		pluginInformation = info;
 
 		if (!m_lib)
-			throw "[MEE] Unable to load Plugin!";
+			throw "Unable to load Plugin!";
 
-		std::cout << "[MEE] Loading "<< info.name << " version "<< info.version << std::endl;
+		MEE_LOGGER::Log("Loading " + info.name + " version " + info.version);
 
 		OnInit = (onInitType)PLUGIN_LOAD_EXTERN(m_lib, "OnInit");
 		OnLoad = (onLoadType)PLUGIN_LOAD_EXTERN(m_lib, "OnLoad");
 		OnShutdown = (onShutdownType)PLUGIN_LOAD_EXTERN(m_lib, "OnShutdown");
 		
 		if (!(OnInit && OnLoad && OnShutdown))
-			throw "[MEE] Error while loading plugin missing Functions";
+			throw "Error while loading plugin missing Functions";
 
 		OnUpdate = (onUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnUpdate");
 		OnDraw = (onDrawType)PLUGIN_LOAD_EXTERN(m_lib, "OnDraw");
@@ -29,7 +30,7 @@ namespace MEE
 
 	Plugin::~Plugin()
 	{
-		std::cout << "[MEE] Shutting down " << pluginInformation.name << std::endl;
+		MEE_LOGGER::Log("Shutting down " + pluginInformation.name);
 
 		PLUGIN_CLOSE_EXTERN(m_lib);
 	}

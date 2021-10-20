@@ -8,14 +8,14 @@
 #pragma once
 #include <filesystem>
 #include <iostream>
-
+#include "MEE_Exports.h"
 
 #if defined(_WIN64) || defined(_WIN32)
 
 // WINDOWS
 #include <windows.h>
 
-#define PLUGIN_EXPORT __declspec(dllexport)
+#define PLUGIN_FUNCTION __declspec(dllexport)
 #define PLUGIN_HANDLE_TYPE HMODULE
 #define PLUGIN_PROGRAM_HANDLE LoadLibraryW(filename.c_str());
 #define PLUGIN_LOAD_EXTERN GetProcAddress
@@ -41,7 +41,7 @@ namespace MEE
 	/**
 	 * Plugin is a class that loads and holds a dynamic library as part of the engine.
 	 */
-	class Plugin
+	class MEE_EXPORT Plugin
 	{
 	private:
 

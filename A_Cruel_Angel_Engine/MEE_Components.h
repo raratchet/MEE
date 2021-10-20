@@ -37,7 +37,7 @@ namespace MEE
 	public:
 		Component() = default;
 		Object& GetParent();
-		virtual ~Component() {}
+		virtual ~Component() = default;
 	private:
 		Object* parent = nullptr;
 		// Must always be called when scene adds a component
