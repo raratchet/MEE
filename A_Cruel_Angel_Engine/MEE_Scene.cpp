@@ -115,7 +115,7 @@ namespace MEE
          }
 
          //Run physics
-         MEE_CHECK_FUNCTION(MEE_PhysicsStep(id));
+         MEE_CHECK_FUNCTION(MEE_PhysicsStep,MEE_PhysicsStep(id));
 
          //Update transforms in engine
          for (auto& collider : sceneColliders)
