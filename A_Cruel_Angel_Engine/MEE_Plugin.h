@@ -60,6 +60,7 @@ namespace MEE
 		{
 			std::string name;
 			std::string version;
+			bool loaded;
 
 			//TODO ADD DEPENDECIES, TYPE, ALL THAT STUFF
 		};

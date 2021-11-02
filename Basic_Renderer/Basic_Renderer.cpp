@@ -103,7 +103,7 @@ namespace Basic_Renderer
 			RenderLine(ppu * i + x, y, ppu * i + x, h + y);
 		}
 
-		MEE_SetRenderColor(53, 40, 230, 255);
+		SetRenderColor(53, 40, 230, 255);
 	}
 
 	void SetRenderViewport(int x, int y, int w, int h)

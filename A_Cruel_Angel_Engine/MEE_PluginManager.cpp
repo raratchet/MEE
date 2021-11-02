@@ -23,7 +23,10 @@ namespace MEE
 	
 	void PluginManager::LoadPlugin(const std::wstring& path, const Plugin::PluginInformation& info)
 	{
-		std::shared_ptr<Plugin> plugin(new Plugin(path,info));
+		Plugin* pl = new Plugin(path, info);
+		if (!pl->pluginInformation.loaded) return;
+
+		std::shared_ptr<Plugin> plugin(pl);
 		
 		m_pluginList.push_back(plugin);
 

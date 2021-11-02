@@ -12,6 +12,7 @@ namespace MEE
 	{
 		MEE_GLOBAL::application = this;
 		MEE_LOGGER::InitLogging();
+		MEE_LOGGER::CreateLogger("MEG");
 	}
 
 	bool Application::Init()

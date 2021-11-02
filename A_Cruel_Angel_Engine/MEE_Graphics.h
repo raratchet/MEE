@@ -195,11 +195,12 @@ void  MEE_EXPORT MEE_bind_InitGL(int plugin_id, const std::string& func_name);
 void  MEE_EXPORT MEE_bind_RenderDebugGrid(int plugin_id, const std::string& func_name);
 
 //Engine Functions
+#ifdef MEE_ENGINE
 
 /**
  * Should clean the renderer in prearation for next frame. 
  */
-extern MEE_ENGINE_FUNCTION std::function<void()> MEE_RenderClear;
+extern std::function<void()> MEE_RenderClear;
 /**
  * Should change the rendering color of the renderer.
  * \param r: RED
@@ -207,7 +208,7 @@ extern MEE_ENGINE_FUNCTION std::function<void()> MEE_RenderClear;
  * \param b: BLUE
  * \param a: ALHPA
  */
-extern MEE_ENGINE_FUNCTION std::function<void(int r,int g,int b,int a)> MEE_SetRenderColor;
+extern std::function<void(int r,int g,int b,int a)> MEE_SetRenderColor;
 /**
  * Should move and resize the current viewport.
  * \param x: Position x
@@ -215,12 +216,12 @@ extern MEE_ENGINE_FUNCTION std::function<void(int r,int g,int b,int a)> MEE_SetR
  * \param w: Width
  * \param h: Height
  */
-extern MEE_ENGINE_FUNCTION std::function<void(int x, int y, int w, int h)> MEE_SetRenderViewport;
+extern std::function<void(int x, int y, int w, int h)> MEE_SetRenderViewport;
 /**
  * Function to prepare Graphic Library when all modules are loaded.
  * \warning Only called by the engine when using the OpenGL render API.
  */
-extern MEE_ENGINE_FUNCTION std::function<void()> MEE_InitGL;
+extern std::function<void()> MEE_InitGL;
 /**
  * Should Render a line in screen.
  * \param x1: First x position of line
@@ -228,41 +229,41 @@ extern MEE_ENGINE_FUNCTION std::function<void()> MEE_InitGL;
  * \param x2: Second x position of line
  * \param y2: Second y position of line
  */
-extern MEE_ENGINE_FUNCTION std::function<void(float x1, float y1, float x2, float y2)> MEE_RenderLine;
+extern std::function<void(float x1, float y1, float x2, float y2)> MEE_RenderLine;
 /**
  * Should render a point in screen.
  * \param x: X position of point
  * \param y: Y position of point
  */
-extern MEE_ENGINE_FUNCTION std::function<void(float x, float y)> MEE_RenderPoint;
+extern std::function<void(float x, float y)> MEE_RenderPoint;
 /**
  * Should render a polygon in screen.
  * \param vertices: An array containing all position for the polygon vertices.
  */
-extern MEE_ENGINE_FUNCTION std::function<void(std::vector<float> vertices)> MEE_RenderPolygon;
+extern std::function<void(std::vector<float> vertices)> MEE_RenderPolygon;
 /**
  * Should render a filled polygon in screen.
  * \param vertices: An array containing all position for the polygon vertices.
  */
-extern MEE_ENGINE_FUNCTION std::function<void(std::vector<float> vertices)> MEE_RenderSolidPolygon;
+extern std::function<void(std::vector<float> vertices)> MEE_RenderSolidPolygon;
 /**
  * Should render a circle in screen.
  * \param x: X position for circle center
  * \param y: Y position for circle center
  * \param radius: Circle radius
  */
-extern MEE_ENGINE_FUNCTION std::function<void(float x, float y, float radius)> MEE_RenderCircle;
+extern std::function<void(float x, float y, float radius)> MEE_RenderCircle;
 /**
  * Should render a filled circle in screen.
  * \param x: X position for circle center
  * \param y: Y position for circle center
  * \param radius: Circle radius
  */
-extern MEE_ENGINE_FUNCTION std::function<void(float x, float y, float radius)> MEE_RenderSolidCircle;
+extern std::function<void(float x, float y, float radius)> MEE_RenderSolidCircle;
 /**
  * Should render a grid in screen based in the current Pixels Per Unit.
  */
-extern MEE_ENGINE_FUNCTION std::function<void()> MEE_RenderDebugGrid;
+extern std::function<void()> MEE_RenderDebugGrid;
 /**
  * Should render the given Texture2D as a rectangle in screen.
  * \param texture: The given texture to draw
@@ -277,14 +278,14 @@ extern MEE_ENGINE_FUNCTION std::function<void()> MEE_RenderDebugGrid;
  * \param v:flip: A boolean that indicates if image should be flip vertically.
  * Note that Texture2D is given in the MEE_Texture2D generic form and should be casted before using it.
  */
-extern MEE_ENGINE_FUNCTION std::function<void(const MEE_Texture2D texture,float x, float y, float scale_x, float scale_y, float angle,
+extern std::function<void(const MEE_Texture2D texture,float x, float y, float scale_x, float scale_y, float angle,
 	int clipX, int clipY, int clipW, int clipH , bool h_flip,bool v_flip)> MEE_RenderTexture2D;
 /**
  * Should create and load a Texture2D as a pointer and return it in the generic form MEE_Texture2D.
  * \param path: The path where texture is located given by the loading entity.
  * \return A MEE_Texture2D pointer for the Texture2D
  */
-extern MEE_ENGINE_FUNCTION std::function<MEE_Texture2D(const std::string& path)> MEE_CreateTexture2D;
+extern std::function<MEE_Texture2D(const std::string& path)> MEE_CreateTexture2D;
 
-
+#endif // MEE_ENGINE
 
