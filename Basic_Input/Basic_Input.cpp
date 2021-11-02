@@ -6,22 +6,14 @@ namespace Basic_Input
 {
 	void OnInit(int pl_id)
 	{
-		//MEE_bind_keyboard_keyIsPressed(pl_id, "");
-		//MEE_bind_keyboard_keyPressedThisFrame(pl_id, "");
-		//MEE_bind_keyboard_keyUp(pl_id, "");
+		MEE_bind_keyboard_KeyIsPressed(pl_id, "GetKeyPressed");
+		MEE_bind_keyboard_KeyPressedThisFrame(pl_id, "GetKeyDown");
+		MEE_bind_keyboard_KeyUp(pl_id, "GetKeyUp");
 
-		//MEE_bind_mouse_keyUp(pl_id, "");
-		//MEE_bind_mouse_keyIsPressed(pl_id, "");
-		//MEE_bind_mouse_keyPressedThisFrame(pl_id, "");
+		MEE_bind_mouse_KeyUp(pl_id, "GetMouseKeyUp");
+		MEE_bind_mouse_KeyIsPressed(pl_id, "GetMouseKeyPressed");
+		MEE_bind_mouse_KeyPressedThisFrame(pl_id, "GetMouseKeyDown");
 		MEE_bind_mouse_GetPosition(pl_id, "mousePosition");
-
-		MEE_keyboard_KeyIsPressed = (bool(*)(int))GetKeyPressed;
-		MEE_keyboard_KeyPressedThisFrame = (bool(*)(int))GetKeyDown;
-		MEE_keyboard_KeyUp = (bool(*)(int))GetKeyUp;
-
-		MEE_mouse_KeyIsPressed = (bool(*)(int))GetMouseKeyPressed;
-		MEE_mouse_KeyPressedThisFrame = (bool(*)(int))GetMouseKeyDown;
-		MEE_mouse_KeyUp = (bool(*)(int))GetMouseKeyUp;
 
 		MEE_bind_gamepad_KeyIsPressed(pl_id, "GetControllerKeyPressed");
 		MEE_bind_gamepad_KeyPressedThisFrame(pl_id, "GetControllerKeyDown");
