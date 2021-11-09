@@ -1,6 +1,6 @@
 [submodule "Dependencies/yaml-cpp"]
 	path = Dependencies/yaml-cpp
-	url = https://github.com/raratchet/yaml-cpp
+	url = https://github.com/TheCherno/yaml-cpp
 [submodule "Dependencies/SDL"]
 	path = Dependencies/SDL
 	url = https://github.com/libsdl-org/SDL
@@ -13,5 +13,4 @@
 [submodule "Dependencies/easyloggingpp"]
 	path = Dependencies/easyloggingpp
 	url = https://github.com/amrayn/easyloggingpp.git
-[submodule "Dependencies/yaml-cpp/"]
-	url = https://github.com/TheCherno/yaml-cpp
+
