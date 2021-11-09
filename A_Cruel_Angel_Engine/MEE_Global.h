@@ -1,7 +1,7 @@
 /*****************************************************************//**
  * \file   MEE_Global.h
- * \brief  Defines the global space for MEE
- * 
+ * \brief  Defines the global space for MEE. 
+ * Used to simplify sintax in Interfaces
  * \author Maximiliano Herrera
  * \date   October 2021
  *********************************************************************/

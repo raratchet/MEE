@@ -13,6 +13,9 @@
 
 namespace MEE
 {
+	/**
+	 * Concrete WindowHandler for SDL API.
+	 */
 	class SDLHandler : public WindowHandler
 	{
 	public:

@@ -251,7 +251,6 @@ namespace Basic_Input
 		if (alreadyDown == KeyDown.end()
 			&& alreadyPressed == KeyPressed.end())
 		{
-			std::cout << "Se presiona " << key << std::endl;
 			KeyDown.insert(key);
 			KeyPressed.insert(key);
 		}

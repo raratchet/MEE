@@ -1,3 +1,11 @@
+/*****************************************************************//**
+ * \file   MEE_Exports.h
+ * \brief  Defines macros from DLL Exporting
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
+
 #pragma once
 
 #ifndef MEE_ENGINE

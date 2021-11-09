@@ -27,6 +27,9 @@ namespace MEE
 		Physical, NonPhysical
 	};
 
+	/**
+	 * Manages all the calls to the rendering module.
+	 */
 	class MEE_EXPORT RenderingManager
 	{
 	public:

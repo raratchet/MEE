@@ -1,7 +1,7 @@
 /*****************************************************************//**
  * \file   MEE_Physics.h
- * \brief  
- * 
+ * \brief The Interface between MEE and Physics Module.\n
+ * This header contains functions to bind and link a module function to the engine. \n
  * \author Maximiliano Herrera
  * \date   October 2021
  *********************************************************************/

@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Functional.h
+ * \brief  Defines Special Functors and Parameter Objects
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Exports.h"
 #include <functional>

@@ -32,7 +32,7 @@ que el motor considera para dicho subsistema.
 ## Entendiendo las etapas.
 
 Los módulos tienen 6 funciones que sirven para ejecutar código en distintos puntos
-de la ejecucción del motor *(puedes consultar el diagrama de flujo del engine para saber en que punto  se encuentra cada una)*. 
+de la ejecucción del motor *(puedes consultar el diagrama de flujo del engine para saber en que punto se encuentra cada una)*. 
 Dichas funciones son:
 
 - OnInit

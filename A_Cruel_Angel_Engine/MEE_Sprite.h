@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Sprite.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include <memory>
 #include <vector>

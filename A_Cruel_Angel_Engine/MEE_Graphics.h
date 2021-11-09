@@ -1,6 +1,6 @@
 /*****************************************************************//**
  * \file   MEE_Graphics.h
- * \brief The Interface between Engine and Graphics Module.\n
+ * \brief The Interface between MEE and Graphics Module.\n
  * This header contains functions to bind and link a module function to the engine. \n
  * \author Maximiliano Herrera
  * \date   October 2021

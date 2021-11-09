@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_PluginHeader.h
+ * \brief  Defines macros to simplify Modules sintax
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 
 #if defined(_WIN64) || defined(_WIN32)

@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Maths.h
+ * \brief  Defines Math utilities for MEE
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include <cmath>
 #include "MEE_Exports.h"

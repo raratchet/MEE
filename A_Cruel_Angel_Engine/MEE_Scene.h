@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Scene.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include <list>
 #include <string>
@@ -8,6 +15,9 @@ namespace MEE
 {
 	using SceneID = unsigned int;
 
+	/**
+	 * Conatains Objects and manages Physics.
+	 */
 	class MEE_EXPORT Scene
 	{
 	public:

@@ -1,9 +1,19 @@
+/*****************************************************************//**
+ * \file   MEE_SceneManager.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include <list>
 #include "MEE_Scene.h"
 
 namespace MEE
 {
+	/**
+	 * Manages all Scene related stuff in the main loop of MEE.
+	 */
 	class MEE_EXPORT SceneManager
 	{
 	public:

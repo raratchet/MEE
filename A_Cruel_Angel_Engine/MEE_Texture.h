@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Texture.h
+ * \brief  Conatains Graphic related Resoruces
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Resources.h"
 #include "MEE_Exports.h"

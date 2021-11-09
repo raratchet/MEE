@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_UI.h
+ * \brief  Contains UI_Elements and it's children
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Exports.h"
 #include "MEE_Drawable.h"

@@ -1,7 +1,17 @@
+/*****************************************************************//**
+ * \file   MEE_Logging.h
+ * \brief  Contains all logging related functions
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Exports.h"
 #include <string>
 
+/**
+ * This namespace is a fachade for easylogging.
+ */
 namespace MEE_LOGGER
 {
 	void MEE_EXPORT Log(const std::string& message);
