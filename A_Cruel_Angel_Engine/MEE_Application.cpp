@@ -2,15 +2,17 @@
 #include "MEE_SDLHandler.h"
 #include "MEE_GLFWHandler.h"
 #include "MEE_Graphics.h"
-
-//TEMP
 #include "MEE_Global.h"
+#include "MEE_Logging.h"
+
 
 namespace MEE
 {
 	Application::Application()
 	{
 		MEE_GLOBAL::application = this;
+		MEE_LOGGER::InitLogging();
+		MEE_LOGGER::CreateLogger("MEG");
 	}
 
 	bool Application::Init()
@@ -22,36 +24,50 @@ namespace MEE
 
 		if (!pluginManager->Init())
 		{
-			std::cout<< "Couldn't initialize Plugin Manager";
-			success = false;
+			MEE_LOGGER::Fatal("Couldn't initialize Plugin Manager");
+			return false;
 		}
 
 		if (WindowHandler::GetHandlerAPI() == WindowHandlerAPI::SDL)
-			w_handler = std::make_shared<SDLHandler>(SDLHandler());
+			w_handler = std::shared_ptr<SDLHandler>(new SDLHandler());
 		else if (WindowHandler::GetHandlerAPI() == WindowHandlerAPI::GLFW)
-			w_handler = std::make_shared<GLFWHandler>(GLFWHandler());
+			w_handler = std::shared_ptr<GLFWHandler>(new GLFWHandler());
 		else
-			w_handler = std::make_shared<SDLHandler>(SDLHandler());
+			w_handler = std::shared_ptr<SDLHandler>(new SDLHandler());
+
+
+		resourceManager = std::shared_ptr<ResourceManager>(new ResourceManager());
+		sceneManager = std::shared_ptr<SceneManager>(new SceneManager());
+		inputManager = std::shared_ptr<InputManager>(new InputManager());
+		timeManager = std::shared_ptr<TimeManager>(new TimeManager());
+		renderManager = std::shared_ptr<RenderingManager>(new RenderingManager());
+
+		//El orden del init importa mucho
+		if (!resourceManager->Init())
+		{
+			MEE_LOGGER::Fatal("An error has ocurred in the Resource Manager");
+			return false;
+		}
+
+		if (!renderManager->Init())
+		{
+			MEE_LOGGER::Fatal("Couldn't initialize Rendering Manager");
+			return false;
+		}
 
 		if (!w_handler->Init())
 		{
-			std::cout << "Couldn't initialize Window \n";
-			success = false;
+			MEE_LOGGER::Fatal("Couldn't initialize Window");
+			return false;
 		}
 
-		resourceManager = std::make_shared<ResourceManager>(ResourceManager());
-
-		if (!resourceManager->Init())
+		if (!inputManager->Init())
 		{
-			std::cout << "An error has ocurr in the Resource Manager \n";
-			success = false;
+			MEE_LOGGER::Fatal("Couldn't initialize Input Manager");
+			return false;
 		}
 
-		//Sus verificaciones
-		sceneManager = std::make_shared<SceneManager>(SceneManager());
-		inputManager = std::make_shared<InputManager>(InputManager());
-		timeManager = std::make_shared<TimeManager>(TimeManager());
-		renderManager = std::make_shared<RenderingManager>(RenderingManager());
+
 		return success;
 	}
 
@@ -136,6 +152,18 @@ namespace MEE
 	{
 		pluginManager->Stop();
 		w_handler->Stop();
+
+		MEE_LOGGER::FlushLog();
+
+		w_handler.reset();
+		sceneManager.reset();
+		renderManager.reset();
+		inputManager.reset();
+		timeManager.reset();
+		resourceManager.reset();
+		pluginManager.reset();
+
+		MEE_GLOBAL::application = nullptr;
 	}
 }
 

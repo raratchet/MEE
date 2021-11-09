@@ -20,7 +20,9 @@ std::shared_ptr<Game> Game::CreateGame()
 	mainApp = new MEE::Application;
 	  
 	bool gameInit = game->Init();
-	//Assert gameInit
+	
+	if (!gameInit)
+		return nullptr;
 
 	return game;
 }
@@ -124,6 +126,12 @@ bool Game::Init()
 	if (success)
 	{
 		mainApp->Load();
+	}
+	else
+	{
+		std::cout << "[MEG] Game couldn't initialize. Aborting!" << std::endl;
+		mainApp->Stop();
+		delete mainApp;
 	}
 
 	return success;

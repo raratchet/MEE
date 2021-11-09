@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Physics.h
+ * \brief The Interface between MEE and Physics Module.\n
+ * This header contains functions to bind and link a module function to the engine. \n
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Functional.h"	
 #include "MEE_Exports.h"
@@ -19,13 +26,16 @@ extern void  MEE_EXPORT MEE_SetPixelsPerUnit(float ppu);
 extern float MEE_EXPORT MEE_GetPixelsPerUnit();
 extern float MEE_EXPORT MEE_GetUnitsPerPixel();
 
-extern MEE_ENGINE_FUNCTION std::function<void(SceneID sceneID, FunctionParameters& params)> MEE_CreatePhysicsWorld;
-extern MEE_ENGINE_FUNCTION std::function<void(SceneID sceneID)> MEE_DestroyPhysicsWorld;
-extern MEE_ENGINE_FUNCTION std::function<MEE_Collider(SceneID sceneID,FunctionParameters& params)> MEE_CreateCollider;
-extern MEE_ENGINE_FUNCTION std::function<void(MEE_Collider collider, float x, float y, float angle)> MEE_SetColliderTransform;
-extern MEE_ENGINE_FUNCTION std::function<void(MEE_Collider collider, float* x, float* y, float* angle)> MEE_GetColliderTransform;
-extern MEE_ENGINE_FUNCTION std::function<void(SceneID sceneID, MEE_Collider collider)> MEE_DestroyCollider;
-extern MEE_ENGINE_FUNCTION std::function<void(SceneID sceneID)> MEE_PhysicsStep;
+#ifdef MEE_ENGINE
 
+extern std::function<void(SceneID sceneID, FunctionParameters& params)> MEE_CreatePhysicsWorld;
+extern std::function<void(SceneID sceneID)> MEE_DestroyPhysicsWorld;
+extern std::function<MEE_Collider(SceneID sceneID,FunctionParameters& params)> MEE_CreateCollider;
+extern std::function<void(MEE_Collider collider, float x, float y, float angle)> MEE_SetColliderTransform;
+extern std::function<void(MEE_Collider collider, float* x, float* y, float* angle)> MEE_GetColliderTransform;
+extern std::function<void(SceneID sceneID, MEE_Collider collider)> MEE_DestroyCollider;
+extern std::function<void(SceneID sceneID)> MEE_PhysicsStep;
+
+#endif //MEE_ENGINE
 
 

@@ -4,8 +4,20 @@
 #include "MEE_Camera.h" 
 #include "MEE_Physics.h"
 #include "MEE_WindowHandler.h"
-#include "MEE_Graphics.h"
 #include "MEE_Global.h"
+
+#define MEE_CHECK_FUNCTION(FUNC_NAME,FUNCTION)\
+try\
+{\
+    FUNCTION;\
+}\
+catch(...)\
+{\
+	std::string message ="An error ocurred while calling ";\
+	message += #FUNC_NAME;\
+	message += " in MEE_PHYSICS.";\
+    MEE_LOGGER::Error(message);\
+}
 
 namespace MEE
 {
@@ -82,7 +94,7 @@ namespace MEE
          CreateCamera(Vector2(),w,h);
      }
 
-     void Scene::SetCurrenCamera(std::weak_ptr<Camera> camera)
+     void Scene::SetCurrentCamera(std::weak_ptr<Camera> camera)
      {
          MEE_GLOBAL::application->GetRenderManager().lock()->SetCurrentCamera(camera);
      }
@@ -97,12 +109,13 @@ namespace MEE
                  auto transform = collider->transform.lock();
                  auto position = transform->GetPosition();
                  MEE_Collider asMEE_Collider = (MEE_Collider)(collider.get());
-                 MEE_SetColliderTransform(asMEE_Collider, position.x, position.y, transform->GetRotation());
+                 MEE_CHECK_FUNCTION(MEE_SetColliderTransform,
+                     MEE_SetColliderTransform(asMEE_Collider, position.x, position.y, transform->GetRotation()));
              }
          }
 
          //Run physics
-         MEE_PhysicsStep(id);
+         MEE_CHECK_FUNCTION(MEE_PhysicsStep,MEE_PhysicsStep(id));
 
          //Update transforms in engine
          for (auto& collider : sceneColliders)
@@ -114,7 +127,7 @@ namespace MEE
                  float angle;
 
                  MEE_Collider asMEE_Collider = (MEE_Collider)(collider.get());
-                 MEE_GetColliderTransform(asMEE_Collider, &position.x, &position.y, &angle);
+                 MEE_CHECK_FUNCTION(MEE_GetColliderTransform, MEE_GetColliderTransform(asMEE_Collider, &position.x, &position.y, &angle));
 
                  transform->SetPosition(position);
                  transform->SetRotation(angle);
@@ -122,11 +135,15 @@ namespace MEE
              }
          }
 
+
          //Update scene objects
          for (auto& obj : sceneObjects)
              for (auto& beh : obj->updatables)
-                 if(obj->GetEnabled())
+                 if (obj->GetEnabled())
+                 {
+                    MEE_LOGGER::ScopedLogging log("MEG");
                     beh->Update();
+                 }
      }
 
      void Scene::Draw()
@@ -137,14 +154,18 @@ namespace MEE
              if (!camera->GetActive())
                  continue;
 
-             SetCurrenCamera(camera);
-             MEE_RenderDebugGrid(); //temp
+             SetCurrentCamera(camera);
+#ifdef _DEBUG
+             MEE_GLOBAL::application->GetRenderManager().lock()->RenderDebugGrid();
+#endif // _DEBUG
 
              for (auto& drawable : drawObjects)
              {
                  if(drawable->GetVisible())
-                    drawable->Draw(camera);
+                    drawable->Draw();
              }
+
+             camera->DrawUIElements();
          }
      }
 }

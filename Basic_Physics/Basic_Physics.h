@@ -12,22 +12,18 @@ namespace Basic_Physics
 	std::map<SceneID, b2World*> physicWorlds;
 	std::map<b2World*, std::vector<BoxCollider*>> bodies;
 
-	extern "C"
-	{
-		PLUGIN_EXPORT void OnInit(int);
-		PLUGIN_EXPORT void OnLoad();
-		PLUGIN_EXPORT void OnShutdown();
-		PLUGIN_EXPORT void OnUpdate();
-		PLUGIN_EXPORT void OnDraw();
+	PLUGIN_FUNCTION void OnInit(int);
+	PLUGIN_FUNCTION void OnLoad();
+	PLUGIN_FUNCTION void OnShutdown();
+	PLUGIN_FUNCTION void OnUpdate();
+	PLUGIN_FUNCTION void OnDraw();
 
-		PLUGIN_EXPORT void CreatePhysicsWorld(SceneID, FunctionParameters& params);
-		PLUGIN_EXPORT void UpdateTransform(MEE_Collider,float,float,float);
-		PLUGIN_EXPORT MEE_Collider CastCollider(MEE_Collider);
-		PLUGIN_EXPORT void ReadTransform(MEE_Collider, float*, float*, float*);
-		PLUGIN_EXPORT MEE_Collider CreateCollider(SceneID, FunctionParameters& params);
-		PLUGIN_EXPORT void PhysicsStep(SceneID);
-
-	}
+	PLUGIN_FUNCTION void CreatePhysicsWorld(SceneID, FunctionParameters& params);
+	PLUGIN_FUNCTION void UpdateTransform(MEE_Collider, float, float, float);
+	PLUGIN_FUNCTION MEE_Collider CastCollider(MEE_Collider);
+	PLUGIN_FUNCTION void ReadTransform(MEE_Collider, float*, float*, float*);
+	PLUGIN_FUNCTION MEE_Collider CreateCollider(SceneID, FunctionParameters& params);
+	PLUGIN_FUNCTION void PhysicsStep(SceneID);
 
 
 }

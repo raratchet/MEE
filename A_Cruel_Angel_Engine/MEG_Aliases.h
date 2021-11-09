@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEG_Aliases.h
+ * \brief  Contains aliases to use in MEG
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Application.h"
 #include "MEE_Components.h"
@@ -18,4 +25,5 @@ using AssetID = unsigned int;
 using Collider = MEE::Collider;
 using ColliderType = MEE::ColliderType;
 using ColliderForm = MEE::ColliderForm;
+using GamepadID = unsigned int;
 

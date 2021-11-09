@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_WindowHandler.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include <string>
 
@@ -6,7 +13,10 @@ enum class RenderAPI;
 
 namespace MEE
 {
-
+	/**
+	 * Base class for window handling.
+	 * The window handler API dictates the Input API as well.
+	 */
 	class WindowHandler
 	{
 	public:

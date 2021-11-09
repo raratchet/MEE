@@ -4,6 +4,9 @@
 #include "MEG_Exports.h"
 #include "MEG_Aliases.h"
 
+/**
+ * MEG Input Simplifies the access to InputManager funtions via a singletons.
+ */
 class MEG_IMPORT Input
 {
 public:
@@ -12,6 +15,13 @@ public:
 		static bool KeyWasPressedThisFrame(int key);
 		static bool KeyIsPressed(int key);
 		static bool KeyUp(int key);
+	};
+
+	static struct MEG_IMPORT Controller
+	{
+		static bool KeyWasPressedThisFrame(GamepadID id, int key);
+		static bool KeyIsPressed(GamepadID id, int key);
+		static bool KeyUp(GamepadID id, int key);
 	};
 
 	static struct MEG_IMPORT Mouse

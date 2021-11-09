@@ -10,6 +10,6 @@ public:
 	virtual void Load(const std::string & path) override;
 	SDL_Texture* getTexture();
 private:
-	SDL_Texture* texture;
+	SDL_Texture* texture = nullptr;
 };
 

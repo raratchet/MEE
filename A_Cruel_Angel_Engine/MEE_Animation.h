@@ -1,5 +1,11 @@
+/*****************************************************************//**
+ * \file   MEE_Animation.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
-#include "MEE_Components.h"
 #include "MEE_PCH.h"
 #include "MEE_Sprite.h"
 #include "MEE_Drawable.h"
@@ -8,6 +14,10 @@ namespace MEE
 {
 	class Drawable;
 
+	/**
+	 * Animation is an object that contains a SpriteSheet.
+	 * It's used by an AnimationController to change Sprites in a Drawable object.
+	 */
 	class MEE_EXPORT Animation
 	{
 	public:
@@ -30,11 +40,21 @@ namespace MEE
 		friend class AnimationPlayer;
 	};
 
+	/**
+	 * AnimationDirection is used to determine in which direction a Animation
+	 * should update.
+	 */
 	enum class MEE_EXPORT AnimationDirection
 	{
 		Forward, Backwards
 	};
 
+	/**
+	 * AnimationPlayer is an Updatable Component that controlls the Sprites of
+	 * a given Drawable object.
+	 * It changes the Sprite to draw in the Drawable object given an Animation.
+	 * It can hold and change between multiple Animation.
+	 */
 	class MEE_EXPORT AnimationPlayer : public Component, public Updatable
 	{
 	public:

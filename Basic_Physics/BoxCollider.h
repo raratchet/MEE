@@ -12,7 +12,7 @@ namespace Basic_Physics
 	using MEE::ColliderType;
 	using MEE::ColliderForm;
 
-	class PLUGIN_EXPORT BoxCollider : public MEE::Collider
+	class PLUGIN_CLASS BoxCollider : public MEE::Collider
 	{
 	public:
 		BoxCollider(b2World* world,MEE::Vector2 position = MEE::Vector2(-1000,-1000), MEE::Vector2 size = MEE::Vector2(1,1), ColliderType type = ColliderType::Static);

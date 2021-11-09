@@ -1,25 +1,25 @@
+/*****************************************************************//**
+ * \file   MEE_Texture.h
+ * \brief  Conatains Graphic related Resoruces
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Resources.h"
 #include "MEE_Exports.h"
 
 namespace MEE
 {
-	class MEE_EXPORT Texture : public Resource 
-	{
-	public:
-		virtual ~Texture() = default;
-		virtual void Load(const std::string & path) = 0;
-		virtual int getWidth()const;
-		virtual int getHeight() const;
-
-	protected:
-		int width, height;
-	};
-
-	class MEE_EXPORT Texture2D : public Texture
+	class MEE_EXPORT Texture2D : public Resource
 	{
 	public:
 		virtual ~Texture2D() = default;
 		virtual void Load(const std::string& path) = 0;
+		virtual int GetWidth()const;
+		virtual int GetHeight() const;
+
+	protected:
+		int width, height;
 	};
 }

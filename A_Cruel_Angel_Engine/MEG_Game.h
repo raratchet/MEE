@@ -4,6 +4,9 @@
 #include "MEG_Exports.h"
 #include "MEG_Aliases.h"
 
+/**
+ * Game is a fachade class that simplifies the use of MEE.
+ */
 class MEG_EXPORT Game
 {
 public:

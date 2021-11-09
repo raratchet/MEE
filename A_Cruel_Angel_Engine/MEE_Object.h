@@ -1,9 +1,16 @@
+/*****************************************************************//**
+ * \file   MEE_Object.h
+ * \brief  Defines Object, GameObject and WorldObject
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
+
 #pragma once
 #include <memory>
 #include <vector>
 #include <string>
 #include "MEE_Components.h"
-#include "MEE_Scene.h"
 #include "MEE_Drawable.h"
 #include "MEE_Exports.h"
 #include "MEE_Functional.h"
@@ -11,6 +18,9 @@
 
 namespace MEE
 {
+	//Pre declarations
+	class Scene;
+
 	class MEE_EXPORT Object
 	{
 	public:
@@ -26,11 +36,17 @@ namespace MEE
 
 		void operator=(Object& obj) { obj = *this; }
 
-		Transform& GetTransform();
+		TransformComponent& GetTransformComponent();
 
 		Scene& GetScene();
 
 		virtual void SetEnabled(bool value);
+
+		std::string GetName();
+		std::string GetTag();
+
+		void SetName(const std::string& value);
+		void SetTag(const std::string& value);
 
 		bool GetEnabled();
 
@@ -40,12 +56,19 @@ namespace MEE
 		Object(Scene& master, const std::string& objName);
 		Scene& owner; 
 		std::string name;
+		//The main pointer to a component is saved here. Every other reference should be a weak one.
 		std::vector<std::shared_ptr<Component>> components;
+		//If a updatable is a component should be inserted via RegisterUpdatable.
 		std::vector<std::shared_ptr<Updatable>> updatables;
+		std::string tag;
 
 		bool enabled = true;
 
-		Component& Internal_AddComponent(Component* component, FunctionParameters& params, const std::string& type = "Default");
+		void RegisterUpdatable(std::weak_ptr<Updatable> updatable);
+		Component& AddComponent(Component* component, FunctionParameters& params);
+		AnimationPlayer& AddAnimationPlayer(FunctionParameters& params);
+		Collider& AddCollider(FunctionParameters& params);
+		Behaviour& AddBehaviuor(Behaviour* behaviour);
 		friend class Scene;
 		
 	};
@@ -54,7 +77,7 @@ namespace MEE
 	class MEE_EXPORT GameObject : public Object, public Drawable // El demonio mismo
 	{
 	public:
-		virtual ~GameObject() {}
+		virtual ~GameObject() = default;
 	protected:
 		GameObject(Scene& master, const std::string& objName);
 		GameObject(Scene& master, const std::string& objName, Sprite& sprite);
@@ -65,7 +88,7 @@ namespace MEE
 	class MEE_EXPORT WorldObject : public Object
 	{
 	public:
-		virtual ~WorldObject() {}
+		virtual ~WorldObject() = default;
 	protected:
 		WorldObject(Scene& master, const std::string& objName);
 		friend class Scene;
@@ -76,7 +99,7 @@ namespace MEE
 	inline T& Object::AddComponent(FunctionParameters params)
 	{
 		auto* component = new T;
-		return (T&) Internal_AddComponent(component,params);
+		return (T&) AddComponent(component,params);
 
 	}
 
@@ -85,7 +108,7 @@ namespace MEE
 	template<>
 	inline AnimationPlayer& Object::AddComponent<AnimationPlayer>(FunctionParameters params)
 	{
-		return (AnimationPlayer&)Internal_AddComponent(nullptr, params, "AnimationPlayer");
+		return AddAnimationPlayer(params);
 
 	}
 
@@ -94,7 +117,7 @@ namespace MEE
 	template <>
     inline Collider& Object::AddComponent<Collider>(FunctionParameters params)
 	{
-		return (Collider&)Internal_AddComponent(nullptr,params,"Collider");
+		return AddCollider(params);
 	}
 
 	template<class T>
@@ -116,12 +139,6 @@ namespace MEE
 		}
 	}
 
-	//template<>
-	//void Object::RemoveComponent<Collider>()
-	//{
-
-	//}
-
 	template<class T>
 	inline T& Object::GetComponent()
 	{
@@ -134,20 +151,6 @@ namespace MEE
 			}
 		}
 	}
-
-	//template<>
-	//inline Collider& Object::GetComponent<Collider>()
-	//{
-	//	for (auto component : components)
-	//	{
-	//		Collider* componentAsType = dynamic_cast<Collider*>(component.get());
-	//		if (componentAsType)
-	//		{
-	//			Collider* collider = CastCollider(componentAsType);
-	//			return *collider;
-	//		}
-	//	}
-	//}
 }
 
 

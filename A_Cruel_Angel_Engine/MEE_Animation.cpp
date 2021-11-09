@@ -1,5 +1,4 @@
 #include "MEE_Animation.h"
-
 namespace MEE
 {
 

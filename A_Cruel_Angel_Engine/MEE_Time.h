@@ -28,6 +28,9 @@ namespace MEE
 		float m_Time;
 	};
 
+	/**
+	 * Manages all time reated stuff in the engine.
+	 */
 	class TimeManager
 	{
 	public:

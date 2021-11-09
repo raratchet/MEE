@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_SDLHandler.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
 #include <SDL.h>
 #include <memory>
@@ -6,6 +13,9 @@
 
 namespace MEE
 {
+	/**
+	 * Concrete WindowHandler for SDL API.
+	 */
 	class SDLHandler : public WindowHandler
 	{
 	public:

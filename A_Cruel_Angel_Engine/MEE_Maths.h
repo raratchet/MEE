@@ -1,77 +1,51 @@
+/*****************************************************************//**
+ * \file   MEE_Maths.h
+ * \brief  Defines Math utilities for MEE
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include <cmath>
+#include "MEE_Exports.h"
 
 namespace MEE
 {
-	struct Vector2
+	/**
+	 * Vector2 is a struct that holds two float numbers.
+	 * It provides several functions to operate with Vector2
+	 */
+	struct MEE_EXPORT Vector2
 	{
 
 		float x, y;
 
-		Vector2() : x(0), y(0)
-		{}
-
-		Vector2(float m_x, float m_y) : x(m_x), y(m_y)
-		{}
-
-		Vector2(const Vector2& vec) : x(vec.x), y(vec.y)
-		{}
-
-		static Vector2 Zero()
-		{
-			static Vector2 zero;
-			return zero;
-		}
-
-		Vector2 operator+(Vector2 v2)
-		{
-			Vector2 temp;
-			temp.x = x + v2.x;
-			temp.y = y + v2.y;
-			return temp;
-		}
-
-		Vector2 operator-(Vector2 v2)
-		{
-			Vector2 temp;
-			temp.x = x - v2.x;
-			temp.y = y - v2.y;
-			return temp;
-		}
-
-		Vector2 GetUnitVector(Vector2 vector)
-		{
-			float size = GetVectorSize(vector);
-			Vector2 unit = Vector2(vector.x / size, vector.y / size);
-			return unit;
-		}
-
-		float GetVectorSize(Vector2 vector) {
-			float nx = vector.x;
-			float ny = vector.y;
-			return (float)sqrt((nx * nx) + (ny * ny));
-		}
-
-		float operator*(Vector2 v2)
-		{
-			float temp;
-			temp = x * v2.x + y * v2.y;
-			return temp;
-		}
-
-		Vector2 operator*(float esc) {
-			Vector2 temp;
-			temp.x = (x * esc);
-			temp.y = (y * esc);
-			return temp;
-		}
-
-		Vector2 operator/(float esc) {
-			Vector2 temp;
-			temp.x = (x / esc);
-			temp.y = (y / esc);
-			return temp;
-		}
+		Vector2();
+		Vector2(float m_x, float m_y);
+		Vector2(const Vector2& vec);
+		static Vector2 Zero();
+		Vector2 operator+(Vector2 v2);
+		Vector2 operator-(Vector2 v2);
+		Vector2 GetUnitVector(Vector2 vector);
+		float GetVectorSize(Vector2 vector);
+		float operator*(Vector2 v2);
+		Vector2 operator*(float esc);
+		Vector2 operator/(float esc);
 	};
+
+	/**
+	 * Transform is a struct.
+	 */
+	struct MEE_EXPORT Transform
+	{
+		Transform();
+
+		Transform(const Vector2& m_pos, const Vector2& m_scale, float m_rot);
+
+		Vector2 position;
+		Vector2 scale;
+		float rotation;
+	};
+
 }
 

@@ -1,8 +1,16 @@
+/*****************************************************************//**
+ * \file   MEE_Rendering.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   October 2021
+ *********************************************************************/
 #pragma once
 #include <string>
 #include <memory>
-#include "MEE_Exports.h"
 #include <vector>
+
+#include "MEE_Exports.h"
 
 namespace MEE
 {
@@ -11,7 +19,7 @@ namespace MEE
 	struct Vector2;
 
 	/**
-	 * Tells if the rendering should be done relative physical postion of the camera relative to the world
+	 * RenderingType tells if the rendering should be done relative physical postion of the camera relative to the world
 	 * or should be done over the camera.
 	 */
 	enum class MEE_EXPORT RenderingType
@@ -19,9 +27,13 @@ namespace MEE
 		Physical, NonPhysical
 	};
 
+	/**
+	 * Manages all the calls to the rendering module.
+	 */
 	class MEE_EXPORT RenderingManager
 	{
 	public:
+		bool Init();
 		void RenderClear();
 		void SetRenderColor(int r, int g, int b, int a);
 		void SetRenderViewport(int x, int y, int w, int h);
@@ -39,6 +51,7 @@ namespace MEE
 		void  SetPixelsPerUnit(float ppu);
 		float GetPixelsPerUnit();
 		float GetUnitsPerPixel();
+		void RenderTransform(const Vector2& position);
 		void SetCurrentCamera(std::weak_ptr<Camera> camera);
 	private:
 		std::weak_ptr<Camera> currentCamera;

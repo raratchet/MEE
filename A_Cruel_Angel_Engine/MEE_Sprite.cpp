@@ -6,8 +6,6 @@
 namespace MEE
 {
 
-
-
 	Sprite::Sprite(std::weak_ptr<Texture2D> image, int x, int y, int w, int h) :
 		baseImage(image), width(w), height(h), baseImage_startCoord(Vector2(x, y)) {}
 
@@ -28,35 +26,34 @@ namespace MEE
 		baseImage_startCoord = Vector2();
 
 		auto bImage = baseImage.lock();
-		width = bImage->getWidth();
-		height = bImage->getHeight();
+		width = bImage->GetWidth();
+		height = bImage->GetHeight();
 	}
 
-	void Sprite::Draw(std::shared_ptr<Camera> renderingCamera, const Vector2& position, const Vector2& scale, const float& rot)
+	void Sprite::Draw(const Vector2& position, const Vector2& scale, const float& rot, bool drawInPhysicalSpace)
 	{
-		Draw(renderingCamera, position, scale, rot, false, false);
+		Draw(position, scale, rot, false, false, drawInPhysicalSpace);
 	}
 
-	void Sprite::Draw(std::shared_ptr<Camera> renderingCamera, const Vector2& position, const Vector2& scale, const float& rot, bool h_flip, bool v_flip)
+	void Sprite::Draw(const Vector2& position, const Vector2& scale, const float& rot, bool h_flip, bool v_flip, bool drawInPhysicalSpace)
 	{
 		if (auto image = baseImage.lock())
 		{
 
+			auto renderer = MEE_GLOBAL::application->GetRenderManager().lock();
+
 			MEE_Texture2D texture = (MEE_Texture2D)(&*image);
-			Vector2 cameraPos = renderingCamera->GetPosition();
-			float ppu = MEE_GetPixelsPerUnit();
+			float ppu = renderer->GetPixelsPerUnit();
 
-			float positionX_inPixels = ((position.x - cameraPos.x) * ppu) - ((width * scale.x) / 2);
-			float positionY_inPixels = ((position.y - cameraPos.y) * ppu) - ((height * scale.y) / 2);
+			float positionX_inPixels = (position.x * ppu) - ((width * scale.x) / 2);
+			float positionY_inPixels = (position.y * ppu) - ((height * scale.y) / 2);
 
-			MEE_RenderTexture2D(texture, positionX_inPixels, positionY_inPixels,
-				scale.x, scale.y, rot,
-				baseImage_startCoord.x, baseImage_startCoord.y, width, height,h_flip, v_flip);
+			renderer->RenderTexture2D(image, positionX_inPixels, positionY_inPixels,
+				scale.x, scale.y, rot, baseImage_startCoord.x, baseImage_startCoord.y,
+				width, height, h_flip, v_flip, drawInPhysicalSpace ? MEE::RenderingType::Physical : MEE::RenderingType::NonPhysical);
+
 #ifdef _DEBUG
-			MEE_SetRenderColor(0, 255, 0, 255);
-			const float radius = 1.0F;
-			MEE_RenderCircle((position.x - cameraPos.x) * ppu, (position.y - cameraPos.y)* ppu, radius);
-			MEE_SetRenderColor(53, 40, 230, 255);
+			renderer->RenderTransform(position);
 #endif // _DEBUG
 
 		}
@@ -77,8 +74,8 @@ namespace MEE
 
 		auto baseImage = RM->Get<Texture2D>(resource_name); //No me gusta usar el global
 
-		auto w = baseImage.lock()->getWidth();
-		auto h = baseImage.lock()->getHeight();
+		auto w = baseImage.lock()->GetWidth();
+		auto h = baseImage.lock()->GetHeight();
 
 		for (int i = 0; i < w; i += width)
 			for (int j = 0; j < w; j += height)

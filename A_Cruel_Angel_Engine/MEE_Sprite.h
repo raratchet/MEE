@@ -1,10 +1,17 @@
+/*****************************************************************//**
+ * \file   MEE_Sprite.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
+#include <memory>
+#include <vector>
+#include <list>
 #include "MEE_Texture.h"
 #include "MEE_Maths.h"
 #include "MEE_Components.h"
-#include <memory>
-#include <vector>
-#include <list> // Necesito el PCH
 
 namespace MEE
 {
@@ -41,8 +48,8 @@ namespace MEE
 		 */
 		Sprite(const std::string& resource_name);
 
-		void Draw(std::shared_ptr<Camera> renderingCamera, const Vector2& pos, const Vector2& scale, const float& rot);
-		void Draw(std::shared_ptr<Camera> renderingCamera, const Vector2& pos, const Vector2& scale, const float& rot, bool h_flip, bool v_flip);
+		void Draw(const Vector2& pos, const Vector2& scale, const float& rot, bool drawInPhysicalSpace);
+		void Draw(const Vector2& pos, const Vector2& scale, const float& rot, bool h_flip, bool v_flip, bool drawInPhysicalSpace);
 
 		int GetSpriteWidth();
 		int GetSpriteHeight();

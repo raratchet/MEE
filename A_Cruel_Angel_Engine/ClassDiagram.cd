@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="MEE::ResourceManager" Collapsed="true">
+    <Position X="14.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgACAAAAAACRIAAAAAAAAAAAAAAAAAAACAABAAAA=</HashCode>
+      <FileName>MEE_ResourceManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Drawable" Collapsed="true">
+    <Position X="10" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACJkgAAAAAABAAgAgAAgQAAgIAALAAAEAA=</HashCode>
+      <FileName>MEE_Drawable.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Animation" Collapsed="true">
+    <Position X="14.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgEAAAgAAI4AAAoEAAAAAIAAAAAAAAACQAAACABAA=</HashCode>
+      <FileName>MEE_Animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::AnimationPlayer" Collapsed="true">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQoAABAAAhAAgAACFAAQgBAAAIgEAACCAAAIAgAIAA=</HashCode>
+      <FileName>MEE_Animation.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Object" Collapsed="true">
+    <Position X="7" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAACACAQAIgAAgAEiABAAAAQIEAAAECgAgQAAABIE=</HashCode>
+      <FileName>MEE_Object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Scene" Collapsed="true">
+    <Position X="16.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQggACgQAAAAgAJgAAAgAhAQAAAAAMQAAAAAAAAAgA=</HashCode>
+      <FileName>MEE_Scene.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::UI_Element" Collapsed="true">
+    <Position X="12" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAEAggAAAgAAgAAAAA=</HashCode>
+      <FileName>MEE_UI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Camera" Collapsed="true">
+    <Position X="18" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAACAAAAAAQAAAIBAAiEAEAgAgAAAIAIAAAAE=</HashCode>
+      <FileName>MEE_Camera.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Updatable" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_Components.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Component" Collapsed="true">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAEAAAAABAAAAAAAAAAAAAAAAAAABAAAQAAAA=</HashCode>
+      <FileName>MEE_Components.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::TransformComponent" Collapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAGCAEAAAAABAAAEAAAAEAggAIAAEAgAAAAA=</HashCode>
+      <FileName>MEE_Components.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Behaviour" Collapsed="true">
+    <Position X="1.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_Components.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Collider" Collapsed="true">
+    <Position X="3.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IQAAAACEgADAgAAFEAAAAAAIC0gNAVEwAgQJqoQBAAA=</HashCode>
+      <FileName>MEE_Components.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::FileSystem" Collapsed="true">
+    <Position X="19.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_FileSystem.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::GLFWHandler" Collapsed="true">
+    <Position X="1" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAIAACAAEAAAA=</HashCode>
+      <FileName>MEE_GLFWHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Application" Collapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAhEAIABAAAgAAABAAAAAAQBICAAAhMAADBCCAKAA=</HashCode>
+      <FileName>MEE_Application.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::InputManager" Collapsed="true">
+    <Position X="16.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAIgQAAAgAAQAgCAAAAABCIAAAAAEAAAgCAAAAAAA=</HashCode>
+      <FileName>MEE_InputManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::GameObject" Collapsed="true">
+    <Position X="7" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAIA=</HashCode>
+      <FileName>MEE_Object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::WorldObject" Collapsed="true">
+    <Position X="9.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAgA=</HashCode>
+      <FileName>MEE_Object.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Plugin" Collapsed="true">
+    <Position X="18" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIEAAAAAAAAAiAABEAAACAAEAAAQAAAAAAAEAAAA=</HashCode>
+      <FileName>MEE_Plugin.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::PluginManager" Collapsed="true">
+    <Position X="19.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBggAARAAAAgAABABAAAAAAkAACAAAIAACAAAAAAA=</HashCode>
+      <FileName>MEE_PluginManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::SDLHandler" Collapsed="true">
+    <Position X="3.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAEABAAAgAAAAAAAAAAAAAAAIIAACEAEAAAA=</HashCode>
+      <FileName>MEE_SDLHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Sprite" Collapsed="true">
+    <Position X="19.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAQAAAAAgQAQAAAAAAAAAAAAAAQAAAAAAAYAAA=</HashCode>
+      <FileName>MEE_Sprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::SpriteSheet" Collapsed="true">
+    <Position X="21.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAEAAAAEAAAAAAAAAAACAQAA=</HashCode>
+      <FileName>MEE_Sprite.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Timer" Collapsed="true">
+    <Position X="16.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAACAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>MEE_Time.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Timestep" Collapsed="true">
+    <Position X="18" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAIBAAAAAQAAAAAEAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_Time.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::TimeManager" Collapsed="true">
+    <Position X="14.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CACAAAQAAAAAAQAAoAAAAgQAEBIgAAAAAEgAAAAAAIA=</HashCode>
+      <FileName>MEE_Time.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::UI_Image" Collapsed="true">
+    <Position X="12" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_UI.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::WindowHandler" Collapsed="true">
+    <Position X="2" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAABgAAECAAAQAQICAACDAAAAEQAAAIAACAAEAAEo=</HashCode>
+      <FileName>MEE_WindowHandler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Resource" Collapsed="true">
+    <Position X="0.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_Resources.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::Texture2D" Collapsed="true">
+    <Position X="0.75" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAQAQAAAAABAIAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>MEE_Texture.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::SceneManager" Collapsed="true">
+    <Position X="18" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAEAgAAAAAIAAAAAQAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>MEE_SceneManager.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="MEE::RenderingManager" Collapsed="true">
+    <Position X="21.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAkAAIQgEAAABAACAAwAACgBkAAIEFAAAIACAAAACAA=</HashCode>
+      <FileName>MEE_Rendering.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game" Collapsed="true">
+    <Position X="21.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAADCABSCAEAQCAAAEAAgEAAIIMAACAAAAAAA=</HashCode>
+      <FileName>MEG_Game.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Input" Collapsed="true">
+    <Position X="14.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEG_Input.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="MEE_LOGGER::ScopedLogging" Collapsed="true">
+    <Position X="18" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAIAAAAAA=</HashCode>
+      <FileName>MEE_Logging.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="MEE::Vector2" Collapsed="true">
+    <Position X="21.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAECAAAAQAAAAAAAABgAAAAAAA=</HashCode>
+      <FileName>MEE_Maths.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="MEE::Transform" Collapsed="true">
+    <Position X="19.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAIAQCAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_Maths.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="FunctionParameter" Collapsed="true">
+    <Position X="14.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAEAAiAgAAAAA=</HashCode>
+      <FileName>MEE_Functional.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Struct Name="FunctionParameters" Collapsed="true">
+    <Position X="16.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAACAAAAAAAAAAAAAAEAAQAAAAAKAACAAAA=</HashCode>
+      <FileName>MEE_Functional.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Typedef Name="MEE_Renderer" Collapsed="true">
+    <Position X="16.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_Graphics.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="MEE_Texture2D" Collapsed="true">
+    <Position X="18" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_Graphics.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Typedef Name="MEE_Collider" Collapsed="true">
+    <Position X="14.5" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_Physics.h</FileName>
+    </TypeIdentifier>
+  </Typedef>
+  <Enum Name="MEE::ColliderType" Collapsed="true">
+    <Position X="16.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAABAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_Components.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="MEE::ColliderForm" Collapsed="true">
+    <Position X="14.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>MEE_Components.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="RenderAPI" Collapsed="true">
+    <Position X="19.75" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAEE=</HashCode>
+      <FileName>MEE_Graphics.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="WindowHandlerAPI" Collapsed="true">
+    <Position X="21.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_Graphics.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="InputHandlerAPI" Collapsed="true">
+    <Position X="18" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MEE_Inputs.h</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

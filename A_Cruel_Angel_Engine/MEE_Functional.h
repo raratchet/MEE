@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Functional.h
+ * \brief  Defines Special Functors and Parameter Objects
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include "MEE_Exports.h"
 #include <functional>
@@ -7,9 +14,9 @@
 #include <any>
 #include <list> //Deberian de estar en el pch
 
-
-//Mover funciones al ccp y esconder los includes
-
+/**
+ * FunctionParameter is an object that hold any type with a given name.
+ */
 struct MEE_EXPORT FunctionParameter
 {
 
@@ -31,7 +38,6 @@ T FunctionParameter::As()
 {
 	try
 	{
-		//std::cout << parameter.type().name() << std::endl;
 		T t = std::any_cast<T>(parameter);
 		return t;
 	}
@@ -43,6 +49,9 @@ T FunctionParameter::As()
 	return type;
 }
 
+/**
+ * FunctionParameters holds any number, of any type of arguments for a function.
+ */
 struct MEE_EXPORT FunctionParameters
 {
 

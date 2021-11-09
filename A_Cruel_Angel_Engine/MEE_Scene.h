@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MEE_Scene.h
+ * \brief  
+ * 
+ * \author Maximiliano Herrera
+ * \date   November 2021
+ *********************************************************************/
 #pragma once
 #include <list>
 #include <string>
@@ -8,6 +15,9 @@ namespace MEE
 {
 	using SceneID = unsigned int;
 
+	/**
+	 * Conatains Objects and manages Physics.
+	 */
 	class MEE_EXPORT Scene
 	{
 	public:
@@ -53,7 +63,7 @@ namespace MEE
 		/**
 		* Creates a worldobject for the current scene.
 		* 
-		* \param name: The name that identifies this gameobject.
+		* \param name: The name that identifies this WorldObject.
 		* \return A reference to the WorldObject.
 		*/
 		class WorldObject& CreateWorldObject(const std::string& name);
@@ -66,23 +76,21 @@ namespace MEE
 		 */
 		class Camera& CreateCamera(const struct Vector2& pos, int widht, int height);
 		/**
-		* \return Weather the scene is loaded or not.
+		* \return Weather the Scene is loaded or not.
 		*/
 		bool IsLoaded();
 		/**
-		 * \return This scene id
+		 * \return This Scene id
 		 */
 		SceneID GetID();
 		/**
-		 * .
-		 * 
-		 * \return 
+		 * \return A reference to this Scene main Camera
 		 */
 		Camera& GetMainCamera();
 		
 	private:
 		void CreateMainSceneCamera();
-		void SetCurrenCamera(std::weak_ptr<class Camera> camera);
+		void SetCurrentCamera(std::weak_ptr<class Camera> camera);
 	private:
 		std::list<std::shared_ptr<class Camera>> sceneCameras;
 		std::list<std::shared_ptr<class Object>> sceneObjects;

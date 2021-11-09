@@ -1,33 +1,47 @@
 #include "MEE_Plugin.h"
+#include "MEE_Logging.h"
+#include "MEE_PluginManager.h"
 
 namespace MEE
 {
 
 	Plugin::Plugin(std::filesystem::path filename, const PluginInformation& info)
 	{
-		m_lib = PLUGIN_PROGRAM_HANDLE;
+		try
+		{
+			m_lib = PLUGIN_PROGRAM_HANDLE;
 
-		pluginInformation = info;
+			pluginInformation = info;
 
-		if (!m_lib) {
-			throw "[MEE] Unable to load Plugin!";
+			if (!m_lib)
+				throw "Unable to load Plugin!";
+
+			MEE_LOGGER::Log("Loading " + info.name + " version " + info.version);
+
+			OnInit = (onInitType)PLUGIN_LOAD_EXTERN(m_lib, "OnInit");
+			OnLoad = (onLoadType)PLUGIN_LOAD_EXTERN(m_lib, "OnLoad");
+			OnShutdown = (onShutdownType)PLUGIN_LOAD_EXTERN(m_lib, "OnShutdown");
+
+			if (!(OnInit && OnLoad && OnShutdown))
+				throw "Error while loading plugin. Missing Functions";
+
+			OnUpdate = (onUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnUpdate");
+			OnDraw = (onDrawType)PLUGIN_LOAD_EXTERN(m_lib, "OnDraw");
+			OnPostUpdate = (onPostUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnPostUpdate");
+			pluginInformation.loaded = true;
+		}
+		catch (...)
+		{
+			MEE_LOGGER::Error("Not able to load plugin: " + info.name);
+			pluginInformation.loaded = false;
 		}
 
-		std::cout << "[MEE] Loading "<< info.name << " version "<< info.version << std::endl;
-
-		OnInit = (onInitType)PLUGIN_LOAD_EXTERN(m_lib, "OnInit");
-		OnLoad = (onLoadType)PLUGIN_LOAD_EXTERN(m_lib, "OnLoad");
-		OnShutdown = (onShutdownType)PLUGIN_LOAD_EXTERN(m_lib, "OnShutdown");
-		//Revisar si estos existen
-		OnUpdate = (onUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnUpdate");
-		OnDraw = (onDrawType)PLUGIN_LOAD_EXTERN(m_lib, "OnDraw");
-		OnPostUpdate = (onPostUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnPostUpdate");
 	}
 
 
 	Plugin::~Plugin()
 	{
-		std::cout << "[MEE] Shutting down Plugin" << std::endl;
+		MEE_LOGGER::Log("Shutting down " + pluginInformation.name);
 
 		PLUGIN_CLOSE_EXTERN(m_lib);
 	}
