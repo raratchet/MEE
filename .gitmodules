@@ -13,3 +13,5 @@
 [submodule "Dependencies/easyloggingpp"]
 	path = Dependencies/easyloggingpp
 	url = https://github.com/amrayn/easyloggingpp.git
+[submodule "Dependencies/yaml-cpp/"]
+	url = https://github.com/TheCherno/yaml-cpp
