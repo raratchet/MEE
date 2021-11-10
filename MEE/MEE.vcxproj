@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9C03880B-080D-887C-9188-9E7CFD90937C}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>MEE</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Debug-windows-x86_64\MEE\</OutDir>
+    <IntDir>..\bin-int\Debug-windows-x86_64\MEE\</IntDir>
+    <TargetName>MEE</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\bin\Release-windows-x86_64\MEE\</OutDir>
+    <IntDir>..\bin-int\Release-windows-x86_64\MEE\</IntDir>
+    <TargetName>MEE</TargetName>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>MEE_ENGINE;MEE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;..\Dependencies\SDL\include;..\Dependencies\easyloggingpp\src;..\Dependencies\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;yaml-cppd.lib;easyloggingpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>..\bin\Debug-windows-x86_64\MEE\MEE.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>MEE_ENGINE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>include;..\Dependencies\SDL\include;..\Dependencies\easyloggingpp\src;..\Dependencies\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Disabled</Optimization>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;yaml-cppd.lib;easyloggingpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImportLibrary>..\bin\Release-windows-x86_64\MEE\MEE.lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\MEE_Animation.h" />
+    <ClInclude Include="include\MEE_Application.h" />
+    <ClInclude Include="include\MEE_Camera.h" />
+    <ClInclude Include="include\MEE_Components.h" />
+    <ClInclude Include="include\MEE_Drawable.h" />
+    <ClInclude Include="include\MEE_Exports.h" />
+    <ClInclude Include="include\MEE_FileSystem.h" />
+    <ClInclude Include="include\MEE_Functional.h" />
+    <ClInclude Include="include\MEE_GLFWHandler.h" />
+    <ClInclude Include="include\MEE_Global.h" />
+    <ClInclude Include="include\MEE_Graphics.h" />
+    <ClInclude Include="include\MEE_InputManager.h" />
+    <ClInclude Include="include\MEE_Inputs.h" />
+    <ClInclude Include="include\MEE_Logging.h" />
+    <ClInclude Include="include\MEE_Maths.h" />
+    <ClInclude Include="include\MEE_Object.h" />
+    <ClInclude Include="include\MEE_PCH.h" />
+    <ClInclude Include="include\MEE_Physics.h" />
+    <ClInclude Include="include\MEE_Plugin.h" />
+    <ClInclude Include="include\MEE_PluginHeader.h" />
+    <ClInclude Include="include\MEE_PluginManager.h" />
+    <ClInclude Include="include\MEE_Rendering.h" />
+    <ClInclude Include="include\MEE_ResourceManager.h" />
+    <ClInclude Include="include\MEE_Resources.h" />
+    <ClInclude Include="include\MEE_SDLHandler.h" />
+    <ClInclude Include="include\MEE_Scene.h" />
+    <ClInclude Include="include\MEE_SceneManager.h" />
+    <ClInclude Include="include\MEE_Sound.h" />
+    <ClInclude Include="include\MEE_Sprite.h" />
+    <ClInclude Include="include\MEE_Texture.h" />
+    <ClInclude Include="include\MEE_Time.h" />
+    <ClInclude Include="include\MEE_UI.h" />
+    <ClInclude Include="include\MEE_WindowHandler.h" />
+    <ClInclude Include="include\MEG_Aliases.h" />
+    <ClInclude Include="include\MEG_Exports.h" />
+    <ClInclude Include="include\MEG_Game.h" />
+    <ClInclude Include="include\MEG_Input.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\MEE_Animation.cpp" />
+    <ClCompile Include="src\MEE_Application.cpp" />
+    <ClCompile Include="src\MEE_Camera.cpp" />
+    <ClCompile Include="src\MEE_Components.cpp" />
+    <ClCompile Include="src\MEE_Drawable.cpp" />
+    <ClCompile Include="src\MEE_FileSystem.cpp" />
+    <ClCompile Include="src\MEE_Functional.cpp" />
+    <ClCompile Include="src\MEE_GLFWHandler.cpp" />
+    <ClCompile Include="src\MEE_Global.cpp" />
+    <ClCompile Include="src\MEE_Graphics.cpp" />
+    <ClCompile Include="src\MEE_InputManager.cpp" />
+    <ClCompile Include="src\MEE_Inputs.cpp" />
+    <ClCompile Include="src\MEE_Logging.cpp" />
+    <ClCompile Include="src\MEE_Maths.cpp" />
+    <ClCompile Include="src\MEE_Object.cpp" />
+    <ClCompile Include="src\MEE_PCH.cpp" />
+    <ClCompile Include="src\MEE_Physics.cpp" />
+    <ClCompile Include="src\MEE_Plugin.cpp" />
+    <ClCompile Include="src\MEE_PluginManager.cpp" />
+    <ClCompile Include="src\MEE_Rendering.cpp" />
+    <ClCompile Include="src\MEE_ResourceManager.cpp" />
+    <ClCompile Include="src\MEE_Resoures.cpp" />
+    <ClCompile Include="src\MEE_SDLHandler.cpp" />
+    <ClCompile Include="src\MEE_Scene.cpp" />
+    <ClCompile Include="src\MEE_SceneManager.cpp" />
+    <ClCompile Include="src\MEE_Sound.cpp" />
+    <ClCompile Include="src\MEE_Sprite.cpp" />
+    <ClCompile Include="src\MEE_Texture.cpp" />
+    <ClCompile Include="src\MEE_Time.cpp" />
+    <ClCompile Include="src\MEE_UI.cpp" />
+    <ClCompile Include="src\MEE_WindowHandler.cpp" />
+    <ClCompile Include="src\MEG_Game.cpp" />
+    <ClCompile Include="src\MEG_Input.cpp" />
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

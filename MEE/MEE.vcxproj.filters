@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{89AF369E-F58E-B539-FEA6-40106A051C9B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\MEE_Animation.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Application.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Camera.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Components.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Drawable.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Exports.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_FileSystem.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Functional.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_GLFWHandler.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Global.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Graphics.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_InputManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Inputs.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Logging.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Maths.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Object.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_PCH.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Physics.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Plugin.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_PluginHeader.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_PluginManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Rendering.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_ResourceManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Resources.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_SDLHandler.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Scene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_SceneManager.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Sound.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Sprite.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Texture.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_Time.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_UI.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEE_WindowHandler.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEG_Aliases.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEG_Exports.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEG_Game.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\MEG_Input.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\MEE_Animation.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Application.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Camera.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Components.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Drawable.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_FileSystem.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Functional.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_GLFWHandler.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Global.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Graphics.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_InputManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Inputs.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Logging.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Maths.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Object.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_PCH.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Physics.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Plugin.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_PluginManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Rendering.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_ResourceManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Resoures.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_SDLHandler.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Scene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_SceneManager.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Sound.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Sprite.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Texture.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_Time.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_UI.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEE_WindowHandler.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEG_Game.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MEG_Input.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
