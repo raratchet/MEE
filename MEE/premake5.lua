@@ -45,15 +45,6 @@ project "MEE"
 		"easyloggingpp.lib"
 	}
 	
-	--Deberia cambiar segun el realease
-	filter { "system:windows" }
-		ok,err = os.copyfile("C:/Work/A_Cruel_Angel_Engine/MEE/Dependencies/SDL2/lib/SDL2.dll" , "C:/Work/A_Cruel_Angel_Engine/MEE/bin/Debug")
-		--print("La direccion es: " , wks.location)
-		print("Copy file resulted in: " , ok , err)
-		ok,err = os.copyfile("%{wks.location}Dependencies\\glew\\glew32.dll" , "%{wks.location}bin\\Debug\\")
-		print("Copy file resulted in: " , ok , err)
-
-	
 	filter "configurations:Debug"
 		defines "MEE_DEBUG"
 		runtime "Debug"

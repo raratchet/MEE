@@ -33,8 +33,3 @@ project "Basic_Physics"
 		"MEE.lib"
 	}
 	
-	postbuildcommands 
-	{ 
-		"{COPYFILE} ./resources/info.yaml %{targetdir}/info.yaml " ,
-		"{COPYFILE} %{Box2D_path}/libs/box2d.dll %{targetdir}/box2d.dll",
-	}

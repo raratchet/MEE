@@ -32,4 +32,3 @@ project "Basic_Input"
 		"MEE.lib"
 	}
 	
-	postbuildcommands { "{COPYFILE} ./resources/info.yaml %{targetdir}/info.yaml" }

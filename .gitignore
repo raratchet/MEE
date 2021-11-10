@@ -16,7 +16,7 @@
 # Mono auto generated files
 mono_crash.*
 
-#VisualStudio files
+# VisualStudio files
 *.sln
 *.vcxproj
 *.vcxproj.filter
