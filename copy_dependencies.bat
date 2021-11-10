@@ -11,4 +11,3 @@ copy .\Dependencies\SDL2_image\lib\libwebp-7.dll .\bin\Debug
 copy .\Dependencies\SDL2_image\lib\zlib1.dll .\bin\Debug
 copy .\Dependencies\glew\lib\glew32.dll .\bin\Debug
 copy .\Basic_Physics\Dependencies\Box2D\libs\box2d.dll .\bin\Debug
-premake5.exe vs2019

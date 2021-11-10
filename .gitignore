@@ -19,7 +19,7 @@ mono_crash.*
 # VisualStudio files
 *.sln
 *.vcxproj
-*.vcxproj.filter
+*.vcxproj.filters
 *.vcxproj.user
 
 # Generated_Docs
