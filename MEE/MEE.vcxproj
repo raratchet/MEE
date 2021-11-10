@@ -58,7 +58,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>MEE_ENGINE;MEE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;..\Dependencies\SDL\include;..\Dependencies\easyloggingpp\src;..\Dependencies\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;..\Dependencies\SDL2\include;..\Dependencies\glew\include;..\Dependencies\easyloggingpp\src;..\Dependencies\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -67,7 +67,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;yaml-cppd.lib;easyloggingpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;yaml-cppd.lib;glew32.lib;glew32s.lib;easyloggingpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Dependencies\SDL2\lib;..\Dependencies\glew\lib;..\Dependencies\easyloggingpp\lib;..\Dependencies\yaml-cpp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Debug-windows-x86_64\MEE\MEE.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -76,13 +77,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>MEE_ENGINE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>include;..\Dependencies\SDL\include;..\Dependencies\easyloggingpp\src;..\Dependencies\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>include;..\Dependencies\SDL2\include;..\Dependencies\glew\include;..\Dependencies\easyloggingpp\src;..\Dependencies\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;yaml-cppd.lib;easyloggingpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;yaml-cppd.lib;glew32.lib;glew32s.lib;easyloggingpp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Dependencies\SDL2\lib;..\Dependencies\glew\lib;..\Dependencies\easyloggingpp\lib;..\Dependencies\yaml-cpp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Release-windows-x86_64\MEE\MEE.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>

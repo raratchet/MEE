@@ -3,15 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MEE", "MEE\MEE.vcxproj", "{9C03880B-080D-887C-9188-9E7CFD90937C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basic_Modules", "Basic_Modules", "{0687A0FB-72E8-7D09-FB55-C4BB67B6B4C8}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basic_Input", "Basic_Input\Basic_Input.vcxproj", "{B660FFB7-2216-78AD-AB0A-728417BF6EB1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basic_Physics", "Basic_Physics\Basic_Physics.vcxproj", "{E9BDD4C2-557E-50F9-1EB9-99768A3895D5}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Basic_Renderer", "Basic_Renderer\Basic_Renderer.vcxproj", "{FD4C47F4-E91A-3BFA-D2AE-AB20BE1B175F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{53E47842-3FC8-3998-A828-34EB942B241A}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yaml-cpp", "Dependencies\yaml-cpp\yaml-cpp.vcxproj", "{88F1A057-74BE-FB62-9DD7-E90A890331F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,15 +33,13 @@ Global
 		{FD4C47F4-E91A-3BFA-D2AE-AB20BE1B175F}.Debug|x64.Build.0 = Debug|x64
 		{FD4C47F4-E91A-3BFA-D2AE-AB20BE1B175F}.Release|x64.ActiveCfg = Release|x64
 		{FD4C47F4-E91A-3BFA-D2AE-AB20BE1B175F}.Release|x64.Build.0 = Release|x64
-		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|x64.ActiveCfg = Debug|x64
-		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Debug|x64.Build.0 = Debug|x64
-		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Release|x64.ActiveCfg = Release|x64
-		{88F1A057-74BE-FB62-9DD7-E90A890331F1}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{88F1A057-74BE-FB62-9DD7-E90A890331F1} = {53E47842-3FC8-3998-A828-34EB942B241A}
+		{B660FFB7-2216-78AD-AB0A-728417BF6EB1} = {0687A0FB-72E8-7D09-FB55-C4BB67B6B4C8}
+		{E9BDD4C2-557E-50F9-1EB9-99768A3895D5} = {0687A0FB-72E8-7D09-FB55-C4BB67B6B4C8}
+		{FD4C47F4-E91A-3BFA-D2AE-AB20BE1B175F} = {0687A0FB-72E8-7D09-FB55-C4BB67B6B4C8}
 	EndGlobalSection
 EndGlobal

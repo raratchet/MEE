@@ -28,5 +28,6 @@ project "Basic_Physics"
 	
 	links
 	{
-		"box2d.lib"
+		"box2d.lib",
+		"MEE.lib"
 	}

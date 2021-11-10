@@ -19,8 +19,15 @@ project "Basic_Input"
 		"%{IncludeDir.MEE}"
     }
 	
+	libdirs
+    {
+		"%{LibDir.SDL2}",
+		"%{LibDir.MEE}"
+    }
+	
 	links
 	{
 		"SDL2.lib",
-		"SDL2main.lib"
+		"SDL2main.lib",
+		"MEE.lib"
 	}

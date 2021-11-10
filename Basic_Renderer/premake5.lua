@@ -20,8 +20,16 @@ project "Basic_Renderer"
 		"%{IncludeDir.MEE}"
     }
 	
+	libdirs
+    {
+		"%{LibDir.SDL2}",
+		"%{LibDir.SDL_image}",
+		"%{LibDir.MEE}"
+    }
+	
 	links
 	{
 		"SDL2.lib",
-		"SDL2main.lib"
+		"SDL2main.lib",
+		"MEE.lib"
 	}

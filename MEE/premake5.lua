@@ -21,15 +21,26 @@ project "MEE"
     {
 		("%{wks.location}".."/".."%{prj.name}".."/include"),
 		"%{IncludeDir.SDL2}",
+		"%{IncludeDir.GLEW}",
 		"%{IncludeDir.easyloggingpp}",
 		"%{IncludeDir.yaml_cpp}"
     }
+	
+	libdirs
+	{
+		"%{LibDir.SDL2}",
+		"%{LibDir.GLEW}",
+		"%{LibDir.easyloggingpp}",
+		"%{LibDir.yaml_cpp}"
+	}
 	
 	links
 	{
 		"SDL2.lib",
 		"SDL2main.lib",
 		"yaml-cppd.lib",
+		"glew32.lib",
+		"glew32s.lib",
 		"easyloggingpp.lib"
 	}
 	
