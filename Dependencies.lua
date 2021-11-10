@@ -16,4 +16,5 @@ LibDir["SDL_image"] = "%{wks.location}/Dependencies/SDL2_image/lib"
 LibDir["yaml_cpp"] = "%{wks.location}/Dependencies/yaml-cpp/lib"
 LibDir["GLEW"] = "%{wks.location}/Dependencies/glew/lib"
 LibDir["easyloggingpp"] = "%{wks.location}/Dependencies/easyloggingpp/lib"
-LibDir["MEE"] = "%{wks.location}/bin/%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}/MEE"
+LibDir["MEE"] = "%{wks.location}/bin/%{cfg.buildcfg}"
+

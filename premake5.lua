@@ -10,13 +10,15 @@ workspace "Modular-Educational-Engine"
 		"Release",
 	}
 
-outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+outputdir = "%{cfg.buildcfg}"
 
 group "Basic_Modules"
 	include "Basic_Input"
 	include "Basic_Physics"
 	include "Basic_Renderer"
-group ""
 
-include "MEE"
---include "EngineTest"
+group "Tests"
+	include "EngineTest"
+	
+group ""
+	include "MEE"

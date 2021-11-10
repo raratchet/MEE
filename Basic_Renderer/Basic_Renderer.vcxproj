@@ -41,15 +41,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Debug-windows-x86_64\Plugins\Basic_Renderer\</OutDir>
-    <IntDir>..\bin-int\Debug-windows-x86_64\Plugins\Basic_Renderer\</IntDir>
+    <OutDir>..\bin\Debug\Plugins\Basic_Renderer\</OutDir>
+    <IntDir>..\bin-int\Debug\Plugins\Basic_Renderer\</IntDir>
     <TargetName>Basic_Renderer</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Release-windows-x86_64\Plugins\Basic_Renderer\</OutDir>
-    <IntDir>..\bin-int\Release-windows-x86_64\Plugins\Basic_Renderer\</IntDir>
+    <OutDir>..\bin\Release\Plugins\Basic_Renderer\</OutDir>
+    <IntDir>..\bin-int\Release\Plugins\Basic_Renderer\</IntDir>
     <TargetName>Basic_Renderer</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
@@ -63,10 +63,19 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;MEE.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\Dependencies\SDL2\lib;..\Dependencies\SDL2_image\lib;..\bin\Debug-windows-x86_64\MEE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\Plugins\Basic_Renderer\Basic_Renderer.lib</ImportLibrary>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;MEE.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Dependencies\SDL2\lib;..\Dependencies\SDL2_image\lib;..\bin\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Debug\Plugins\Basic_Renderer\Basic_Renderer.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>{COPYFILE} ./resources/info.yaml function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/SDL2_image.dll function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/libjpeg-9.dll function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/libpng16-16.dll function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/libtiff-5.dll function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/libwebp-7.dll function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/zlib.1.dll function: 02E7DD08</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -78,10 +87,19 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;MEE.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\Dependencies\SDL2\lib;..\Dependencies\SDL2_image\lib;..\bin\Release-windows-x86_64\MEE;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Release-windows-x86_64\Plugins\Basic_Renderer\Basic_Renderer.lib</ImportLibrary>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;MEE.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\Dependencies\SDL2\lib;..\Dependencies\SDL2_image\lib;..\bin\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Release\Plugins\Basic_Renderer\Basic_Renderer.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>{COPYFILE} ./resources/info.yaml function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/SDL2_image.dll function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/libjpeg-9.dll function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/libpng16-16.dll function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/libtiff-5.dll function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/libwebp-7.dll function: 02E7DD08
+{COPYFILE} $(SolutionDir)/Dependencies/SDL2_image/lib/zlib.1.dll function: 02E7DD08</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Basic_Renderer.h" />

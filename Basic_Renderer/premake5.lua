@@ -31,5 +31,17 @@ project "Basic_Renderer"
 	{
 		"SDL2.lib",
 		"SDL2main.lib",
+		"SDL2_image.lib",
 		"MEE.lib"
+	}
+	
+	postbuildcommands 
+	{ 
+		"{COPYFILE} ./resources/info.yaml %{targetdir}",
+		"{COPYFILE} %{LibDir.SDL_image}/SDL2_image.dll %{targetdir}",	
+		"{COPYFILE} %{LibDir.SDL_image}/libjpeg-9.dll %{targetdir}",	
+		"{COPYFILE} %{LibDir.SDL_image}/libpng16-16.dll %{targetdir}",	
+		"{COPYFILE} %{LibDir.SDL_image}/libtiff-5.dll %{targetdir}",	
+		"{COPYFILE} %{LibDir.SDL_image}/libwebp-7.dll %{targetdir}",	
+		"{COPYFILE} %{LibDir.SDL_image}/zlib.1.dll %{targetdir}"	
 	}

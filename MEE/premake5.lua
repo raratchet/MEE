@@ -3,7 +3,8 @@ project "MEE"
 	language "C++"
 	cppdialect "C++17"
 	
-	targetdir ("%{wks.location}/bin/" .. outputdir .. "/%{prj.name}")
+	
+	targetdir ("%{wks.location}/bin/" .. outputdir)
 	objdir ("%{wks.location}/bin-int/" .. outputdir .. "/%{prj.name}")
 	
 	files
@@ -43,6 +44,15 @@ project "MEE"
 		"glew32s.lib",
 		"easyloggingpp.lib"
 	}
+	
+	--Deberia cambiar segun el realease
+	filter { "system:windows" }
+		ok,err = os.copyfile("C:/Work/A_Cruel_Angel_Engine/MEE/Dependencies/SDL2/lib/SDL2.dll" , "C:/Work/A_Cruel_Angel_Engine/MEE/bin/Debug")
+		--print("La direccion es: " , wks.location)
+		print("Copy file resulted in: " , ok , err)
+		ok,err = os.copyfile("%{wks.location}Dependencies\\glew\\glew32.dll" , "%{wks.location}bin\\Debug\\")
+		print("Copy file resulted in: " , ok , err)
+
 	
 	filter "configurations:Debug"
 		defines "MEE_DEBUG"

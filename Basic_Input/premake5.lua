@@ -31,3 +31,5 @@ project "Basic_Input"
 		"SDL2main.lib",
 		"MEE.lib"
 	}
+	
+	postbuildcommands { "{COPYFILE} ./resources/info.yaml %{targetdir}/info.yaml" }

@@ -16,8 +16,16 @@
 # Mono auto generated files
 mono_crash.*
 
+#VisualStudio files
+*.sln
+*.vcxproj
+*.vcxproj.filter
+*.vcxproj.user
+
 # Generated_Docs
 [Dd]ocumentation
+[Bb]in
+[Bb]in-int
 
 # Build results
 [Dd]ebug/

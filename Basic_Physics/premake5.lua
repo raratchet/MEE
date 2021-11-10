@@ -23,11 +23,18 @@ project "Basic_Physics"
 	
 	libdirs
 	{
-		("%{Box2D_path}".."/lib")
+		("%{Box2D_path}".."/libs"),
+		"%{LibDir.MEE}"
 	}
 	
 	links
 	{
 		"box2d.lib",
 		"MEE.lib"
+	}
+	
+	postbuildcommands 
+	{ 
+		"{COPYFILE} ./resources/info.yaml %{targetdir}/info.yaml " ,
+		"{COPYFILE} %{Box2D_path}/libs/box2d.dll %{targetdir}/box2d.dll",
 	}

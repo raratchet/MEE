@@ -41,15 +41,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Debug-windows-x86_64\Plugins\Basic_Physics\</OutDir>
-    <IntDir>..\bin-int\Debug-windows-x86_64\Plugins\Basic_Physics\</IntDir>
+    <OutDir>..\bin\Debug\Plugins\Basic_Physics\</OutDir>
+    <IntDir>..\bin-int\Debug\Plugins\Basic_Physics\</IntDir>
     <TargetName>Basic_Physics</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Release-windows-x86_64\Plugins\Basic_Physics\</OutDir>
-    <IntDir>..\bin-int\Release-windows-x86_64\Plugins\Basic_Physics\</IntDir>
+    <OutDir>..\bin\Release\Plugins\Basic_Physics\</OutDir>
+    <IntDir>..\bin-int\Release\Plugins\Basic_Physics\</IntDir>
     <TargetName>Basic_Physics</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
@@ -64,9 +64,13 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>box2d.lib;MEE.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>Dependencies\Box2D\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\Plugins\Basic_Physics\Basic_Physics.lib</ImportLibrary>
+      <AdditionalLibraryDirectories>Dependencies\Box2D\libs;..\bin\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Debug\Plugins\Basic_Physics\Basic_Physics.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>{COPYFILE} ./resources/info.yaml function: 02E7DD08/info.yaml 
+{COPYFILE} Dependencies/Box2D/libs/box2d.dll function: 02E7DD08/box2d.dll</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -79,9 +83,13 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>box2d.lib;MEE.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>Dependencies\Box2D\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <ImportLibrary>..\bin\Release-windows-x86_64\Plugins\Basic_Physics\Basic_Physics.lib</ImportLibrary>
+      <AdditionalLibraryDirectories>Dependencies\Box2D\libs;..\bin\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Release\Plugins\Basic_Physics\Basic_Physics.lib</ImportLibrary>
     </Link>
+    <PostBuildEvent>
+      <Command>{COPYFILE} ./resources/info.yaml function: 02E7DD08/info.yaml 
+{COPYFILE} Dependencies/Box2D/libs/box2d.dll function: 02E7DD08/box2d.dll</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Basic_Physics.h" />
