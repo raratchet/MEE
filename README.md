@@ -44,15 +44,20 @@ los requisitos.
 
 ## Cómo usar MEE 
 
+###Instalando el proyecto
+
+Puedes encontrar las instrucciones en [este](https://github.com/raratchet/MEE/wiki/Instalar-el-proyecto) artículo de la wiki.
+Además te recomiendo revisar la documentación para familiarizarte un poco.
+
 ### Módulos
 
-La información que necesitas para entender cómo crear un módulo la puedes ver ~~aquí~~.
+La información que necesitas para entender cómo crear un módulo la puedes ver [aquí](https://github.com/raratchet/MEE/wiki/M%C3%B3dulos).
 
 ### MODULAR ENGINE GAME
 
 Actualmente el motor no cuenta con un editor de niveles y el pipline para crear un juegos
 sigue muy verde y con constantes cambios, sin embargo si lo que buscas es hacer un juego con el motor para probrar tus 
-módulos o simplemente por la aventura ,puedes consultar esta página. __MEG__
+módulos o simplemente por la aventura ,puedes consultar esta página. [Modular Engine Game](https://github.com/raratchet/MEE/wiki/Modular-Engine-Game)
 
 ## Documentación en progreso
 
