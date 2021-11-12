@@ -44,7 +44,7 @@ los requisitos.
 
 ## Cómo usar MEE 
 
-###Instalando el proyecto
+### Instalando el proyecto
 
 Puedes encontrar las instrucciones en [este](https://github.com/raratchet/MEE/wiki/Instalar-el-proyecto) artículo de la wiki.
 Además te recomiendo revisar la documentación para familiarizarte un poco.
