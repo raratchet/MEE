@@ -61,8 +61,10 @@ módulos o simplemente por la aventura ,puedes consultar esta página. [Modular 
 
 ## Documentación en progreso
 
-Esta documentación aún está en progreso y se encuentra mayoritariamente en inglés, por lo que te pido una disculpa si el contenido que buscas
+Los artíclos en la [wiki](https://github.com/raratchet/MEE/wiki) están disponibles en español y siguen en progreso por lo que me disculpo si alguno todavía no está disponible,
+
+La documentación dentro del código aún está en progreso y se encuentra mayoritariamente en inglés, por lo que te pido una disculpa si el contenido que buscas
 no está o está incompleto.
 
-Puedes enviar tu feedback al siguiente correo maximiliano.herrera@saei.mx
+No dudes en enviar tu feedback :).
 
