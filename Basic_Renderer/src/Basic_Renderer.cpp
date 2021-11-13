@@ -67,10 +67,11 @@ namespace Basic_Renderer
 			,&drawRect, &srcrect, a, NULL, flip);
 	}
 
-	MEE_Texture2D CreateTexture2D(const std::string path)
+	MEE_Texture2D CreateTexture2D(const char* path)
 	{
 		Basic_Texture2D* texture = new Basic_Texture2D();
-		texture->Load(path);
+		std::string s_path(path);
+		texture->Load(s_path);
 		return texture;
 	}
 	void SetRenderColor(int r, int g, int b, int a)

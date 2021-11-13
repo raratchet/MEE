@@ -256,8 +256,10 @@ void Lancer::LoadAnimations()
 	for (int i = 1; i <= 14; i++)
 	{
 		std::string path = "./Lancer-Hero/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
-		Game::LoadAsset("Lancer" + std::to_string(i), path);
-		Sprite sprite = Sprite("Lancer" + std::to_string(i));
+		std::string name("Lancer");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		idle.push_back(sprite);
 	}
 
@@ -266,8 +268,10 @@ void Lancer::LoadAnimations()
 	for (int i = 1; i <= 8; i++)
 	{
 		std::string path = "./Lancer-Hero/Original/Hero/run/run0" + std::to_string(i) + ".png";
-		Game::LoadAsset("LancerRun" + std::to_string(i), path);
-		Sprite sprite = Sprite("LancerRun" + std::to_string(i));
+		std::string name("LancerRun");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		run.push_back(sprite);
 	}
 
@@ -276,8 +280,10 @@ void Lancer::LoadAnimations()
 	for (int i = 1; i <= 6; i++)
 	{
 		std::string path = "./Lancer-Hero/Original/Hero/attack/attack0" + std::to_string(i) + ".png";
-		Game::LoadAsset("LancerAttack" + std::to_string(i), path);
-		Sprite sprite = Sprite("LancerAttack" + std::to_string(i));
+		std::string name("LancerAttack");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		attack.push_back(sprite);
 	}
 
@@ -286,8 +292,10 @@ void Lancer::LoadAnimations()
 	for (int i = 1; i <= 4; i++)
 	{
 		std::string path = "./Lancer-Hero/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
-		Game::LoadAsset("LancerJump" + std::to_string(i), path);
-		Sprite sprite = Sprite("LancerJump" + std::to_string(i));
+		std::string name("LancerJump");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		jump.push_back(sprite);
 	}
 
@@ -296,8 +304,10 @@ void Lancer::LoadAnimations()
 	for (int i = 1; i <= 3; i++)
 	{
 		std::string path = "./Lancer-Hero/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
-		Game::LoadAsset("LancerDash" + std::to_string(i), path);
-		Sprite sprite = Sprite("LancerDash" + std::to_string(i));
+		std::string name("LancerDash");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		dash.push_back(sprite);
 	}
 
@@ -306,8 +316,10 @@ void Lancer::LoadAnimations()
 	for (int i = 1; i <= 9; i++)
 	{
 		std::string path = "./Lancer-Hero/Original/Hero/die/die0" + std::to_string(i) + ".png";
-		Game::LoadAsset("LancerDie" + std::to_string(i), path);
-		Sprite sprite = Sprite("LancerDie" + std::to_string(i));
+		std::string name("LancerDie");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		die.push_back(sprite);
 	}
 
@@ -365,8 +377,10 @@ void Toxic::LoadAnimations()
 	for (int i = 1; i <= 4; i++)
 	{
 		std::string path = "./ToxicSword/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
-		Game::LoadAsset("ToxicSword" + std::to_string(i), path);
-		Sprite sprite = Sprite("ToxicSword" + std::to_string(i));
+		std::string name("TS");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		idle.push_back(sprite);
 	}
 
@@ -375,8 +389,10 @@ void Toxic::LoadAnimations()
 	for (int i = 1; i <= 8; i++)
 	{
 		std::string path = "./ToxicSword/Original/Hero/run/run0" + std::to_string(i) + ".png";
-		Game::LoadAsset("ToxicSwordRun" + std::to_string(i), path);
-		Sprite sprite = Sprite("ToxicSwordRun" + std::to_string(i));
+		std::string name("TSRun");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		run.push_back(sprite);
 	}
 
@@ -385,8 +401,10 @@ void Toxic::LoadAnimations()
 	for (int i = 1; i <= 7; i++)
 	{
 		std::string path = "./ToxicSword/Original/Hero/attack/attack0" + std::to_string(i) + ".png";
-		Game::LoadAsset("ToxicSwordAttack" + std::to_string(i), path);
-		Sprite sprite = Sprite("ToxicSwordAttack" + std::to_string(i));
+		std::string name("TsAttack");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		attack.push_back(sprite);
 	}
 
@@ -395,8 +413,10 @@ void Toxic::LoadAnimations()
 	for (int i = 1; i <= 4; i++)
 	{
 		std::string path = "./ToxicSword/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
-		Game::LoadAsset("ToxicSwordJump" + std::to_string(i), path);
-		Sprite sprite = Sprite("ToxicSwordJump" + std::to_string(i));
+		std::string name("TSJump");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		jump.push_back(sprite);
 	}
 
@@ -405,8 +425,10 @@ void Toxic::LoadAnimations()
 	for (int i = 1; i <= 3; i++)
 	{
 		std::string path = "./ToxicSword/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
-		Game::LoadAsset("ToxicSwordDash" + std::to_string(i), path);
-		Sprite sprite = Sprite("ToxicSwordDash" + std::to_string(i));
+		std::string name("TsDash");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		dash.push_back(sprite);
 	}
 
@@ -415,8 +437,10 @@ void Toxic::LoadAnimations()
 	for (int i = 1; i <= 9; i++)
 	{
 		std::string path = "./ToxicSword/Original/Hero/die/die0" + std::to_string(i) + ".png";
-		Game::LoadAsset("ToxicDie" + std::to_string(i), path);
-		Sprite sprite = Sprite("ToxicDie" + std::to_string(i));
+		std::string name("TSDie");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		die.push_back(sprite);
 	}
 
@@ -472,8 +496,10 @@ void Samurai::LoadAnimations()
 	for (int i = 0; i < 4; i++)
 	{
 		std::string path = "./Samurai-Hero/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
-		Game::LoadAsset("Samurai" + std::to_string(i), path);
-		Sprite sprite = Sprite("Samurai" + std::to_string(i));
+		std::string name("Samurai");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		idle.push_back(sprite);
 	}
 
@@ -482,8 +508,10 @@ void Samurai::LoadAnimations()
 	for (int i = 0; i < 8; i++)
 	{
 		std::string path = "./Samurai-Hero/Original/Hero/run/run0" + std::to_string(i) + ".png";
-		Game::LoadAsset("SamuraiRun" + std::to_string(i), path);
-		Sprite sprite = Sprite("SamuraiRun" + std::to_string(i));
+		std::string name("SamuraiRun");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		run.push_back(sprite);
 	}
 
@@ -492,8 +520,10 @@ void Samurai::LoadAnimations()
 	for (int i = 0; i < 8; i++)
 	{
 		std::string path = "./Samurai-Hero/Original/Hero/attack/attack0" + std::to_string(i) + ".png";
-		Game::LoadAsset("SamuraiAttack" + std::to_string(i), path);
-		Sprite sprite = Sprite("SamuraiAttack" + std::to_string(i));
+		std::string name("SamuraiAttack");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		attack.push_back(sprite);
 	}
 
@@ -502,8 +532,10 @@ void Samurai::LoadAnimations()
 	for (int i = 0; i < 4; i++)
 	{
 		std::string path = "./Samurai-Hero/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
-		Game::LoadAsset("SamuraiJump" + std::to_string(i), path);
-		Sprite sprite = Sprite("SamuraiJump" + std::to_string(i));
+		std::string name("SamuraiJumo");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		jump.push_back(sprite);
 	}
 
@@ -512,8 +544,10 @@ void Samurai::LoadAnimations()
 	for (int i = 0; i <= 3; i++)
 	{
 		std::string path = "./Samurai-Hero/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
-		Game::LoadAsset("SamuraiDash" + std::to_string(i), path);
-		Sprite sprite = Sprite("SamuraiDash" + std::to_string(i));
+		std::string name("SamuraiDash");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		dash.push_back(sprite);
 	}
 
@@ -522,8 +556,10 @@ void Samurai::LoadAnimations()
 	for (int i = 1; i <= 9; i++)
 	{
 		std::string path = "./Samurai-Hero/Original/Hero/die/die0" + std::to_string(i) + ".png";
-		Game::LoadAsset("SamuraiDie" + std::to_string(i), path);
-		Sprite sprite = Sprite("SamuraiDie" + std::to_string(i));
+		std::string name("SamuraiDie");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		die.push_back(sprite);
 	}
 
@@ -579,8 +615,10 @@ void Cowboy::LoadAnimations()
 	for (int i = 1; i <= 4; i++)
 	{
 		std::string path = "./Cowboy/Original/Hero/idle/idle0" + std::to_string(i) + ".png";
-		Game::LoadAsset("Cowboy" + std::to_string(i), path);
-		Sprite sprite = Sprite("Cowboy" + std::to_string(i));
+		std::string name("Cowboy");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		idle.push_back(sprite);
 	}
 
@@ -589,8 +627,10 @@ void Cowboy::LoadAnimations()
 	for (int i = 1; i <= 8; i++)
 	{
 		std::string path = "./Cowboy/Original/Hero/run/run0" + std::to_string(i) + ".png";
-		Game::LoadAsset("CowboyRun" + std::to_string(i), path);
-		Sprite sprite = Sprite("CowboyRun" + std::to_string(i));
+		std::string name("CowboyRun");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		run.push_back(sprite);
 	}
 
@@ -599,8 +639,10 @@ void Cowboy::LoadAnimations()
 	for (int i = 1; i <= 6; i++)
 	{
 		std::string path = "./Cowboy/Original/Hero/skill2/skill20" + std::to_string(i) + ".png";
-		Game::LoadAsset("CowboyAttack" + std::to_string(i), path);
-		Sprite sprite = Sprite("CowboyAttack" + std::to_string(i));
+		std::string name("CowboyAttack");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		attack.push_back(sprite);
 	}
 
@@ -609,8 +651,10 @@ void Cowboy::LoadAnimations()
 	for (int i = 1; i <= 4; i++)
 	{
 		std::string path = "./Cowboy/Original/Hero/jump/jump0" + std::to_string(i) + ".png";
-		Game::LoadAsset("CowboyJump" + std::to_string(i), path);
-		Sprite sprite = Sprite("CowboyJump" + std::to_string(i));
+		std::string name("CowboyJump");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		jump.push_back(sprite);
 	}
 
@@ -619,8 +663,10 @@ void Cowboy::LoadAnimations()
 	for (int i = 1; i <= 1; i++)
 	{
 		std::string path = "./Cowboy/Original/Hero/dash/dash0" + std::to_string(i) + ".png";
-		Game::LoadAsset("CowboyDash" + std::to_string(i), path);
-		Sprite sprite = Sprite("CowboyDash" + std::to_string(i));
+		std::string name("CowboyDash");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		dash.push_back(sprite);
 	}
 
@@ -629,8 +675,10 @@ void Cowboy::LoadAnimations()
 	for (int i = 1; i <= 9; i++)
 	{
 		std::string path = "./Cowboy/Original/Hero/die/die0" + std::to_string(i) + ".png";
-		Game::LoadAsset("CowboyDie" + std::to_string(i), path);
-		Sprite sprite = Sprite("CowboyDie" + std::to_string(i));
+		std::string name("CowboyDie");
+		name += std::to_string(i);
+		Game::LoadAsset(name.c_str(), path.c_str());
+		Sprite sprite = Sprite(name.c_str());
 		die.push_back(sprite);
 	}
 

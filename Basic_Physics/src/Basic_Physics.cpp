@@ -19,6 +19,7 @@ const float PI = 3.14f;
 
 void Basic_Physics::OnInit(int pl_id)
 {
+	std::string collider("CreateCollider");
 	MEE_bind_CreateCollider(pl_id, "CreateCollider");
 	MEE_bind_PhysicsStep(pl_id, "PhysicsStep");
 	MEE_bind_CreatePhysicsWorld(pl_id, "CreatePhysicsWorld");

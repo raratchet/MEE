@@ -16,7 +16,7 @@ catch(...)\
 	std::string message ="An error ocurred while calling ";\
 	message += #FUNC_NAME;\
 	message += " in MEE_PHYSICS.";\
-    MEE_LOGGER::Error(message);\
+    MEE_LOGGER::Error(message.c_str());\
 }
 
 namespace MEE
@@ -34,7 +34,7 @@ namespace MEE
 		drawObjects.clear(); 
 	 }
 
-     GameObject& Scene::CreateGameObject(const std::string& name)
+     GameObject& Scene::CreateGameObject(const char* name)
      {
          std::shared_ptr <GameObject> temp(new GameObject(*this, name));
          sceneObjects.push_back(temp);
@@ -42,7 +42,7 @@ namespace MEE
          return *(temp);
      }
 
-     GameObject& Scene::CreateGameObject(const std::string& name, Sprite& sprite)
+     GameObject& Scene::CreateGameObject(const char* name, Sprite& sprite)
      {
          std::shared_ptr <GameObject> temp(new GameObject(*this, name,sprite));
          sceneObjects.push_back(temp);
@@ -50,7 +50,7 @@ namespace MEE
          return *(temp);
      }
 
-     WorldObject& Scene::CreateWorldObject(const std::string& name)
+     WorldObject& Scene::CreateWorldObject(const char* name)
      {
          std::shared_ptr<WorldObject> temp(new WorldObject(*this, name));
          sceneObjects.push_back(temp);

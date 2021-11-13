@@ -16,7 +16,7 @@ namespace MEE
 			if (!m_lib)
 				throw "Unable to load Plugin!";
 
-			MEE_LOGGER::Log("Loading " + info.name + " version " + info.version);
+			MEE_LOGGER::Log(std::string("Loading " + info.name + " version " + info.version).c_str());
 
 			OnInit = (onInitType)PLUGIN_LOAD_EXTERN(m_lib, "OnInit");
 			OnLoad = (onLoadType)PLUGIN_LOAD_EXTERN(m_lib, "OnLoad");
@@ -32,7 +32,7 @@ namespace MEE
 		}
 		catch (...)
 		{
-			MEE_LOGGER::Error("Not able to load plugin: " + info.name);
+			MEE_LOGGER::Error(std::string("Not able to load plugin: " + info.name).c_str());
 			pluginInformation.loaded = false;
 		}
 
@@ -41,7 +41,7 @@ namespace MEE
 
 	Plugin::~Plugin()
 	{
-		MEE_LOGGER::Log("Shutting down " + pluginInformation.name);
+		MEE_LOGGER::Log(std::string("Shutting down " + pluginInformation.name).c_str());
 
 		PLUGIN_CLOSE_EXTERN(m_lib);
 	}

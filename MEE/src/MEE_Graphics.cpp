@@ -17,7 +17,7 @@
 	inline std::function<void(float x, float y, float radius)> MEE_RenderSolidCircle;
 	inline std::function<void(const MEE_Texture2D, float x, float y, float scale_x, float scale_y, float angle,
 		int clipX, int clipY, int clipW, int clipH, bool h_flip, bool v_flip)> MEE_RenderTexture2D;
-	inline std::function<MEE_Texture2D(const std::string& path)> MEE_CreateTexture2D;
+	inline std::function<MEE_Texture2D(const char* path)> MEE_CreateTexture2D;
 	inline std::function<void()> MEE_RenderDebugGrid;
 
 	inline float PIXELS_PER_UNIT = 20;
@@ -48,7 +48,7 @@
 		MEE::WindowHandler::SetWindowPosition(x,y);
 	}
 
-	void MEE_SetWindowName(const std::string& name)
+	void MEE_SetWindowName(const char* name)
 	{
 		MEE::WindowHandler::SetWindowName(name);
 	}
@@ -69,7 +69,7 @@
 		return UNITS_PER_PIXEL;
 	}
 
-	void MEE_bind_RenderClear(int plugin_id, const std::string& func_name)
+	void MEE_bind_RenderClear(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
@@ -80,19 +80,19 @@
 
 	}  
 
-	void MEE_bind_CreateTexture2D(int plugin_id, const std::string& func_name)
+	void MEE_bind_CreateTexture2D(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
 		if (pl_manager)
 		{
 			MEE_CreateTexture2D = pl_manager->GetPluginFunction
-				<MEE_Texture2D,const std::string&>(plugin_id, func_name);
+				<MEE_Texture2D,const char*>(plugin_id, func_name);
 		}
 
 	}
 
-	void MEE_bind_RenderTexture2D(int plugin_id, const std::string& func_name)
+	void MEE_bind_RenderTexture2D(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
@@ -105,7 +105,7 @@
 
 	}
 
-	void MEE_EXPORT MEE_bind_SetRenderColor(int plugin_id, const std::string& func_name)
+	void MEE_EXPORT MEE_bind_SetRenderColor(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
@@ -116,7 +116,7 @@
 		}
 	}
 
-	void MEE_EXPORT MEE_bind_SetRenderViewport(int plugin_id, const std::string& func_name)
+	void MEE_EXPORT MEE_bind_SetRenderViewport(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
@@ -127,7 +127,7 @@
 		}
 	}
 
-	void MEE_EXPORT MEE_bind_RenderLine(int plugin_id, const std::string& func_name)
+	void MEE_EXPORT MEE_bind_RenderLine(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
@@ -138,7 +138,7 @@
 		}
 	}
 
-	void MEE_EXPORT MEE_bind_RenderPoint(int plugin_id, const std::string& func_name)
+	void MEE_EXPORT MEE_bind_RenderPoint(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
@@ -149,7 +149,7 @@
 		}
 	}
 
-	void MEE_EXPORT MEE_bind_RenderPolygon(int plugin_id, const std::string& func_name)
+	void MEE_EXPORT MEE_bind_RenderPolygon(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
@@ -160,7 +160,7 @@
 		}
 	}
 
-	void MEE_EXPORT MEE_bind_RenderSolidPolygon(int plugin_id, const std::string& func_name)
+	void MEE_EXPORT MEE_bind_RenderSolidPolygon(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
@@ -171,7 +171,7 @@
 		}
 	}
 
-	void MEE_EXPORT MEE_bind_RenderCircle(int plugin_id, const std::string& func_name)
+	void MEE_EXPORT MEE_bind_RenderCircle(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
@@ -182,7 +182,7 @@
 		}
 	}
 
-	void MEE_EXPORT MEE_bind_RenderSolidCircle(int plugin_id, const std::string& func_name)
+	void MEE_EXPORT MEE_bind_RenderSolidCircle(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
@@ -193,7 +193,7 @@
 		}
 	}
 
-	void MEE_bind_InitGL(int plugin_id, const std::string& func_name)
+	void MEE_bind_InitGL(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 
@@ -203,7 +203,7 @@
 		}
 	}
 
-	void MEE_bind_RenderDebugGrid(int plugin_id, const std::string& func_name)
+	void MEE_bind_RenderDebugGrid(int plugin_id, const char* func_name)
 	{
 		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
 

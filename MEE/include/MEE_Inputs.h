@@ -23,18 +23,18 @@ void MEE_EXPORT MEE_CloseApplicationSignal();
 //Estas funciones envuelen a las que existen en engine
 //Son las funciones disponibles para los modulos y addons
 
-void MEE_EXPORT MEE_bind_keyboard_KeyPressedThisFrame(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_keyboard_KeyIsPressed(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_keyboard_KeyUp(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_mouse_KeyPressedThisFrame(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_mouse_KeyIsPressed(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_mouse_KeyUp(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_mouse_GetPosition(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_gamepad_KeyPressedThisFrame(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_gamepad_KeyIsPressed(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_gamepad_KeyUp(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_gamepad_GetJoystick(int plugin_id, const std::string& func_name);
-void MEE_EXPORT MEE_bind_gamepad_MakeRumble(int plugin_id, const std::string& func_name);
+void MEE_EXPORT MEE_bind_keyboard_KeyPressedThisFrame(int plugin_id, const char* func_name);
+void MEE_EXPORT MEE_bind_keyboard_KeyIsPressed(int plugin_id, const char* func_name);
+void MEE_EXPORT MEE_bind_keyboard_KeyUp(int plugin_id, const char* func_name);
+void MEE_EXPORT MEE_bind_mouse_KeyPressedThisFrame(int plugin_id, const char* func_name);
+void MEE_EXPORT MEE_bind_mouse_KeyIsPressed(int plugin_id, const char* func_name);
+void MEE_EXPORT MEE_bind_mouse_KeyUp(int plugin_id, const char* func_name);
+void MEE_EXPORT MEE_bind_mouse_GetPosition(int plugin_id, const char* func_name);
+void MEE_EXPORT MEE_bind_gamepad_KeyPressedThisFrame(int plugin_id, const char* func_name);
+void MEE_EXPORT MEE_bind_gamepad_KeyIsPressed(int plugin_id, const char* func_name);
+void MEE_EXPORT MEE_bind_gamepad_KeyUp(int plugin_id, const char* func_name);
+void MEE_EXPORT MEE_bind_gamepad_GetJoystick(int plugin_id, const char* func_name);
+void MEE_EXPORT MEE_bind_gamepad_MakeRumble(int plugin_id, const char* func_name);
 
 #ifdef MEE_ENGINE
 

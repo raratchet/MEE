@@ -20,14 +20,14 @@ public:
 	static void AddLevel(Level* level);
 	static void RemoveCurrentLevel();
 	//ResourceManager Related Stuff
-	static AssetID LoadAsset(std::string name, std::string path); //Determinaré el tipo segun la extension
-	static bool AssetExists(std::string name);
-	static void UnloadAsset(std::string name);
+	static AssetID LoadAsset(const char* name, const char* path); //Determinaré el tipo segun la extension
+	static bool AssetExists(const char* name);
+	static void UnloadAsset(const char* name);
 	static void UnloadAllAssets();
 	//Load assets from file
 
 	//Window related stuff
-	static void RenameWindow(std::string name);
+	static void RenameWindow(const char* name);
 	static void ResizeWindow(int width,int height);
 	static void SetWindowFullscren(bool status);
 
@@ -36,7 +36,7 @@ public:
 	//Input and Plugin will be in independent files
 
 private:
-	std::string name;
+	const char* name;
 	
 	Game();
 	static MEE::Application* GetMainApp();

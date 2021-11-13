@@ -14,11 +14,11 @@ using uint = unsigned int;
 
 typedef void* MEE_Collider;
 
-void  MEE_EXPORT MEE_bind_CreateCollider(int pl_id, const std::string& func_name);
-void  MEE_EXPORT MEE_bind_SetColliderTransform(int pl_id, const std::string& func_name);
-void  MEE_EXPORT MEE_bind_GetColliderTransform(int pl_id, const std::string& func_name);
-void  MEE_EXPORT MEE_bind_PhysicsStep(int pl_id, const std::string& func_name);
-void  MEE_EXPORT MEE_bind_CreatePhysicsWorld(int pl_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_CreateCollider(int pl_id, const char* func_name);
+void  MEE_EXPORT MEE_bind_SetColliderTransform(int pl_id, const char* func_name);
+void  MEE_EXPORT MEE_bind_GetColliderTransform(int pl_id, const char* func_name);
+void  MEE_EXPORT MEE_bind_PhysicsStep(int pl_id, const char* func_name);
+void  MEE_EXPORT MEE_bind_CreatePhysicsWorld(int pl_id, const char* func_name);
 void  MEE_EXPORT MEE_SetFixedUpdateSpeed(uint frameSpeed);
 double  MEE_EXPORT MEE_GetDeltaTime();
 

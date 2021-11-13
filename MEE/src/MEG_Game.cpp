@@ -51,12 +51,12 @@ void Game::RemoveCurrentLevel()
 	}
 }
 
-AssetID Game::LoadAsset(std::string name, std::string path)
+AssetID Game::LoadAsset(const char* name, const char* path)
 {
 	//Assetr resourcemanager
 	auto resourceManager = mainApp->GetResourceManager().lock();
 
-	std::string suffix = GetFileSuffix(path);
+	std::string suffix = GetFileSuffix(std::string(path));
 
 	if (suffix == "jpg")
 	{
@@ -71,12 +71,12 @@ AssetID Game::LoadAsset(std::string name, std::string path)
 	return 0;
 }
 
-bool Game::AssetExists(std::string name)
+bool Game::AssetExists(const char* name)
 {
 	return false;
 }
 
-void Game::UnloadAsset(std::string name)
+void Game::UnloadAsset(const char* name)
 {
 	auto resourceManager = mainApp->GetResourceManager().lock();
 
@@ -90,7 +90,7 @@ void Game::UnloadAllAssets()
 	resourceManager->Clear();
 }
 
-void Game::RenameWindow(std::string name)
+void Game::RenameWindow(const char* name)
 {
 	auto window = mainApp->GetWindow().lock();
 

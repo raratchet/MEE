@@ -3,30 +3,31 @@
 
 static el::Logger* currentLogger;
 
-void MEE_LOGGER::Log(const std::string& message)
+void MEE_LOGGER::Log(const char* message)
 {
 	currentLogger->info(message);
 }
 
-void MEE_LOGGER::Warn(const std::string& message)
+void MEE_LOGGER::Warn(const char* message)
 {
 	currentLogger->warn(message);
 }
 
-void MEE_LOGGER::Error(const std::string& message)
+void MEE_LOGGER::Error(const char* message)
 {
 	currentLogger->error(message);
 }
 
-void MEE_LOGGER::Fatal(const std::string& message)
+void MEE_LOGGER::Fatal(const char* message)
 {
 	currentLogger->fatal(message);
 }
 
-void MEE_LOGGER::Print(const std::string& message)
+void MEE_LOGGER::Print(const char* message)
 {
 	currentLogger->info(message);
 }
+
 
 INITIALIZE_EASYLOGGINGPP
 
@@ -59,14 +60,16 @@ void MEE_LOGGER::FlushLog()
 	el::Loggers::flushAll();
 }
 
-MEE_LOGGER::ScopedLogging::ScopedLogging(const std::string& logger)
+MEE_LOGGER::ScopedLogging::ScopedLogging(const char* logger)
 {
 	currentLogger = el::Loggers::getLogger(logger, false);
 
 	if (!currentLogger)
 	{
 		currentLogger = el::Loggers::getLogger("default");
-		currentLogger->error(logger + " - Not such logger exists.");
+		std::string message(logger);
+		message += " - Not such logger exists.";
+		currentLogger->error(message);
 	}
 }
 

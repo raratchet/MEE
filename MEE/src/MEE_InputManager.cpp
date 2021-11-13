@@ -18,7 +18,7 @@ catch(...)\
 	std::string message ="An error ocurred while calling ";\
 	message += #FUNC_NAME;\
 	message += " in MEE_INPUT";\
-    MEE_LOGGER::Error(message);\
+    MEE_LOGGER::Error(message.c_str());\
 }
 
 

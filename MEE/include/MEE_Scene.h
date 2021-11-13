@@ -50,7 +50,7 @@ namespace MEE
 		* \param name: The name that identifies this GameObject.
 		* \return A reference to the GameObject.
 		*/
-		class GameObject& CreateGameObject(const std::string& name);
+		class GameObject& CreateGameObject(const char* name);
 		/**
 		* Creates a gameobject for the current scene
 		* and registers it to the draw list.
@@ -59,14 +59,14 @@ namespace MEE
 		* \param sprite: The sprite that will be drawn for this GameObject.
 		* \return A reference to the GameObject.
 		*/
-		class GameObject& CreateGameObject(const std::string& name, class Sprite& sprite);
+		class GameObject& CreateGameObject(const char* name, class Sprite& sprite);
 		/**
 		* Creates a worldobject for the current scene.
 		* 
 		* \param name: The name that identifies this WorldObject.
 		* \return A reference to the WorldObject.
 		*/
-		class WorldObject& CreateWorldObject(const std::string& name);
+		class WorldObject& CreateWorldObject(const char* name);
 		/**
 		 * TODO
 		 */

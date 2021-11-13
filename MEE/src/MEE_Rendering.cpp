@@ -17,7 +17,7 @@ catch(...)\
 	std::string message ="An error ocurred while calling ";\
 	message += #FUNC_NAME;\
 	message += " in MEE_GRAHICS";\
-    MEE_LOGGER::Error(message);\
+    MEE_LOGGER::Error(message.c_str());\
 }
 
 bool MEE::RenderingManager::Init()
@@ -141,7 +141,7 @@ void MEE::RenderingManager::RenderTexture2D(std::weak_ptr<Texture2D> texture, fl
 MEE::Texture2D* MEE::RenderingManager::CreateTexture2D(const std::string& path)
 {
     MEE_Texture2D pointer = nullptr;
-    MEE_CHECK_FUNCTION(MEE_CreateTexture2D, pointer = MEE_CreateTexture2D(path));
+    MEE_CHECK_FUNCTION(MEE_CreateTexture2D, pointer = MEE_CreateTexture2D(path.c_str()));
     return (Texture2D*) pointer;
 }
 

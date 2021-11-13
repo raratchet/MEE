@@ -32,7 +32,7 @@ namespace MEE
 
 		MEE_LOGGER::CreateLogger(info.name);
 
-		MEE_LOGGER::ScopedLogging log(info.name);
+		MEE_LOGGER::ScopedLogging log(info.name.c_str());
 
 		plugin->OnInit(m_pluginList.size() - 1);
 	}
@@ -54,7 +54,9 @@ namespace MEE
 		bool success = true;
 		try
 		{
-			std::filesystem::directory_iterator pluginMainDirectory("./Plugins/");
+			std::filesystem::path pls = "Plugins";
+			std::filesystem::directory_iterator pluginMainDirectory
+			(std:: filesystem::absolute(pls));
 
 			std::map<std::wstring, Plugin::PluginInformation*> plInfo;
 			std::map<std::wstring, std::wstring> plugins;
@@ -84,15 +86,15 @@ namespace MEE
 					if (CheckForDependecies(*pluginInfo))
 						LoadPlugin(plugin.second, *pluginInfo);
 					else
-						MEE_LOGGER::Error("Cannot load " + pluginInfo->name
-							+ " some dependecies are missing");
+						MEE_LOGGER::Error(std::string("Cannot load " + pluginInfo->name
+							+ " some dependecies are missing").c_str());
 				else
 					MEE_LOGGER::Warn("Some plugins may have not been loaded.");
 			}
 		}
 		catch (std::filesystem::filesystem_error e)
 		{
-			std::cout << e.what() << '\n';
+			MEE_LOGGER::Error(e.what());
 			success = false;
 		}
 
@@ -103,7 +105,7 @@ namespace MEE
 	{
 		for (auto plugin : m_pluginList)
 		{
-			MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
+			MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name.c_str());
 			plugin->OnLoad();
 		}
 	}
@@ -114,7 +116,7 @@ namespace MEE
 		{
 			if (plugin->OnUpdate != nullptr)
 			{
-				MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
+				MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name.c_str());
 				plugin->OnUpdate();
 			}
 		}
@@ -126,7 +128,7 @@ namespace MEE
 		{
 			if (plugin->OnDraw != nullptr)
 			{
-				MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
+				MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name.c_str());
 				plugin->OnDraw();
 			}
 		}
@@ -138,7 +140,7 @@ namespace MEE
 		{
 			if (plugin->OnPostUpdate != nullptr)
 			{
-				MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
+				MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name.c_str());
 				plugin->OnPostUpdate();
 			}
 		}
@@ -147,7 +149,7 @@ namespace MEE
 	void PluginManager::Stop()
 	{
 		for (auto plugin : m_pluginList) {
-			MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
+			MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name.c_str());
 			plugin->OnShutdown();
 		}
 	}

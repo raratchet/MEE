@@ -50,7 +50,7 @@ namespace MEE
 		std::function<Type(Args...)> func = (Type(*)(Args...))(PLUGIN_LOAD_EXTERN(lib, f_name.c_str()));
 		std::function<Type(Args...)> setUpLogger = [=](Args...args)
 		{
-			MEE_LOGGER::ScopedLogging log(pl_name);
+			MEE_LOGGER::ScopedLogging log(pl_name.c_str());
 			return func(args...);
 		};
 		return setUpLogger;

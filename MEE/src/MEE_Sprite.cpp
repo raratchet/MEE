@@ -9,7 +9,7 @@ namespace MEE
 	Sprite::Sprite(std::weak_ptr<Texture2D> image, int x, int y, int w, int h) :
 		baseImage(image), width(w), height(h), baseImage_startCoord(Vector2(x, y)) {}
 
-	Sprite::Sprite(const std::string& resource_name, int x, int y, int w, int h): 
+	Sprite::Sprite(const const char* resource_name, int x, int y, int w, int h): 
 		width(w - x), height(h - y), baseImage_startCoord(Vector2(x, y))
 	{
 		auto RM = MEE_GLOBAL::application->GetResourceManager().lock();
@@ -17,7 +17,7 @@ namespace MEE
 		baseImage = RM->Get<Texture2D>(resource_name); //No me gusta usar el global
 	}
 
-	Sprite::Sprite(const std::string& resource_name)
+	Sprite::Sprite(const const char* resource_name)
 	{
 		auto RM = MEE_GLOBAL::application->GetResourceManager().lock();
 
@@ -68,7 +68,7 @@ namespace MEE
 		return height;
 	}
 
-	SpriteSheet::SpriteSheet(const std::string& resource_name, int width, int height)
+	SpriteSheet::SpriteSheet(const const char* resource_name, int width, int height)
 	{
 		auto RM = MEE_GLOBAL::application->GetResourceManager().lock();
 

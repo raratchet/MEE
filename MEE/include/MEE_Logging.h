@@ -14,15 +14,15 @@
  */
 namespace MEE_LOGGER
 {
-	void MEE_EXPORT Log(const std::string& message);
-	void MEE_EXPORT Warn(const std::string& message);
-	void MEE_EXPORT Error(const std::string& message);
-	void MEE_EXPORT Fatal(const std::string& message);
-	void MEE_EXPORT Print(const std::string& message);
+	void MEE_EXPORT Log(const char* message);
+	void MEE_EXPORT Warn(const char* message);
+	void MEE_EXPORT Error(const char* message);
+	void MEE_EXPORT Fatal(const char* message);
+	void MEE_EXPORT Print(const char* message);
 
 	struct MEE_EXPORT ScopedLogging
 	{
-		ScopedLogging(const std::string& logger);
+		ScopedLogging(const char* logger);
 		~ScopedLogging();
 	};
 

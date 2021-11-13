@@ -16,7 +16,7 @@ namespace Basic_Renderer
 		float scale_x, float scale_y, float a,
 		int clipX, int clipY, int clipW, int clipH,
 		bool h_flip, bool v_flip);
-	PLUGIN_FUNCTION MEE_Texture2D CreateTexture2D(const std::string path);
+	PLUGIN_FUNCTION MEE_Texture2D CreateTexture2D(const char* path);
 	PLUGIN_FUNCTION void SetRenderColor(int, int, int, int);
 	PLUGIN_FUNCTION void RenderClear();
 	PLUGIN_FUNCTION void SetRenderViewport(int, int, int, int);

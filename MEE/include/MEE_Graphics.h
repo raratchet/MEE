@@ -82,7 +82,7 @@ void  MEE_EXPORT MEE_SetWindowPosition(int x, int y);
  * \param name: String to set in window title
  * If the window is already built, rebuild window is necessary for changes come into effect.
  */
-void  MEE_EXPORT MEE_SetWindowName(const std::string& name);
+void  MEE_EXPORT MEE_SetWindowName(const char* name);
 /**
  * Sets the internal Pixels per Unit variable.
  * \param ppu: Value to set 
@@ -108,91 +108,91 @@ MEE_Renderer MEE_EXPORT MEE_GetSDLRenderer();
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_RenderClear(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderClear(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_RenderClear.
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_RenderTexture2D(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderTexture2D(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_RenderTexture2D.
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_SetRenderColor(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_SetRenderColor(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_SetRenderColor.
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_SetRenderViewport(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_SetRenderViewport(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_SetRenderViewport.
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_RenderLine(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderLine(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_RenderLine
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_RenderPoint(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderPoint(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_Point
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_RenderPolygon(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderPolygon(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_RenderPolygon.
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_RenderSolidPolygon(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderSolidPolygon(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_RenderSolidPolygon.
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_RenderCircle(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderCircle(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_RenderCircle.
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_RenderSolidCircle(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderSolidCircle(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_RenderSolidCircle.
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_CreateTexture2D(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_CreateTexture2D(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_CreateTexture2D.
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_InitGL(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_InitGL(int plugin_id, const char* func_name);
 /**
  * Searches for the function with func_name in the plugin id \n
  * and links it to the function MEE_InitGL.
  * \warning You must be sure that the function you are binding is compatible with the function you are binding to.\n
  * Failing to match paramters can result in undefined behaviour.
  */
-void  MEE_EXPORT MEE_bind_RenderDebugGrid(int plugin_id, const std::string& func_name);
+void  MEE_EXPORT MEE_bind_RenderDebugGrid(int plugin_id, const char* func_name);
 
 //Engine Functions
 #ifdef MEE_ENGINE
@@ -285,7 +285,7 @@ extern std::function<void(const MEE_Texture2D texture,float x, float y, float sc
  * \param path: The path where texture is located given by the loading entity.
  * \return A MEE_Texture2D pointer for the Texture2D
  */
-extern std::function<MEE_Texture2D(const std::string& path)> MEE_CreateTexture2D;
+extern std::function<MEE_Texture2D(const char* path)> MEE_CreateTexture2D;
 
 #endif // MEE_ENGINE
 

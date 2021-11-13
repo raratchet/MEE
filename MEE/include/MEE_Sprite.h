@@ -40,13 +40,13 @@ namespace MEE
 		 * \param w : W clip position in the image.
 		 * \param h : H clip position in the image.
 		 */
-		Sprite(const std::string& resource_name, int x, int y, int w, int h);
+		Sprite(const const char* resource_name, int x, int y, int w, int h);
 		/**
 		 * .
 		 * 
 		 * \param resource_name
 		 */
-		Sprite(const std::string& resource_name);
+		Sprite(const const char* resource_name);
 
 		void Draw(const Vector2& pos, const Vector2& scale, const float& rot, bool drawInPhysicalSpace);
 		void Draw(const Vector2& pos, const Vector2& scale, const float& rot, bool h_flip, bool v_flip, bool drawInPhysicalSpace);
@@ -62,7 +62,7 @@ namespace MEE
 	class MEE_EXPORT SpriteSheet
 	{
 	public:
-		SpriteSheet(const std::string& resource_name, int width, int height);
+		SpriteSheet(const const char* resource_name, int width, int height);
 		SpriteSheet(std::list<Sprite> sprites_list);
 		std::weak_ptr<Sprite> operator[](int index);
 		std::weak_ptr<Sprite> Get(int index);
