@@ -47,5 +47,9 @@ project "MEE"
 	
 	filter "configurations:Debug"
 		defines "MEE_DEBUG"
+		defines "_DEBUG"
 		runtime "Debug"
 		symbols "on"
+		
+	filter "system:windows"
+		systemversion "latest"

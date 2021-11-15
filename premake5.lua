@@ -2,12 +2,12 @@ include "Dependencies.lua"
 
 workspace "Modular-Educational-Engine"
 	architecture "x64"
-	startproject "MEE"
+	startproject "EngineTest"
 
 	configurations
 	{
-		"Debug",
-		"Release",
+		"Debug"--,
+		--"Release",
 	}
 
 outputdir = "%{cfg.buildcfg}"
