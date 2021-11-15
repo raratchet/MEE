@@ -27,3 +27,11 @@ project "EngineTest"
 	{
 		"MEE.lib"
 	}
+	
+	filter "system:windows"
+		systemversion "latest"
+		
+	filter "configurations:Debug"
+		defines "_DEBUG"
+		runtime "Debug"
+		symbols "on"
