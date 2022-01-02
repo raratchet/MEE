@@ -1,3 +1,5 @@
+require "cmake"
+require "clion"
 include "Dependencies.lua"
 
 workspace "Modular-Educational-Engine"
