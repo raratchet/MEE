@@ -21,7 +21,7 @@
 namespace MEE
 {
 	/**
-	 * Application contains and controlls the app/game main loop
+	 * Application contains and controls the app/game main loop
 	 * and subsystems.
 	 */
 	class MEE_EXPORT Application

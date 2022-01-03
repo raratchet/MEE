@@ -23,13 +23,20 @@ project "EngineTest"
 		"%{LibDir.MEE}"
     }
 	
-	links
-	{
-		"MEE.lib"
-	}
-	
 	filter "system:windows"
 		systemversion "latest"
+		links
+		{
+			"MEE.lib"
+		}
+
+	filter "system:macosx"
+		links
+		{
+			"libMEE.dylib"
+		}
+
+
 		
 	filter "configurations:Debug"
 		defines "_DEBUG"

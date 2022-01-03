@@ -1,5 +1,11 @@
-require "cmake"
-require "clion"
+
+if _ACTION == "clion" or _ACTION == "Clion" then
+	require "cmake"
+	require "clion"
+elseif _ACTION == "cmake" then
+	require "cmake"
+end
+
 include "Dependencies.lua"
 
 workspace "Modular-Educational-Engine"

@@ -4,12 +4,12 @@
 
 namespace MEE
 {
-	bool PluginManager::HasSuffix(const std::wstring& s, const std::wstring& suffix)
+	bool PluginManager::HasSuffix(const std::string& s, const std::string& suffix)
 	{
 		return s.size() >= suffix.size() && s.compare(s.size() - suffix.size(), suffix.size(), suffix) == 0;
 	}
 
-	Plugin::PluginInformation* PluginManager::ReadInfoFile(const std::wstring& path)
+	Plugin::PluginInformation* PluginManager::ReadInfoFile(const std::string& path)
 	{
 		std::string name(path.begin(),path.end());
 		YAML::Node info = YAML::LoadFile(name);
@@ -21,7 +21,7 @@ namespace MEE
 		return plInfo;
 	}
 	
-	void PluginManager::LoadPlugin(const std::wstring& path, const Plugin::PluginInformation& info)
+	void PluginManager::LoadPlugin(const std::string& path, const Plugin::PluginInformation& info)
 	{
 		Plugin* pl = new Plugin(path, info);
 		if (!pl->pluginInformation.loaded) return;
@@ -37,14 +37,14 @@ namespace MEE
 		plugin->OnInit(m_pluginList.size() - 1);
 	}
 
-	bool PluginManager::SuffixIs(const std::wstring& fileName, const std::wstring& suffix)
-	{
-		std::wstring fileSuffix(fileName.end() - suffix.size(), fileName.end());
+    bool PluginManager::SuffixIs(const std::string &fileName, const std::string &suffix)
+    {
+        std::string fileSuffix(fileName.end() - suffix.size(), fileName.end());
 
-		return suffix == fileSuffix;
-	}
+        return suffix == fileSuffix;
+    }
 
-	bool PluginManager::CheckForDependecies(Plugin::PluginInformation& info)
+	bool PluginManager::CheckForDependencies(Plugin::PluginInformation& info)
 	{
 		return true;
 	}
@@ -56,20 +56,20 @@ namespace MEE
 		{
 			std::filesystem::directory_iterator pluginMainDirectory("./Plugins/");
 
-			std::map<std::wstring, Plugin::PluginInformation*> plInfo;
-			std::map<std::wstring, std::wstring> plugins;
+			std::map<std::string, Plugin::PluginInformation*> plInfo;
+			std::map<std::string, std::string> plugins;
 
 			for (auto& extFile : pluginMainDirectory)
 			{
 				std::filesystem::path extPath = extFile.path();
 
-				if (!HasSuffix(extPath.wstring(), PLUGIN_LIBRARY_SUFFIX))
+				if (!HasSuffix(extPath.string(), PLUGIN_LIBRARY_SUFFIX))
 				{
 					std::filesystem::directory_iterator pluginDirectory(extPath);
 					for (auto& pluginFile : pluginDirectory)
 					{
-						std::filesystem::path pluginPath = pluginFile.path();
-						if (SuffixIs(pluginPath, L"yaml"))
+						auto pluginPath = pluginFile.path().string();
+						if (SuffixIs(pluginPath, "yaml"))
 							plInfo.insert({ extPath,ReadInfoFile(pluginPath) });
 						if (SuffixIs(pluginPath, PLUGIN_LIBRARY_SUFFIX))
 							plugins.insert({ extPath,pluginPath });
@@ -81,7 +81,7 @@ namespace MEE
 			{
 				auto& pluginInfo = plInfo[plugin.first];
 				if (pluginInfo != nullptr)
-					if (CheckForDependecies(*pluginInfo))
+					if (CheckForDependencies(*pluginInfo))
 						LoadPlugin(plugin.second, *pluginInfo);
 					else
 						MEE_LOGGER::Error("Cannot load " + pluginInfo->name

@@ -123,20 +123,7 @@ namespace MEE
 	template<class T>
 	void Object::RemoveComponent()
 	{
-		for (auto it = components.begin(); it != components.end(); it++)
-		{
-			auto component = *it;
-			auto componentAsType = dynamic_cast<T>(component);
-			if (componentAsType)
-			{
-				auto isBehaviour = std::reinterpret_pointer_cast<Behaviour>(component);
-				if (isBehaviour)
-				{
-					updatables.erase(it); // Checa esta linea estas modificando el array
-					isBehaviour->Destroy();
-				}
-			}
-		}
+        //TODO implement this function.
 	}
 
 	template<class T>

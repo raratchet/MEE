@@ -6,6 +6,7 @@
  * \date   October 2021
  *********************************************************************/
 #pragma once
+#include <string>
 #include <SDL.h>
 #include <memory>
 

@@ -1,9 +1,9 @@
 #pragma once
 
 #include <MEE_PluginHeader.h>
+#include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
-#include <iostream>
 #include "Basic_Texture2D.h"
 #include <MEE_Graphics.h>
 

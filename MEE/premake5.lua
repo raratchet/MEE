@@ -35,16 +35,6 @@ project "MEE"
 		"%{LibDir.yaml_cpp}"
 	}
 	
-	links
-	{
-		"SDL2.lib",
-		"SDL2main.lib",
-		"yaml-cppd.lib",
-		"glew32.lib",
-		"glew32s.lib",
-		"easyloggingpp.lib"
-	}
-	
 	filter "configurations:Debug"
 		defines "MEE_DEBUG"
 		defines "_DEBUG"
@@ -53,3 +43,22 @@ project "MEE"
 		
 	filter "system:windows"
 		systemversion "latest"
+		links
+		{
+			"SDL2.lib",
+			"SDL2main.lib",
+			"yaml-cppd.lib",
+			"glew32.lib",
+			"glew32s.lib",
+			"easyloggingpp.lib"
+		}
+
+		filter "system:macosx"
+		links
+		{
+			"libSDL2.dylib",
+			"libyaml-cppd.a",
+			"libGLEW.a",
+			"libGLEW.dylib",
+			"libeasyloggingpp.a"
+		}

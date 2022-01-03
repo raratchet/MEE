@@ -1,6 +1,6 @@
 /*****************************************************************//**
  * \file   MEE_PluginHeader.h
- * \brief  Defines macros to simplify Modules sintax
+ * \brief  Defines macros to simplify Modules syntax
  * 
  * \author Maximiliano Herrera
  * \date   November 2021
@@ -24,6 +24,8 @@
 #include <dlfcn.h>
 
 #define PLUGIN_EVT_EXPORT
+#define PLUGIN_FUNCTION extern "C"
+#define PLUGIN_CLASS
 #define PLUGIN_HANDLE_TYPE void*
 #define PLUGIN_PROGRAM_HANDLE dlopen(nullptr, RTLD_LAZY)
 #define PLUGIN_LOAD_EXTERN dlsym

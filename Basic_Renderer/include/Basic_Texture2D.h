@@ -1,4 +1,5 @@
 #pragma once
+#include<string>
 #include<SDL_render.h>
 #include<MEE_Texture.h>
 
