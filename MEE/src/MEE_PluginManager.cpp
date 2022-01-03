@@ -9,6 +9,19 @@ namespace MEE
 		return s.size() >= suffix.size() && s.compare(s.size() - suffix.size(), suffix.size(), suffix) == 0;
 	}
 
+    bool PluginManager::IsDirectory(const std::string &path)
+    {
+        try
+        {
+           auto isDirectory = std::filesystem::directory_entry(path);
+            return true;
+        }
+        catch (std::filesystem::filesystem_error error)
+        {
+            return false;
+        }
+    }
+
 	Plugin::PluginInformation* PluginManager::ReadInfoFile(const std::string& path)
 	{
 		std::string name(path.begin(),path.end());
@@ -63,7 +76,7 @@ namespace MEE
 			{
 				std::filesystem::path extPath = extFile.path();
 
-				if (!HasSuffix(extPath.string(), PLUGIN_LIBRARY_SUFFIX))
+				if (std::filesystem::is_directory(extPath))
 				{
 					std::filesystem::directory_iterator pluginDirectory(extPath);
 					for (auto& pluginFile : pluginDirectory)

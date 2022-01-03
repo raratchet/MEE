@@ -24,6 +24,7 @@ namespace MEE
 	{
 	private:
 		bool HasSuffix(const std::string& s, const std::string& suffix);
+        bool IsDirectory(const std::string& path);
 		Plugin::PluginInformation* ReadInfoFile(const std::string& path);
 		void LoadPlugin(const std::string& path, const Plugin::PluginInformation& info);
 		bool SuffixIs(const std::string& fileName, const std::string& suffix);
