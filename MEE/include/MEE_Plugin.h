@@ -32,8 +32,11 @@
 #define PLUGIN_PROGRAM_HANDLE dlopen(filename.c_str(), RTLD_LAZY);
 #define PLUGIN_LOAD_EXTERN dlsym
 #define PLUGIN_CLOSE_EXTERN dlclose
+#if defined(__APPLE__)
+#define PLUGIN_LIBRARY_SUFFIX ".dylib"
+#elif
 #define PLUGIN_LIBRARY_SUFFIX ".so"
-
+#endif
 #endif
 
 namespace MEE
