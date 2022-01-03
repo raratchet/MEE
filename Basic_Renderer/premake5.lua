@@ -27,16 +27,23 @@ project "Basic_Renderer"
 		"%{LibDir.MEE}"
     }
 	
-	links
-	{
-		"SDL2.lib",
-		"SDL2main.lib",
-		"SDL2_image.lib",
-		"MEE.lib"
-	}
-	
 	filter "system:windows"
 		systemversion "latest"
+		links
+		{
+			"SDL2.lib",
+			"SDL2main.lib",
+			"SDL2_image.lib",
+			"MEE.lib"
+		}
+
+	filter "system:macosx"
+		links
+		{
+			"libSDL2.dylib",
+			"libSDL2_image.dylib",
+			"libMEE.dylib"
+		}
 		
 	filter "configurations:Debug"
 		defines "_DEBUG"

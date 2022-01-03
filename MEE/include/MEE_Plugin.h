@@ -32,7 +32,7 @@
 #define PLUGIN_PROGRAM_HANDLE dlopen(filename.c_str(), RTLD_LAZY);
 #define PLUGIN_LOAD_EXTERN dlsym
 #define PLUGIN_CLOSE_EXTERN dlclose
-#define PLUGIN_LIBRARY_SUFFIX L".so"
+#define PLUGIN_LIBRARY_SUFFIX ".so"
 
 #endif
 

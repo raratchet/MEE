@@ -24,16 +24,23 @@ project "Basic_Input"
 		"%{LibDir.SDL2}",
 		"%{LibDir.MEE}"
     }
-	
-	links
-	{
-		"SDL2.lib",
-		"SDL2main.lib",
-		"MEE.lib"
-	}
-	
+
+
 	filter "system:windows"
 		systemversion "latest"
+		links
+		{
+			"SDL2.lib",
+			"SDL2main.lib",
+			"MEE.lib"
+		}
+
+	filter "system:macosx"
+		links
+		{
+			"libSDL2.dylib",
+			"libMEE.dylib"
+		}
 		
 	filter "configurations:Debug"
 		defines "_DEBUG"

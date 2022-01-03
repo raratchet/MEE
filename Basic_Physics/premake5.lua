@@ -26,15 +26,21 @@ project "Basic_Physics"
 		("%{Box2D_path}".."/libs"),
 		"%{LibDir.MEE}"
 	}
-	
-	links
-	{
-		"box2d.lib",
-		"MEE.lib"
-	}
-	
+
 	filter "system:windows"
-		systemversion "latest"
+	systemversion "latest"
+		links
+		{
+			"box2d.lib",
+			"MEE.lib"
+		}
+
+	filter "system:macosx"
+		links
+		{
+			"libbox2d.a",
+			"libMEE.dylib"
+		}
 		
 	filter "configurations:Debug"
 		defines "_DEBUG"

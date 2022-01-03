@@ -10,21 +10,21 @@
 class MEG_IMPORT Input
 {
 public:
-	static struct MEG_IMPORT Keyboard
+    struct MEG_IMPORT Keyboard
 	{
 		static bool KeyWasPressedThisFrame(int key);
 		static bool KeyIsPressed(int key);
 		static bool KeyUp(int key);
 	};
 
-	static struct MEG_IMPORT Controller
+    struct MEG_IMPORT Controller
 	{
 		static bool KeyWasPressedThisFrame(GamepadID id, int key);
 		static bool KeyIsPressed(GamepadID id, int key);
 		static bool KeyUp(GamepadID id, int key);
 	};
 
-	static struct MEG_IMPORT Mouse
+    struct MEG_IMPORT Mouse
 	{
 		static Vector2 MousePosition();
 		static bool KeyWasPressedThisFrame(int key);

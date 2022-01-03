@@ -18,16 +18,16 @@
 namespace MEE
 {
 	/**
-	 * PluginManager loads, holds, and controlls all plugins in the engine.
+	 * PluginManager loads, holds, and controls all plugins in the engine.
 	 */
 	class MEE_EXPORT PluginManager
 	{
 	private:
-		bool HasSuffix(const std::wstring& s, const std::wstring& suffix);
-		Plugin::PluginInformation* ReadInfoFile(const std::wstring& path);
-		void LoadPlugin(const std::wstring& path, const Plugin::PluginInformation& info);
-		bool SuffixIs(const std::wstring& fileName, const std::wstring& suffix);
-		bool CheckForDependecies(Plugin::PluginInformation& info);
+		bool HasSuffix(const std::string& s, const std::string& suffix);
+		Plugin::PluginInformation* ReadInfoFile(const std::string& path);
+		void LoadPlugin(const std::string& path, const Plugin::PluginInformation& info);
+		bool SuffixIs(const std::string& fileName, const std::string& suffix);
+		bool CheckForDependencies(Plugin::PluginInformation& info);
 		std::vector<std::shared_ptr<Plugin>> m_pluginList;
 	public:
 		bool Init();
