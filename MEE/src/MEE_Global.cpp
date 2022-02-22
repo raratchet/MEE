@@ -2,5 +2,5 @@
 
 namespace MEE_GLOBAL
 {
-	MEE::Application* MEE_GLOBAL::application;
+	MEE::Application* application;
 }
