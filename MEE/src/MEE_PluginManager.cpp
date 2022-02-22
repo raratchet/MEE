@@ -30,24 +30,40 @@ namespace MEE
 
 		plInfo->name = info["Name"].as<std::string>();
 		plInfo->version = info["Version"].as<std::string>();
+        plInfo->author = info["Author"].as<std::string>();
+
+        auto type = info["Type"].as<std::string>();
+        if(type == "Module")
+            plInfo->type = Plugin::PluginType::MODULE;
+        else if(type == "Addon")
+            plInfo->type = Plugin::PluginType::ADDON;
+        else
+            plInfo->type = Plugin::PluginType::UNKNOWN;
 
 		return plInfo;
 	}
 	
-	void PluginManager::LoadPlugin(const std::string& path, const Plugin::PluginInformation& info)
+	void PluginManager::LoadPlugin(const std::string& path, Plugin::PluginInformation& info)
 	{
+
+        if(info.loaded) return;
+
 		Plugin* pl = new Plugin(path, info);
 		if (!pl->pluginInformation.loaded) return;
 
 		std::shared_ptr<Plugin> plugin(pl);
 		
-		m_pluginList.push_back(plugin);
+		m_loadedPluginList.push_back(plugin);
 
 		MEE_LOGGER::CreateLogger(info.name);
 
 		MEE_LOGGER::ScopedLogging log(info.name);
 
-		plugin->OnInit(m_pluginList.size() - 1);
+        int pl_id = m_loadedPluginList.size() - 1;
+
+		plugin->OnInit(pl_id);
+        info.id = pl_id;
+        m_loadedPluginIndexes[info.name] = pl_id;
 	}
 
     bool PluginManager::SuffixIs(const std::string &fileName, const std::string &suffix)
@@ -57,9 +73,9 @@ namespace MEE
         return suffix == fileSuffix;
     }
 
-	bool PluginManager::CheckForDependencies(Plugin::PluginInformation& info)
+	bool PluginManager::HasDependencies(const Plugin::PluginInformation& info)
 	{
-		return true;
+        return info.dependencies.empty() ? false : true;
 	}
 
 	bool PluginManager::Init()
@@ -69,7 +85,10 @@ namespace MEE
 		{
 			std::filesystem::directory_iterator pluginMainDirectory("./Plugins/");
 
+            // Key -> El path hacia la carpeta donde está el info_file.
 			std::map<std::string, Plugin::PluginInformation*> plInfo;
+            // Key -> El path hacia la carpeta donde se encuentra la libreria.
+            // Value -> El path completo de la libreria.
 			std::map<std::string, std::string> plugins;
 
 			for (auto& extFile : pluginMainDirectory)
@@ -89,41 +108,109 @@ namespace MEE
 					}
 				}
 			}
-
-			for (auto& plugin : plugins)
-			{
-				auto& pluginInfo = plInfo[plugin.first];
-				if (pluginInfo != nullptr)
-					if (CheckForDependencies(*pluginInfo))
-						LoadPlugin(plugin.second, *pluginInfo);
-					else
-						MEE_LOGGER::Error("Cannot load " + pluginInfo->name
-							+ " some dependecies are missing");
-				else
-					MEE_LOGGER::Warn("Some plugins may have not been loaded.");
-			}
+            LoadPlugins(plInfo, plugins);
 		}
 		catch (std::filesystem::filesystem_error e)
 		{
-			std::cout << e.what() << '\n';
+            MEE_LOGGER::Error(e.what());
 			success = false;
 		}
 
 		return success;
 	}
 
-	void PluginManager::Load()
+    void PluginManager::LoadPluginRecursively(const std::string &path,
+                                              Plugin::PluginInformation &info,
+                                              const std::map<std::string,
+                                              std::tuple<std::string,Plugin::PluginInformation*>>& plugins,
+                                              std::set<std::string>* queued_plugins)
+    {
+        auto queued = queued_plugins->insert(info.name);
+
+        if(queued.second)
+        {
+            MEE_LOGGER::Error("Error while loading plugins. Recursive dependencies in plugin: " + info.name);
+            throw "Recursive Dependencies Exception";
+        }//Already queued
+
+        for(auto& dependency : info.dependencies)
+        {
+            auto dependency_plugin = plugins.at(dependency);
+            auto dependency_path = get<0>(dependency_plugin);
+            auto dependency_plugin_info = get<1>(dependency_plugin);
+
+            if(HasDependencies(*dependency_plugin_info))
+            {
+                LoadPluginRecursively(dependency_path,*dependency_plugin_info,plugins,queued_plugins);
+            }
+            else
+            {
+                LoadPlugin(dependency_path,*dependency_plugin_info);
+            }
+
+        }
+
+        for(auto dependency : info.dependencies)
+        {
+            if(!PluginIsLoaded(dependency)) //TODO Add configuration to determine if skip o stop engine if dependencies are missing
+            {
+                MEE_LOGGER::Error("Cannot load " + info.name+ ". Missing Dependencies");
+                throw "Missing dependencies exception";
+            }
+        }
+
+        LoadPlugin(path, info);
+
+    }
+
+    bool PluginManager::PluginIsLoaded(const std::string &plugin_name)
+    {
+        return false;
+    }
+
+    void PluginManager::LoadPlugins(std::map<std::string, Plugin::PluginInformation*>& plInfo,
+                                    std::map<std::string, std::string>& plugin_paths)
+    {
+        //Key -> name of plugin
+        //Value -> tuple: path to plugin lib and plugin_info
+        std::map<std::string,
+        std::tuple<std::string,Plugin::PluginInformation*>> plugins;
+
+        for(auto& plugin_path : plugin_paths)
+        {
+            auto plugin_info = plInfo[plugin_path.first];
+            plugins[plugin_info->name] = std::make_tuple(plugin_path.second,plugin_info);
+        }
+
+        for (auto& plugin : plugins)
+        {
+            auto& plugin_path = get<0>(plugin.second);
+            auto plugin_info = get<1>(plugin.second);
+
+            if (plugin_info != nullptr)
+            {
+                if(!HasDependencies(*plugin_info))
+                    LoadPlugin(plugin_path, *plugin_info);
+                else
+                    LoadPluginRecursively(plugin_path, *plugin_info, plugins);
+            }
+            else
+                MEE_LOGGER::Warn("Some plugins may have not been loaded.");
+        }
+    }
+
+	void PluginManager::OnLoad()
 	{
-		for (auto plugin : m_pluginList)
+		for (auto plugin : m_loadedPluginList)
 		{
 			MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
 			plugin->OnLoad();
 		}
 	}
 
-	void PluginManager::Update()
+	void PluginManager::OnUpdate()
 	{
-		for (auto plugin : m_pluginList)
+		for (auto plugin : m_loadedPluginList)
 		{
 			if (plugin->OnUpdate != nullptr)
 			{
@@ -133,9 +220,9 @@ namespace MEE
 		}
 	}
 
-	void PluginManager::Draw()
+	void PluginManager::OnDraw()
 	{
-		for (auto plugin : m_pluginList)
+		for (auto plugin : m_loadedPluginList)
 		{
 			if (plugin->OnDraw != nullptr)
 			{
@@ -145,9 +232,9 @@ namespace MEE
 		}
 	}
 
-	void PluginManager::PostUpdate()
+	void PluginManager::OnPostUpdate()
 	{
-		for (auto plugin : m_pluginList)
+		for (auto plugin : m_loadedPluginList)
 		{
 			if (plugin->OnPostUpdate != nullptr)
 			{
@@ -159,7 +246,7 @@ namespace MEE
 
 	void PluginManager::Stop()
 	{
-		for (auto plugin : m_pluginList) {
+		for (auto plugin : m_loadedPluginList) {
 			MEE_LOGGER::ScopedLogging log(plugin->pluginInformation.name);
 			plugin->OnShutdown();
 		}
@@ -167,7 +254,7 @@ namespace MEE
 
 	PluginManager::~PluginManager()
 	{
-		m_pluginList.clear();
+		m_loadedPluginList.clear();
 	}
 }
 

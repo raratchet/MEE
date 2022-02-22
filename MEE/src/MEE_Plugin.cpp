@@ -16,19 +16,12 @@ namespace MEE
 			if (!m_lib)
 				throw "Unable to load Plugin!";
 
-			MEE_LOGGER::Log("Loading " + info.name + " version " + info.version);
-
-			OnInit = (onInitType)PLUGIN_LOAD_EXTERN(m_lib, "OnInit");
-			OnLoad = (onLoadType)PLUGIN_LOAD_EXTERN(m_lib, "OnLoad");
-			OnShutdown = (onShutdownType)PLUGIN_LOAD_EXTERN(m_lib, "OnShutdown");
-
-			if (!(OnInit && OnLoad && OnShutdown))
-				throw "Error while loading plugin. Missing Functions";
-
-			OnUpdate = (onUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnUpdate");
-			OnDraw = (onDrawType)PLUGIN_LOAD_EXTERN(m_lib, "OnDraw");
-			OnPostUpdate = (onPostUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnPostUpdate");
-			pluginInformation.loaded = true;
+            if(info.type == PluginType::MODULE)
+                LoadAsModule();
+            else if (info.type == PluginType::ADDON)
+                LoadAsAddon();
+            else
+                throw "Unable to load Plugin! Unknown type";
 		}
 		catch (...)
 		{
@@ -45,6 +38,48 @@ namespace MEE
 
 		PLUGIN_CLOSE_EXTERN(m_lib);
 	}
+
+    void Plugin::LoadAsModule()
+    {
+        MEE_LOGGER::Log("Loading module " + pluginInformation.name +
+        " version: " + pluginInformation.version +
+        " by: " + pluginInformation.author);
+
+        OnInit = (onInitType)PLUGIN_LOAD_EXTERN(m_lib, "OnInit");
+        OnLoad = (onLoadType)PLUGIN_LOAD_EXTERN(m_lib, "OnLoad");
+        OnShutdown = (onShutdownType)PLUGIN_LOAD_EXTERN(m_lib, "OnShutdown");
+
+        if (!(OnInit && OnLoad && OnShutdown))
+            throw "Error while loading module. Missing Functions";
+
+        OnUpdate = (onUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnUpdate");
+        OnDraw = (onDrawType)PLUGIN_LOAD_EXTERN(m_lib, "OnDraw");
+        OnPostUpdate = (onPostUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnPostUpdate");
+        pluginInformation.loaded = true;
+    }
+
+    void Plugin::LoadAsAddon()
+    {
+        MEE_LOGGER::Log("Loading addon " + pluginInformation.name + " version " + pluginInformation.version);
+
+        OnInit = (onInitType)PLUGIN_LOAD_EXTERN(m_lib, "OnInit");
+        OnLoad = (onLoadType)PLUGIN_LOAD_EXTERN(m_lib, "OnLoad");
+        OnShutdown = (onShutdownType)PLUGIN_LOAD_EXTERN(m_lib, "OnShutdown");
+
+        if (!(OnInit))
+            throw "Error while loading addon. Missing Functions";
+
+        if(!(OnLoad))
+            MEE_LOGGER::Warn(pluginInformation.name + " is missing OnLoad function!");
+
+        if(!(OnShutdown))
+            MEE_LOGGER::Warn(pluginInformation.name + " is missing OnShutdown function!");
+
+        OnUpdate = (onUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnUpdate");
+        OnDraw = (onDrawType)PLUGIN_LOAD_EXTERN(m_lib, "OnDraw");
+        OnPostUpdate = (onPostUpdateType)PLUGIN_LOAD_EXTERN(m_lib, "OnPostUpdate");
+        pluginInformation.loaded = true;
+    }
 
 }
 

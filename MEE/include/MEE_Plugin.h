@@ -8,6 +8,7 @@
 #pragma once
 #include <filesystem>
 #include <iostream>
+#include <vector>
 #include "MEE_Exports.h"
 
 #if defined(_WIN64) || defined(_WIN32)
@@ -55,21 +56,33 @@ namespace MEE
 		typedef void	(*onDrawType)();
 		typedef void	(*onPostUpdateType)();
 
+
 		PLUGIN_HANDLE_TYPE m_lib;
+
+        enum class PluginType
+        {
+            ADDON,
+            MODULE,
+            UNKNOWN
+        };
+
+        struct PluginInformation
+        {
+            std::string name;
+            std::string version;
+            std::string author;
+            int id;
+            PluginType type;
+            std::vector<std::string> dependencies;
+            bool loaded;
+        };
 
 	public:
 
-		struct PluginInformation
-		{
-			std::string name;
-			std::string version;
-			bool loaded;
 
-			//TODO ADD DEPENDECIES, TYPE, ALL THAT STUFF
-		};
 
 		Plugin(std::filesystem::path filename, const PluginInformation& info);
-		~Plugin();
+		virtual ~Plugin();
 
 		onInitType	     OnInit;
 		onLoadType	     OnLoad;
@@ -81,7 +94,8 @@ namespace MEE
 	private:
 
 		PluginInformation pluginInformation;
-
+        void LoadAsModule();
+        void LoadAsAddon();
 		friend class PluginManager;
 	};
 
