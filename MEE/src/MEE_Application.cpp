@@ -73,7 +73,7 @@ namespace MEE
 
 	void Application::Load()
 	{
-		pluginManager->Load();
+        pluginManager->OnLoad();
 	}
 
 
@@ -90,12 +90,12 @@ namespace MEE
 
 	void Application::Update()
 	{
-		pluginManager->Update();
+        pluginManager->OnUpdate();
 		//Do update
 		auto scene = sceneManager->GetCurrentScene();
 		scene->Update();
 		//
-		pluginManager->PostUpdate();
+		pluginManager->OnPostUpdate();
 	}
 
 	void Application::Draw()
@@ -103,7 +103,7 @@ namespace MEE
 		MEE_RenderClear();
 		//Do draw
 		sceneManager->GetCurrentScene()->Draw();
-		pluginManager->Draw();
+        pluginManager->OnDraw();
 		//
 		w_handler->SwapBuffer();
 	}

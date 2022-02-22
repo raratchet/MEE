@@ -55,7 +55,7 @@ namespace MEE
 		 */
 		void Loop();
 		/**
-		 * The Update function is called once per frame while 
+		 * The Update function is called once per frame while
 		 * the application loop is still active.
 		 * It updates active scenes and all updatable objects those scenes contains.
 		 * It calls OnUpdate in all plugins.

@@ -20,7 +20,7 @@ public:
 	static void AddLevel(Level* level);
 	static void RemoveCurrentLevel();
 	//ResourceManager Related Stuff
-	static AssetID LoadAsset(std::string name, std::string path); //Determinaré el tipo segun la extension
+	static AssetID LoadAsset(std::string name, std::string path); //Determinarï¿½ el tipo segun la extension
 	static bool AssetExists(std::string name);
 	static void UnloadAsset(std::string name);
 	static void UnloadAllAssets();

@@ -35,7 +35,7 @@ namespace MEE
 		if (resources.find(name) == resources.end())
 		{
 			T* resource = new T;
-			resource->Load(path);
+            resource->OnLoad(path);
 			resources.insert(std::make_pair(name, resource));
 			return true;
 		}
