@@ -10,11 +10,11 @@ void Basic_Physics::BoxContactListener::BeginContact(b2Contact* contact)
 	BoxCollider* collider_1 = (BoxCollider*)first->GetUserData().pointer;
 	BoxCollider* collider_2 = (BoxCollider*)second->GetUserData().pointer;
 
-	if (collider_1->TriggerStart_CallBack)
-		collider_1->TriggerStart_CallBack(*collider_2, FunctionParameters::NoParameters());
+	if (collider_1->m_TriggerStart_CallBack)
+		collider_1->m_TriggerStart_CallBack(*collider_2, FunctionParameters::NoParameters());
 
-	if (collider_2->TriggerStart_CallBack)
-		collider_2->TriggerStart_CallBack(*collider_1, FunctionParameters::NoParameters());
+	if (collider_2->m_TriggerStart_CallBack)
+		collider_2->m_TriggerStart_CallBack(*collider_1, FunctionParameters::NoParameters());
 
 }
 
@@ -26,11 +26,11 @@ void Basic_Physics::BoxContactListener::EndContact(b2Contact* contact)
 	BoxCollider* collider_1 = (BoxCollider*)first->GetUserData().pointer;
 	BoxCollider* collider_2 = (BoxCollider*)second->GetUserData().pointer;
 
-	if (collider_1->TriggerEnd_CallBack)
-		collider_1->TriggerEnd_CallBack(*collider_2, FunctionParameters::NoParameters());
+	if (collider_1->m_TriggerEnd_CallBack)
+		collider_1->m_TriggerEnd_CallBack(*collider_2, FunctionParameters::NoParameters());
 
-	if (collider_2->TriggerEnd_CallBack)
-		collider_2->TriggerEnd_CallBack(*collider_1, FunctionParameters::NoParameters());
+	if (collider_2->m_TriggerEnd_CallBack)
+		collider_2->m_TriggerEnd_CallBack(*collider_1, FunctionParameters::NoParameters());
 }
 
 void Basic_Physics::BoxContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
@@ -47,11 +47,11 @@ void Basic_Physics::BoxContactListener::PreSolve(b2Contact* contact, const b2Man
 
 	contact->SetEnabled(enabled);
 
-	if (collider_1->CollisionStart_CallBack)
-		collider_1->CollisionStart_CallBack(*collider_2, FunctionParameters::NoParameters());
+	if (collider_1->m_CollisionStart_CallBack)
+		collider_1->m_CollisionStart_CallBack(*collider_2, FunctionParameters::NoParameters());
 
-	if (collider_2->CollisionStart_CallBack)
-		collider_2->CollisionStart_CallBack(*collider_1, FunctionParameters::NoParameters());
+	if (collider_2->m_CollisionStart_CallBack)
+		collider_2->m_CollisionStart_CallBack(*collider_1, FunctionParameters::NoParameters());
 }
 
 void Basic_Physics::BoxContactListener::PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
@@ -62,9 +62,9 @@ void Basic_Physics::BoxContactListener::PostSolve(b2Contact* contact, const b2Co
 	BoxCollider* collider_1 = (BoxCollider*)first->GetUserData().pointer;
 	BoxCollider* collider_2 = (BoxCollider*)second->GetUserData().pointer;
 
-	if (collider_1->CollisionResolve_CallBack)
-		collider_1->CollisionResolve_CallBack(*collider_2, FunctionParameters::NoParameters());
+	if (collider_1->m_CollisionResolve_CallBack)
+		collider_1->m_CollisionResolve_CallBack(*collider_2, FunctionParameters::NoParameters());
 
-	if (collider_2->CollisionResolve_CallBack)
-		collider_2->CollisionResolve_CallBack(*collider_1, FunctionParameters::NoParameters());
+	if (collider_2->m_CollisionResolve_CallBack)
+		collider_2->m_CollisionResolve_CallBack(*collider_1, FunctionParameters::NoParameters());
 }

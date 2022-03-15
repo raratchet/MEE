@@ -50,7 +50,7 @@ namespace MEE
 		* \param name: The name that identifies this GameObject.
 		* \return A reference to the GameObject.
 		*/
-		class GameObject& CreateGameObject(const std::string& name);
+		std::shared_ptr<class GameObject> CreateGameObject(const std::string& name);
 		/**
 		* Creates a gameobject for the current scene
 		* and registers it to the draw list.
@@ -59,45 +59,45 @@ namespace MEE
 		* \param sprite: The sprite that will be drawn for this GameObject.
 		* \return A reference to the GameObject.
 		*/
-		class GameObject& CreateGameObject(const std::string& name, class Sprite& sprite);
+        std::shared_ptr<class GameObject> CreateGameObject(const std::string& name, class Sprite& sprite);
 		/**
 		* Creates a worldobject for the current scene.
 		* 
 		* \param name: The name that identifies this WorldObject.
 		* \return A reference to the WorldObject.
 		*/
-		class WorldObject& CreateWorldObject(const std::string& name);
+        std::shared_ptr<class WorldObject> CreateWorldObject(const std::string& name);
 		/**
 		 * TODO
 		 */
-		class Camera& CreateCamera();
+        std::shared_ptr<class Camera> CreateCamera();
 		/**
 		 * TODO
 		 */
-		class Camera& CreateCamera(const struct Vector2& pos, int widht, int height);
+        std::shared_ptr<class Camera> CreateCamera(const struct Vector2& pos, int widht, int height);
 		/**
 		* \return Weather the Scene is loaded or not.
 		*/
 		bool IsLoaded();
 		/**
-		 * \return This Scene id
+		 * \return This Scene m_id
 		 */
 		SceneID GetID();
 		/**
 		 * \return A reference to this Scene main Camera
 		 */
-		Camera& GetMainCamera();
+        std::shared_ptr<class Camera> GetMainCamera();
 		
 	private:
 		void CreateMainSceneCamera();
 		void SetCurrentCamera(std::weak_ptr<class Camera> camera);
 	private:
-		std::list<std::shared_ptr<class Camera>> sceneCameras;
-		std::list<std::shared_ptr<class Object>> sceneObjects;
-		std::list<std::shared_ptr<class Collider>> sceneColliders;
-		std::list<std::shared_ptr<class Drawable>> drawObjects;
-		bool loaded = false;
-		SceneID id;
+		std::list<std::shared_ptr<class Camera>>   m_sceneCameras;
+		std::list<std::shared_ptr<class Object>>   m_sceneObjects;
+		std::list<std::shared_ptr<class Collider>> m_sceneColliders;
+		std::list<std::shared_ptr<class Drawable>> m_drawObjects;
+		bool m_loaded = false;
+		SceneID m_id;
 
 		friend class SceneManager;
 		friend class Object;

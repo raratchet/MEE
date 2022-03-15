@@ -31,12 +31,12 @@ namespace MEE
 		void SetShouldLoop(bool loop);
 		bool HasEnded();
 	private:
-		std::shared_ptr<SpriteSheet> sprites;
-		std::vector<int> frameDuration;
-		bool shouldLoop = true;
-		bool animationEnded = false;
-		int currentFrame;
-		int currentFrameRepetition;
+		std::shared_ptr<SpriteSheet> m_sprites;
+		std::vector<int> m_frameDuration;
+		bool m_shouldLoop = true;
+		bool m_animationEnded = false;
+		int m_currentFrame;
+		int m_currentFrameRepetition;
 		friend class AnimationPlayer;
 	};
 
@@ -73,14 +73,14 @@ namespace MEE
 		void UpdateAnimation(AnimationDirection direction = AnimationDirection::Forward);
 		void AddAnimation(const std::string&, Animation);
 	private:
-		Drawable& drawObject;
-		std::map <std::string, std::shared_ptr<Animation>> animations;
-		std::string currentAnimation;
-		std::string defaultAnimation;
-		bool isPaused = false;
-		int frameDuration = 1;
-		int framesPerSecond = 2;
-		int elapsedFrames = -1;
+		Drawable& m_drawObject;
+		std::map <std::string, std::shared_ptr<Animation>> m_animations;
+		std::string m_currentAnimation;
+		std::string m_defaultAnimation;
+		bool m_isPaused = false;
+		int m_frameDuration = 1;
+		int m_framesPerSecond = 2;
+		int m_elapsedFrames = -1;
 
 		friend class Object;
 	};

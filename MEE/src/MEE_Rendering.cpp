@@ -5,7 +5,7 @@
 #include "MEE_Camera.h"
 #include "MEE_Logging.h"
 
-//TODO HACER VERIFICAIONES EN TODAS LAS LLAMADAS PARA VER QUE SEAN VÁLIDAS
+//TODO HACER VERIFICAIONES EN TODAS LAS LLAMADAS PARA VER QUE SEAN Vï¿½LIDAS
 
 #define MEE_CHECK_FUNCTION(FUNC_NAME,FUNCTION)\
 try\
@@ -66,7 +66,7 @@ void MEE::RenderingManager::RenderPoint(float x, float y, RenderingType type)
 
 void MEE::RenderingManager::RenderPolygon(const std::vector<Vector2>& vertices, RenderingType type)
 {
-    Vector2 cameraPos = currentCamera.lock()->GetPosition();
+    Vector2 cameraPos = m_currentCamera.lock()->GetPosition();
     if (type == RenderingType::NonPhysical)
     {
         cameraPos = Vector2::Zero();
@@ -88,7 +88,7 @@ void MEE::RenderingManager::RenderPolygon(const std::vector<Vector2>& vertices, 
 
 void MEE::RenderingManager::RenderSolidPolygon(const std::vector<Vector2>& vertices, RenderingType type)
 {
-    Vector2 cameraPos = currentCamera.lock()->GetPosition();
+    Vector2 cameraPos = m_currentCamera.lock()->GetPosition();
     if (type == RenderingType::NonPhysical)
     {
         cameraPos = Vector2::Zero();
@@ -124,7 +124,7 @@ void MEE::RenderingManager::RenderTexture2D(std::weak_ptr<Texture2D> texture, fl
     Texture2D* tex = texture.lock().get();
     MEE_Texture2D moduleTexture = static_cast<MEE_Texture2D>(tex);
 
-    Vector2 cameraPos = currentCamera.lock()->GetPosition();
+    Vector2 cameraPos = m_currentCamera.lock()->GetPosition();
 
     if (type == RenderingType::Physical)
     {
@@ -168,7 +168,7 @@ float MEE::RenderingManager::GetUnitsPerPixel()
 
 void MEE::RenderingManager::RenderTransform(const Vector2& position)
 {
-    Vector2 cameraPos = currentCamera.lock()->GetPosition();
+    Vector2 cameraPos = m_currentCamera.lock()->GetPosition();
 
     MEE_CHECK_FUNCTION(MEE_SetRenderColor, MEE_SetRenderColor(0, 255, 0, 255));
     const float radius = 1.0F;
@@ -178,5 +178,5 @@ void MEE::RenderingManager::RenderTransform(const Vector2& position)
 
 void MEE::RenderingManager::SetCurrentCamera(std::weak_ptr<Camera> camera)
 {
-    currentCamera = camera;
+    m_currentCamera = camera;
 }

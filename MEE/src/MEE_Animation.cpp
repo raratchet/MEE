@@ -4,161 +4,161 @@ namespace MEE
 
 	Animation::Animation(const SpriteSheet& ss) 
 	{
-		sprites = std::make_shared<SpriteSheet>(ss);
+        m_sprites = std::make_shared<SpriteSheet>(ss);
 
-		for (int i = 0; i < sprites->GetNumberOfFrames(); i++)
+		for (int i = 0; i < m_sprites->GetNumberOfFrames(); i++)
 		{
-			frameDuration.push_back(1);
+			m_frameDuration.push_back(1);
 		}
 
-		currentFrame = 0;
-		currentFrameRepetition = 0;
+        m_currentFrame = 0;
+        m_currentFrameRepetition = 0;
 	}
 
 	std::weak_ptr<Sprite> Animation::GetFrame()
 	{
-		return sprites->Get(currentFrame); 
+		return m_sprites->Get(m_currentFrame);
 	}
 
 	void Animation::NextFrame()
 	{
-		if (currentFrame < sprites->GetNumberOfFrames() - 1)
+		if (m_currentFrame < m_sprites->GetNumberOfFrames() - 1)
 		{
-			currentFrameRepetition++;
-			if(currentFrameRepetition >= frameDuration[currentFrame])
-				currentFrame++;
+			m_currentFrameRepetition++;
+			if(m_currentFrameRepetition >= m_frameDuration[m_currentFrame])
+				m_currentFrame++;
 		}
 		else
 		{
-			if (shouldLoop)
+			if (m_shouldLoop)
 			{
-				currentFrame = 0;
-				currentFrameRepetition = 0;
-				animationEnded = false;
+                m_currentFrame = 0;
+                m_currentFrameRepetition = 0;
+                m_animationEnded = false;
 			}
 			else
 			{
-				animationEnded = true;
+                m_animationEnded = true;
 			}
 		}
 	}
 
 	void Animation::PrevFrame()
 	{
-		if (currentFrame > 0)
-			currentFrame --;
+		if (m_currentFrame > 0)
+			m_currentFrame --;
 		else
 		{
-			currentFrame = sprites->GetNumberOfFrames();
-			currentFrameRepetition = 0;
+            m_currentFrame = m_sprites->GetNumberOfFrames();
+            m_currentFrameRepetition = 0;
 		}
 	}
 
 	void Animation::ResetAnim()
 	{
-		currentFrame = 0;
-		currentFrameRepetition = 0;
-		animationEnded = false;
+        m_currentFrame = 0;
+        m_currentFrameRepetition = 0;
+        m_animationEnded = false;
 	}
 
 	bool Animation::GetShouldLoop()
 	{
-		return shouldLoop;
+		return m_shouldLoop;
 	}
 
 	void Animation::SetFrameDuration(int frame, int duration)
 	{
-		frameDuration[frame] = duration;
+        m_frameDuration[frame] = duration;
 	}
 
 	void Animation::SetShouldLoop(bool loop)
 	{
-		shouldLoop = loop;
+        m_shouldLoop = loop;
 	}
 
 	bool Animation::HasEnded()
 	{
-		return animationEnded;
+		return m_animationEnded;
 	}
 
 
-	AnimationPlayer::AnimationPlayer(Drawable& drawable) : drawObject(drawable)
+	AnimationPlayer::AnimationPlayer(Drawable& drawable) : m_drawObject(drawable)
 	{
 	}
 
 	Animation& AnimationPlayer::GetCurrentAnimation()
 	{
-		return *animations[currentAnimation].get();
+		return *m_animations[m_currentAnimation].get();
 	}
 
 	Animation& AnimationPlayer::GetAnimation(const std::string& anim)
 	{
-		return *animations[anim].get();
+		return *m_animations[anim].get();
 	}
 
 	void AnimationPlayer::PlayAnimation(const std::string& anim)
 	{
-		if (currentAnimation != anim)
+		if (m_currentAnimation != anim)
 		{
-			animations[currentAnimation]->animationEnded = true;
-			currentAnimation = anim;
+            m_animations[m_currentAnimation]->m_animationEnded = true;
+            m_currentAnimation = anim;
 			ResetCurrentAnim();
-			drawObject.SetSprite(animations[currentAnimation]->GetFrame());
+			m_drawObject.SetSprite(m_animations[m_currentAnimation]->GetFrame());
 		}
 	}
 
 	void AnimationPlayer::SetDefaultAnimation(const std::string& anim)
 	{
-		defaultAnimation = anim;
+        m_defaultAnimation = anim;
 	}
 
 	void AnimationPlayer::ResetCurrentAnim()
 	{
-		animations[currentAnimation]->ResetAnim();
-		elapsedFrames = 0;
+		m_animations[m_currentAnimation]->ResetAnim();
+        m_elapsedFrames = 0;
 	}
 
 	void AnimationPlayer::ResetPlayer()
 	{
-		currentAnimation = defaultAnimation;
-		animations[currentAnimation]->ResetAnim();
+        m_currentAnimation = m_defaultAnimation;
+		m_animations[m_currentAnimation]->ResetAnim();
 	}
 
 	void AnimationPlayer::Pause()
 	{
-		isPaused = true;
+        m_isPaused = true;
 	}
 
 	void AnimationPlayer::Resume()
 	{
-		isPaused = false;
+        m_isPaused = false;
 	}
 
 	void AnimationPlayer::SetAnimationFrameDuration(int val)
 	{
-		frameDuration = val;
+        m_frameDuration = val;
 	}
 
 	void AnimationPlayer::SetFramesPerSecond(int frames)
 	{
-		framesPerSecond = frames;
+        m_framesPerSecond = frames;
 	}
 
 	void AnimationPlayer::UpdateAnimation(AnimationDirection direction)
 	{
-		if (!animations.empty())
+		if (!m_animations.empty())
 		{
-			if (elapsedFrames >= frameDuration)
+			if (m_elapsedFrames >= m_frameDuration)
 			{
-				if (!isPaused)
+				if (!m_isPaused)
 				{
-					elapsedFrames = 0;
-					animations[currentAnimation]->NextFrame(); //Check direction and check if the frame should move
-					drawObject.SetSprite(animations[currentAnimation]->GetFrame());
+                    m_elapsedFrames = 0;
+					m_animations[m_currentAnimation]->NextFrame(); //Check direction and check if the frame should move
+					m_drawObject.SetSprite(m_animations[m_currentAnimation]->GetFrame());
 
 				}
 			}
-				elapsedFrames++;
+				m_elapsedFrames++;
 		}
 			
 
@@ -173,17 +173,17 @@ namespace MEE
 	{
 		bool firstAnimation = false;
 
-		if (animations.empty())
+		if (m_animations.empty())
 		{
-			currentAnimation = name;
-			defaultAnimation = name;
+            m_currentAnimation = name;
+            m_defaultAnimation = name;
 			firstAnimation = true;
 		}
 
-		animations.insert({ name,std::make_shared<Animation>(anim)});
+		m_animations.insert({name, std::make_shared<Animation>(anim)});
 
 		if(firstAnimation)
-			drawObject.SetSprite(animations[currentAnimation]->GetFrame());
+			m_drawObject.SetSprite(m_animations[m_currentAnimation]->GetFrame());
 	}
 
 }

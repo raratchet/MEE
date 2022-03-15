@@ -54,7 +54,7 @@ namespace MEE
 		void RenderTransform(const Vector2& position);
 		void SetCurrentCamera(std::weak_ptr<Camera> camera);
 	private:
-		std::weak_ptr<Camera> currentCamera;
+		std::weak_ptr<Camera> m_currentCamera;
 		float PIXELS_PER_UNIT = 20;
 		float UNITS_PER_PIXEL = 1 / PIXELS_PER_UNIT;
 	};

@@ -1,28 +1,28 @@
 #include "MEE_WindowHandler.h"
 #include"MEE_Graphics.h"
 
-unsigned int  MEE::WindowHandler::width = 800, MEE::WindowHandler::height = 600;
-int MEE::WindowHandler::pos_x = 100, MEE::WindowHandler::pos_y = 100;
-std::string MEE::WindowHandler::windowName = "MEE";
+unsigned int  MEE::WindowHandler::m_width = 800, MEE::WindowHandler::m_height = 600;
+int MEE::WindowHandler::m_x = 100, MEE::WindowHandler::m_y = 100;
+std::string MEE::WindowHandler::m_windowName = "MEE";
 WindowHandlerAPI handlerAPI = WindowHandlerAPI::SDL;
 RenderAPI renderAPI = RenderAPI::OpenGL;
-bool MEE::WindowHandler::fullscreened = false;
+bool MEE::WindowHandler::m_fullscreenned = false;
 
 void MEE::WindowHandler::SetWindowSize(unsigned int w, unsigned int h)
 {
-	width = w;
-	height = h;
+    m_width = w;
+    m_height = h;
 }
 
 void MEE::WindowHandler::SetWindowPosition(int x, int y)
 {
-	pos_x = x;
-	pos_y = y;
+    m_x = x;
+    m_y = y;
 }
 
 void MEE::WindowHandler::SetWindowName(const std::string& name)
 {
-	windowName = name;
+    m_windowName = name;
 }
 
 void MEE::WindowHandler::SetHandlerAPI(const WindowHandlerAPI& api)
@@ -37,18 +37,18 @@ void MEE::WindowHandler::SetRenderAPI(const RenderAPI& api)
 
 void MEE::WindowHandler::GetWindowSize(int* w, int* h)
 {
-	*w = width;
-	*h = height;
+	*w = m_width;
+	*h = m_height;
 }
 
 void MEE::WindowHandler::SetFullscreenMode(bool mode)
 {
-	fullscreened = mode;
+    m_fullscreenned = mode;
 }
 
 bool MEE::WindowHandler::GetFullscreenMode()
 {
-	return fullscreened;
+	return m_fullscreenned;
 }
 
 WindowHandlerAPI MEE::WindowHandler::GetHandlerAPI()

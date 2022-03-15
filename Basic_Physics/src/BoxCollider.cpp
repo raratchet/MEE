@@ -7,7 +7,7 @@
 Basic_Physics::BoxCollider::BoxCollider(b2World* world, MEE::Vector2 position , MEE::Vector2 size, ColliderType c_type)
 {
 
-	type = c_type;
+    m_type = c_type;
 	if (c_type == ColliderType::Static)
 	{
 		bodyDef.type = b2_staticBody;
@@ -34,8 +34,8 @@ Basic_Physics::BoxCollider::BoxCollider(b2World* world, MEE::Vector2 position , 
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
 	fixtureDef.density = 1.0f;
-	friction = 1.0f;
-	fixtureDef.friction = friction;
+    m_friction = 1.0f;
+	fixtureDef.friction = m_friction;
 
 	body->CreateFixture(&fixtureDef);
 	body->SetFixedRotation(true);
@@ -44,7 +44,7 @@ Basic_Physics::BoxCollider::BoxCollider(b2World* world, MEE::Vector2 position , 
 
 void Basic_Physics::BoxCollider::UpdatePosition()
 {
-	auto trans = transform.lock();
+	auto trans = m_transform.lock();
 	auto pos = body->GetPosition();
 	auto angle = body->GetAngle();
 
@@ -60,7 +60,7 @@ MEE::Vector2 Basic_Physics::BoxCollider::GetVelocity()
 
 float Basic_Physics::BoxCollider::GetFriction()
 {
-	return friction;
+	return m_friction;
 }
 
 float Basic_Physics::BoxCollider::GetGravity()
@@ -75,17 +75,17 @@ bool Basic_Physics::BoxCollider::GetRotationConstrait()
 
 bool Basic_Physics::BoxCollider::GetActive()
 {
-	return active;
+	return m_active;
 }
 
 MEE::ColliderType Basic_Physics::BoxCollider::GetType()
 {
-	return type;
+	return m_type;
 }
 
 MEE::ColliderForm Basic_Physics::BoxCollider::GetFigure()
 {
-	return form;
+	return m_form;
 }
 
 void Basic_Physics::BoxCollider::SetVelocity(const MEE::Vector2& vel)
@@ -95,8 +95,8 @@ void Basic_Physics::BoxCollider::SetVelocity(const MEE::Vector2& vel)
 
 void Basic_Physics::BoxCollider::SetFriction(float val)
 {
-	friction = val;
-	body->GetFixtureList()[0].SetFriction(friction);
+    m_friction = val;
+	body->GetFixtureList()[0].SetFriction(m_friction);
 }
 
 void Basic_Physics::BoxCollider::SetGravity(float val)
@@ -111,14 +111,14 @@ void Basic_Physics::BoxCollider::SetRotationConstrait(bool val)
 
 void Basic_Physics::BoxCollider::SetActive(bool val)
 {
-	active = val;
+    m_active = val;
 	body->SetAwake(val);
 }
 
 void Basic_Physics::BoxCollider::SetType(ColliderType val)
 {
 	//Guadar y reconstruir
-	type = val;
+	m_type = val;
 	if (val == ColliderType::Static)
 	{
 		bodyDef.type = b2_staticBody;
@@ -132,7 +132,7 @@ void Basic_Physics::BoxCollider::SetType(ColliderType val)
 		bodyDef.type = b2_kinematicBody;
 	}
 
-	auto pos = transform.lock()->GetPosition();
+	auto pos = m_transform.lock()->GetPosition();
 	bodyDef.position.Set(pos.x, pos.y);
 
 	auto* world = body->GetWorld();
@@ -147,7 +147,7 @@ void Basic_Physics::BoxCollider::SetType(ColliderType val)
 	b2FixtureDef fixtureDef;
 	fixtureDef.shape = &dynamicBox;
 	fixtureDef.density = 1.0f;
-	fixtureDef.friction = friction;
+	fixtureDef.friction = m_friction;
 
 	body->CreateFixture(&fixtureDef);
 }
@@ -155,7 +155,7 @@ void Basic_Physics::BoxCollider::SetType(ColliderType val)
 void Basic_Physics::BoxCollider::SetFigure(ColliderForm val)
 {
 	//Guardar y reconstruir
-	form = val;
+	m_form = val;
 }
 
 void Basic_Physics::BoxCollider::ApplyForce(const MEE::Vector2& ff, const MEE::Vector2& pp)

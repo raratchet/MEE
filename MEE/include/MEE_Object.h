@@ -54,13 +54,13 @@ namespace MEE
 
 	protected:
 		Object(Scene& master, const std::string& objName);
-		Scene& owner; 
-		std::string name;
+		Scene& m_owner;
+		std::string m_name;
 		//The main pointer to a component is saved here. Every other reference should be a weak one.
-		std::vector<std::shared_ptr<Component>> components;
+		std::vector<std::shared_ptr<Component>> m_components;
 		//If a updatable is a component should be inserted via RegisterUpdatable.
-		std::vector<std::shared_ptr<Updatable>> updatables;
-		std::string tag;
+		std::vector<std::shared_ptr<Updatable>> m_updatables;
+		std::string m_tag;
 
 		bool enabled = true;
 
@@ -68,7 +68,7 @@ namespace MEE
 		Component& AddComponent(Component* component, FunctionParameters& params);
 		AnimationPlayer& AddAnimationPlayer(FunctionParameters& params);
 		Collider& AddCollider(FunctionParameters& params);
-		Behaviour& AddBehaviuor(Behaviour* behaviour);
+		Behaviour& AddBehaviour(Behaviour* behaviour);
 		friend class Scene;
 		
 	};
@@ -129,7 +129,7 @@ namespace MEE
 	template<class T>
 	inline T& Object::GetComponent()
 	{
-		for (auto component : components)
+		for (auto component : m_components)
 		{
 			auto componentAsType = dynamic_cast<T*>(component.get());
 			if (componentAsType)

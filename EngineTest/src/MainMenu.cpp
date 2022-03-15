@@ -8,12 +8,12 @@ void MainMenu::Load()
 	Sprite button("PlayButton");
 	Sprite title("Title");
 
-	GameObject& buttonObj = CreateGameObject("Button", button);
-	GameObject& titileObj = CreateGameObject("Title", title);
+	auto buttonObj = CreateGameObject("Button", button);
+	auto titileObj = CreateGameObject("Title", title);
 
-	buttonObj.AddComponent<Button>();
-	buttonObj.GetTransformComponent().SetPosition(20, 20);
-	titileObj.GetTransformComponent().SetPosition(20, 10);
+	buttonObj->AddComponent<Button>();
+	buttonObj->GetTransformComponent().SetPosition(20, 20);
+	titileObj->GetTransformComponent().SetPosition(20, 10);
 }
 
 void MainMenu::Unload()

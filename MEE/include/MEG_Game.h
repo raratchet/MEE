@@ -36,7 +36,7 @@ public:
 	//Input and Plugin will be in independent files
 
 private:
-	std::string name;
+	std::string m_name;
 	
 	Game();
 	static MEE::Application* GetMainApp();

@@ -2,10 +2,10 @@
 
 int MEE::Texture2D::GetWidth() const
 {
-    return width;
+    return m_width;
 }
 
 int MEE::Texture2D::GetHeight() const
 {
-    return height;
+    return m_height;
 }

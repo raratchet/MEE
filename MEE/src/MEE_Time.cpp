@@ -4,54 +4,54 @@
 MEE::TimeManager::TimeManager()
 {
 	lastFrameElapsedTime = 0.0f;
-	initialAppTime = std::chrono::duration<double>(0);
-	timeUsed = std::chrono::duration<double>(0);
-	frameTime = std::chrono::duration<double>(0);
-	sleepTime = std::chrono::duration<double>(0);
-	sleepAdjust = std::chrono::duration<double>(0);
+    m_initialAppTime = std::chrono::duration<double>(0);
+    m_timeUsed = std::chrono::duration<double>(0);
+    m_frameTime = std::chrono::duration<double>(0);
+    m_sleepTime = std::chrono::duration<double>(0);
+    m_sleepAdjust = std::chrono::duration<double>(0);
 	SetTargetFrameRate(60);
 }
 
 unsigned int MEE::TimeManager::GetSecondsSinceApplicationStarted()
 {
 
-	return (unsigned int) initialAppTime.count(); // Ugly
+	return (unsigned int) m_initialAppTime.count(); // Ugly
 }
 
 double MEE::TimeManager::GetDeltaTime()
 {
-	return frameTime.count();
+	return m_frameTime.count();
 }
 
 void MEE::TimeManager::StartFrame()
 {
-	t1 = std::chrono::steady_clock::now();
+    m_t1 = std::chrono::steady_clock::now();
 }
 
 void MEE::TimeManager::EndFrame()
 {
 	//Based on Box2D TestBed
 
-	t2 = std::chrono::steady_clock::now();
-	timeUsed = t2 - t1;
+	m_t2 = std::chrono::steady_clock::now();
+    m_timeUsed = m_t2 - m_t1;
 
-	sleepTime = target - timeUsed + sleepAdjust;
+    m_sleepTime = m_target - m_timeUsed + m_sleepAdjust;
 
-	if (sleepTime > std::chrono::duration<double>(0))
-		std::this_thread::sleep_for(sleepTime);
+	if (m_sleepTime > std::chrono::duration<double>(0))
+		std::this_thread::sleep_for(m_sleepTime);
 
-	t3 = std::chrono::steady_clock::now();
+    m_t3 = std::chrono::steady_clock::now();
 
-	frameTime = t3 - t1;
+    m_frameTime = m_t3 - m_t1;
 
-	sleepAdjust = 0.9 * sleepAdjust + 0.1 * (target - frameTime);
-	initialAppTime = initialAppTime + frameTime;
+    m_sleepAdjust = 0.9 * m_sleepAdjust + 0.1 * (m_target - m_frameTime);
+    m_initialAppTime = m_initialAppTime + m_frameTime;
 }
 
 void MEE::TimeManager::SetTargetFrameRate(int framerate)
 {
 	double value = (1.0f / framerate );
-	target = std::chrono::duration<double>(value);
+    m_target = std::chrono::duration<double>(value);
 }
 
 MEE::Timer::Timer()

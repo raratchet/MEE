@@ -8,7 +8,7 @@ namespace MEE
 
 	void Object::RegisterUpdatable(std::weak_ptr<Updatable> updatable)
 	{
-		updatables.push_back(updatable.lock());
+		m_updatables.push_back(updatable.lock());
 	}
 
 	Component& Object::AddComponent(Component* component, FunctionParameters& params)
@@ -18,12 +18,12 @@ namespace MEE
 		{
 			if (auto isBehaviour = dynamic_cast<Behaviour*>(component))
 			{
-				return AddBehaviuor(isBehaviour);
+				return AddBehaviour(isBehaviour);
 			}
 
 			component->ParentToObject(this);
 			auto com_ptr = std::shared_ptr<Component>(component);
-			components.push_back(com_ptr);
+			m_components.push_back(com_ptr);
 
 			if (Updatable* asUpdatable = dynamic_cast<Updatable*>(component))
 			{
@@ -40,7 +40,7 @@ namespace MEE
 		{
 			auto animPlayer = std::shared_ptr<AnimationPlayer>(new AnimationPlayer(*isDrawable));
 			std::dynamic_pointer_cast<Component>(animPlayer)->ParentToObject(this);
-			components.push_back(animPlayer);
+			m_components.push_back(animPlayer);
 			RegisterUpdatable(std::dynamic_pointer_cast<Updatable>(animPlayer));
 			return *animPlayer;
 		}
@@ -48,8 +48,8 @@ namespace MEE
 
 	Collider& Object::AddCollider(FunctionParameters& params)
 	{
-		auto sceneID = owner.GetID();
-		auto transform = std::reinterpret_pointer_cast<TransformComponent>(components[0]);
+		auto sceneID = m_owner.GetID();
+		auto transform = std::reinterpret_pointer_cast<TransformComponent>(m_components[0]);
 
 		if (!params.Has("Position"))
 		{
@@ -85,17 +85,17 @@ namespace MEE
 		Collider* collider = static_cast<Collider*>(MEE_CreateCollider(sceneID, params));
 		collider->SetTransform(transform);
 		auto col_ptr = std::shared_ptr<Collider>(collider);
-		owner.sceneColliders.push_back(col_ptr);
-		components.push_back(col_ptr);
+		m_owner.m_sceneColliders.push_back(col_ptr);
+		m_components.push_back(col_ptr);
 		std::dynamic_pointer_cast<Component>(col_ptr)->ParentToObject(this);
 
 		return *col_ptr;
 	}
 
-	Behaviour& Object::AddBehaviuor(Behaviour* behaviour)
+	Behaviour& Object::AddBehaviour(Behaviour* behaviour)
 	{
 		auto beh_ptr = std::shared_ptr<Behaviour>(behaviour);
-		components.push_back(beh_ptr);
+		m_components.push_back(beh_ptr);
 		std::dynamic_pointer_cast<Component>(beh_ptr)->ParentToObject(this);
 		RegisterUpdatable(std::dynamic_pointer_cast<Updatable>(beh_ptr));
 		beh_ptr->Start();
@@ -105,26 +105,26 @@ namespace MEE
 
 	TransformComponent& Object::GetTransformComponent()
 	{ 
-		TransformComponent* pointer = dynamic_cast<TransformComponent*>(components[0].get());
+		TransformComponent* pointer = dynamic_cast<TransformComponent*>(m_components[0].get());
 		return *pointer; 
 	}
 
 	Object::~Object()
 	{
-		components.clear(); 
+		m_components.clear();
 		//Si un componente es updatable y se borra durante 
 		// el clear de components crea una excepcion en updatables.
-		updatables.clear();
+		m_updatables.clear();
 	}
 
-	Object::Object(Scene& master, const std::string& objName) : owner(master), name(objName)
+	Object::Object(Scene& master, const std::string& objName) : m_owner(master), m_name(objName)
 	{
 		AddComponent<TransformComponent>();
 	}
 
 	Scene& Object::GetScene()
 	{
-		return owner;
+		return m_owner;
 	}
 
 	void Object::SetEnabled(bool value)
@@ -134,22 +134,22 @@ namespace MEE
 
 	std::string Object::GetName()
 	{
-		return name;
+		return m_name;
 	}
 
 	std::string Object::GetTag()
 	{
-		return tag;
+		return m_tag;
 	}
 
 	void Object::SetName(const std::string& value)
 	{
-		name = value;
+        m_name = value;
 	}
 
 	void Object::SetTag(const std::string& value)
 	{
-		tag = value;
+        m_tag = value;
 	}
 
 	bool Object::GetEnabled()

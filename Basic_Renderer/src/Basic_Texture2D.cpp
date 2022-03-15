@@ -4,8 +4,8 @@
 void Basic_Texture2D::Load(const std::string& path)
 {
 	SDL_Surface* loadedSurface = IMG_Load(path.c_str());
-	width = loadedSurface->w;
-	height = loadedSurface->h;
+    m_width = loadedSurface->w;
+    m_height = loadedSurface->h;
 
 	texture = SDL_CreateTextureFromSurface(Basic_Renderer::engineRenderer, loadedSurface);
 }

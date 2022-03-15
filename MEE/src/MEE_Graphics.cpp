@@ -223,7 +223,7 @@
 			if (window)
 			{
 				auto sdlHandler = std::reinterpret_pointer_cast<MEE::SDLHandler>(window);
-				ptr = (void*) sdlHandler->sdlRenderer;
+				ptr = (void*) sdlHandler->GetRenderer();
 			}
 		}
 		return ptr;

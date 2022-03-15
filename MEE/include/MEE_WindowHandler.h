@@ -35,10 +35,10 @@ namespace MEE
 		virtual void SwapBuffer() = 0;
 		virtual void RefreshWindow() = 0;
 	protected:
-		static unsigned int width, height;
-		static bool fullscreened;
-		static int pos_x, pos_y ;
-		static std::string windowName;
+		static unsigned int m_width, m_height;
+		static bool m_fullscreenned;
+		static int m_x, m_y ;
+		static std::string m_windowName;
 	};
 }
 

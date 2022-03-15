@@ -4,19 +4,19 @@
 
 namespace MEE
 {
-	Camera::Camera() : position(Vector2::Zero()), c_width(0), c_heigth(0)
+	Camera::Camera() : position(Vector2::Zero()), m_width(0), m_heigth(0)
 	{
 
 	}
 
-	Camera::Camera(const Vector2& pos, const int width, const int height) : position(pos), c_width(width), c_heigth(height)
+	Camera::Camera(const Vector2& pos, const int width, const int height) : position(pos), m_width(width), m_heigth(height)
 	{
 
 	}
 
 	void Camera::DrawUIElements()
 	{
-		for (auto ui_ele : uiElements)
+		for (auto ui_ele : m_uiElements)
 		{
 			auto drawable = ui_ele.second;
 			drawable->Draw();
@@ -30,22 +30,22 @@ namespace MEE
 
 	void Camera::SetActive(bool active)
 	{
-		isActive = active;
+        m_isActive = active;
 	}
 
 	bool Camera::GetActive()
 	{
-		return isActive;
+		return m_isActive;
 	}
 
 	void Camera::MakeCurrent()
 	{
 		//Necesit una clase viewport
-		//MEE_SetRenderViewport(position.x, position.y, c_width + position.x, c_heigth + position.y);
+		//MEE_SetRenderViewport(position.x, position.y, m_width + position.x, m_heigth + position.y);
 	}
 	void Camera::RemoveUIElement(const std::string& name)
 	{
-		uiElements.erase(name);
+		m_uiElements.erase(name);
 	}
 	Vector2 Camera::GetPosition()
 	{

@@ -18,14 +18,14 @@ namespace MEE
             if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER) != -1)
             {
 
-                window = SDL_CreateWindow
-                (windowName.c_str(), pos_x, pos_y, width, height,
-                    SDL_WINDOW_OPENGL);
+                m_window = SDL_CreateWindow
+                (m_windowName.c_str(), m_x, m_y, m_width, m_height,
+                 SDL_WINDOW_OPENGL);
 
-                glContext = SDL_GL_CreateContext(window);
+                m_glContext = SDL_GL_CreateContext(m_window);
 
 
-                SDL_GL_MakeCurrent(window, glContext);
+                SDL_GL_MakeCurrent(m_window, m_glContext);
 
                 SDL_GL_SetAttribute(SDL_GL_ACCELERATED_VISUAL, 1);
                 SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
@@ -50,21 +50,21 @@ namespace MEE
             auto controller = SDL_InitSubSystem(SDL_INIT_GAMECONTROLLER);
 
             SDL_CreateWindowAndRenderer(
-                width, height,
-                SDL_WINDOW_RESIZABLE,
-                &window, &sdlRenderer);
+                    m_width, m_height,
+                    SDL_WINDOW_RESIZABLE,
+                    &m_window, &m_sdlRenderer);
 
-            if (window != NULL)
+            if (m_window != NULL)
             {
-                SDL_SetWindowTitle(window, windowName.c_str());
-                sdlSurface = SDL_GetWindowSurface(window);
+                SDL_SetWindowTitle(m_window, m_windowName.c_str());
+                m_sdlSurface = SDL_GetWindowSurface(m_window);
             }
             else
             {
                 success = false;
             }
 
-            SDL_SetRenderDrawColor(sdlRenderer, 53, 40, 230, 255);
+            SDL_SetRenderDrawColor(m_sdlRenderer, 53, 40, 230, 255);
 
             if (MEE_RenderClear == nullptr)
                 MEE_RenderClear = [=]() { this->SDL_Render_RenderClear(); }; //Probablemente esto no es adecuado
@@ -77,15 +77,15 @@ namespace MEE
     {
         if (WindowHandler::GetRenderAPI() == RenderAPI::OpenGL)
         {
-            SDL_GL_DeleteContext(glContext);
+            SDL_GL_DeleteContext(m_glContext);
         }
         else if (WindowHandler::GetRenderAPI() == RenderAPI::SDL_Render)
         {
-            SDL_FreeSurface(sdlSurface);
-            SDL_DestroyRenderer(sdlRenderer);
+            SDL_FreeSurface(m_sdlSurface);
+            SDL_DestroyRenderer(m_sdlRenderer);
         }
 
-        SDL_DestroyWindow(window);
+        SDL_DestroyWindow(m_window);
         SDL_Quit();
 
     }
@@ -94,9 +94,9 @@ namespace MEE
     void SDLHandler::SwapBuffer()
     {
         if (WindowHandler::GetRenderAPI() == RenderAPI::OpenGL)
-            SDL_GL_SwapWindow(window);
+            SDL_GL_SwapWindow(m_window);
         else if (WindowHandler::GetRenderAPI() == RenderAPI::SDL_Render)
-            SDL_RenderPresent(sdlRenderer);
+            SDL_RenderPresent(m_sdlRenderer);
     }
 
     void SDLHandler::RefreshWindow()
@@ -106,8 +106,12 @@ namespace MEE
 
     void SDLHandler::SDL_Render_RenderClear()
     {
-        if(sdlRenderer)
-            SDL_RenderClear(sdlRenderer);
+        if(m_sdlRenderer)
+            SDL_RenderClear(m_sdlRenderer);
+    }
+
+    SDL_Renderer *SDLHandler::GetRenderer() {
+        return m_sdlRenderer;
     }
 
 }

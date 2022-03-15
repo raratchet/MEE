@@ -28,7 +28,7 @@ void BaseCharacter::Start()
 		});
 
 
-	weaponHitBox = &GetParent().GetScene().CreateWorldObject("weaponHitBox");
+	weaponHitBox = GetParent().GetScene().CreateWorldObject("weaponHitBox");
 	FunctionParameters wpC_Params;
 	wpC_Params.Add("Type", ColliderType::Static);
 	wpC_Params.Add("Size", Vector2(1.1f,0.3f));

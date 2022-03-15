@@ -32,16 +32,16 @@ namespace MEE
 		void SetHorizontalFlip(bool val);
 		void SetVerticalFlip(bool val);
 	protected:
-		Drawable(TransformComponent& transform) : m_sprite(nullptr), draw_transform(transform.GetTransform()) {}
-		Drawable(Transform& transform) : m_sprite(nullptr), draw_transform(transform) {}
-		Drawable(Sprite& sprite, TransformComponent& transform) : 
-			m_sprite(std::make_shared<Sprite>(sprite)), draw_transform(transform.GetTransform()) {}
+		Drawable(TransformComponent& transform) : m_sprite(nullptr), m_draw_transform(transform.GetTransform()) {}
+		Drawable(Transform& transform) : m_sprite(nullptr), m_draw_transform(transform) {}
+		Drawable(Sprite& sprite, TransformComponent& transform) :
+                m_sprite(std::make_shared<Sprite>(sprite)), m_draw_transform(transform.GetTransform()) {}
 		std::shared_ptr<Sprite> m_sprite;
-		Transform& draw_transform;
-		bool is_vertical_flipped = false;
-		bool is_horizontal_flipped = false;
-		bool visible = true;
-		bool isPhysical = true;
+		Transform& m_draw_transform;
+		bool m_is_vertical_flipped = false;
+		bool m_is_horizontal_flipped = false;
+		bool m_visible = true;
+		bool m_isPhysical = true;
 	};
 }
 

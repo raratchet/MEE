@@ -116,20 +116,20 @@ namespace MEE
 		void SetCollisionResolveCallBack(std::function<void(Collider& other, FunctionParameters params)> callback);
 		bool Transform_WasModified();
 	protected:
-		std::weak_ptr<TransformComponent> transform;
+		std::weak_ptr<TransformComponent> m_transform;
 		void SetTransform(std::shared_ptr<TransformComponent> trans);
-		Vector2 velocity;
-		float friction;
-		float gravityScale;
-		bool isRotConstraint;
-		bool active = true;
-		bool isTrigger = false;
-	    ColliderType type;
-	    ColliderForm form;
-		std::function<void(Collider& other, FunctionParameters params)> TriggerStart_CallBack; //No me gusta tener que usar de esta manera functions
-		std::function<void(Collider& other, FunctionParameters params)> TriggerEnd_CallBack;
-		std::function<void(Collider& other, FunctionParameters params)> CollisionStart_CallBack;
-		std::function<void(Collider& other, FunctionParameters params)> CollisionResolve_CallBack;
+		Vector2 m_velocity;
+		float m_friction;
+		float m_gravityScale;
+		bool m_isRotConstraint;
+		bool m_active = true;
+		bool m_isTrigger = false;
+	    ColliderType m_type;
+	    ColliderForm m_form;
+		std::function<void(Collider& other, FunctionParameters params)> m_TriggerStart_CallBack; //No me gusta tener que usar de esta manera functions
+		std::function<void(Collider& other, FunctionParameters params)> m_TriggerEnd_CallBack;
+		std::function<void(Collider& other, FunctionParameters params)> m_CollisionStart_CallBack;
+		std::function<void(Collider& other, FunctionParameters params)> m_CollisionResolve_CallBack;
 		friend class Object;
 		friend class Scene;
 	};

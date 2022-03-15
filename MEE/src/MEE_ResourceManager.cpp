@@ -11,11 +11,11 @@ namespace MEE
 
 	ResourceID ResourceManager::LoadTexture2D(const std::string& name, const std::string& path)
 	{
-		if (resources.find(name) == resources.end())
+		if (m_resources.find(name) == m_resources.end())
 		{
 			auto rendering = MEE_GLOBAL::application->GetRenderManager().lock();
 			Texture2D* tex2D = rendering->CreateTexture2D(path);
-			resources.insert(std::make_pair(name, tex2D));
+			m_resources.insert(std::make_pair(name, tex2D));
 			return true;
 		}
 		return false;
@@ -35,7 +35,7 @@ namespace MEE
 
 	void ResourceManager::Clear()
 	{
-		resources.clear();
+		m_resources.clear();
 	}
 
 

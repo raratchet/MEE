@@ -28,62 +28,62 @@ namespace MEE
 
 	 Scene::~Scene() 
 	 { 
-		sceneCameras.clear(); 
-		sceneObjects.clear(); 
-		sceneColliders.clear(); 
-		drawObjects.clear(); 
+		m_sceneCameras.clear();
+		m_sceneObjects.clear();
+		m_sceneColliders.clear();
+		m_drawObjects.clear();
 	 }
 
-     GameObject& Scene::CreateGameObject(const std::string& name)
+    std::shared_ptr<GameObject> Scene::CreateGameObject(const std::string& name)
      {
          std::shared_ptr <GameObject> temp(new GameObject(*this, name));
-         sceneObjects.push_back(temp);
-         drawObjects.push_back(temp);
-         return *(temp);
+         m_sceneObjects.push_back(temp);
+         m_drawObjects.push_back(temp);
+         return temp;
      }
 
-     GameObject& Scene::CreateGameObject(const std::string& name, Sprite& sprite)
+    std::shared_ptr<GameObject> Scene::CreateGameObject(const std::string& name, Sprite& sprite)
      {
          std::shared_ptr <GameObject> temp(new GameObject(*this, name,sprite));
-         sceneObjects.push_back(temp);
-         drawObjects.push_back(temp);
-         return *(temp);
+         m_sceneObjects.push_back(temp);
+         m_drawObjects.push_back(temp);
+         return temp;
      }
 
-     WorldObject& Scene::CreateWorldObject(const std::string& name)
+    std::shared_ptr<WorldObject> Scene::CreateWorldObject(const std::string& name)
      {
          std::shared_ptr<WorldObject> temp(new WorldObject(*this, name));
-         sceneObjects.push_back(temp);
-         return *(temp);
+         m_sceneObjects.push_back(temp);
+         return temp;
      }
 
-     Camera& Scene::CreateCamera()
+    std::shared_ptr<Camera> Scene::CreateCamera()
      {
          std::shared_ptr<Camera> camera(new Camera());
-         sceneCameras.push_back(camera);
-         return *(camera);
+         m_sceneCameras.push_back(camera);
+         return camera;
      }
 
-     Camera& Scene::CreateCamera(const Vector2& pos, int widht, int height)
+    std::shared_ptr<Camera> Scene::CreateCamera(const Vector2& pos, int widht, int height)
      {
          std::shared_ptr<Camera> camera(new Camera(pos, widht, height));
-         sceneCameras.push_back(camera);
-         return *(camera);
+         m_sceneCameras.push_back(camera);
+         return camera;
      }
 
      bool Scene::IsLoaded()
      {
-         return loaded;
+         return m_loaded;
      }
 
      SceneID Scene::GetID()
      {
-         return id;
+         return m_id;
      }
 
-     Camera& Scene::GetMainCamera()
+    std::shared_ptr<Camera> Scene::GetMainCamera()
      {
-         return *sceneCameras.front().get();
+         return m_sceneCameras.front();
      }
 
      void Scene::CreateMainSceneCamera()
@@ -102,11 +102,11 @@ namespace MEE
      void Scene::Update()
      {
          //Update transforms in module
-         for (auto& collider : sceneColliders)
+         for (auto& collider : m_sceneColliders)
          {
              if (collider->GetParent().GetEnabled())
              {
-                 auto transform = collider->transform.lock();
+                 auto transform = collider->m_transform.lock();
                  auto position = transform->GetPosition();
                  MEE_Collider asMEE_Collider = (MEE_Collider)(collider.get());
                  MEE_CHECK_FUNCTION(MEE_SetColliderTransform,
@@ -115,14 +115,14 @@ namespace MEE
          }
 
          //Run physics
-         MEE_CHECK_FUNCTION(MEE_PhysicsStep,MEE_PhysicsStep(id));
+         MEE_CHECK_FUNCTION(MEE_PhysicsStep,MEE_PhysicsStep(m_id));
 
          //Update transforms in engine
-         for (auto& collider : sceneColliders)
+         for (auto& collider : m_sceneColliders)
          {
              if (collider->GetParent().GetEnabled())
              {
-                 auto transform = collider->transform.lock();
+                 auto transform = collider->m_transform.lock();
                  Vector2 position;
                  float angle;
 
@@ -137,8 +137,8 @@ namespace MEE
 
 
          //Update scene objects
-         for (auto& obj : sceneObjects)
-             for (auto& beh : obj->updatables)
+         for (auto& obj : m_sceneObjects)
+             for (auto& beh : obj->m_updatables)
                  if (obj->GetEnabled())
                  {
                     MEE_LOGGER::ScopedLogging log("MEG");
@@ -148,7 +148,7 @@ namespace MEE
 
      void Scene::Draw()
      {
-         for (auto& camera : sceneCameras)
+         for (auto& camera : m_sceneCameras)
          {
 
              if (!camera->GetActive())
@@ -159,7 +159,7 @@ namespace MEE
              MEE_GLOBAL::application->GetRenderManager().lock()->RenderDebugGrid();
 #endif // _DEBUG
 
-             for (auto& drawable : drawObjects)
+             for (auto& drawable : m_drawObjects)
              {
                  if(drawable->GetVisible())
                     drawable->Draw();

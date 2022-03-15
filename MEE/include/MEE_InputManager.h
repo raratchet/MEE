@@ -35,8 +35,8 @@ namespace MEE
 		Vector2 GetMouse();
 
 	private:
-		bool gamepad_supported = false;
-		bool gamepad_rumble_supported = false;
+		bool m_gamepad_supported = false;
+		bool m_gamepad_rumble_supported = false;
 	};
 }
 

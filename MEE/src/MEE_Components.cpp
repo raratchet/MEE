@@ -98,72 +98,72 @@ namespace MEE
 	}
 	void Collider::SetTransform(std::shared_ptr<TransformComponent> trans)
 	{
-		transform = trans;
+        m_transform = trans;
 	}
 	Vector2 Collider::GetVelocity()
 	{
-		return velocity;
+		return m_velocity;
 	}
 	float Collider::GetFriction()
 	{
-		return friction;
+		return m_friction;
 	}
 	float Collider::GetGravity()
 	{
-		return gravityScale;
+		return m_gravityScale;
 	}
 	bool Collider::GetRotationConstrait()
 	{
-		return isRotConstraint;
+		return m_isRotConstraint;
 	}
 	bool Collider::GetActive()
 	{
-		return active;
+		return m_active;
 	}
 	ColliderType Collider::GetType()
 	{
-		return type;
+		return m_type;
 	}
 	ColliderForm Collider::GetFigure()
 	{
-		return form;
+		return m_form;
 	}
 
 	void Collider::SetVelocity(const Vector2& value)
 	{
-		velocity = value;
+        m_velocity = value;
 	}
 	void Collider::SetFriction(float value)
 	{
-		friction = value;
+        m_friction = value;
 	}
 	void Collider::SetGravity(float value)
 	{
-		gravityScale = value;
+        m_gravityScale = value;
 	}
 	void Collider::SetRotationConstrait(bool value)
 	{
-		isRotConstraint = value;
+        m_isRotConstraint = value;
 	}
 	void Collider::SetActive(bool value)
 	{
-		active = value;
+        m_active = value;
 	}
 	void Collider::SetIsTrigger(bool value)
 	{
-		isTrigger = value;
+        m_isTrigger = value;
 	}
 	bool Collider::GetIsTrigger()
 	{
-		return isTrigger;
+		return m_isTrigger;
 	}
 	void Collider::SetType(ColliderType value)
 	{
-		type = value;
+        m_type = value;
 	}
 	void Collider::SetFigure(ColliderForm value)
 	{
-		form = value;
+        m_form = value;
 	}
 
 	void Collider::ApplyForce(const Vector2&, const Vector2&)
@@ -178,29 +178,29 @@ namespace MEE
 
 	bool Collider::Transform_WasModified()
 	{
-		auto trans = transform.lock();
+		auto trans = m_transform.lock();
 
 		return trans->WasModified();
 	}
 
 	void Collider::SetTriggerStartCallBack(std::function<void(Collider& other, FunctionParameters params)> callback)
 	{
-		TriggerStart_CallBack = callback;
+        m_TriggerStart_CallBack = callback;
 	}
 
 	void Collider::SetTriggerEndCallBack(std::function<void(Collider& other, FunctionParameters params)> callback)
 	{
-		TriggerEnd_CallBack = callback;
+        m_TriggerEnd_CallBack = callback;
 	}
 
 	void Collider::SetCollisionStartCallBack(std::function<void(Collider& other, FunctionParameters params)> callback)
 	{
-		CollisionStart_CallBack = callback;
+        m_CollisionStart_CallBack = callback;
 	}
 
 	void Collider::SetCollisionResolveCallBack(std::function<void(Collider& other, FunctionParameters params)> callback)
 	{
-		CollisionResolve_CallBack = callback;
+        m_CollisionResolve_CallBack = callback;
 	}
 
 	void Collider::Raycast(const Vector2& point1, const Vector2& point2, FunctionParameters parameters)

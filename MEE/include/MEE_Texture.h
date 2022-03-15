@@ -20,6 +20,6 @@ namespace MEE
 		virtual int GetHeight() const;
 
 	protected:
-		int width, height;
+		int m_width, m_height;
 	};
 }

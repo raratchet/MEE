@@ -8,18 +8,18 @@ class Test : public Behaviour
 {
 	virtual void Update() override
 	{
-		MEE::Camera& camera = GetParent().GetScene().GetMainCamera();
+		auto camera = GetParent().GetScene().GetMainCamera();
 
 		if (Input::Keyboard::KeyWasPressedThisFrame('n'))
 		{
-			Vector2 pos = camera.GetPosition();
-			camera.SetPosition(pos + Vector2(-1, 0));
+			Vector2 pos = camera->GetPosition();
+			camera->SetPosition(pos + Vector2(-1, 0));
 		}
 
 		if (Input::Keyboard::KeyWasPressedThisFrame('m'))
 		{
-			Vector2 pos = camera.GetPosition();
-			camera.SetPosition(pos + Vector2(1, 0));
+			Vector2 pos = camera->GetPosition();
+			camera->SetPosition(pos + Vector2(1, 0));
 		}
 	}
 };

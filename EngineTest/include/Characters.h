@@ -26,7 +26,7 @@ protected:
 	int deadCounterCond = 180;
 	FacingDirection f_direction = FacingDirection::Right;
 	Collider* myCollider;
-	WorldObject* weaponHitBox;
+	std::shared_ptr<WorldObject> weaponHitBox;
 	WinScreen* winScreen;
 public:
 	static std::list<BaseCharacter*> alive;

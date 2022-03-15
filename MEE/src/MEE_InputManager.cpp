@@ -5,7 +5,7 @@
 
 namespace MEE
 {
-#define GAMEPAD_SUPPORTED if(!InputManager::gamepad_supported){\
+#define GAMEPAD_SUPPORTED if(!InputManager::m_gamepad_supported){\
 						  MEE_LOGGER::Warn("[MEE] Gamepad not supported."); return false; }
 
 #define MEE_CHECK_FUNCTION(FUNC_NAME,FUNCTION)\
@@ -51,11 +51,11 @@ catch(...)\
 			MEE_mouse_KeyUp && MEE_keyboard_KeyIsPressed && MEE_keyboard_KeyPressedThisFrame &&
 			MEE_keyboard_KeyUp;
 
-		gamepad_supported =
+        m_gamepad_supported =
 			MEE_gamepad_KeyIsPressed && MEE_gamepad_KeyPressedThisFrame &&
 			MEE_gamepad_KeyUp;
 
-		gamepad_rumble_supported = MEE_gamepad_MakeRumble && true;
+        m_gamepad_rumble_supported = MEE_gamepad_MakeRumble && true;
 
 		success = essentials_set;
 

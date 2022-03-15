@@ -54,9 +54,9 @@ namespace MEE
 		int GetSpriteWidth();
 		int GetSpriteHeight();
 	private:
-		int width, height;
-		Vector2 baseImage_startCoord;
-		std::weak_ptr<Texture2D> baseImage;
+		int m_width, m_height;
+		Vector2 m_baseImageStartCoord;
+		std::weak_ptr<Texture2D> m_baseImage;
 	};
 
 	class MEE_EXPORT SpriteSheet
@@ -68,7 +68,7 @@ namespace MEE
 		std::weak_ptr<Sprite> Get(int index);
 		int GetNumberOfFrames();
 	private:
-		std::vector<std::shared_ptr<Sprite>> sprites;
+		std::vector<std::shared_ptr<Sprite>> m_sprites;
 	};
 }
 

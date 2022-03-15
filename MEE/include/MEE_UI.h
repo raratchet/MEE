@@ -23,7 +23,7 @@ namespace MEE
 		void SetRotation(float angle);
 	private:
 		//Camera& targetCamera;
-		Transform transform;
+		Transform m_transform;
 
 		friend class Camera;
 	};
@@ -33,7 +33,7 @@ namespace MEE
 	public:
 		UI_Image(Sprite& sprite);
 		UI_Image();
-		//UI_Image(const std::string& resourceName); // Lo implemento más adelante
+		//UI_Image(const std::string& resourceName); // Lo implemento mï¿½s adelante
 	};
 }
 

@@ -7,10 +7,10 @@ namespace MEE
 	{ 
 		if (auto sprite = GetSprite().lock())
 		{
-			auto position = draw_transform.position;
-			auto scale = draw_transform.scale;
-			auto rot = draw_transform.rotation;
-			sprite->Draw(position, scale, rot, is_horizontal_flipped, is_vertical_flipped, isPhysical);
+			auto position = m_draw_transform.position;
+			auto scale = m_draw_transform.scale;
+			auto rot = m_draw_transform.rotation;
+			sprite->Draw(position, scale, rot, m_is_horizontal_flipped, m_is_vertical_flipped, m_isPhysical);
 		}
 	}
 
@@ -30,26 +30,26 @@ namespace MEE
 	}
 	void Drawable::SetVisible(bool value)
 	{
-		visible = value;
+        m_visible = value;
 	}
 	bool Drawable::GetVisible()
 	{
-		return visible;
+		return m_visible;
 	}
 	void Drawable::FlipHorizontally()
 	{
-		is_horizontal_flipped = !is_horizontal_flipped;
+        m_is_horizontal_flipped = !m_is_horizontal_flipped;
 	}
 	void Drawable::FlipVertical()
 	{
-		is_vertical_flipped = !is_vertical_flipped;
+        m_is_vertical_flipped = !m_is_vertical_flipped;
 	}
 	void Drawable::SetHorizontalFlip(bool val)
 	{
-		is_horizontal_flipped = val;
+        m_is_horizontal_flipped = val;
 	}
 	void Drawable::SetVerticalFlip(bool val)
 	{
-		is_vertical_flipped = val;
+        m_is_vertical_flipped = val;
 	}
 }

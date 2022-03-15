@@ -32,9 +32,9 @@ namespace MEE
 		Camera(const Vector2& pos, const int width, const int height);
 		void DrawUIElements();
 		Vector2 position;
-		int c_width, c_heigth;
-		bool isActive = true;
-		std::map<std::string, std::shared_ptr<UI_Element>> uiElements;
+		int m_width, m_heigth;
+		bool m_isActive = true;
+		std::map<std::string, std::shared_ptr<UI_Element>> m_uiElements;
 		friend class Scene;
 	};
 
@@ -42,7 +42,7 @@ namespace MEE
 	T& Camera::AttachUIElement(const std::string& name, Args... args)
 	{
 		T* element = new T((std::forward<Args>(args), ...));
-		uiElements.insert({ name, std::shared_ptr<T>(element) });
+		m_uiElements.insert({name, std::shared_ptr<T>(element) });
 		return *element;
 	}
 }

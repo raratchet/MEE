@@ -15,8 +15,8 @@ public:
 	}
 	void Load() override 
 	{
-		GameObject& banner = CreateGameObject("banner", *winBanner);
-		banner.GetTransformComponent().SetPosition(20, 20);
+		auto banner = CreateGameObject("banner", *winBanner);
+		banner->GetTransformComponent().SetPosition(20, 20);
 	};
 	void Unload() override {};
 };
@@ -33,8 +33,8 @@ public:
 
 	void Load() override 
 	{
-		GameObject& winner = CreateGameObject("LancerWin", *winnerImage);
-		winner.GetTransformComponent().SetPosition(20, 15);
+		auto winner = CreateGameObject("LancerWin", *winnerImage);
+		winner->GetTransformComponent().SetPosition(20, 15);
 		WinScreen::Load();
 	};
 	void Unload() override
@@ -54,8 +54,8 @@ public:
 
 	void Load() override
 	{
-		GameObject& winner = CreateGameObject("ToxicWin", *winnerImage);
-		winner.GetTransformComponent().SetPosition(20, 15);
+		auto winner = CreateGameObject("ToxicWin", *winnerImage);
+		winner->GetTransformComponent().SetPosition(20, 15);
 		WinScreen::Load();
 	};
 
@@ -75,8 +75,8 @@ public:
 
 	void Load() override
 	{
-		GameObject& winner = CreateGameObject("SamuraiWin", *winnerImage);
-		winner.GetTransformComponent().SetPosition(20, 15);
+		auto winner = CreateGameObject("SamuraiWin", *winnerImage);
+		winner->GetTransformComponent().SetPosition(20, 15);
 		WinScreen::Load();
 	};
 
@@ -96,8 +96,8 @@ public:
 
 	void Load() override
 	{
-		GameObject& winner = CreateGameObject("CoyboyWin", *winnerImage);
-		winner.GetTransformComponent().SetPosition(20, 15);
+		auto winner = CreateGameObject("CoyboyWin", *winnerImage);
+		winner->GetTransformComponent().SetPosition(20, 15);
 		WinScreen::Load();
 	};
 

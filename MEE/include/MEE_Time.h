@@ -42,13 +42,13 @@ namespace MEE
 		void SetTargetFrameRate(int framerate);
 	private:
 		float lastFrameElapsedTime;
-		std::chrono::steady_clock::time_point t1,t2,t3;
-		std::chrono::duration<double> initialAppTime;
-		std::chrono::duration<double> timeUsed;
-		std::chrono::duration<double> frameTime;
-		std::chrono::duration<double> sleepTime;
-		std::chrono::duration<double> sleepAdjust;
-		std::chrono::duration<double> target;
+		std::chrono::steady_clock::time_point m_t1,m_t2,m_t3;
+		std::chrono::duration<double> m_initialAppTime;
+		std::chrono::duration<double> m_timeUsed;
+		std::chrono::duration<double> m_frameTime;
+		std::chrono::duration<double> m_sleepTime;
+		std::chrono::duration<double> m_sleepAdjust;
+		std::chrono::duration<double> m_target;
 	};
 }
 
