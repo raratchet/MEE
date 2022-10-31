@@ -28,19 +28,21 @@ namespace MEE
 	{
 	public:
 		/**
-		 * Default constructur.
+		 * Default constructor.
 		 * Sets the MEE_GLOBAL Application pointer to this instance.
 		 */
 		Application();
+        /**
+         */
 		~Application() = default;
 		/**
 		 * Initialize the application.
-		 * Builds window, creates and initiliazes all managers.
+		 * Builds window, creates and initializes all managers.
 		 * \return false if application couldn't be initialized correctly.
 		 */
 		bool Init();
 		/**
-		 * Load is called after the app is initilized correctly.
+		 * Load is called after the app is initialized correctly.
 		 * Calls the load method in all loaded plugins
 		 */
 		void Load();
@@ -74,42 +76,42 @@ namespace MEE
 		 */
 		void CloseApplicationSignal();
 		/**
-		 * \return A weak pointer to the WindowHandler.
+		 * \return Pointer to the WindowHandler.
 		 */
-		std::weak_ptr<WindowHandler> GetWindow();
+		WindowHandler* GetWindow();
 		/**
-		* \return A weak pointer to the PluginManager.
+		* \return Pointer to the PluginManager.
 		*/
-		std::weak_ptr<PluginManager> GetPluginManager();
+		PluginManager* GetPluginManager();
 		/**
-		* \return A weak pointer to the ResourceManager.
+		* \return Pointer to the ResourceManager.
 		*/
-		std::weak_ptr<ResourceManager> GetResourceManager();
+		ResourceManager* GetResourceManager();
 		/**
-		* \return A weak pointer to the SceneManager.
+		* \return Pointer to the SceneManager.
 		*/
-		std::weak_ptr<SceneManager> GetSceneManager();
+		SceneManager* GetSceneManager();
 		/**
-		* \return A weak pointer to the InputManager.
+		* \return Pointer to the InputManager.
 		*/
-		std::weak_ptr<InputManager> GetInputManager();
+		InputManager* GetInputManager();
 		/**
-		* \return A weak pointer to the TimeManager.
+		* \return Pointer to the TimeManager.
 		*/
-		std::weak_ptr<TimeManager> GetTimeManager();
+		TimeManager* GetTimeManager();
 		/**
-		* \return A weak pointer to the RenderingManager.
+		* \return Pointer to the RenderingManager.
 		*/
-		std::weak_ptr<RenderingManager> GetRenderManager();
+		RenderingManager* GetRenderManager();
 	private:
 		bool exit = false;
-		std::shared_ptr<SceneManager> sceneManager;
-		std::shared_ptr<WindowHandler> w_handler;
-		std::shared_ptr<PluginManager>pluginManager;
-		std::shared_ptr<ResourceManager> resourceManager;
-		std::shared_ptr<InputManager> inputManager;
-		std::shared_ptr<TimeManager> timeManager;
-		std::shared_ptr<RenderingManager> renderManager;
+		std::unique_ptr<SceneManager> sceneManager;
+		std::unique_ptr<WindowHandler> w_handler;
+		std::unique_ptr<PluginManager>pluginManager;
+		std::unique_ptr<ResourceManager> resourceManager;
+		std::unique_ptr<InputManager> inputManager;
+		std::unique_ptr<TimeManager> timeManager;
+		std::unique_ptr<RenderingManager> renderManager;
 	};
 }
 

@@ -71,7 +71,7 @@
 
 	void MEE_bind_RenderClear(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -82,7 +82,7 @@
 
 	void MEE_bind_CreateTexture2D(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -94,7 +94,7 @@
 
 	void MEE_bind_RenderTexture2D(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -107,7 +107,7 @@
 
 	void MEE_EXPORT MEE_bind_SetRenderColor(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -118,7 +118,7 @@
 
 	void MEE_EXPORT MEE_bind_SetRenderViewport(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -129,7 +129,7 @@
 
 	void MEE_EXPORT MEE_bind_RenderLine(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -140,7 +140,7 @@
 
 	void MEE_EXPORT MEE_bind_RenderPoint(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -151,7 +151,7 @@
 
 	void MEE_EXPORT MEE_bind_RenderPolygon(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -162,7 +162,7 @@
 
 	void MEE_EXPORT MEE_bind_RenderSolidPolygon(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -173,7 +173,7 @@
 
 	void MEE_EXPORT MEE_bind_RenderCircle(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -184,7 +184,7 @@
 
 	void MEE_EXPORT MEE_bind_RenderSolidCircle(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -195,7 +195,7 @@
 
 	void MEE_bind_InitGL(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -205,7 +205,7 @@
 
 	void MEE_bind_RenderDebugGrid(int plugin_id, const std::string& func_name)
 	{
-		auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+		auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 		if (pl_manager)
 		{
@@ -218,11 +218,11 @@
 		MEE_Renderer ptr = nullptr;
 		if (MEE::WindowHandler::GetRenderAPI() == RenderAPI::SDL_Render)
 		{
-			auto window = MEE_GLOBAL::application->GetWindow().lock();
+			auto window = MEE_GLOBAL::application->GetWindow();
 
 			if (window)
 			{
-				auto sdlHandler = std::reinterpret_pointer_cast<MEE::SDLHandler>(window);
+				auto sdlHandler = static_cast<MEE::SDLHandler*>(window);
 				ptr = (void*) sdlHandler->sdlRenderer;
 			}
 		}

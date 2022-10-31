@@ -34,7 +34,7 @@ void Game::LoadLevel(Level* level)
 
 void Game::AddLevel(Level* level)
 {
-	auto scenes = mainApp->GetSceneManager().lock();
+	auto scenes = mainApp->GetSceneManager();
 	if (scenes) //Should be assert
 	{
 		scenes->AddScene(level);
@@ -43,7 +43,7 @@ void Game::AddLevel(Level* level)
 
 void Game::RemoveCurrentLevel()
 {
-	auto scenes = mainApp->GetSceneManager().lock();
+	auto scenes = mainApp->GetSceneManager();
 
 	if (scenes)
 	{
@@ -54,7 +54,7 @@ void Game::RemoveCurrentLevel()
 AssetID Game::LoadAsset(std::string name, std::string path)
 {
 	//Assetr resourcemanager
-	auto resourceManager = mainApp->GetResourceManager().lock();
+	auto resourceManager = mainApp->GetResourceManager();
 
 	std::string suffix = GetFileSuffix(path);
 
@@ -78,42 +78,42 @@ bool Game::AssetExists(std::string name)
 
 void Game::UnloadAsset(std::string name)
 {
-	auto resourceManager = mainApp->GetResourceManager().lock();
+	auto resourceManager = mainApp->GetResourceManager();
 
 	resourceManager->Unload(name);
 }
 
 void Game::UnloadAllAssets()
 {
-	auto resourceManager = mainApp->GetResourceManager().lock();
+	auto resourceManager = mainApp->GetResourceManager();
 
 	resourceManager->Clear();
 }
 
 void Game::RenameWindow(std::string name)
 {
-	auto window = mainApp->GetWindow().lock();
+	auto window = mainApp->GetWindow();
 
 	window->SetWindowName(name);
 }
 
 void Game::ResizeWindow(int width, int height)
 {
-	auto window = mainApp->GetWindow().lock();
+	auto window = mainApp->GetWindow();
 
 	window->SetWindowSize(width, height);
 }
 
-void Game::SetWindowFullscren(bool status)
+void Game::SetWindowFullscreen(bool status)
 {
-	auto window = mainApp->GetWindow().lock();
+	auto window = mainApp->GetWindow();
 
 	window->SetFullscreenMode(status);
 }
 
 double Game::GetDeltaTime()
 {
-	auto tm = mainApp->GetTimeManager().lock();
+	auto tm = mainApp->GetTimeManager();
 	return tm->GetDeltaTime();
 }
 

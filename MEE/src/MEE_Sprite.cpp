@@ -12,14 +12,14 @@ namespace MEE
 	Sprite::Sprite(const std::string& resource_name, int x, int y, int w, int h): 
 		width(w - x), height(h - y), baseImage_startCoord(Vector2(x, y))
 	{
-		auto RM = MEE_GLOBAL::application->GetResourceManager().lock();
+		auto RM = MEE_GLOBAL::application->GetResourceManager();
 
 		baseImage = RM->Get<Texture2D>(resource_name); //No me gusta usar el global
 	}
 
 	Sprite::Sprite(const std::string& resource_name)
 	{
-		auto RM = MEE_GLOBAL::application->GetResourceManager().lock();
+		auto RM = MEE_GLOBAL::application->GetResourceManager();
 
 		baseImage = RM->Get<Texture2D>(resource_name);
 
@@ -40,7 +40,7 @@ namespace MEE
 		if (auto image = baseImage.lock())
 		{
 
-			auto renderer = MEE_GLOBAL::application->GetRenderManager().lock();
+			auto renderer = MEE_GLOBAL::application->GetRenderManager();
 
 			MEE_Texture2D texture = (MEE_Texture2D)(&*image);
 			float ppu = renderer->GetPixelsPerUnit();
@@ -70,7 +70,7 @@ namespace MEE
 
 	SpriteSheet::SpriteSheet(const std::string& resource_name, int width, int height)
 	{
-		auto RM = MEE_GLOBAL::application->GetResourceManager().lock();
+		auto RM = MEE_GLOBAL::application->GetResourceManager();
 
 		auto baseImage = RM->Get<Texture2D>(resource_name); //No me gusta usar el global
 

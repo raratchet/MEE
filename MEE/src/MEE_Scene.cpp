@@ -96,7 +96,7 @@ namespace MEE
 
      void Scene::SetCurrentCamera(std::weak_ptr<Camera> camera)
      {
-         MEE_GLOBAL::application->GetRenderManager().lock()->SetCurrentCamera(camera);
+         MEE_GLOBAL::application->GetRenderManager()->SetCurrentCamera(camera);
      }
 
      void Scene::Update()
@@ -156,7 +156,7 @@ namespace MEE
 
              SetCurrentCamera(camera);
 #ifdef _DEBUG
-             MEE_GLOBAL::application->GetRenderManager().lock()->RenderDebugGrid();
+             MEE_GLOBAL::application->GetRenderManager()->RenderDebugGrid();
 #endif // _DEBUG
 
              for (auto& drawable : drawObjects)

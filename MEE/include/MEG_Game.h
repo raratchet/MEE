@@ -29,7 +29,7 @@ public:
 	//Window related stuff
 	static void RenameWindow(std::string name);
 	static void ResizeWindow(int width,int height);
-	static void SetWindowFullscren(bool status);
+	static void SetWindowFullscreen(bool status);
 
 	static double GetDeltaTime();
 

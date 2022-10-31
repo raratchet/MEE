@@ -11,7 +11,7 @@ inline std::function<void(SceneID sceneID)> MEE_PhysicsStep;
 
 void MEE_bind_CreateCollider(int pl_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -20,7 +20,7 @@ void MEE_bind_CreateCollider(int pl_id, const std::string& func_name)
 }
 void MEE_bind_SetColliderTransform(int pl_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -29,7 +29,7 @@ void MEE_bind_SetColliderTransform(int pl_id, const std::string& func_name)
 }
 void MEE_bind_GetColliderTransform(int pl_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -38,7 +38,7 @@ void MEE_bind_GetColliderTransform(int pl_id, const std::string& func_name)
 }
 void MEE_bind_PhysicsStep(int pl_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -47,7 +47,7 @@ void MEE_bind_PhysicsStep(int pl_id, const std::string& func_name)
 }
 void MEE_bind_CreatePhysicsWorld(int pl_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -60,7 +60,7 @@ void MEE_SetFixedUpdateSpeed(uint frameSpeed)
 }
 double MEE_GetDeltaTime()
 {
-	auto timeManager = MEE_GLOBAL::application->GetTimeManager().lock();
+	auto timeManager = MEE_GLOBAL::application->GetTimeManager();
 
 	return timeManager->GetDeltaTime();
 }

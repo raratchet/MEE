@@ -41,7 +41,7 @@ void MEE_EXPORT MEE_CloseApplicationSignal()
 
 void MEE_EXPORT MEE_bind_keyboard_KeyPressedThisFrame(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -51,7 +51,7 @@ void MEE_EXPORT MEE_bind_keyboard_KeyPressedThisFrame(int plugin_id, const std::
 
 void MEE_EXPORT MEE_bind_keyboard_KeyIsPressed(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -61,7 +61,7 @@ void MEE_EXPORT MEE_bind_keyboard_KeyIsPressed(int plugin_id, const std::string&
 
 void MEE_EXPORT MEE_bind_keyboard_KeyUp(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -71,7 +71,7 @@ void MEE_EXPORT MEE_bind_keyboard_KeyUp(int plugin_id, const std::string& func_n
 
 void MEE_EXPORT MEE_bind_mouse_KeyPressedThisFrame(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -81,7 +81,7 @@ void MEE_EXPORT MEE_bind_mouse_KeyPressedThisFrame(int plugin_id, const std::str
 
 void MEE_EXPORT MEE_bind_mouse_KeyIsPressed(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -91,7 +91,7 @@ void MEE_EXPORT MEE_bind_mouse_KeyIsPressed(int plugin_id, const std::string& fu
 
 void MEE_EXPORT MEE_bind_mouse_KeyUp(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -101,7 +101,7 @@ void MEE_EXPORT MEE_bind_mouse_KeyUp(int plugin_id, const std::string& func_name
 
 void MEE_EXPORT MEE_bind_mouse_GetPosition(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -111,7 +111,7 @@ void MEE_EXPORT MEE_bind_mouse_GetPosition(int plugin_id, const std::string& fun
 
 void MEE_EXPORT MEE_bind_gamepad_KeyPressedThisFrame(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -121,7 +121,7 @@ void MEE_EXPORT MEE_bind_gamepad_KeyPressedThisFrame(int plugin_id, const std::s
 
 void MEE_EXPORT MEE_bind_gamepad_KeyIsPressed(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -131,7 +131,7 @@ void MEE_EXPORT MEE_bind_gamepad_KeyIsPressed(int plugin_id, const std::string& 
 
 void MEE_EXPORT MEE_bind_gamepad_KeyUp(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -141,7 +141,7 @@ void MEE_EXPORT MEE_bind_gamepad_KeyUp(int plugin_id, const std::string& func_na
 
 void MEE_EXPORT MEE_bind_gamepad_GetJoystick(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{
@@ -151,7 +151,7 @@ void MEE_EXPORT MEE_bind_gamepad_GetJoystick(int plugin_id, const std::string& f
 
 void MEE_EXPORT MEE_bind_gamepad_MakeRumble(int plugin_id, const std::string& func_name)
 {
-	auto pl_manager = MEE_GLOBAL::application->GetPluginManager().lock();
+	auto pl_manager = MEE_GLOBAL::application->GetPluginManager();
 
 	if (pl_manager)
 	{

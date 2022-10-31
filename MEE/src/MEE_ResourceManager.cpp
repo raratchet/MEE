@@ -13,7 +13,7 @@ namespace MEE
 	{
 		if (resources.find(name) == resources.end())
 		{
-			auto rendering = MEE_GLOBAL::application->GetRenderManager().lock();
+			auto rendering = MEE_GLOBAL::application->GetRenderManager();
 			Texture2D* tex2D = rendering->CreateTexture2D(path);
 			resources.insert(std::make_pair(name, tex2D));
 			return true;

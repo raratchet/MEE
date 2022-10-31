@@ -20,7 +20,7 @@ namespace MEE
 		bool success = true;
 
 
-		pluginManager = std::make_shared<PluginManager>(PluginManager());
+		pluginManager = std::make_unique<PluginManager>(PluginManager());
 
 		if (!pluginManager->Init())
 		{
@@ -29,23 +29,22 @@ namespace MEE
 		}
 
 		if (WindowHandler::GetHandlerAPI() == WindowHandlerAPI::SDL)
-			w_handler = std::shared_ptr<SDLHandler>(new SDLHandler());
+			w_handler = std::make_unique<SDLHandler>(SDLHandler());
 		else if (WindowHandler::GetHandlerAPI() == WindowHandlerAPI::GLFW)
-			w_handler = std::shared_ptr<GLFWHandler>(new GLFWHandler());
+			w_handler = std::make_unique<GLFWHandler>(GLFWHandler());
 		else
-			w_handler = std::shared_ptr<SDLHandler>(new SDLHandler());
+			w_handler = std::make_unique<SDLHandler>(SDLHandler());
 
-
-		resourceManager = std::shared_ptr<ResourceManager>(new ResourceManager());
-		sceneManager = std::shared_ptr<SceneManager>(new SceneManager());
-		inputManager = std::shared_ptr<InputManager>(new InputManager());
-		timeManager = std::shared_ptr<TimeManager>(new TimeManager());
-		renderManager = std::shared_ptr<RenderingManager>(new RenderingManager());
+		resourceManager = std::make_unique<ResourceManager>(ResourceManager());
+		sceneManager = std::make_unique<SceneManager>(SceneManager());
+		inputManager = std::make_unique<InputManager>(InputManager());
+		timeManager = std::make_unique<TimeManager>(TimeManager());
+		renderManager = std::make_unique<RenderingManager>(RenderingManager());
 
 		//El orden del init importa mucho
 		if (!resourceManager->Init())
 		{
-			MEE_LOGGER::Fatal("An error has ocurred in the Resource Manager");
+			MEE_LOGGER::Fatal("An error has occurred in the Resource Manager");
 			return false;
 		}
 
@@ -113,39 +112,39 @@ namespace MEE
 		exit = true;
 	}
 
-	std::weak_ptr<WindowHandler> Application::GetWindow()
+	WindowHandler* Application::GetWindow()
 	{
-		return w_handler;
+		return w_handler.get();
 	}
 
-	std::weak_ptr<PluginManager> MEE::Application::GetPluginManager()
+	PluginManager* MEE::Application::GetPluginManager()
 	{
-		return pluginManager;
+		return pluginManager.get();
 	}
 
-	std::weak_ptr<ResourceManager> Application::GetResourceManager()
+	ResourceManager* Application::GetResourceManager()
 	{
-		return resourceManager;
+		return resourceManager.get();
 	}
 
-	std::weak_ptr<SceneManager> Application::GetSceneManager()
+	SceneManager* Application::GetSceneManager()
 	{
-		return sceneManager;
+		return sceneManager.get();
 	}
 
-	std::weak_ptr<InputManager> Application::GetInputManager()
+	InputManager* Application::GetInputManager()
 	{
-		return inputManager;
+		return inputManager.get();
 	}
 
-	std::weak_ptr<TimeManager> Application::GetTimeManager()
+	TimeManager* Application::GetTimeManager()
 	{
-		return timeManager;
+		return timeManager.get();
 	}
 
-	std::weak_ptr<RenderingManager> Application::GetRenderManager()
+	RenderingManager* Application::GetRenderManager()
 	{
-		return renderManager;
+		return renderManager.get();
 	}
 
 	void Application::Stop()
